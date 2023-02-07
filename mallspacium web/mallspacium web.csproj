@@ -70,6 +70,7 @@
     <Content Include="design\mallspaceium_logo.png" />
     <Content Include="form\AdminHome.aspx" />
     <Content Include="form\FrontPage.aspx" />
+    <Content Include="form\RegisterPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
@@ -88,6 +89,13 @@
     </Compile>
     <Compile Include="form\FrontPage.aspx.designer.cs">
       <DependentUpon>FrontPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="form\RegisterPage.aspx.cs">
+      <DependentUpon>RegisterPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="form\RegisterPage.aspx.designer.cs">
+      <DependentUpon>RegisterPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">
