@@ -29,15 +29,15 @@
                     </div>
                    <div class="mb-3 mt-3">
                       <label for="phonenumber" class="form-label">Phone Number:</label>
-                      <asp:TextBox ID="phonenumber" runat="server" type="text" class="form-control" placeholder="Enter Phone Number" name="dateofbirth" TextMode="Number"></asp:TextBox>
+                      <asp:TextBox ID="phonenumber" runat="server" type="text" class="form-control" placeholder="Enter Phone Number" name="dateofbirth" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
                     </div>
                             <div class="mb-3 mt-3">
             <label for="email" class="form-label">Email:</label>
-            <asp:TextBox ID="email" runat="server" type="text" class="form-control" placeholder="Enter email" name="email"></asp:TextBox>
+            <asp:TextBox ID="email" runat="server" type="text" class="form-control" placeholder="Enter email" name="email" AutoCompleteType="Disabled" TextMode="Email"></asp:TextBox>
           </div>
                     <div class="mb-3">
             <label for="pwd" class="form-label">Password:</label>
-            <asp:TextBox ID="pwed" runat="server" type="text" class="form-control" placeholder="Enter password" name="pswd"></asp:TextBox>
+            <asp:TextBox ID="pwed" runat="server" type="text" class="form-control" placeholder="Enter password" name="pswd" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
           </div>
               </div>
               <div class="col">
@@ -46,20 +46,23 @@
                            <asp:TextBox ID="ln" runat="server" type="text" class="form-control" placeholder="Enter LastName" name="lastname"></asp:TextBox>
                         </div>
                    <div class="mb-3 mt-3">
-                           <label for="gender" class="form-label">Gender:</label>&nbsp;&nbsp;
-                       <asp:RadioButton ID="RadioButton1" runat="server" Text="Male" />&nbsp;&nbsp;<asp:RadioButton ID="RadioButton2" runat="server" Text="Female" />&nbsp;&nbsp;<asp:RadioButton ID="RadioButton3" runat="server" Text="Prefer not to say" />
+                           <label for="gender" class="form-label">Gender:</label><asp:RadioButtonList ID="GenderRadioButtonList" runat="server" RepeatDirection="Horizontal">
+                               <asp:ListItem>&nbsp Male &nbsp &nbsp</asp:ListItem>
+                               <asp:ListItem>&nbsp Female &nbsp &nbsp</asp:ListItem>
+                               <asp:ListItem>&nbsp Prefer not to say</asp:ListItem>
+                           </asp:RadioButtonList>
                         </div>
                   <div class="mb-3 mt-3">
                       <label for="address" class="form-label">Address:</label>
-                      <asp:TextBox ID="address" runat="server" type="text" class="form-control" placeholder="Enter Address" name="address"></asp:TextBox>
+                      <asp:TextBox ID="address" runat="server" type="text" class="form-control" placeholder="Enter Address" name="address" AutoCompleteType="Disabled"></asp:TextBox>
                     </div>
                   <div class="mb-3 mt-3">
                       <label for="username" class="form-label">Username:</label>
-                      <asp:TextBox ID="username" runat="server" type="text"  class="form-control" placeholder="Enter Username" name="username"></asp:TextBox>
+                      <asp:TextBox ID="username" runat="server" type="text"  class="form-control" placeholder="Enter Username" name="username" AutoCompleteType="Disabled"></asp:TextBox>
                     </div>
                     <div class="mb-3">
                      <label for="cpwd" class="form-label">Confirm Password:</label>
-                        <asp:TextBox ID="cpwd" runat="server" type="text"  class="form-control" placeholder="Confirm Password" name="cswd"></asp:TextBox>
+                        <asp:TextBox ID="cpwd" runat="server" type="text"  class="form-control" placeholder="Confirm Password" name="cswd" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
                     </div>
               </div>   
             </div>
