@@ -4,61 +4,41 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using FireSharp.Config;
-using FireSharp.Interfaces;
-using FireSharp.Response;
+using Google.Cloud.Firestore;
 
 namespace mallspacium_web.form
 {
     public partial class RegisterPage : System.Web.UI.Page
     {
+        FirestoreDb database;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
+            database = FirestoreDb.Create("mallspaceium");
         }
 
         protected async void Registerbutton_Click(object sender, EventArgs e)
         {
-            Register();
+            Add_Document_with_AutoID();
         }
 
-        public void Register()
+        public void Add_Document_with_AutoID()
         {
-            string authSecret = "mEkB17eA9jG99nE8XEGOsV1vXBvNLHjbF0N4pFmV";
-            string basePath = "https://mallspaceium-default-rtdb.asia-southeast1.firebasedatabase.app/";
-            IFirebaseConfig config = new FirebaseConfig
+            CollectionReference coll = database.Collection("Add_Document_with_AutoID");
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
-                AuthSecret = "mEkB17eA9jG99nE8XEGOsV1vXBvNLHjbF0N4pFmV",
-                BasePath = "https://mallspaceium-default-rtdb.asia-southeast1.firebasedatabase.app/"
-
+                { "adminID", idNumberTextBox.Text},
+                { "adminUsername", usernameTextbox.Text},
+                { "adminEmail", emailTextbox.Text},
+                { "adminPhoneNumber", phoneNumberTextbox.Text},
+                { "adminPassword", passwordTextbox.Text},
+                { "adminConfirmPassword", confirmPasswordTextbox.Text}
             };
-            IFirebaseClient client;
-            client = new FireSharp.FirebaseClient(config);
-
-            if (string.IsNullOrEmpty(basePath) && !string.IsNullOrEmpty(authSecret))
-            {
-                Response.Write("<script>alert('Please input the necessary information');</script>");
-            }
-            else 
-            { 
-                var data = new Data
-                {
-                    username = usernameTextbox.Text,
-                    email = emailTextbox.Text,
-                    phoneNumber = phoneNumberTextbox.Text,
-                    password = passwordTextbox.Text,
-                    confirmPassword = confirmPasswordTextbox.Text
-                };
-                var response = client.Push("AdminLoginDetails", data);
-                Response.Write("<script>alert('Successfully Registered!');</script>");
-
-                usernameTextbox.Text = string.Empty;
-                emailTextbox.Text = string.Empty;
-                phoneNumberTextbox.Text = string.Empty;
-                passwordTextbox.Text = string.Empty;
-                confirmPasswordTextbox.Text = string.Empty;
-            }
-
+            coll.AddAsync(data1);
+            Response.Write("<script>alert('Added');</script>");
         }
     }
 }

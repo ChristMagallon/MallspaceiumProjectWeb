@@ -24,13 +24,22 @@ namespace mallspacium_web.form
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// phoneNumberTextbox control.
+        /// idNumberTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox phoneNumberTextbox;
+        protected global::System.Web.UI.WebControls.TextBox idNumberTextBox;
+
+        /// <summary>
+        /// usernameTextbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox usernameTextbox;
 
         /// <summary>
         /// emailTextbox control.
@@ -42,6 +51,15 @@ namespace mallspacium_web.form
         protected global::System.Web.UI.WebControls.TextBox emailTextbox;
 
         /// <summary>
+        /// phoneNumberTextbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox phoneNumberTextbox;
+
+        /// <summary>
         /// passwordTextbox control.
         /// </summary>
         /// <remarks>
@@ -49,15 +67,6 @@ namespace mallspacium_web.form
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox passwordTextbox;
-
-        /// <summary>
-        /// usernameTextbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox usernameTextbox;
 
         /// <summary>
         /// confirmPasswordTextbox control.

@@ -18,36 +18,43 @@
   
         <div class="container" style="width: 40%; height: 40%;">
             <div class="row">
-                   <div class="mb-3 mt-3">
-                      <label for="phonenumber" class="form-label">Phone Number:</label>
-                      <asp:TextBox ID="phoneNumberTextbox" runat="server" type="text" class="form-control" placeholder="Enter Phone Number" name="dateofbirth" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
-                    </div>
-                            <div class="mb-3 mt-3">
-            <label for="email" class="form-label">Email:</label>
-            <asp:TextBox ID="emailTextbox" runat="server" type="text" class="form-control" placeholder="Enter email" name="email" AutoCompleteType="Disabled" TextMode="Email"></asp:TextBox>
-          </div>
-                    <div class="mb-3">
-            <label for="pwd" class="form-label">Password:</label>
-            <asp:TextBox ID="passwordTextbox" runat="server" type="text" class="form-control" placeholder="Enter password" name="pswd" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
-          </div>
-              </div>
-                  <div class="mb-3 mt-3">
+                <div class="mb-3 mt-3">
+                      <label for="id" class="form-label">Id Number:</label>
+                      <asp:TextBox ID="idNumberTextBox" runat="server" type="text" class="form-control" placeholder="Enter ID Number" name="id" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+
+                <div class="mb-3 mt-3">
                       <label for="username" class="form-label">Username:</label>
                       <asp:TextBox ID="usernameTextbox" runat="server" type="text"  class="form-control" placeholder="Enter Username" name="username" AutoCompleteType="Disabled"></asp:TextBox>
-                    </div>
-                    <div class="mb-3">
-                     <label for="cpwd" class="form-label">Confirm Password:</label>
-                        <asp:TextBox ID="confirmPasswordTextbox" runat="server" type="text"  class="form-control" placeholder="Confirm Password" name="cswd" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
-                    </div>
-              </div>  
-        
-            <form >         
-             <asp:Button ID="Registerbutton" runat="server" type="submit" class="btn btn-primary" Text="REGISTER" OnClick="Registerbutton_Click" />
-        </form>
-         
+                </div>
+                
+                <div class="mb-3 mt-3">
+                      <label for="email" class="form-label">Email:</label>
+                      <asp:TextBox ID="emailTextbox" runat="server" type="text" class="form-control" placeholder="Enter email" name="email" AutoCompleteType="Disabled" TextMode="Email"></asp:TextBox>
+                </div>
+
+                <div class="mb-3 mt-3">
+                      <label for="phonenumber" class="form-label">Phone Number:</label>
+                      <asp:TextBox ID="phoneNumberTextbox" runat="server" type="text" class="form-control" placeholder="Enter Phone Number" name="phoneNumber" TextMode="Number" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>
+                            
+                <div class="mb-3">
+                      <label for="pwd" class="form-label">Password:</label>
+                      <asp:TextBox ID="passwordTextbox" runat="server" type="text" class="form-control" placeholder="Enter password" name="pswd" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
+                </div>
+
+                <div class="mb-3">
+                      <label for="cpwd" class="form-label">Confirm Password:</label>
+                      <asp:TextBox ID="confirmPasswordTextbox" runat="server" type="text"  class="form-control" placeholder="Confirm Password" name="cswd" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <asp:Button ID="Registerbutton" runat="server" type="submit" class="btn btn-primary" Text="REGISTER" OnClick="Registerbutton_Click" />
+            </div>
+        </div>  
     </form>
-   
- 
 </body>
 </html>
 
