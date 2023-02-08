@@ -20,19 +20,19 @@
     
          <form >
           <div class="mb-3 mt-3">
-            <label for="email" class="form-label">Email:</label>
-            <asp:TextBox ID="email" runat="server" type="email" class="form-control" placeholder="Enter email" name="email"></asp:TextBox>
+            <label for="username" class="form-label">Username:</label>
+            <asp:TextBox ID="usernameTextbox" runat="server" type="text" class="form-control" placeholder="Enter username" name="username"></asp:TextBox>
           </div>
           <div class="mb-3">
-            <label for="pwd" class="form-label">Password:</label>
-            <asp:TextBox ID="pwd" runat="server" type="email" class="form-control" placeholder="Enter password" name="pswd"></asp:TextBox>
+            <label for="password" class="form-label">Password:</label>
+            <asp:TextBox ID="passwordTextbox" runat="server" type="text" class="form-control" placeholder="Enter password" name="password"></asp:TextBox>
           </div>
           <div class="form-check mb-3">
             <label class="form-check-label">
              <asp:CheckBox ID="CheckBox1" runat="server"/>&nbsp;&nbsp;Remember me
             </label>
           </div>
-          <asp:Button ID="LoginButton" runat="server" Text="LOGIN" ype="submit" class="btn btn-primary"/>
+             <asp:Button ID="LoginButton" runat="server" Text="LOGIN" ype="submit" class="btn btn-primary" OnClick="LoginButton_Click" />
         </form>
         </div>
          </form>
