@@ -72,8 +72,11 @@
     <Content Include="form\FrontPage.aspx" />
     <Content Include="form\RegisterPage.aspx" />
     <Content Include="Web.config" />
-    <Content Include="WebForm1.aspx" />
-    <Content Include="WebForm2.aspx" />
+    <Content Include="MasterForm\ManageUserForm.aspx" />
+    <Content Include="MasterForm\ManageSubscriptionForm.aspx" />
+    <Content Include="MasterForm\AdminActivitiesForm.aspx" />
+    <Content Include="MasterForm\ReportsForm.aspx" />
+    <Content Include="MasterForm\SystemForm.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="form\AdminHome.aspx.cs">
@@ -98,31 +101,52 @@
       <DependentUpon>RegisterPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Site1.Master.cs">
+    <Compile Include="MasterForm\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site1.Master.designer.cs">
+    <Compile Include="MasterForm\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="MasterForm\ManageUserForm.aspx.cs">
+      <DependentUpon>ManageUserForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="MasterForm\ManageUserForm.aspx.designer.cs">
+      <DependentUpon>ManageUserForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
+    <Compile Include="MasterForm\ManageSubscriptionForm.aspx.cs">
+      <DependentUpon>ManageSubscriptionForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
+    <Compile Include="MasterForm\ManageSubscriptionForm.aspx.designer.cs">
+      <DependentUpon>ManageSubscriptionForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm\AdminActivitiesForm.aspx.cs">
+      <DependentUpon>AdminActivitiesForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\AdminActivitiesForm.aspx.designer.cs">
+      <DependentUpon>AdminActivitiesForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm\ReportsForm.aspx.cs">
+      <DependentUpon>ReportsForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\ReportsForm.aspx.designer.cs">
+      <DependentUpon>ReportsForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm\SystemForm.aspx.cs">
+      <DependentUpon>SystemForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\SystemForm.aspx.designer.cs">
+      <DependentUpon>SystemForm.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Site1.Master" />
+    <Content Include="MasterForm\Site1.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

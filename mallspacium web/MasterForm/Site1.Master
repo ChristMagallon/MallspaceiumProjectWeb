@@ -51,25 +51,24 @@ html, body {
                   <div class="container-fluid">
                     <ul class="navbar-nav">
                        <li class="nav-item">
-                      <a class="nav-link" href="WebForm1.aspx">Manage Users</a>
+                      <a class="nav-link" href="ManageUserForm.aspx">Manage Users</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="WebForm2.aspx">Manage Subscription</a>
+                      <a class="nav-link" href="ManageSubscriptionForm.aspx">Manage Subscription</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Admin Activities</a>
+                      <a class="nav-link" href="AdminActivitiesForm.aspx">Admin Activities</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link " href="#">Reports</a>
+                      <a class="nav-link " href="ReportsForm.aspx">Reports</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">System</a>     
+                      <a class="nav-link" href="SystemForm.aspx">System</a>     
                     </li>
                     </ul>
                   </div>
                 </nav>
 </div>
-
             </div>
             <div class=" col-sm-10">
           

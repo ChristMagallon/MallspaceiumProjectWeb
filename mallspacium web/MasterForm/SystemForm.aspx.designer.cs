@@ -11,7 +11,7 @@ namespace mallspacium_web
 {
 
 
-    public partial class WebForm2
+    public partial class WebForm5
     {
     }
 }
