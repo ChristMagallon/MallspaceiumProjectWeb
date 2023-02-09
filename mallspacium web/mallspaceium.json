@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "mallspaceium",
+  "private_key_id": "18c43b647ec007c5ef42ddebf09eb0396be820be",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCxoBamtsHfKZ91\nf4Mr00qvhrkyZlR+2vom2iTFnyMUU19lR8+eXndeUrIfuhv1Vd2GTF4Nk6UQ1SyK\n+fzLZab68FaEqbNJo4JriKV8gCCLcgfYMn8YYO9WWEnsF0RmvecINapoA0m8Mbqq\n7fD5QmLKebavG0OYWPmWVcBPJwH4h6UisljwE+4yCykeExeth3SrJMCnPIMkU/62\nhJmUxFFQXaLE8trupozB0VY6BBeQpxw07gatRObfhrUzQFJxwYhXGDuHKfeG3dFb\n3DzqERitmL7yWsU8INKhrOkOI+TO8InsRGvkQJXYwfr5Yx+mblfWdbU2eUmrosFw\nxqsyx5Q3AgMBAAECggEAB/H8wWVQY76VYuiawfWYFCTnGNGJ+wipgt5kIbDeHVUj\nYcDmERPxq/bv/8pP4Nf/6jd1R48wpYGblfXbsG9yGixw+ksq+WLGfS/mEx0aF5K4\nthuAIuOHISoe2GAsD5p0AKKB5lgrTq88xdOR4VxuVdc+7DNAgUqNk4NvcDry9B5t\n3CA59pkitA/dKdhBE0mM0HQwVPGCcTLRkdpC16T4GTv/twqCenB7QPedUoVWsJEm\nXYpNNlLe9puJbVbLoWpo1M4BvN5N4kbG+w39pzb3yDbu02CPGS+CSc/bSTEGOIkW\nvRWF+iCQSKPCQHy1Ihb6Vjp/rouwHoeJHhMyZ/Jf2QKBgQD5x3XNzsC/zOqtmJXN\nY8IIlXqSe2UBERdvgdOUbPfTZUNgHQ8N0THARWQ4TVFXwLhMBmRIW+deYyaJnJwD\nnnGSa/hfV6exxoJIWs1fWfXBgYl9HxugTu2O/ZX69AcUe0hpCWR4kqKk7Cr1v0ap\nyiF/3a+xbvb1OYSvmBdJqT74WQKBgQC2DJc5oB2UYEY7XH8WXlNoVEc2rJN9eOgL\n+0nem9Rfr3MToGdbrmxPp/hsHUgl3MizZA4cDYE5lmYxXOYnxY4HXX5jYRA+oI5s\nrlyRkflIfDUQ+21i3SqT0rWuvelXjELvkypvcQHwS43904x9pn8xuemFaa/xqNuw\nKUK/W55fDwKBgFyEwCLqaUTiDy8b7Kj2QYHSdGNbp278uLSJ3ygEMMuxn4IzYUcZ\n7JauXU/pe67IaLtoRq7ys8GncjfYtYU1pBW7PnV6T1gvEkTgtV+TP89cPuQEqMP5\nWE71qR8aUqEIhSq62uc6UVpLTCJYpkDv6Pam05QiaQEuO/KaoE2djgCJAoGAMp4B\nliYs00qJfIvVUjTb4BA+1LbbM3HgoyQ1f824GPrBdl2NH3K57tP3QKhLnStsKmTR\nf39JxOdKdsMrwzcsrGOUdrFQQPmHYDSCzH7X3w2Z+6TM30Y7Rmq51WI8dPksy0wR\n6nZzYYrAaijd0Tnv97WHdm7SWtDmdG6kfmxM9oUCgYEAoKSzOXMhNhc3My0VhWY5\nOonP6x2qpweeLLkIFOjx8CyVNwig8fTaZ7t9RvN6wSmLXYt+xyF4mEmgdXm/Vwfw\nX6EZgxz0tmiXdCqpUaJHX3GWxgrSpqbV1/CgCnAxAF2PXXH0EPb2byDI/Ro1cWFP\nG7o9nYlUxhr8ZVy3MyciCLk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fg8la@mallspaceium.iam.gserviceaccount.com",
+  "client_id": "114577353118934025913",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fg8la%40mallspaceium.iam.gserviceaccount.com"
+}
