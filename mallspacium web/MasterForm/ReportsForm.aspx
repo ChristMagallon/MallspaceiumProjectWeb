@@ -15,7 +15,7 @@
     </div>
      <div class="form">
         
-            <asp:GridView ID="GridView1" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
+            <asp:GridView ID="GridView1" runat="server" HorizontalAlign="Center">
         <Columns>
             <asp:BoundField HeaderText="USER"></asp:BoundField>
             <asp:BoundField HeaderText="ID"></asp:BoundField>
