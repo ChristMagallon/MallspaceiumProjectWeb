@@ -27,17 +27,16 @@ namespace mallspacium_web.form
 
         public void Add_Document_with_AutoID()
         {
-            CollectionReference coll = database.Collection("Add_Document_with_AutoID");
+            CollectionReference doc = database.Collection("AdminLoginDetails");
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
-                { "adminID", idNumberTextBox.Text},
                 { "adminUsername", usernameTextbox.Text},
                 { "adminEmail", emailTextbox.Text},
                 { "adminPhoneNumber", phoneNumberTextbox.Text},
                 { "adminPassword", passwordTextbox.Text},
                 { "adminConfirmPassword", confirmPasswordTextbox.Text}
             };
-            coll.AddAsync(data1);
+            doc.AddAsync(data1);
             Response.Write("<script>alert('Added');</script>");
         }
     }

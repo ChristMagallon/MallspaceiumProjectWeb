@@ -16,23 +16,28 @@ namespace mallspacium_web.form
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             database = FirestoreDb.Create("mallspaceium");
-            Response.Write("<script>alert('Connected');</script>");
         }
 
         protected void LoginButton_Click(object sender, EventArgs e)
         {
-            login();
+            getLoginDetails();
         }
 
-        public void login()
+        public async void getLoginDetails()
         {
-            
+            Query qRef = database.Collection("AdminLoginDetails").WhereEqualTo("adminUsername", usernameTextbox.Text)
+                                                                 .WhereEqualTo("adminPassword", passwordTextbox.Text);
+            QuerySnapshot snap = await qRef.GetSnapshotAsync();
 
-            
-            
-
+            foreach (DocumentSnapshot docsnap in snap)
+            {
+                LoginDetails login = docsnap.ConvertTo<LoginDetails>(); 
+                
+                if (docsnap.Exists)
+                    Response.Redirect("~/MasterForm/AdminActivitiesForm.aspx");
+                else
+                    Response.Write("<script>alert('No record');</script>");
+            }
         }
-
-       
     }
 }

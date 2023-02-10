@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ManageUserForm.aspx.cs" Inherits="mallspacium_web.WebForm1" %>
+﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ManageUserForm.aspx.cs" Inherits="mallspacium_web.WebForm1" %>
  
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -16,14 +16,14 @@
         </div>
     </div>
      <div class="form">
-        
-            <asp:GridView ID="GridView1" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
+
+        <asp:GridView ID="manageUsersGridView" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" EditIndex="0">
         <Columns>
-            <asp:BoundField HeaderText="USER"></asp:BoundField>
-            <asp:BoundField HeaderText="ID"></asp:BoundField>
-            <asp:BoundField HeaderText="ROLE"></asp:BoundField>
-            <asp:BoundField HeaderText="DATE"></asp:BoundField>
-            <asp:BoundField HeaderText="STATUS"></asp:BoundField>
+            <asp:BoundField HeaderText="User" DataField="manageUser"/>
+            <asp:BoundField HeaderText="ID" DataField="manageId"/>
+            <asp:BoundField HeaderText="Role" DataField="manageRole"/>
+            <asp:BoundField HeaderText="Date" DataField="manageDate"/>
+            <asp:BoundField HeaderText="Status" DataField="manageStatus"/>
         </Columns>
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FrontPage.aspx.cs" Inherits="mallspacium_web.form.FrontPage" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="FrontPage.aspx.cs" Inherits="mallspacium_web.form.FrontPage" %>
 
 <!DOCTYPE html>
 

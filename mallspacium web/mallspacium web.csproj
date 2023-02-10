@@ -193,7 +193,6 @@
     <Compile Include="form\AdminHome.aspx.designer.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="form\Data.cs" />
     <Compile Include="form\FrontPage.aspx.cs">
       <DependentUpon>FrontPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -208,6 +207,8 @@
     <Compile Include="form\RegisterPage.aspx.designer.cs">
       <DependentUpon>RegisterPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LoginDetails.cs" />
+    <Compile Include="ManageUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MasterForm\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>

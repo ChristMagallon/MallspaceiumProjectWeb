@@ -18,11 +18,7 @@
   
         <div class="container" style="width: 40%; height: 40%;">
             <div class="row">
-                <div class="mb-3 mt-3">
-                      <label for="id" class="form-label">Id Number:</label>
-                      <asp:TextBox ID="idNumberTextBox" runat="server" type="text" class="form-control" placeholder="Enter ID Number" name="id" AutoCompleteType="Disabled"></asp:TextBox>
-                </div>
-
+                
                 <div class="mb-3 mt-3">
                       <label for="username" class="form-label">Username:</label>
                       <asp:TextBox ID="usernameTextbox" runat="server" type="text"  class="form-control" placeholder="Enter Username" name="username" AutoCompleteType="Disabled"></asp:TextBox>
