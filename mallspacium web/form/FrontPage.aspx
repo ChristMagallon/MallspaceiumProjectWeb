@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <title></title>
 </head>
-<body runat="server">
+<body>
      <form id="form1" runat="server">
         <div class="container-fluid pt-5 text-black text-center">
             <img src="../design/mallspaceium_logo.png" class="mx-auto d-block" width="150" height="150">
