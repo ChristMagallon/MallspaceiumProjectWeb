@@ -193,6 +193,7 @@
     <Content Include="MasterForm3\LocatePage.aspx" />
     <Content Include="MasterForm3\NotificationPage.aspx" />
     <Content Include="MasterForm3\ProfilePage.aspx" />
+    <Content Include="MasterForm\Style.css" />
     <Content Include="Web.config" />
     <Content Include="MasterForm\ManageUserForm.aspx" />
     <Content Include="MasterForm\ManageSubscriptionForm.aspx" />
