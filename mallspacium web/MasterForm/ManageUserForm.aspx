@@ -2,6 +2,12 @@
  
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+    <style type="text/css">
+        .auto-style1 {
+            margin-left: 0px;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -10,20 +16,25 @@
     <!-- start here -->
     <div class="container"> 
     <div class="form">
-        <div class="col p-5">
-                  
-  <asp:TextBox ID="TextBox1" runat="server" class="form-control" type="search" placeholder="Search" aria-label="Search"></asp:TextBox>
+        <div class="col p-5">  
+            <asp:TextBox ID="TextBox1" runat="server" class="form-control" type="search" placeholder="Search" aria-label="Search"></asp:TextBox>
         </div>
     </div>
+
      <div class="form">
 
-         <asp:GridView ID="manageUsersGridView" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
+         <asp:GridView ID="manageUsersGridView" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="auto-style1" Height="255px" Width="975px" DataKeyNames="username" EnableViewState="False" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged">
              <Columns>
-            <asp:BoundField HeaderText="User" DataField="manageUser"/>
-            <asp:BoundField HeaderText="ID" DataField="manageId"/>
-            <asp:BoundField HeaderText="Role" DataField="manageRole"/>
-            <asp:BoundField HeaderText="Date" DataField="manageDate"/>
-            <asp:BoundField HeaderText="Status" DataField="manageStatus"/>
+            <asp:BoundField HeaderText="Username" DataField="username" SortExpression="username"/>
+            <asp:BoundField HeaderText="ID" DataField="id" SortExpression="id"/>
+            <asp:BoundField HeaderText="Account Type" DataField="accountType" SortExpression="accountType"/>
+            <asp:BoundField HeaderText="Date Created" DataField="dateCreated" SortExpression="dateCreated"/>
+            <asp:BoundField HeaderText="Email" DataField="email" SortExpression ="email"/>
+            <asp:BoundField HeaderText="Address" DataField="address" SortExpression="address"/>
+            <asp:BoundField HeaderText="Contact Number" DataField="contactNumber" SortExpression="contactNumber"/>
+            <asp:CommandField ShowSelectButton="True" SelectText="View Data" />
+             
+
         </Columns>
              <FooterStyle BackColor="White" ForeColor="#000066" />
              <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
@@ -36,7 +47,9 @@
              <SortedDescendingHeaderStyle BackColor="#00547E" />
          </asp:GridView>
     </div>
-   
+    <br/> 
+    <br/> 
+    
         </div>
 </asp:Content>
 
