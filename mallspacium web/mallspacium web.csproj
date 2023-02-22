@@ -178,22 +178,24 @@
     <Content Include="form\AdminHome.aspx" />
     <Content Include="form\FrontPage.aspx" />
     <Content Include="form\RegisterPage.aspx" />
-    <Content Include="MasterForm2\HomePage.aspx" />
-    <Content Include="MasterForm2\PopularShopsPage.aspx" />
-    <Content Include="MasterForm2\SalesAndDiscountsPage.aspx" />
-    <Content Include="MasterForm2\ProductsPage.aspx" />
-    <Content Include="MasterForm2\AdvertiseProductsPage.aspx" />
-    <Content Include="MasterForm2\PostSalesAndDiscountsPage.aspx" />
-    <Content Include="MasterForm2\NotificationPage.aspx" />
-    <Content Include="MasterForm2\ProfilePage.aspx" />
-    <Content Include="MasterForm3\HomePage.aspx" />
-    <Content Include="MasterForm3\PopularShopsPage.aspx" />
-    <Content Include="MasterForm3\SalesAndDiscountsPage.aspx" />
-    <Content Include="MasterForm3\ProductsPage.aspx" />
-    <Content Include="MasterForm3\LocatePage.aspx" />
-    <Content Include="MasterForm3\NotificationPage.aspx" />
-    <Content Include="MasterForm3\ProfilePage.aspx" />
+    <Content Include="ShopOwner\HomePage.aspx" />
+    <Content Include="ShopOwner\PopularShopsPage.aspx" />
+    <Content Include="ShopOwner\SalesAndDiscountsPage.aspx" />
+    <Content Include="ShopOwner\ProductsPage.aspx" />
+    <Content Include="ShopOwner\AdvertiseProductsPage.aspx" />
+    <Content Include="ShopOwner\PostSalesAndDiscountsPage.aspx" />
+    <Content Include="ShopOwner\NotificationPage.aspx" />
+    <Content Include="ShopOwner\ProfilePage.aspx" />
+    <Content Include="ShopOwner\Style.css" />
+    <Content Include="Shopper\HomePage.aspx" />
+    <Content Include="Shopper\PopularShopsPage.aspx" />
+    <Content Include="Shopper\SalesAndDiscountsPage.aspx" />
+    <Content Include="Shopper\ProductsPage.aspx" />
+    <Content Include="Shopper\LocatePage.aspx" />
+    <Content Include="Shopper\NotificationPage.aspx" />
+    <Content Include="Shopper\ProfilePage.aspx" />
     <Content Include="MasterForm\Style.css" />
+    <Content Include="Shopper\Style.css" />
     <Content Include="Web.config" />
     <Content Include="MasterForm\ManageUserForm.aspx" />
     <Content Include="MasterForm\ManageSubscriptionForm.aspx" />
@@ -225,123 +227,123 @@
     </Compile>
     <Compile Include="LoginDetails.cs" />
     <Compile Include="ManageUsers.cs" />
-    <Compile Include="MasterForm2\Site2.Master.cs">
+    <Compile Include="ShopOwner\Site2.Master.cs">
       <DependentUpon>Site2.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm2\Site2.Master.designer.cs">
+    <Compile Include="ShopOwner\Site2.Master.designer.cs">
       <DependentUpon>Site2.Master</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm2\HomePage.aspx.cs">
+    <Compile Include="ShopOwner\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm2\HomePage.aspx.designer.cs">
+    <Compile Include="ShopOwner\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm2\PopularShopsPage.aspx.cs">
+    <Compile Include="ShopOwner\PopularShopsPage.aspx.cs">
       <DependentUpon>PopularShopsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm2\PopularShopsPage.aspx.designer.cs">
+    <Compile Include="ShopOwner\PopularShopsPage.aspx.designer.cs">
       <DependentUpon>PopularShopsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm2\SalesAndDiscountsPage.aspx.cs">
+    <Compile Include="ShopOwner\SalesAndDiscountsPage.aspx.cs">
       <DependentUpon>SalesAndDiscountsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm2\SalesAndDiscountsPage.aspx.designer.cs">
+    <Compile Include="ShopOwner\SalesAndDiscountsPage.aspx.designer.cs">
       <DependentUpon>SalesAndDiscountsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm2\ProductsPage.aspx.cs">
+    <Compile Include="ShopOwner\ProductsPage.aspx.cs">
       <DependentUpon>ProductsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm2\ProductsPage.aspx.designer.cs">
+    <Compile Include="ShopOwner\ProductsPage.aspx.designer.cs">
       <DependentUpon>ProductsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm2\AdvertiseProductsPage.aspx.cs">
+    <Compile Include="ShopOwner\AdvertiseProductsPage.aspx.cs">
       <DependentUpon>AdvertiseProductsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm2\AdvertiseProductsPage.aspx.designer.cs">
+    <Compile Include="ShopOwner\AdvertiseProductsPage.aspx.designer.cs">
       <DependentUpon>AdvertiseProductsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm2\PostSalesAndDiscountsPage.aspx.cs">
+    <Compile Include="ShopOwner\PostSalesAndDiscountsPage.aspx.cs">
       <DependentUpon>PostSalesAndDiscountsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm2\PostSalesAndDiscountsPage.aspx.designer.cs">
+    <Compile Include="ShopOwner\PostSalesAndDiscountsPage.aspx.designer.cs">
       <DependentUpon>PostSalesAndDiscountsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm2\NotificationPage.aspx.cs">
+    <Compile Include="ShopOwner\NotificationPage.aspx.cs">
       <DependentUpon>NotificationPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm2\NotificationPage.aspx.designer.cs">
+    <Compile Include="ShopOwner\NotificationPage.aspx.designer.cs">
       <DependentUpon>NotificationPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm2\ProfilePage.aspx.cs">
+    <Compile Include="ShopOwner\ProfilePage.aspx.cs">
       <DependentUpon>ProfilePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm2\ProfilePage.aspx.designer.cs">
+    <Compile Include="ShopOwner\ProfilePage.aspx.designer.cs">
       <DependentUpon>ProfilePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm3\Site1.Master.cs">
+    <Compile Include="Shopper\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm3\Site1.Master.designer.cs">
+    <Compile Include="Shopper\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm3\HomePage.aspx.cs">
+    <Compile Include="Shopper\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm3\HomePage.aspx.designer.cs">
+    <Compile Include="Shopper\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm3\PopularShopsPage.aspx.cs">
+    <Compile Include="Shopper\PopularShopsPage.aspx.cs">
       <DependentUpon>PopularShopsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm3\PopularShopsPage.aspx.designer.cs">
+    <Compile Include="Shopper\PopularShopsPage.aspx.designer.cs">
       <DependentUpon>PopularShopsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm3\SalesAndDiscountsPage.aspx.cs">
+    <Compile Include="Shopper\SalesAndDiscountsPage.aspx.cs">
       <DependentUpon>SalesAndDiscountsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm3\SalesAndDiscountsPage.aspx.designer.cs">
+    <Compile Include="Shopper\SalesAndDiscountsPage.aspx.designer.cs">
       <DependentUpon>SalesAndDiscountsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm3\ProductsPage.aspx.cs">
+    <Compile Include="Shopper\ProductsPage.aspx.cs">
       <DependentUpon>ProductsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm3\ProductsPage.aspx.designer.cs">
+    <Compile Include="Shopper\ProductsPage.aspx.designer.cs">
       <DependentUpon>ProductsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm3\LocatePage.aspx.cs">
+    <Compile Include="Shopper\LocatePage.aspx.cs">
       <DependentUpon>LocatePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm3\LocatePage.aspx.designer.cs">
+    <Compile Include="Shopper\LocatePage.aspx.designer.cs">
       <DependentUpon>LocatePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm3\NotificationPage.aspx.cs">
+    <Compile Include="Shopper\NotificationPage.aspx.cs">
       <DependentUpon>NotificationPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm3\NotificationPage.aspx.designer.cs">
+    <Compile Include="Shopper\NotificationPage.aspx.designer.cs">
       <DependentUpon>NotificationPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterForm3\ProfilePage.aspx.cs">
+    <Compile Include="Shopper\ProfilePage.aspx.cs">
       <DependentUpon>ProfilePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MasterForm3\ProfilePage.aspx.designer.cs">
+    <Compile Include="Shopper\ProfilePage.aspx.designer.cs">
       <DependentUpon>ProfilePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -392,8 +394,8 @@
     <Content Include="mallspaceium.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MasterForm2\Site2.Master" />
-    <Content Include="MasterForm3\Site1.Master" />
+    <Content Include="ShopOwner\Site2.Master" />
+    <Content Include="Shopper\Site1.Master" />
     <None Include="packages.config" />
     <Content Include="MasterForm\Site1.Master" />
     <None Include="Web.Debug.config">
