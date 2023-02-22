@@ -23,7 +23,7 @@
 
      <div class="form">
 
-         <asp:GridView ID="manageUsersGridView" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="auto-style1" Height="255px" Width="975px" DataKeyNames="username" EnableViewState="False" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged">
+         <asp:GridView ID="manageUsersGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="false">
              <Columns>
             <asp:BoundField HeaderText="Username" DataField="username" SortExpression="username"/>
             <asp:BoundField HeaderText="ID" DataField="id" SortExpression="id"/>

@@ -14,8 +14,8 @@
         </div>
     </div>
      <div class="form">
-        
-            <asp:GridView ID="GridView1" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
+           <div class="col p-5">
+                   <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
         <Columns>
             <asp:BoundField HeaderText="USER"></asp:BoundField>
             <asp:BoundField HeaderText="ID"></asp:BoundField>
@@ -33,6 +33,10 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
     </asp:GridView>
+
+        </div>
+        
+           
     </div>
    
         </div>
