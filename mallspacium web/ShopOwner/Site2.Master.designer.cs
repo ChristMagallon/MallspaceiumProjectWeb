@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mallspacium_web
+namespace mallspacium_web.MasterForm
 {
 
 
-    public partial class Site1
+    public partial class Site2
     {
 
         /// <summary>

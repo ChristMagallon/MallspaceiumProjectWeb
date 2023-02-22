@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mallspacium_web
+namespace mallspacium_web.MasterForm3
 {
 
 
