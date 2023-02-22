@@ -17,13 +17,13 @@
     <div class="container"> 
     <div class="form">
         <div class="col p-5">  
-            <asp:TextBox ID="TextBox1" runat="server" class="form-control" type="search" placeholder="Search" aria-label="Search"></asp:TextBox>
+            <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search" aria-label="Search" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
         </div>
     </div>
 
      <div class="form">
 
-         <asp:GridView ID="manageUsersGridView" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="auto-style1" Height="255px" Width="975px" DataKeyNames="username" EnableViewState="False" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged">
+         <asp:GridView ID="manageUsersGridView" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" CssClass="auto-style1" Height="255px" Width="975px" DataKeyNames="username" EnableViewState="False" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged" EmptyDataText="No Record Found! Enter another Username.">
              <Columns>
             <asp:BoundField HeaderText="Username" DataField="username" SortExpression="username"/>
             <asp:BoundField HeaderText="ID" DataField="id" SortExpression="id"/>
@@ -33,8 +33,6 @@
             <asp:BoundField HeaderText="Address" DataField="address" SortExpression="address"/>
             <asp:BoundField HeaderText="Contact Number" DataField="contactNumber" SortExpression="contactNumber"/>
             <asp:CommandField ShowSelectButton="True" SelectText="View Data" />
-             
-
         </Columns>
              <FooterStyle BackColor="White" ForeColor="#000066" />
              <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
