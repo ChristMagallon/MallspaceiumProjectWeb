@@ -2,6 +2,12 @@
  
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+    <style type="text/css">
+        .auto-style1 {
+            margin-left: 0px;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -17,13 +23,16 @@
     </div>
      <div class="form">
 
-         <asp:GridView ID="manageUsersGridView" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3">
+         <asp:GridView ID="manageUsersGridView" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Height="278px" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged" Width="1118px">
              <Columns>
-            <asp:BoundField HeaderText="User" DataField="manageUser"/>
-            <asp:BoundField HeaderText="ID" DataField="manageId"/>
-            <asp:BoundField HeaderText="Role" DataField="manageRole"/>
-            <asp:BoundField HeaderText="Date" DataField="manageDate"/>
-            <asp:BoundField HeaderText="Status" DataField="manageStatus"/>
+            <asp:BoundField HeaderText="Username" DataField="username"/>
+            <asp:BoundField HeaderText="ID" DataField="id"/>
+            <asp:BoundField HeaderText="Account Type" DataField="accountType"/>
+            <asp:BoundField HeaderText="Date Created" DataField="dateCreated"/>
+            <asp:BoundField HeaderText="Email" DataField="email"/>
+            <asp:BoundField HeaderText="Address" DataField="address"/>
+            <asp:BoundField HeaderText="Contact Number" DataField="contactNumber"/>
+            <asp:CommandField ShowSelectButton="True" />
         </Columns>
              <FooterStyle BackColor="White" ForeColor="#000066" />
              <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />

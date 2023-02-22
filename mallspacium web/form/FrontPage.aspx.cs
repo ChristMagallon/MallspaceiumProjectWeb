@@ -33,10 +33,10 @@ namespace mallspacium_web.form
             {
                 LoginDetails login = docsnap.ConvertTo<LoginDetails>(); 
                 
-                if (docsnap.Exists)
-                    Response.Redirect("~/MasterForm/AdminActivitiesForm.aspx");
-                else
+                if (!docsnap.Exists)
                     Response.Write("<script>alert('No record');</script>");
+                else
+                    Response.Redirect("~/MasterForm/ManageUserForm.aspx");
             }
         }
     }
