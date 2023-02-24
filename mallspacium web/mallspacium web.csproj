@@ -205,6 +205,9 @@
     <Content Include="MasterForm\SystemForm.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="class\Activity.cs" />
+    <Compile Include="class\ManageSubscription.cs" />
+    <Compile Include="class\Report.cs" />
     <Compile Include="MasterForm\UserDetailsPage.aspx.cs">
       <DependentUpon>UserDetailsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -233,8 +236,8 @@
     <Compile Include="form\RegisterPage.aspx.designer.cs">
       <DependentUpon>RegisterPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LoginDetails.cs" />
-    <Compile Include="ManageUsers.cs" />
+    <Compile Include="class\LoginDetails.cs" />
+    <Compile Include="class\ManageUsers.cs" />
     <Compile Include="ShopOwner\Site2.Master.cs">
       <DependentUpon>Site2.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -413,9 +416,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AdditionalForm\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

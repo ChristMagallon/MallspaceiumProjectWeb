@@ -58,7 +58,7 @@ namespace mallspacium_web
         protected void manageUsersGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow gr = manageUsersGridView.SelectedRow;
-             Response.Redirect("~/MasterForm/UserDetailsPage.aspx?username=" + gr.Cells[0].Text + "&id" + gr.Cells[1].Text + "&accountType" + gr.Cells[2].Text + 
+             Response.Redirect("UserDetailsPage.aspx?username=" + gr.Cells[0].Text + "&id" + gr.Cells[1].Text + "&accountType" + gr.Cells[2].Text + 
                  "&dateCreated" + gr.Cells[3].Text + "&email" + gr.Cells[4].Text + "&address" + gr.Cells[5].Text + "&contactNumber" + gr.Cells[6].Text, false);
             
             //Response.Redirect("~/MasterForm/ManageUserForm.aspx");
