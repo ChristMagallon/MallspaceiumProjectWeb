@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,6 +19,11 @@ namespace mallspacium_web.AdditionalForm
 
             database = FirestoreDb.Create("mallspaceium");**/
 
+            showData();
+        }
+
+        public void showData()
+        {
 
             usernameLabel.Text = Request.QueryString["username"].ToString();
             idLabel.Text       = Request.QueryString["id"].ToString();
@@ -26,7 +32,7 @@ namespace mallspacium_web.AdditionalForm
             emailLabel.Text = Request.QueryString["email"].ToString();
             addressLabel.Text = Request.QueryString["address"].ToString();
             contactNumberLabel.Text = Request.QueryString["contactNumber"].ToString();
+            
         }
-
     }
 }

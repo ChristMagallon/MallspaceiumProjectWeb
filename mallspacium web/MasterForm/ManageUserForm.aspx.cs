@@ -12,6 +12,7 @@ namespace mallspacium_web
     public partial class WebForm1 : System.Web.UI.Page
     {
         FirestoreDb database;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
