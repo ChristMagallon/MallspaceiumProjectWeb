@@ -25,19 +25,22 @@ namespace mallspacium_web.form
 
         public async void getLoginDetails()
         {
-            Query qRef = database.Collection("AdminLoginDetails").WhereEqualTo("adminUsername", usernameTextbox.Text)
-                                                                 .WhereEqualTo("adminPassword", passwordTextbox.Text);
-            QuerySnapshot snap = await qRef.GetSnapshotAsync();
+           Query qRef = database.Collection("AdminLoginDetails").WhereEqualTo("adminUsername", usernameTextbox.Text)
+                                                                  .WhereEqualTo("adminPassword", passwordTextbox.Text);
+             QuerySnapshot snap = await qRef.GetSnapshotAsync();
 
             foreach (DocumentSnapshot docsnap in snap)
             {
-                LoginDetails login = docsnap.ConvertTo<LoginDetails>(); 
-                
+                LoginDetails login = docsnap.ConvertTo<LoginDetails>();
+
                 if (!docsnap.Exists)
                     Response.Write("<script>alert('No record');</script>");
                 else
                     Response.Redirect("~/MasterForm/ManageUserForm.aspx");
+
+
             }
+
         }
     }
 }

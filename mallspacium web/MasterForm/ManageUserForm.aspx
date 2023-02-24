@@ -10,29 +10,24 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-      
-    <!-- start here -->
     <div class="container"> 
     <div class="form">
         <div class="col p-5">  
             <asp:TextBox ID="TextBox1" runat="server" class="form-control" type="search" placeholder="Search" aria-label="Search"></asp:TextBox>
         </div>
     </div>
+        <div class="form">
 
-     <div class="form">
-
-         <asp:GridView ID="manageUsersGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="false">
+         <asp:GridView ID="manageUsersGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged1">
              <Columns>
             <asp:BoundField HeaderText="Username" DataField="username" SortExpression="username"/>
             <asp:BoundField HeaderText="ID" DataField="id" SortExpression="id"/>
             <asp:BoundField HeaderText="Account Type" DataField="accountType" SortExpression="accountType"/>
-            <asp:BoundField HeaderText="Date Created" DataField="dateCreated" SortExpression="dateCreated"/>
+            <asp:BoundField HeaderText="Date Created" DataField="dateCreated" SortExpression="dateCreated"/>    
             <asp:BoundField HeaderText="Email" DataField="email" SortExpression ="email"/>
             <asp:BoundField HeaderText="Address" DataField="address" SortExpression="address"/>
             <asp:BoundField HeaderText="Contact Number" DataField="contactNumber" SortExpression="contactNumber"/>
-            <asp:CommandField ShowSelectButton="True" SelectText="View Data" />
+            <asp:CommandField ShowSelectButton="True" SelectText="View Data" ValidationGroup="ViewDataButton" />
              
 
         </Columns>
@@ -49,7 +44,6 @@
     </div>
     <br/> 
     <br/> 
-    
         </div>
 </asp:Content>
 

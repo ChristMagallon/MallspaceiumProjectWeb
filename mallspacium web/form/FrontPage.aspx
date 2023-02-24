@@ -9,7 +9,6 @@
     <title></title>
 </head>
 <body>
-     <form id="form1" runat="server">
         <div class="container-fluid pt-5 text-black text-center">
             <img src="../design/mallspaceium_logo.png" class="mx-auto d-block" width="150" height="150">
           <h1>Mallspaceium</h1>
@@ -17,8 +16,7 @@
         </div>
   
         <div class="container" style="width: 20%; height: 20%;">
-    
-         <form >
+         <form id="form1" runat="server">
           <div class="mb-3 mt-3">
             <label for="username" class="form-label">Username:</label>
             <asp:TextBox ID="usernameTextbox" runat="server" type="text" class="form-control" placeholder="Enter username" name="username"></asp:TextBox>
@@ -32,9 +30,8 @@
              <asp:CheckBox ID="CheckBox1" runat="server"/>&nbsp;&nbsp;Remember me
             </label>
           </div>
-             <asp:Button ID="LoginButton" runat="server" Text="LOGIN" ype="submit" class="btn btn-primary" OnClick="LoginButton_Click" />
+             <asp:Button ID="LoginButton" runat="server" Text="LOGIN" class="btn btn-primary" OnClick="LoginButton_Click" />
         </form>
         </div>
-         </form>
 </body>
 </html>

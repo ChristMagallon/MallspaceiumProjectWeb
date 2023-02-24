@@ -19,25 +19,25 @@ namespace mallspacium_web.form
 
             database = FirestoreDb.Create("mallspaceium");
         }
-
-        protected async void Registerbutton_Click(object sender, EventArgs e)
-        {
-            Add_Document_with_AutoID();
-        }
-
-        public void Add_Document_with_AutoID()
-        {
-            CollectionReference doc = database.Collection("AdminLoginDetails");
-            Dictionary<string, object> data1 = new Dictionary<string, object>()
-            {
-                { "adminUsername", usernameTextbox.Text},
-                { "adminEmail", emailTextbox.Text},
-                { "adminPhoneNumber", phoneNumberTextbox.Text},
-                { "adminPassword", passwordTextbox.Text},
-                { "adminConfirmPassword", confirmPasswordTextbox.Text}
-            };
-            doc.AddAsync(data1);
-            Response.Write("<script>alert('Added');</script>");
-        }
+     
+      protected async void Registerbutton_Click(object sender, EventArgs e)
+      {
+          Add_Document_with_AutoID();
+      }
+    
+      public void Add_Document_with_AutoID()
+      {
+          CollectionReference doc = database.Collection("AdminLoginDetails");
+          Dictionary<string, object> data1 = new Dictionary<string, object>()
+          {
+              { "adminUsername", usernameTextbox.Text},
+              { "adminEmail", emailTextbox.Text},
+              { "adminPhoneNumber", phoneNumberTextbox.Text},
+              { "adminPassword", passwordTextbox.Text},
+              { "adminConfirmPassword", confirmPasswordTextbox.Text}
+          };
+          doc.AddAsync(data1);
+          Response.Write("<script>alert('Added');</script>");
+      }
     }
 }

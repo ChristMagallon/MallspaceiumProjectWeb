@@ -23,43 +23,41 @@ namespace mallspacium_web
             getManageUsers("AdminManageUsers");
         }
 
-        public async void getManageUsers(string AdminManageUsers)
-        {
-            DataTable usersGridViewTable = new DataTable();
-            usersGridViewTable.Columns.Add("username");
-            usersGridViewTable.Columns.Add("id");
-            usersGridViewTable.Columns.Add("accountType");
-            usersGridViewTable.Columns.Add("dateCreated");
-            usersGridViewTable.Columns.Add("email");
-            usersGridViewTable.Columns.Add("address");
-            usersGridViewTable.Columns.Add("contactNumber");
+     
+public async void getManageUsers(string AdminManageUsers)
+{
+   DataTable usersGridViewTable = new DataTable();
+   usersGridViewTable.Columns.Add("username");
+   usersGridViewTable.Columns.Add("id");
+   usersGridViewTable.Columns.Add("accountType");
+   usersGridViewTable.Columns.Add("dateCreated");
+   usersGridViewTable.Columns.Add("email");
+   usersGridViewTable.Columns.Add("address");
+   usersGridViewTable.Columns.Add("contactNumber");
 
 
-            Query usersQue = database.Collection(AdminManageUsers);
-            QuerySnapshot snap = await usersQue.GetSnapshotAsync();
+   Query usersQue = database.Collection(AdminManageUsers);
+   QuerySnapshot snap = await usersQue.GetSnapshotAsync();
 
-            foreach (DocumentSnapshot docsnap in snap.Documents)
-            {
-                ManageUsers user = docsnap.ConvertTo<ManageUsers>();
+   foreach (DocumentSnapshot docsnap in snap.Documents)
+   {
+       ManageUsers user = docsnap.ConvertTo<ManageUsers>();
 
-                if (docsnap.Exists)
-                {              
-                    usersGridViewTable.Rows.Add(user.username, user.id, user.accountType, user.dateCreated, user.email, user.address, 
-                        user.contactNumber);                  
-                }
-            }
-            manageUsersGridView.DataSource = usersGridViewTable;
-            manageUsersGridView.DataBind();
+       if (docsnap.Exists)
+       {              
+           usersGridViewTable.Rows.Add(user.username, user.id, user.accountType, user.dateCreated, user.email, user.address, 
+               user.contactNumber);                  
+       }
+   }
+   manageUsersGridView.DataSource = usersGridViewTable;
+   manageUsersGridView.DataBind();
+
+}
+protected void manageUsersGridView_SelectedIndexChanged1(object sender, EventArgs e)
+{
+    GridViewRow gr = manageUsersGridView.SelectedRow;
+            Response.Redirect("UserDetailsPage.aspx?username="+ gr.Cells[0].Text+"&id="+gr.Cells[1].Text + "&accountType=" + gr.Cells[2].Text +"&dateCreated=" + gr.Cells[3].Text + "&email=" + gr.Cells[4].Text + "&address=" + gr.Cells[5].Text + "&contactNumber=" + gr.Cells[6].Text, false);
 
         }
-
-        protected void manageUsersGridView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GridViewRow gr = manageUsersGridView.SelectedRow;
-            Response.Redirect("UserDetailsPage.aspx?username=" + gr.Cells[0].Text + "&id" + gr.Cells[1].Text + "&accountType" + gr.Cells[2].Text + 
-                "&dateCreated" + gr.Cells[3].Text + "&email" + gr.Cells[4].Text + "&address" + gr.Cells[5].Text + "&contactNumber" + gr.Cells[6].Text, false); 
-            
-          
-        }
-    }
+}
 }
