@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Google.Cloud.Firestore;
+using static Google.Cloud.Firestore.V1.StructuredQuery.Types;
 
 namespace mallspacium_web.form
 {
@@ -25,22 +26,23 @@ namespace mallspacium_web.form
 
         public async void getLoginDetails()
         {
-           Query qRef = database.Collection("AdminLoginDetails").WhereEqualTo("adminUsername", usernameTextbox.Text)
-                                                                  .WhereEqualTo("adminPassword", passwordTextbox.Text);
-             QuerySnapshot snap = await qRef.GetSnapshotAsync();
+            Query qRef = database.Collection("AdminLoginDetails").WhereEqualTo("adminUsername", usernameTextbox.Text)
+                                                                   .WhereEqualTo("adminPassword", passwordTextbox.Text);
+              QuerySnapshot snap = await qRef.GetSnapshotAsync();
 
-            foreach (DocumentSnapshot docsnap in snap)
-            {
-                LoginDetails login = docsnap.ConvertTo<LoginDetails>();
+             foreach (DocumentSnapshot docsnap in snap)
+             {
+                 LoginDetails login = docsnap.ConvertTo<LoginDetails>();
 
-                if (!docsnap.Exists)
-                    Response.Write("<script>alert('No record');</script>");
-                else
-                    Response.Redirect("~/MasterForm/ManageUserForm.aspx");
+                 if (!docsnap.Exists)
+                     Response.Write("<script>alert('No record');</script>");
+                 else
+                     Response.Redirect("~/MasterForm/ManageUserForm.aspx");
 
 
-            }
+             }
 
+            
         }
     }
 }

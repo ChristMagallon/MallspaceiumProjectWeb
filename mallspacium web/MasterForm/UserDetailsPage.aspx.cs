@@ -24,7 +24,6 @@ namespace mallspacium_web.AdditionalForm
 
         public void showData()
         {
-
             usernameLabel.Text = Request.QueryString["username"].ToString();
             idLabel.Text       = Request.QueryString["id"].ToString();
             accountTypeLabel.Text = Request.QueryString["accountType"].ToString();

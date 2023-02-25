@@ -19,7 +19,7 @@
     <div class="form">
         <div class="col p-5">
                   
-  <asp:TextBox ID="TextBox1" runat="server" class="form-control" type="search" placeholder="Search" aria-label="Search"></asp:TextBox>
+  <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search" aria-label="Search" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
         </div>
     </div>
      <div class="form">
