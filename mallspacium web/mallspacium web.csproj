@@ -176,7 +176,6 @@
   <ItemGroup>
     <Content Include="MasterForm\UserDetailsPage.aspx" />
     <Content Include="design\mallspaceium_logo.png" />
-    <Content Include="form\AdminHome.aspx" />
     <Content Include="form\FrontPage.aspx" />
     <Content Include="form\RegisterPage.aspx" />
     <Content Include="ShopOwner\HomePage.aspx" />
@@ -214,13 +213,6 @@
     </Compile>
     <Compile Include="MasterForm\UserDetailsPage.aspx.designer.cs">
       <DependentUpon>UserDetailsPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="form\AdminHome.aspx.cs">
-      <DependentUpon>AdminHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="form\AdminHome.aspx.designer.cs">
-      <DependentUpon>AdminHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="form\FrontPage.aspx.cs">
       <DependentUpon>FrontPage.aspx</DependentUpon>

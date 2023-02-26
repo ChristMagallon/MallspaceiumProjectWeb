@@ -47,5 +47,42 @@ namespace mallspacium_web
             reportGridView.DataSource = reportGridViewTable;
             reportGridView.DataBind();
         }
+
+        protected void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            search();
+        }
+
+        // method for searching username 
+        public async void search()
+        {
+            string searchUsername = searchTextBox.Text;
+            Query query = database.Collection("AdminReport")
+                          .WhereEqualTo("reportedBy", searchUsername);
+
+            // Retrieve the search results
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+            List<Report> results = new List<Report>();
+
+            if (snapshot.Documents.Count > 0)
+            {
+                foreach (DocumentSnapshot document in snapshot.Documents)
+                {
+                    Report model = document.ConvertTo<Report>();
+                    results.Add(model);
+                }
+                // Bind the search results to the GridView control
+                reportGridView.DataSource = results;
+                reportGridView.DataBind();
+            }
+            else
+            {
+                reportGridView.DataSource = null;
+                reportGridView.DataBind();
+                string message = "No records found!";
+                string script = "alert('" + message + "')";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+            }
+        }
     }
 }
