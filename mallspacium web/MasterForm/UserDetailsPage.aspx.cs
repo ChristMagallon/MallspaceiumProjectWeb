@@ -34,5 +34,39 @@ namespace mallspacium_web.AdditionalForm
             contactNumberLabel.Text = Request.QueryString["contactNumber"].ToString();
             
         }
+
+        protected void banButton_Click(object sender, EventArgs e)
+        {
+            banUser("username");
+        }
+
+        protected void unbanButton_Click(object sender, EventArgs e)
+        {
+            unbanUser("username");
+        }
+
+        // Ban a user
+        public async void banUser(string username)
+        {
+            var bannedUsersCollection = database.Collection("AdminBannedUsers");
+            var userDocRef = bannedUsersCollection.Document(username);
+
+            // Create a new document for the banned user
+            var bannedUserData = new Dictionary<string, object>
+            {
+                {"username", username}
+            // add any other relevant information about the banned user
+            };
+            await userDocRef.SetAsync(bannedUserData);
+        }
+
+        // Unban a user
+        protected async void unbanUser(string username)
+        {
+            var bannedUsersCollection = database.Collection("AdminBannedUsers");
+            var userDocRef = bannedUsersCollection.Document(username);
+
+            await userDocRef.DeleteAsync();
+        }
     }
 }
