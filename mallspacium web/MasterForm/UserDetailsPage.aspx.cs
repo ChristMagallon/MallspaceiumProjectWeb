@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,12 +15,13 @@ namespace mallspacium_web.AdditionalForm
         FirestoreDb database;
         protected void Page_Load(object sender, EventArgs e)
         {
-           /** string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
+           string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
-            database = FirestoreDb.Create("mallspaceium");**/
+            database = FirestoreDb.Create("mallspaceium");
 
             showData();
+            IfUserBanned("username");
         }
 
         public void showData()
@@ -48,24 +50,51 @@ namespace mallspacium_web.AdditionalForm
         public async void banUser(string username)
         {
             var bannedUsersCollection = database.Collection("AdminBannedUsers");
-            var userDocRef = bannedUsersCollection.Document(username);
+            var userDocRef = bannedUsersCollection.Document(usernameLabel.Text);
 
             // Create a new document for the banned user
             var bannedUserData = new Dictionary<string, object>
             {
-                {"username", username}
-            // add any other relevant information about the banned user
-            };
+                {"username", usernameLabel.Text},
+                {"id", idLabel.Text},
+                {"accountType", accountTypeLabel.Text },
+                {"dateCreated",dateCreatedLabel.Text },
+                {"email",emailLabel.Text },
+                {"address",addressLabel.Text },
+                {"contactNumber", contactNumberLabel.Text}
+        };
             await userDocRef.SetAsync(bannedUserData);
+
+            string message = "Successfully Banned User";
+            string script = "alert('" + message + "')";
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
         }
 
         // Unban a user
         protected async void unbanUser(string username)
         {
+            
             var bannedUsersCollection = database.Collection("AdminBannedUsers");
-            var userDocRef = bannedUsersCollection.Document(username);
+            var userDocRef = bannedUsersCollection.Document(usernameLabel.Text);
 
             await userDocRef.DeleteAsync();
+
+            string message = "Successfully Unbanned User";
+            string script = "alert('" + message + "')";
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+        }
+
+        // Check if a user is banned
+        protected async Task<bool> IfUserBanned(string username)
+        {
+            var bannedUsersCollection = database.Collection("AdminBannedUsers");
+            var userDocRef = bannedUsersCollection.Document(usernameLabel.Text);
+            
+            var snapshot = await userDocRef.GetSnapshotAsync();
+            banButton.Enabled = false;
+            return snapshot.Exists;
+            //Button banButton = (Button)FindControl("banButton");
+
         }
     }
 }

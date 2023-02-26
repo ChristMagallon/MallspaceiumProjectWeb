@@ -93,6 +93,7 @@ namespace mallspacium_web
             {
                 manageUsersGridView.DataSource = null;
                 manageUsersGridView.DataBind();
+
                 string message = "No records found!";
                 string script = "alert('" + message + "')";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
