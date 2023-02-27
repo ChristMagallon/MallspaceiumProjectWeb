@@ -31,7 +31,7 @@
                         class="fas fa-chart-line me-2"></i>Admin Activities</a>
                 <a href="ReportsForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paperclip me-2"></i>Reports</a>
-                <a href="SystemForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="DowntimeForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-shopping-cart me-2"></i>System</a> 
                 <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>

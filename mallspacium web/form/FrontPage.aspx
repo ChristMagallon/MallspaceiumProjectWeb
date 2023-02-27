@@ -23,7 +23,7 @@
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password:</label>
-            <asp:TextBox ID="passwordTextbox" runat="server" type="text" class="form-control" placeholder="Enter password" name="password"></asp:TextBox>
+            <asp:TextBox ID="passwordTextbox" runat="server" type="text" class="form-control" placeholder="Enter password" name="password" TextMode="Password"></asp:TextBox>
           </div>
           <div class="form-check mb-3">
             <label class="form-check-label">

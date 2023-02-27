@@ -26,7 +26,7 @@ namespace mallspacium_web.form
 
         public async void getLoginDetails()
         {
-            Query qRef = database.Collection("AdminLoginDetails").WhereEqualTo("adminUsername", usernameTextbox.Text)
+            Query qRef = database.Collection("AdminAccount").WhereEqualTo("adminUsername", usernameTextbox.Text)
                                                                    .WhereEqualTo("adminPassword", passwordTextbox.Text);
               QuerySnapshot snap = await qRef.GetSnapshotAsync();
 

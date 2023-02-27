@@ -91,5 +91,17 @@ namespace mallspacium_web.MasterForm
         {
             Response.Redirect("~/MasterForm/CreateAdminAccountForm.aspx", false);
         }
+
+        protected void accountGridView_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            // Get the selected row
+            GridViewRow row = accountGridView.Rows[e.NewEditIndex];
+
+            // Retrieve the document ID from the DataKeys collection
+            string adminUsername = accountGridView.DataKeys[e.NewEditIndex].Value.ToString();
+
+            // Redirect to the edit page, passing the document ID as a query string parameter
+            Response.Redirect("AccountDetailsForm.aspx?adminUsername=" + adminUsername, false);
+        }
     }
 }

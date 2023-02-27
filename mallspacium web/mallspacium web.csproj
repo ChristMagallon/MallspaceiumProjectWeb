@@ -174,6 +174,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
     <Content Include="MasterForm\UserDetailsPage.aspx" />
@@ -210,6 +211,13 @@
     <Compile Include="class\AdminAccount.cs" />
     <Compile Include="class\ManageSubscription.cs" />
     <Compile Include="class\Report.cs" />
+    <Compile Include="MasterForm\AccountDetailsForm.aspx.cs">
+      <DependentUpon>AccountDetailsForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\AccountDetailsForm.aspx.designer.cs">
+      <DependentUpon>AccountDetailsForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterForm\AdminAccountForm.aspx.cs">
       <DependentUpon>AdminAccountForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

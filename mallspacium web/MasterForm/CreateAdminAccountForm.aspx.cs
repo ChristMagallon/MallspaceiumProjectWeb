@@ -31,13 +31,13 @@ namespace mallspacium_web.MasterForm
             AddAccount();
         }
 
-        public void AddAccount()
+        public async void AddAccount()
         {
             //auto generated unique id
             Guid id = Guid.NewGuid();
             string uniqueId = id.ToString();
 
-            CollectionReference doc = database.Collection("AdminAccount");
+            DocumentReference doc = database.Collection("AdminAccount").Document(usernameTextbox.Text);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
               { "adminUsername", usernameTextbox.Text},
@@ -49,8 +49,10 @@ namespace mallspacium_web.MasterForm
               { "adminConfirmPassword", confirmPasswordTextbox.Text}
             };
 
-            doc.AddAsync(data1);
+            await doc.SetAsync(data1);
             Response.Write("<script>alert('Successfully added a new admin account.');</script>");
+
+            Response.Redirect("~/MasterForm/AdminAccountForm.aspx", false);
         }
     }
 }

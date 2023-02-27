@@ -20,8 +20,8 @@ namespace mallspacium_web.AdditionalForm
 
             database = FirestoreDb.Create("mallspaceium");
 
-            showData();
             IfUserBanned("username");
+            showData();
         }
 
         public void showData()

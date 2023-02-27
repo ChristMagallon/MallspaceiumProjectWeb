@@ -31,19 +31,22 @@
         <div class="form">
             <div class="col p-5">
                   
-                <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search username" aria-label="Search" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Username" aria-label="Search" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
                 <asp:Button ID="addButton" runat="server" Text="+CREATE NEW ACCOUNT" OnClick="addButton_Click"> </asp:Button>
         </div>
     </div>
 
         <div class="form">
-                 <asp:GridView ID="accountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" >
+                 <asp:GridView ID="accountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="adminUsername" AutoGenerateEditButton="true" OnRowEditing="accountGridView_RowEditing" >
                 <Columns>
-                    <asp:BoundField HeaderText="Username" DataField="adminUsername" SortExpression="adminUsername"></asp:BoundField>
+                    <asp:BoundField HeaderText="Username" DataField="adminUsername" SortExpression="adminUsername" ></asp:BoundField>
                     <asp:BoundField HeaderText="ID" DataField="adminId" SortExpression="adminId"></asp:BoundField>
                     <asp:BoundField HeaderText="Email Address" DataField="adminEmail" SortExpression="adminEmail"></asp:BoundField>
                     <asp:BoundField HeaderText="Phone Number" DataField="adminPhoneNumber" SortExpression="adminPhoneNumber"></asp:BoundField>
                     <asp:BoundField HeaderText="Date Created" DataField="adminDateCreated" SortExpression="adminDateCreated"></asp:BoundField>
+                 
+                    
+                    
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />
                      <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
