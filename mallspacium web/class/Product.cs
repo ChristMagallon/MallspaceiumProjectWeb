@@ -7,10 +7,10 @@ using System.Web;
 namespace mallspacium_web
 {
     [FirestoreData]
-    public class AllShopProducts
+    public class Product
     {
         [FirestoreProperty]
-        public string prodName{ get; set; }
+        public string prodName { get; set; }
         [FirestoreProperty]
         public string prodImage { get; set; }
         [FirestoreProperty]
@@ -18,7 +18,7 @@ namespace mallspacium_web
         [FirestoreProperty]
         public string prodPrice { get; set; }
         [FirestoreProperty]
-        public string prodTag { get; set; }
+        public string prodTag{ get; set; }
         [FirestoreProperty]
         public string prodShopName { get; set; }
     }

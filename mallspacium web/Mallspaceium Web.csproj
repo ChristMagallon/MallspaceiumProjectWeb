@@ -184,7 +184,9 @@
     <Content Include="form\RegisterPage.aspx" />
     <Content Include="ShopOwner\AddProductPage.aspx" />
     <Content Include="ShopOwner\HomePage.aspx" />
+    <Content Include="ShopOwner\OwnProductDetailsPage.aspx" />
     <Content Include="ShopOwner\PopularShopsPage.aspx" />
+    <Content Include="ShopOwner\ProductDetailsPage.aspx" />
     <Content Include="ShopOwner\SalesAndDiscountsPage.aspx" />
     <Content Include="ShopOwner\OwnShopProductsPage.aspx" />
     <Content Include="ShopOwner\AdvertiseProductsPage.aspx" />
@@ -212,8 +214,8 @@
   <ItemGroup>
     <Compile Include="class\Activity.cs" />
     <Compile Include="class\AdminAccount.cs" />
-    <Compile Include="class\AllShopProducts.cs" />
     <Compile Include="class\ManageSubscription.cs" />
+    <Compile Include="class\Product.cs" />
     <Compile Include="class\Report.cs" />
     <Compile Include="MasterForm\AccountDetailsForm.aspx.cs">
       <DependentUpon>AccountDetailsForm.aspx</DependentUpon>
@@ -279,6 +281,20 @@
     </Compile>
     <Compile Include="ShopOwner\AllShopProductsPage.aspx.designer.cs">
       <DependentUpon>AllShopProductsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopOwner\OwnProductDetailsPage.aspx.cs">
+      <DependentUpon>OwnProductDetailsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\OwnProductDetailsPage.aspx.designer.cs">
+      <DependentUpon>OwnProductDetailsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopOwner\ProductDetailsPage.aspx.cs">
+      <DependentUpon>ProductDetailsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\ProductDetailsPage.aspx.designer.cs">
+      <DependentUpon>ProductDetailsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\Site2.Master.cs">
       <DependentUpon>Site2.Master</DependentUpon>

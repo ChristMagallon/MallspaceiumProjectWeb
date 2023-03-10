@@ -27,18 +27,8 @@ namespace mallspacium_web.ShopOwner
 
         public async void getAllShopProducts()
         {
-            // Create a reference to the parent collection
-            //CollectionReference parentCollectionReference = database.Collection("Users");
-
-            // Create a reference to the parent document
-            //DocumentReference parentDocumentReference = parentCollectionReference.Document();
-
-            // Create a reference to the child collection inside the parent document
-            //CollectionReference childCollectionReference = parentDocumentReference.Collection("Product");
-
-            // Retrieve the documents from the child collection
-
             CollectionReference usersRef = database.Collection("Users");
+            // Retrieve the documents from the parent collection
             QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
 
             // Create a DataTable to store the retrieved data
@@ -54,7 +44,10 @@ namespace mallspacium_web.ShopOwner
             // Iterate through the documents and populate the DataTable
             foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
             {
+                // Create a reference to the child collection inside the parent document
                 CollectionReference productsRef = documentSnapshot.Reference.Collection("Product");
+
+                // Retrieve the documents from the child collection
                 QuerySnapshot productsSnapshot = await productsRef.GetSnapshotAsync();
 
                 foreach (DocumentSnapshot productDoc in productsSnapshot.Documents)

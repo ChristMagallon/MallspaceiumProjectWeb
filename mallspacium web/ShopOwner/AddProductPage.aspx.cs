@@ -55,7 +55,7 @@ namespace mallspacium_web.ShopOwner
             if (nameTextBoxValidator.IsValid && descriptionTextboxValidator.IsValid && priceTextboxValidator.IsValid && tagTextboxValidator.IsValid && imageFileUploadValidator.IsValid)
             {
                 await doc.SetAsync(data1);
-                Response.Write("<script>alert('Successfully added a new admin account.');</script>");
+                Response.Write("<script>alert('Successfully added a new Product.');</script>");
 
                 nameTextbox.Text = "";
                 descriptionTextbox.Text = "";

@@ -51,12 +51,12 @@ namespace mallspacium_web.MasterForm2
         protected global::System.Web.UI.WebControls.Button addButton;
 
         /// <summary>
-        /// OwnShopProductGridView control.
+        /// ownShopProductGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView OwnShopProductGridView;
+        protected global::System.Web.UI.WebControls.GridView ownShopProductGridView;
     }
 }
