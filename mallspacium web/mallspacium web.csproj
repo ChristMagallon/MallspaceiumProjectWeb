@@ -182,6 +182,7 @@
     <Content Include="design\mallspaceium_logo.png" />
     <Content Include="form\FrontPage.aspx" />
     <Content Include="form\RegisterPage.aspx" />
+    <Content Include="ShopOwner\AddProductPage.aspx" />
     <Content Include="ShopOwner\HomePage.aspx" />
     <Content Include="ShopOwner\PopularShopsPage.aspx" />
     <Content Include="ShopOwner\SalesAndDiscountsPage.aspx" />
@@ -263,6 +264,13 @@
     </Compile>
     <Compile Include="class\LoginDetails.cs" />
     <Compile Include="class\ManageUsers.cs" />
+    <Compile Include="ShopOwner\AddProductPage.aspx.cs">
+      <DependentUpon>AddProductPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\AddProductPage.aspx.designer.cs">
+      <DependentUpon>AddProductPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ShopOwner\Site2.Master.cs">
       <DependentUpon>Site2.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

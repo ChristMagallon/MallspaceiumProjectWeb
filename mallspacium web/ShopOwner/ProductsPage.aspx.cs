@@ -13,5 +13,10 @@ namespace mallspacium_web.MasterForm2
         {
 
         }
+
+        protected void addButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ShopOwner/AddProductPage.aspx", false);
+        }
     }
 }
