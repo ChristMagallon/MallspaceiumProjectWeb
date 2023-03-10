@@ -15,6 +15,24 @@ namespace mallspacium_web.MasterForm2
     {
 
         /// <summary>
+        /// allProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink allProducts;
+
+        /// <summary>
+        /// ownProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink ownProducts;
+
+        /// <summary>
         /// searchTextBox control.
         /// </summary>
         /// <remarks>
@@ -31,5 +49,14 @@ namespace mallspacium_web.MasterForm2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button addButton;
+
+        /// <summary>
+        /// OwnShopProductGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView OwnShopProductGridView;
     }
 }

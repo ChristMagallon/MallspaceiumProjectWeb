@@ -44,9 +44,6 @@
                     <asp:BoundField HeaderText="Email Address" DataField="adminEmail" SortExpression="adminEmail"></asp:BoundField>
                     <asp:BoundField HeaderText="Phone Number" DataField="adminPhoneNumber" SortExpression="adminPhoneNumber"></asp:BoundField>
                     <asp:BoundField HeaderText="Date Created" DataField="adminDateCreated" SortExpression="adminDateCreated"></asp:BoundField>
-                 
-                    
-                    
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />
                      <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />

@@ -186,11 +186,12 @@
     <Content Include="ShopOwner\HomePage.aspx" />
     <Content Include="ShopOwner\PopularShopsPage.aspx" />
     <Content Include="ShopOwner\SalesAndDiscountsPage.aspx" />
-    <Content Include="ShopOwner\ProductsPage.aspx" />
+    <Content Include="ShopOwner\OwnShopProductsPage.aspx" />
     <Content Include="ShopOwner\AdvertiseProductsPage.aspx" />
     <Content Include="ShopOwner\PostSalesAndDiscountsPage.aspx" />
     <Content Include="ShopOwner\NotificationPage.aspx" />
     <Content Include="ShopOwner\ProfilePage.aspx" />
+    <Content Include="ShopOwner\AllShopProductsPage.aspx" />
     <Content Include="ShopOwner\Style.css" />
     <Content Include="Shopper\HomePage.aspx" />
     <Content Include="Shopper\PopularShopsPage.aspx" />
@@ -211,6 +212,7 @@
   <ItemGroup>
     <Compile Include="class\Activity.cs" />
     <Compile Include="class\AdminAccount.cs" />
+    <Compile Include="class\AllShopProducts.cs" />
     <Compile Include="class\ManageSubscription.cs" />
     <Compile Include="class\Report.cs" />
     <Compile Include="MasterForm\AccountDetailsForm.aspx.cs">
@@ -271,6 +273,13 @@
     <Compile Include="ShopOwner\AddProductPage.aspx.designer.cs">
       <DependentUpon>AddProductPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ShopOwner\AllShopProductsPage.aspx.cs">
+      <DependentUpon>AllShopProductsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\AllShopProductsPage.aspx.designer.cs">
+      <DependentUpon>AllShopProductsPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ShopOwner\Site2.Master.cs">
       <DependentUpon>Site2.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -299,12 +308,12 @@
     <Compile Include="ShopOwner\SalesAndDiscountsPage.aspx.designer.cs">
       <DependentUpon>SalesAndDiscountsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShopOwner\ProductsPage.aspx.cs">
-      <DependentUpon>ProductsPage.aspx</DependentUpon>
+    <Compile Include="ShopOwner\OwnShopProductsPage.aspx.cs">
+      <DependentUpon>OwnShopProductsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ShopOwner\ProductsPage.aspx.designer.cs">
-      <DependentUpon>ProductsPage.aspx</DependentUpon>
+    <Compile Include="ShopOwner\OwnShopProductsPage.aspx.designer.cs">
+      <DependentUpon>OwnShopProductsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\AdvertiseProductsPage.aspx.cs">
       <DependentUpon>AdvertiseProductsPage.aspx</DependentUpon>

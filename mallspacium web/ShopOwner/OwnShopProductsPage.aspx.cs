@@ -18,5 +18,15 @@ namespace mallspacium_web.MasterForm2
         {
             Response.Redirect("~/ShopOwner/AddProductPage.aspx", false);
         }
+
+        protected void OwnShopProductGridView_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void OwnShopProductGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
     }
 }
