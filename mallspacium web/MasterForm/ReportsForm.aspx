@@ -24,13 +24,14 @@
     </div>
      <div class="form">
         
-            <asp:GridView ID="reportGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" >
+            <asp:GridView ID="reportGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="reportGridView_SelectedIndexChanged" >
         <Columns>
-            <asp:BoundField HeaderText="Report ID" DataField="reportId" SortExpression="reportId"></asp:BoundField>
-            <asp:BoundField HeaderText="Report Message" DataField="report" SortExpression="report"></asp:BoundField>
+            <asp:BoundField HeaderText="Username" DataField="reportedUsername" SortExpression="reportedUsername"></asp:BoundField>
+            <asp:BoundField HeaderText="Id" DataField="reportId" SortExpression="reportId"></asp:BoundField>
+            <asp:BoundField HeaderText="Message" DataField="reportMessage" SortExpression="reportMessage"></asp:BoundField>
             <asp:BoundField HeaderText="Reported by" DataField="reportedBy" SortExpression="reportedBy"></asp:BoundField>
-            <asp:BoundField HeaderText="Role" DataField="role" SortExpression="role"></asp:BoundField>
-            <asp:BoundField HeaderText="Date" DataField="date" SortExpression="date"></asp:BoundField>
+            <asp:BoundField HeaderText="Date" DataField="reportDate" SortExpression="reportDate"></asp:BoundField>
+            <asp:CommandField ShowSelectButton="True" SelectText="Resolve" ValidationGroup="ResolveButton" />
         </Columns>
              <FooterStyle BackColor="White" ForeColor="#000066" />
              <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />

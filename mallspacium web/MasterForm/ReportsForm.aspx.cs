@@ -26,11 +26,11 @@ namespace mallspacium_web
         {
             DataTable reportGridViewTable = new DataTable();
 
+            reportGridViewTable.Columns.Add("reportedUsername");
             reportGridViewTable.Columns.Add("reportId");
-            reportGridViewTable.Columns.Add("report");
+            reportGridViewTable.Columns.Add("reportMessage");
             reportGridViewTable.Columns.Add("reportedBy");
-            reportGridViewTable.Columns.Add("role");
-            reportGridViewTable.Columns.Add("date");
+            reportGridViewTable.Columns.Add("reportDate");
 
             Query subQue = database.Collection(AdminReport);
             QuerySnapshot snap = await subQue.GetSnapshotAsync();
@@ -41,7 +41,7 @@ namespace mallspacium_web
 
                 if (docsnap.Exists)
                 {
-                    reportGridViewTable.Rows.Add(rep.reportId, rep.report, rep.reportedBy, rep.role, rep.date);
+                    reportGridViewTable.Rows.Add(rep.reportedUsername, rep.reportId, rep.reportMessage, rep.reportedBy,  rep.reportDate);
                 }
             }
             reportGridView.DataSource = reportGridViewTable;
@@ -58,7 +58,7 @@ namespace mallspacium_web
         {
             string searchUsername = searchTextBox.Text;
             Query query = database.Collection("AdminReport")
-                          .WhereEqualTo("reportedBy", searchUsername);
+                          .WhereEqualTo("reportedUsername", searchUsername);
 
             // Retrieve the search results
             QuerySnapshot snapshot = await query.GetSnapshotAsync();
@@ -83,6 +83,13 @@ namespace mallspacium_web
                 string script = "alert('" + message + "')";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
             }
+        }
+
+        protected void reportGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow gr = reportGridView.SelectedRow;
+            Response.Redirect("ResolveReportForm.aspx?reportedUsername=" + gr.Cells[0].Text + "&reportId=" + gr.Cells[1].Text + "&reportMessage=" + gr.Cells[2].Text + "&reportedBy=" + gr.Cells[3].Text + "&reportDate=" + gr.Cells[4].Text, false);
+
         }
     }
 }
