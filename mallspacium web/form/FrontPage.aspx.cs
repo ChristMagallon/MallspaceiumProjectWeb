@@ -38,11 +38,7 @@ namespace mallspacium_web.form
                      Response.Write("<script>alert('No record');</script>");
                  else
                      Response.Redirect("~/MasterForm/ManageUserForm.aspx");
-
-
-             }
-
-            
+             }        
         }
     }
 }
