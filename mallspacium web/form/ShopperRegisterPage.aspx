@@ -21,7 +21,7 @@
                 
                 <div class="mb-3 mt-3">
                       <label for="firstName" class="form-label">First Name:</label>
-                      <asp:TextBox ID="FirstNameTextBox" runat="server" type="text"  class="form-control" placeholder="Enter First Name" AutoCompleteType="Disabled"></asp:TextBox>
+                      <asp:TextBox ID="FirstNameTextBox" runat="server" type="text" class="form-control" placeholder="Enter First Name" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
                 
                 <div class="mb-3 mt-3">

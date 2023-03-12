@@ -31,12 +31,12 @@ namespace mallspacium_web.form
             clearInputs();
         }
 
-        public void signupUser()
+        public async void signupUser()
         {
             String email = EmailTextBox.Text;
 
             // Create a new collection reference
-            DocumentReference document = db.Collection("Users").Document(email);
+            DocumentReference documentRef = db.Collection("Users").Document(email);
 
             // Set the data for the new document
             Dictionary<string, object> data = new Dictionary<string, object>
@@ -44,18 +44,18 @@ namespace mallspacium_web.form
                 {"firstName", FirstNameTextBox.Text},
                 {"lastName", LastNameTextBox.Text},
                 {"dob", DOBTextBox.Text},
-                {"gender", GenderDropDownList.SelectedValue},
+                {"gender", GenderDropDownList.SelectedItem.Text},
                 {"phoneNumber", PhoneNumberTextBox.Text},
                 {"address", AddressTextBox.Text},
                 {"email", EmailTextBox.Text},
                 {"username", UsernameTextBox},
                 {"password", PasswordTextBox.Text},
                 {"confirmPassword", ConfirmPasswordTextBox.Text},
-                {"userRole", user_role }
+                {"userRole", user_role}
             };
 
-            // Add the data to the document
-            document.SetAsync(data);
+            // Set the data in the Firestore document
+            await documentRef.SetAsync(data);
             Response.Write("<script>alert('Successfully registered');</script>");
             clearInputs();
         }
