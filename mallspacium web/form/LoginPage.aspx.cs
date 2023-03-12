@@ -38,13 +38,13 @@ namespace mallspacium_web.form
                 if (document.Exists)
                 {
                     // Do something with the user document
-                    Response.Write("<script>alert('Login Successfully!');</script>");
+                    Application.Set("usernameget",EmailTextBox.Text);
+                    Response.Redirect("~/ShopOwner/PopularShopsPage.aspx", false);
                 }
                 else
                 {
                     // Do something with the user document
-                    Response.Write("<script>alert('No record exists!');</script>");
-               
+                    Response.Write("<script>alert('No user records!');</script>");
                 }
             }
         }
@@ -70,7 +70,6 @@ namespace mallspacium_web.form
             {
                 getLoginDetails();
             }
-           
         }
     }
 }
