@@ -1,4 +1,4 @@
-﻿<%@ Page  Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="OwnProductDetailsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.OwnProductDetailsPage" %>
+﻿<%@ Page  UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="OwnProductDetailsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.OwnProductDetailsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -9,6 +9,13 @@
     <div class="form">
 
        <asp:Label ID="Label4" runat="server" Text="Edit Product"></asp:Label>  <br/> <br /> 
+
+        <asp:Label ID="Label7" runat="server" Text="ID: "></asp:Label> 
+        <asp:Textbox ID="idTextbox" runat="server" Text=""></asp:Textbox>
+        <asp:RequiredFieldValidator ID="IdTextBoxRequiredFieldValidator" runat="server"
+            ControlToValidate="idTextbox"
+            ErrorMessage="*Required" 
+            style="color: red"  /> <br/> 
 
         <asp:Label ID="Label1" runat="server" Text="Name: "></asp:Label> 
         <asp:Textbox ID="nameTextbox" runat="server" Text=""></asp:Textbox>
@@ -38,12 +45,9 @@
             ErrorMessage="*Required" 
             style="color: red"  /> <br/> 
         
-        <asp:Label ID="Label6" runat="server" Text="Image: "></asp:Label> 
+        <asp:Label ID="Label6" runat="server" Text="Image: "></asp:Label> <asp:Image ID="Image1" runat="server" />
         <asp:FileUpload ID="imageFileUpload" runat="server" />
-        <asp:RequiredFieldValidator ID="imageFileUploadValidator" runat="server"
-            ControlToValidate="imageFileUpload"
-            ErrorMessage="*Required" 
-            style="color: red" /> <br/> <br>
+         <br/> <br>
         
         <asp:Button ID="updateButton" runat="server" Text="UPDATE" OnClick="updateButton_Click" />
     </div>

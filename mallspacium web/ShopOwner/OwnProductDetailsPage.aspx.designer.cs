@@ -24,6 +24,33 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+
+        /// <summary>
+        /// idTextbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox idTextbox;
+
+        /// <summary>
+        /// IdTextBoxRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator IdTextBoxRequiredFieldValidator;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -141,6 +168,15 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
+        /// Image1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+
+        /// <summary>
         /// imageFileUpload control.
         /// </summary>
         /// <remarks>
@@ -148,15 +184,6 @@ namespace mallspacium_web.ShopOwner
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload imageFileUpload;
-
-        /// <summary>
-        /// imageFileUploadValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator imageFileUploadValidator;
 
         /// <summary>
         /// updateButton control.
