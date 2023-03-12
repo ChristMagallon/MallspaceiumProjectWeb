@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Google.Cloud.Firestore;
+using static System.Net.Mime.MediaTypeNames;
 using static Google.Cloud.Firestore.V1.StructuredQuery.Types;
 
 namespace mallspacium_web.form
@@ -37,10 +38,10 @@ namespace mallspacium_web.form
                  if (!docsnap.Exists)
                      Response.Write("<script>alert('No record');</script>");
                  else
-                     Response.Redirect("~/MasterForm/ManageUserForm.aspx");
-
-
-             }
+                    Application.Set("usernameget",usernameTextbox.Text);
+                    Response.Redirect("~/MasterForm/ManageUserForm.aspx");
+               
+            }
 
             
         }

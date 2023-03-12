@@ -27,7 +27,7 @@ namespace mallspacium_web
 
         public async void save()
         {
-            DocumentReference downtimeRef = database.Collection("AdminSystemDowntime").Document();
+            DocumentReference downtimeRef = database.Collection("Users").Document();
 
             Dictionary<string, object> downtimeData = new Dictionary<string, object>
 {
