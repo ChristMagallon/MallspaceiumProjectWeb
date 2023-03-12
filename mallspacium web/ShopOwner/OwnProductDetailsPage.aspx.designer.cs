@@ -11,7 +11,7 @@ namespace mallspacium_web.ShopOwner
 {
 
 
-    public partial class AddProductPage
+    public partial class OwnProductDetailsPage
     {
 
         /// <summary>
@@ -159,39 +159,12 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.RequiredFieldValidator imageFileUploadValidator;
 
         /// <summary>
-        /// Label7 control.
+        /// updateButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-
-        /// <summary>
-        /// shopNameTextbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox shopNameTextbox;
-
-        /// <summary>
-        /// shopNameRequiredFieldValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator shopNameRequiredFieldValidator;
-
-        /// <summary>
-        /// addButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addButton;
+        protected global::System.Web.UI.WebControls.Button updateButton;
     }
 }

@@ -25,37 +25,32 @@ namespace mallspacium_web.ShopOwner
             getAllShopProducts();
         }
 
-        public async void getAllShopProducts()
+        public void getAllShopProducts()
         {
-            // Create a reference to the parent collection
-            //CollectionReference parentCollectionReference = database.Collection("Users");
-
-            // Create a reference to the parent document
-            //DocumentReference parentDocumentReference = parentCollectionReference.Document();
-
-            // Create a reference to the child collection inside the parent document
-            //CollectionReference childCollectionReference = parentDocumentReference.Collection("Product");
-
-            // Retrieve the documents from the child collection
-
             CollectionReference usersRef = database.Collection("Users");
-            QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
+            // Retrieve the documents from the parent collection
+            QuerySnapshot querySnapshot = usersRef.GetSnapshotAsync().Result;
 
             // Create a DataTable to store the retrieved data
-            DataTable allProductsGridViewTable = new DataTable();
+            DataTable allShopProductGridViewTable = new DataTable();
 
-            allProductsGridViewTable.Columns.Add("prodName", typeof(string));
-            allProductsGridViewTable.Columns.Add("prodImage", typeof(byte[]));
-            allProductsGridViewTable.Columns.Add("prodDesc", typeof(string));
-            allProductsGridViewTable.Columns.Add("prodPrice", typeof(string));
-            allProductsGridViewTable.Columns.Add("prodTag", typeof(string));
-            allProductsGridViewTable.Columns.Add("prodShopName", typeof(string));
+            allShopProductGridViewTable.Columns.Add("prodName", typeof(string));
+            allShopProductGridViewTable.Columns.Add("prodImage", typeof(byte[]));
+            allShopProductGridViewTable.Columns.Add("prodDesc", typeof(string));
+            allShopProductGridViewTable.Columns.Add("prodPrice", typeof(string));
+            allShopProductGridViewTable.Columns.Add("prodTag", typeof(string));
+            allShopProductGridViewTable.Columns.Add("prodShopName", typeof(string));
 
             // Iterate through the documents and populate the DataTable
             foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
             {
+                // Create a reference to the child collection inside the parent document
                 CollectionReference productsRef = documentSnapshot.Reference.Collection("Product");
-                QuerySnapshot productsSnapshot = await productsRef.GetSnapshotAsync();
+
+                // Retrieve the documents from the child collection
+                QuerySnapshot productsSnapshot = productsRef.GetSnapshotAsync().Result;
+
+                
 
                 foreach (DocumentSnapshot productDoc in productsSnapshot.Documents)
                 {
@@ -67,7 +62,7 @@ namespace mallspacium_web.ShopOwner
                     string productTag = productDoc.GetValue<string>("prodTag");
                     string productShopName = productDoc.GetValue<string>("prodShopName");
 
-                    DataRow dataRow = allProductsGridViewTable.NewRow();
+                    DataRow dataRow = allShopProductGridViewTable.NewRow();
 
                     dataRow["prodName"] = productName;
                     dataRow["prodImage"] = productImage;
@@ -76,13 +71,12 @@ namespace mallspacium_web.ShopOwner
                     dataRow["prodTag"] = productTag;
                     dataRow["prodShopName"] = productShopName;
 
-                    allProductsGridViewTable.Rows.Add(dataRow);
-
-                    // Bind the DataTable to the GridView control
-                    allShopProductGridView.DataSource = allProductsGridViewTable;
-                    allShopProductGridView.DataBind();
+                    allShopProductGridViewTable.Rows.Add(dataRow);
                 }
             }
+            // Bind the DataTable to the GridView control
+            allShopProductGridView.DataSource = allShopProductGridViewTable;
+            allShopProductGridView.DataBind();
         }
 
         protected void allShopProductGridView_RowDataBound(object sender, GridViewRowEventArgs e)

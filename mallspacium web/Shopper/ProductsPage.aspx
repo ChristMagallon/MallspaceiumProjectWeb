@@ -1,24 +1,31 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ProductsPage.aspx.cs" Inherits="mallspacium_web.MasterForm3.WebForm4" %>
+﻿<%@ Page Async="true" Title=""  Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ProductsPage.aspx.cs" Inherits="mallspacium_web.MasterForm3.WebForm4" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <!-- start here -->
-       <div class="container"> 
-    <div class="form">
-        <div class="col p-5">
+  <div class="form">
+            <div class="col p-5">
                   
-  <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Username" aria-label="Search" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Username" aria-label="Search" AutoPostBack="True"></asp:TextBox>
+               
         </div>
-    </div>
-     <div class="form">
-        
-            <asp:GridView ID="activityGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" >
+
+        <div class="form">
+
+
+            <asp:GridView ID="productGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnRowDataBound="productGridView_RowDataBound">
                 <Columns>
-                    <asp:BoundField DataField="activityId" SortExpression="activityId"></asp:BoundField>
-                    <asp:BoundField HeaderText="Activity" DataField="activity" SortExpression="activity"></asp:BoundField>
-                    <asp:BoundField HeaderText="Username" DataField="username" SortExpression="username"></asp:BoundField>
-                    <asp:BoundField HeaderText="Date" DataField="date" SortExpression="date"></asp:BoundField>
+                    <asp:BoundField HeaderText="Name" DataField="prodName" SortExpression="prodName" ></asp:BoundField>
+                    <asp:TemplateField HeaderText="Image">
+                        <ItemTemplate>
+                            <asp:Image ID="Image1" runat="server" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField HeaderText="Description" DataField="prodDesc" SortExpression="prodDesc"></asp:BoundField>
+                    <asp:BoundField HeaderText="Price" DataField="prodPrice" SortExpression="prodPrice"></asp:BoundField>
+                    <asp:BoundField HeaderText="Tag" DataField="prodTag" SortExpression="prodTag"></asp:BoundField>
+                    <asp:BoundField HeaderText="Shop" DataField="prodShopName" SortExpression="prodShopName"></asp:BoundField>
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />
                      <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
@@ -30,7 +37,8 @@
                      <SortedDescendingCellStyle BackColor="#CAC9C9" />
                      <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
-    </div>
-   
+
+
         </div>
+      </div>
 </asp:Content>

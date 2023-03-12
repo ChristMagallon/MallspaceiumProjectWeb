@@ -1,12 +1,14 @@
-﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="AddProductPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.AddProductPage" %>
+﻿<%@ Page  Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="OwnProductDetailsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.OwnProductDetailsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+<!-- starts here-->
+
     <div class="form">
 
-       <asp:Label ID="Label4" runat="server" Text="Add New Product"></asp:Label>  <br/> <br /> 
+       <asp:Label ID="Label4" runat="server" Text="Edit Product"></asp:Label>  <br/> <br /> 
 
         <asp:Label ID="Label1" runat="server" Text="Name: "></asp:Label> 
         <asp:Textbox ID="nameTextbox" runat="server" Text=""></asp:Textbox>
@@ -41,15 +43,8 @@
         <asp:RequiredFieldValidator ID="imageFileUploadValidator" runat="server"
             ControlToValidate="imageFileUpload"
             ErrorMessage="*Required" 
-            style="color: red" /> <br/>
-
-        <asp:Label ID="Label7" runat="server" Text="Shop Name: "></asp:Label> 
-        <asp:Textbox ID="shopNameTextbox" runat="server" Text=""></asp:Textbox>
-        <asp:RequiredFieldValidator ID="shopNameRequiredFieldValidator" runat="server"
-            ControlToValidate="shopNameTextbox"
-            ErrorMessage="*Required" 
-            style="color: red"  /> <br/>  <br>
+            style="color: red" /> <br/> <br>
         
-        <asp:Button ID="addButton" runat="server" Text="Add Product" OnClick="addButton_Click" />
-</div>
+        <asp:Button ID="updateButton" runat="server" Text="UPDATE" OnClick="updateButton_Click" />
+    </div>
 </asp:Content>
