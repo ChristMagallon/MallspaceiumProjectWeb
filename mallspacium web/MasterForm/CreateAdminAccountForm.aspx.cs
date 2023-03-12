@@ -49,15 +49,7 @@ namespace mallspacium_web.MasterForm
               { "adminPassword", passwordTextbox.Text},
               { "adminConfirmPassword", confirmPasswordTextbox.Text}
             };
-            await doc.SetAsync(data1);
-            DocumentReference doc2 = database.Collection("AdminAccount").Document(usernameTextbox.Text).Collection("Notification").Document("Notif");
-
-            Dictionary<string, object> data12 = new Dictionary<string, object>()
-            {
-              { "Notification", "test"}
-        
-            };
-            await doc2.SetAsync(data12);
+            await doc.SetAsync(data1); 
             Response.Write("<script>alert('Successfully added a new admin account.');</script>");
 
             Response.Redirect("~/MasterForm/AdminAccountForm.aspx", false);
