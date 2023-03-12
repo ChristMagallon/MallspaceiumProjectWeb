@@ -33,10 +33,10 @@ namespace mallspacium_web.form
 
         public async void signupUser()
         {
-            String email = EmailTextBox.Text;
+        String email = EmailTextBox.Text;
 
-            // Create a new collection reference
-            DocumentReference documentRef = db.Collection("Users").Document(email);
+        // Create a new collection reference
+        DocumentReference documentRef = db.Collection("Users").Document(email);
 
             // Set the data for the new document
             Dictionary<string, object> data = new Dictionary<string, object>
@@ -48,7 +48,7 @@ namespace mallspacium_web.form
                 {"phoneNumber", PhoneNumberTextBox.Text},
                 {"address", AddressTextBox.Text},
                 {"email", EmailTextBox.Text},
-                {"username", UsernameTextBox},
+                {"username", UsernameTextBox.Text},
                 {"password", PasswordTextBox.Text},
                 {"confirmPassword", ConfirmPasswordTextBox.Text},
                 {"userRole", user_role}
@@ -56,8 +56,28 @@ namespace mallspacium_web.form
 
             // Set the data in the Firestore document
             await documentRef.SetAsync(data);
+            collectionNotif();
+
+            // Message Box
             Response.Write("<script>alert('Successfully registered');</script>");
             clearInputs();
+        }
+
+        public async void collectionNotif()
+        {
+            String email = EmailTextBox.Text;
+
+            // Create a new collection reference
+            DocumentReference documentRef = db.Collection("Users").Document(email).Collection("Notifcation").Document("notif");
+
+            // Set the data for the new document
+            Dictionary<string, object> data = new Dictionary<string, object>
+            {
+                {"notifyUser", "null"}
+            };
+
+            // Set the data in the Firestore document
+            await documentRef.SetAsync(data);
         }
 
         // Clear all the data inputted

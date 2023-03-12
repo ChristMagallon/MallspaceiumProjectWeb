@@ -22,24 +22,51 @@ namespace mallspacium_web.form
 
         protected void SignupButton_Click(object sender, EventArgs e)
         {
-            getLoginDetails();
+            getUserStatus();
         }
 
         public async void getLoginDetails()
         {
-            Query qRef = db.Collection("Users")
-                .WhereEqualTo("shopper_email", EmailTextBox.Text)
-                .WhereEqualTo("shopper_password", PasswordTextBox.Text);
-            QuerySnapshot snap = await qRef.GetSnapshotAsync();
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = db.Collection("Users");
+            Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text).WhereEqualTo("password", PasswordTextBox.Text);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
-            foreach (DocumentSnapshot docsnap in snap)
+            // Iterate over the results to find the user
+            foreach (DocumentSnapshot document in snapshot.Documents)
             {
-                LoginDetails login = docsnap.ConvertTo<LoginDetails>();
-
-                if (!docsnap.Exists)
-                    Response.Write("<script>alert('No record');</script>");
+                if (!document.Exists)
+                {
+                    // Do something with the user document
+                    Response.Write("<script>alert('No record exists!');</script>");
+                }
                 else
-                    Response.Write("<script>alert('Login successfully!');</script>");
+                {
+                    // Do something with the user document
+                    Response.Write("<script>alert('Login Successfully!');</script>");             
+                }
+            }
+        }
+
+        public async void getUserStatus()
+        {
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = db.Collection("AdminBannedUsers");
+            Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Iterate over the results to find the user
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (!document.Exists)
+                {
+                    getLoginDetails();
+                }
+                else
+                {
+                    // Do something with the user document
+                    Response.Write("<script>alert('Your account is banned! Please contact administrator');</script>");
+                }
             }
         }
     }

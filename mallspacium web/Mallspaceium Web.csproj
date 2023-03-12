@@ -216,6 +216,7 @@
   <ItemGroup>
     <Compile Include="class\Activity.cs" />
     <Compile Include="class\AdminAccount.cs" />
+    <Compile Include="class\BannedUsers.cs" />
     <Compile Include="class\ManageSubscription.cs" />
     <Compile Include="class\Product.cs" />
     <Compile Include="class\Report.cs" />
