@@ -35,21 +35,22 @@ namespace mallspacium_web.form
             // Iterate over the results to find the user
             foreach (DocumentSnapshot document in snapshot.Documents)
             {
-                if (!document.Exists)
+                if (document.Exists)
                 {
                     // Do something with the user document
-                    Response.Write("<script>alert('No record exists!');</script>");
+                    Response.Write("<script>alert('Login Successfully!');</script>");
                 }
                 else
                 {
                     // Do something with the user document
-                    Response.Write("<script>alert('Login Successfully!');</script>");             
+                    Response.Write("<script>alert('No record exists!');</script>");
+               
                 }
             }
         }
-
         public async void getUserStatus()
         {
+            Boolean choice = false;
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("AdminBannedUsers");
             Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text);
@@ -58,16 +59,18 @@ namespace mallspacium_web.form
             // Iterate over the results to find the user
             foreach (DocumentSnapshot document in snapshot.Documents)
             {
-                if (!document.Exists)
-                {
-                    getLoginDetails();
-                }
-                else
+                if (document.Exists)
                 {
                     // Do something with the user document
                     Response.Write("<script>alert('Your account is banned! Please contact administrator');</script>");
+                    choice = true;
                 }
             }
+            if (choice == false)
+            {
+                getLoginDetails();
+            }
+           
         }
     }
 }
