@@ -41,27 +41,25 @@ namespace mallspacium_web.ShopOwner
             //Convert the Bitmap image to a Base64 string
             string base64String = Convert.ToBase64String(bytes);
 
-            DocumentReference doc = database.Collection("Users").Document().Collection("Product").Document(nameTextbox.Text);
+            DocumentReference doc = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product").Document(nameTextbox.Text);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
-              { "prodId", uniqueId},
-              { "prodName", nameTextbox.Text},
-              { "prodDesc", descriptionTextbox.Text},
-              { "prodPrice", "₱" + priceTextbox.Text},
-              { "prodTag", tagTextbox.Text},
-              { "prodImage", base64String}
+                { "prodId", uniqueId},
+                { "prodName", nameTextbox.Text},
+                { "prodDesc", descriptionTextbox.Text},
+                { "prodPrice", "₱" + priceTextbox.Text},
+                { "prodTag", tagTextbox.Text},
+                { "prodImage", base64String},
+                {"prodShopName", shopNameTextbox.Text }
             };
 
-            if (nameTextBoxValidator.IsValid && descriptionTextboxValidator.IsValid && priceTextboxValidator.IsValid && tagTextboxValidator.IsValid && imageFileUploadValidator.IsValid)
+            if (nameTextBoxValidator.IsValid && descriptionTextboxValidator.IsValid && priceTextboxValidator.IsValid && tagTextboxValidator.IsValid && imageFileUploadValidator.IsValid && shopNameRequiredFieldValidator.IsValid)
             {
                 await doc.SetAsync(data1);
-                Response.Write("<script>alert('Successfully added a new Product.');</script>");
-
-                nameTextbox.Text = "";
-                descriptionTextbox.Text = "";
-                priceTextbox.Text = "";
-                tagTextbox.Text = "";
+                Response.Write("<script>alert('Successfully Added a New Product.');</script>");
             }
+
+            Response.Redirect("~/ShopOwner/OwnShopProductsPage.aspx", false);
         }
     }
 }

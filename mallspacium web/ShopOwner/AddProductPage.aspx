@@ -41,7 +41,14 @@
         <asp:RequiredFieldValidator ID="imageFileUploadValidator" runat="server"
             ControlToValidate="imageFileUpload"
             ErrorMessage="*Required" 
-            style="color: red" /> <br/> <br>
+            style="color: red" /> <br/>
+
+        <asp:Label ID="Label7" runat="server" Text="Shop Name: "></asp:Label> 
+        <asp:Textbox ID="shopNameTextbox" runat="server" Text=""></asp:Textbox>
+        <asp:RequiredFieldValidator ID="shopNameRequiredFieldValidator" runat="server"
+            ControlToValidate="shopNameTextbox"
+            ErrorMessage="*Required" 
+            style="color: red"  /> <br/>  <br>
         
         <asp:Button ID="addButton" runat="server" Text="Add Product" OnClick="addButton_Click" />
 </div>

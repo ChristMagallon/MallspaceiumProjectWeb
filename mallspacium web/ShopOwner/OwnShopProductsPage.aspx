@@ -16,7 +16,7 @@
     <div class="form">
             <div class="col p-5">
                   
-                <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Username" aria-label="Search" AutoPostBack="True"  ></asp:TextBox>
+                <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Username" aria-label="Search" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged"  ></asp:TextBox>
                 <asp:Button ID="addButton" runat="server" Text="+ADD PRODUCT" OnClick="addButton_Click"> </asp:Button>
         </div>
 
@@ -43,6 +43,10 @@
                      <SortedDescendingCellStyle BackColor="#CAC9C9" />
                      <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
+
+            <center> 
+                <asp:Label ID="errorMessageLabel" runat="server" Visible="false"></asp:Label>
+            </center>
 
 
         </div>

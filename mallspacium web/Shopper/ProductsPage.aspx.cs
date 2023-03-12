@@ -67,12 +67,11 @@ namespace mallspacium_web.MasterForm3
                     dataRow["prodShopName"] = productShopName;
 
                     productGridViewTable.Rows.Add(dataRow);
-
-                    // Bind the DataTable to the GridView control
-                    productGridView.DataSource = productGridViewTable;
-                    productGridView.DataBind();
                 }
             }
+            // Bind the DataTable to the GridView control
+            productGridView.DataSource = productGridViewTable;
+            productGridView.DataBind();
         }
 
         protected void productGridView_RowDataBound(object sender, GridViewRowEventArgs e)
