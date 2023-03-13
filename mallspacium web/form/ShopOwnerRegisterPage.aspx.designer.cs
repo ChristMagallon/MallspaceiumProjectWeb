@@ -11,7 +11,7 @@ namespace mallspacium_web.form
 {
 
 
-    public partial class ShopperRegisterPage
+    public partial class ShopOwnerRegisterPage
     {
 
         /// <summary>
@@ -42,22 +42,40 @@ namespace mallspacium_web.form
         protected global::System.Web.UI.WebControls.TextBox LastNameTextBox;
 
         /// <summary>
-        /// DOBTextBox control.
+        /// ShopNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DOBTextBox;
+        protected global::System.Web.UI.WebControls.TextBox ShopNameTextBox;
 
         /// <summary>
-        /// GenderDropDownList control.
+        /// ShopDescriptionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList GenderDropDownList;
+        protected global::System.Web.UI.WebControls.TextBox ShopDescriptionTextBox;
+
+        /// <summary>
+        /// ImageFileUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ImageFileUpload;
+
+        /// <summary>
+        /// EmailTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
 
         /// <summary>
         /// PhoneNumberTextBox control.
@@ -76,24 +94,6 @@ namespace mallspacium_web.form
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddressTextBox;
-
-        /// <summary>
-        /// EmailTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
-
-        /// <summary>
-        /// UsernameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UsernameTextBox;
 
         /// <summary>
         /// PasswordTextBox control.

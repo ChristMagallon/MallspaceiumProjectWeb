@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -8,10 +10,10 @@ using Google.Cloud.Firestore;
 
 namespace mallspacium_web.form
 {
-    public partial class ShopperRegisterPage : System.Web.UI.Page
+    public partial class ShopOwnerRegisterPage : System.Web.UI.Page
     {
         FirestoreDb db;
-        private static String user_role = "Shopper";
+        private static String user_role = "ShopOwner";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +28,6 @@ namespace mallspacium_web.form
             signupUser();
         }
 
-
         protected void LoginLinkButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/form/LoginPage.aspx", false);
@@ -39,17 +40,26 @@ namespace mallspacium_web.form
             // Create a new collection reference
             DocumentReference documentRef = db.Collection("Users").Document(email);
 
+            //Create an instance of Bitmap from the uploaded file using the FileUpload control
+            Bitmap image = new Bitmap(ImageFileUpload.PostedFile.InputStream);
+            MemoryStream stream = new MemoryStream();
+            image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            byte[] bytes = stream.ToArray();
+
+            //Convert the Bitmap image to a Base64 string
+            string base64String = Convert.ToBase64String(bytes);
+
             // Set the data for the new document
             Dictionary<string, object> data = new Dictionary<string, object>
             {
                 {"firstName", FirstNameTextBox.Text},
                 {"lastName", LastNameTextBox.Text},
-                {"dob", DOBTextBox.Text},
-                {"gender", GenderDropDownList.SelectedItem.Text},
+                {"shopName", ShopNameTextBox.Text},
+                {"shopDescription", ShopDescriptionTextBox.Text},
+                {"imageFile", base64String},
+                {"email", EmailTextBox.Text},
                 {"phoneNumber", PhoneNumberTextBox.Text},
                 {"address", AddressTextBox.Text},
-                {"email", EmailTextBox.Text},
-                {"username", UsernameTextBox.Text},
                 {"password", PasswordTextBox.Text},
                 {"confirmPassword", ConfirmPasswordTextBox.Text},
                 {"userRole", user_role}
@@ -88,12 +98,11 @@ namespace mallspacium_web.form
         {
             FirstNameTextBox.Text = "";
             LastNameTextBox.Text = "";
-            DOBTextBox.Text = "";
-            GenderDropDownList.SelectedIndex = -1;
+            ShopNameTextBox.Text = "";
+            ShopDescriptionTextBox.Text = "";
+            EmailTextBox.Text = "";
             PhoneNumberTextBox.Text = "";
             AddressTextBox.Text = "";
-            EmailTextBox.Text = "";
-            UsernameTextBox.Text = "";
             PasswordTextBox.Text = "";
             ConfirmPasswordTextBox.Text = "";
         }
