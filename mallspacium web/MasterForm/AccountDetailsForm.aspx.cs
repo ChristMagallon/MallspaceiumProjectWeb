@@ -95,7 +95,7 @@ namespace mallspacium_web.MasterForm
 
                 Response.Redirect("~/MasterForm/AdminAccountForm.aspx", false);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 string message = "Error Updating Account";
                 string script = "alert('" + message + "')";

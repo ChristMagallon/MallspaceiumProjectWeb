@@ -1,4 +1,4 @@
-﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="OwnShopProductsPage.aspx.cs" Inherits="mallspacium_web.MasterForm2.WebForm3" %>
+﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="MyShopProductsPage.aspx.cs" Inherits="mallspacium_web.MasterForm2.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

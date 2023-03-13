@@ -20,7 +20,7 @@ namespace mallspacium_web.form
             database = FirestoreDb.Create("mallspaceium");
         }
      
-      protected async void Registerbutton_Click(object sender, EventArgs e)
+      protected void Registerbutton_Click(object sender, EventArgs e)
       {
           Add_Document_with_AutoID();
       }

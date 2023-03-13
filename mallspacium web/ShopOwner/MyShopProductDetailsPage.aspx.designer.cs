@@ -24,6 +24,15 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
+        /// hfProductName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfProductName;
+
+        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>
@@ -177,13 +186,49 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Image Image1;
 
         /// <summary>
-        /// imageFileUpload control.
+        /// imageHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload imageFileUpload;
+        protected global::System.Web.UI.WebControls.HiddenField imageHiddenField;
+
+        /// <summary>
+        /// changeButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button changeButton;
+
+        /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+
+        /// <summary>
+        /// shopNameTextbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox shopNameTextbox;
+
+        /// <summary>
+        /// shopNameRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator shopNameRequiredFieldValidator;
 
         /// <summary>
         /// updateButton control.

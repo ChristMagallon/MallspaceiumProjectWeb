@@ -90,7 +90,7 @@ namespace mallspacium_web.MasterForm2
             string prodName= ownShopProductGridView.DataKeys[e.NewEditIndex].Value.ToString();
 
             // Redirect to the edit page, passing the document ID as a query string parameter
-            Response.Redirect("OwnProductDetailsPage.aspx?prodName=" + prodName, false);
+            Response.Redirect("MyShopProductDetailsPage.aspx?prodName=" + prodName, false);
         }
 
         protected async void OwnShopProductGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -104,24 +104,9 @@ namespace mallspacium_web.MasterForm2
             // Delete the document
             await docRef.DeleteAsync();
 
-            // Remove the item from the data source, if it exists
-            /*var dataSource = ownShopProductGridView.DataSource as IList<Product>;
-            if (dataSource != null)
-            {
-                var productToDelete = dataSource.SingleOrDefault(p => p.prodName == docId);
-                if (productToDelete != null)
-                {
-                    dataSource.Remove(productToDelete);
-
-                    // Rebind the GridView control to reflect the changes
-                    ownShopProductGridView.DataSource = dataSource;
-                    ownShopProductGridView.DataBind();
-                }
-            }*/
             Response.Write("<script>alert('Product Deleted Successfully!');</script>");
 
             // Rebind the GridView control to reflect the changes
-
             ownShopProductGridView.DataBind();
         }
 

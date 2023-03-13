@@ -13,6 +13,8 @@ namespace mallspacium_web.ShopOwner
     public partial class OwnProductDetailsPage : System.Web.UI.Page
     {
         FirestoreDb database;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
@@ -20,6 +22,9 @@ namespace mallspacium_web.ShopOwner
 
             database = FirestoreDb.Create("mallspaceium");
 
+            idTextbox.Enabled = false;
+            nameTextbox.Enabled = false;
+            shopNameTextbox.Enabled = false;
             retrieveData();
         }
 
@@ -48,12 +53,11 @@ namespace mallspacium_web.ShopOwner
                     string desc = snapshot.GetValue<string>("prodDesc");
                     string price = snapshot.GetValue<string>("prodPrice");
                     string tag = snapshot.GetValue<string>("prodTag");
-
-                    string base64String = snapshot.GetValue<string>("prodImage");
-                    //byte[] productImage = Convert.FromBase64String(base64String);
-
+                    string image = snapshot.GetValue<string>("prodImage");
+                    string shop = snapshot.GetValue<string>("prodShopName");
                     // Convert the image string to a byte array
-                    byte[] imageBytes = Convert.FromBase64String(base64String);
+                    byte[] imageBytes = Convert.FromBase64String(image);
+
                     // Set the image in the FileUpload control
                     string imageBase64String = Convert.ToBase64String(imageBytes);
                     string imageSrc = $"data:image/png;base64,{imageBase64String}";
@@ -65,34 +69,31 @@ namespace mallspacium_web.ShopOwner
                     descriptionTextbox.Text = desc;
                     priceTextbox.Text = price;
                     tagTextbox.Text = tag;
+                    imageHiddenField.Value = image;
+                    shopNameTextbox.Text = shop;
                 }
             }
         }
 
         public async void update()
         {
-            //Create an instance of Bitmap from the uploaded file using the FileUpload control
-            Bitmap image = new Bitmap(imageFileUpload.PostedFile.InputStream);
-            MemoryStream stream = new MemoryStream();
-            image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] bytes = stream.ToArray();
+            // Retrieve the document ID from the query string
+            string prodName = Request.QueryString["prodName"];
 
-            //Convert the Bitmap image to a Base64 string
-            string base64String = Convert.ToBase64String(bytes);
-
-            DocumentReference docRef = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product").Document(nameTextbox.Text);
+            DocumentReference docRef = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product").Document(prodName);
 
             Dictionary<string, object> data = new Dictionary<string, object>
 {
-                {"prodId", nameTextbox.Text},
-                {"prodName", idTextbox.Text},
+                {"prodId", idTextbox.Text},
+                {"prodName", nameTextbox.Text},
                 {"prodDesc", descriptionTextbox.Text},
                 {"prodPrice", priceTextbox.Text},
                 {"prodTag", tagTextbox.Text},
-                {"prodImage", base64String},
+                {"prodImage", imageHiddenField.Value},
+                {"prodShopName", shopNameTextbox.Text }
             };
 
-            if (nameTextBoxValidator.IsValid && descriptionTextboxValidator.IsValid && priceTextboxValidator.IsValid && tagTextboxValidator.IsValid)
+            if (nameTextBoxValidator.IsValid && descriptionTextboxValidator.IsValid && priceTextboxValidator.IsValid && tagTextboxValidator.IsValid && shopNameRequiredFieldValidator.IsValid)
             {
 
                 try
@@ -103,17 +104,32 @@ namespace mallspacium_web.ShopOwner
                     string script = "alert('" + message + "')";
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
 
-                    Response.Redirect("~/ShopOwner/OwnShopProductsPage.aspx", false);
+                    Response.Redirect("~/ShopOwner/MyShopProductsPage.aspx", false);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     string message = "Error Updating Product";
                     string script = "alert('" + message + "')";
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
 
-                    Response.Redirect("~/ShopOwner/OwnShopProductsPage.aspx", false);
+                    Response.Redirect("~/ShopOwner/MyShopProductsPage.aspx", false);
                 }
             }
+        }
+
+        protected void changeButton_Click(object sender, EventArgs e)
+        {
+            // Get the name of the product
+            string prodName = nameTextbox.Text;
+
+            // Set the value of the hidden field
+            hfProductName.Value = prodName;
+
+            // Open the second popup page
+            string url = "ChangeProductImagePage.aspx?prodName=" + prodName;
+            Response.Redirect(url);
+            //string s = "window.open('" + url + "', 'popup_window', 'width=500,height=300,left=100,top=100,resizable=yes');";
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "popupScript", s, true);
         }
     }
 }
