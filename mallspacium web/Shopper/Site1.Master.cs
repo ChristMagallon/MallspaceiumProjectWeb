@@ -11,7 +11,7 @@ namespace mallspacium_web.MasterForm3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            profileName.Text = (string)Application.Get("usernameget");
         }
     }
 }
