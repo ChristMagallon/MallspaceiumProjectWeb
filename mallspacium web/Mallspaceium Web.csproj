@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="form\LoginPage.aspx" />
+    <Content Include="form\ShopOwnerRegisterPage.aspx" />
     <Content Include="form\ShopperRegisterPage.aspx" />
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
@@ -228,6 +229,13 @@
     </Compile>
     <Compile Include="form\LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="form\ShopOwnerRegisterPage.aspx.cs">
+      <DependentUpon>ShopOwnerRegisterPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="form\ShopOwnerRegisterPage.aspx.designer.cs">
+      <DependentUpon>ShopOwnerRegisterPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="form\ShopperRegisterPage.aspx.cs">
       <DependentUpon>ShopperRegisterPage.aspx</DependentUpon>

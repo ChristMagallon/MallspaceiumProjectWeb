@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="ShopperRegisterPage.aspx.cs" Inherits="mallspacium_web.form.ShopperRegisterPage" %>
+﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="ShopOwnerRegisterPage.aspx.cs" Inherits="mallspacium_web.form.ShopOwnerRegisterPage" %>
 
 <!DOCTYPE html>
 
@@ -30,19 +30,24 @@
                 </div>
 
                 <div class="mb-3 mt-3">
-                      <label for="birthday" class="form-label">Date of Birth:</label>
-                      <asp:TextBox ID="DOBTextBox" runat="server" type="text" class="form-control" placeholder="Enter Date of Birth" TextMode="Date" AutoCompleteType="Disabled"></asp:TextBox>
-                </div>
-                            
+                      <label for="shopName" class="form-label">Shop Name:</label>
+                      <asp:TextBox ID="ShopNameTextBox" runat="server" type="text" class="form-control" placeholder="Enter Shop Name" AutoCompleteType="Disabled"></asp:TextBox>
+                </div>                           
+
                 <div class="mb-3">
-                      <label for="gender" class="form-label">Gender:</label>
-                      <br />
-                      <asp:DropDownList ID="GenderDropDownList" runat="server">
-                          <asp:ListItem Value="0">--Select a Gender--</asp:ListItem>
-                          <asp:ListItem Value="1">Male</asp:ListItem>
-                          <asp:ListItem Value="2">Female</asp:ListItem>
-                          <asp:ListItem Value="3">Others</asp:ListItem>
-                      </asp:DropDownList>
+                      <label for="shopDescription" class="form-label">Shop Description:</label>
+                      <asp:TextBox ID="ShopDescriptionTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Shop Description" AutoCompleteType="Disabled" TextMode="MultiLine"></asp:TextBox>
+                </div>
+
+                <div class="mb-3">
+                      <label for="attachedDocuments" class="form-label">Attached Documents:<br />
+                      <asp:FileUpload ID="ImageFileUpload" runat="server" />
+                      </label>
+                </div>
+
+                <div class="mb-3">
+                      <label for="email" class="form-label">Email:</label>
+                      <asp:TextBox ID="EmailTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email"></asp:TextBox>
                 </div>
 
                 <div class="mb-3">
@@ -53,16 +58,6 @@
                 <div class="mb-3">
                       <label for="address" class="form-label">Address:</label>
                       <asp:TextBox ID="AddressTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Address" AutoCompleteType="Disabled"></asp:TextBox>
-                </div>
-
-                <div class="mb-3">
-                      <label for="email" class="form-label">Email:</label>
-                      <asp:TextBox ID="EmailTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email"></asp:TextBox>
-                </div>
-
-                <div class="mb-3">
-                      <label for="username" class="form-label">Username:</label>
-                      <asp:TextBox ID="UsernameTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Username" AutoCompleteType="Disabled"></asp:TextBox>
                 </div>
 
                 <div class="mb-3">
