@@ -12,6 +12,15 @@ namespace mallspacium_web.MasterForm3
     public partial class WebForm4 : System.Web.UI.Page
     {
         FirestoreDb database;
+
+        protected void Page_PreRenderComplete(object sender, EventArgs e)
+        {
+            // Register the expected value for validation
+            string eventName = "AddToWishlist";
+            string argument = "prodName"; // or whatever argument you're passing
+            Page.ClientScript.RegisterForEventValidation(productGridView.UniqueID, eventName + argument);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
@@ -19,7 +28,15 @@ namespace mallspacium_web.MasterForm3
 
             database = FirestoreDb.Create("mallspaceium");
 
-            getProducts();
+            if (!IsPostBack)
+            {
+                // Register the expected value for validation
+                //string eventName = "AddToWishlist";
+                //string argument = "prodName"; // or whatever argument you're passing
+                //Page.ClientScript.RegisterForEventValidation(productGridView.UniqueID, eventName + argument);
+                getProducts();
+            }
+            
         }
 
         public async void getProducts()
@@ -29,8 +46,8 @@ namespace mallspacium_web.MasterForm3
             QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
 
             // Create a DataTable to store the retrieved data
-            DataTable productGridViewTable = new DataTable();
 
+            DataTable productGridViewTable = new DataTable();
             productGridViewTable.Columns.Add("prodName", typeof(string));
             productGridViewTable.Columns.Add("prodImage", typeof(byte[]));
             productGridViewTable.Columns.Add("prodDesc", typeof(string));
@@ -90,5 +107,122 @@ namespace mallspacium_web.MasterForm3
                 }
             }
         }
+
+        protected async void productGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected prodName value from the productGridView
+            string selectedProdName = productGridView.SelectedRow.Cells[2].Text;
+
+            // Query the Users collection to get the User document that contains the Product collection
+            Query query = database.Collection("Users").WhereEqualTo("prodName", selectedProdName);
+            QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+
+            // Get the first document from the query result (assuming there's only one matching document)
+            DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
+            if (userDoc != null)
+            {
+                // Get the user document ID
+                string userId = userDoc.Id;
+
+                // Get the Product collection from the User document
+                CollectionReference productsRef = userDoc.Reference.Collection("Product");
+
+                // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
+                Query productQuery = productsRef.WhereEqualTo(FieldPath.DocumentId, selectedProdName);
+                QuerySnapshot productQuerySnapshot = await productQuery.GetSnapshotAsync();
+
+                // Get the first document from the query result (assuming there's only one matching document)
+                DocumentSnapshot productDoc = productQuerySnapshot.Documents.FirstOrDefault();
+                if (productDoc != null)
+                {
+                    // Get the product details from the document data
+                    string productName = productDoc.GetValue<string>("prodName");
+                    string productImage = productDoc.GetValue<string>("prodImage");
+                    string productDescription = productDoc.GetValue<string>("prodDesc");
+                    string productPrice = productDoc.GetValue<string>("prodPrice");
+                    string productTag = productDoc.GetValue<string>("prodTag");
+                    string productShopName = productDoc.GetValue<string>("prodShopName");
+
+                    // Save the product details to the Wishlist collection in Firestore
+                    // You can use the AddAsync method to add a new document to a collection
+                    CollectionReference wishlistRef = database.Collection("Users").Document("sazebacvenn@gmail.com").Collection("Wishlist");
+                    Dictionary<string, object> wishlistData = new Dictionary<string, object>()
+        {
+            { "prodName", productName },
+            { "prodImage", productImage },
+            { "prodDesc", productDescription },
+            { "prodPrice", productPrice },
+            { "prodTag", productTag },
+            { "prodShopName", productShopName },
+
+            // Add other product details as needed
+            };
+
+                    try
+                    {
+                        await wishlistRef.AddAsync(wishlistData);
+                        Response.Write("<script>alert('Successfully Added Product to the Wishlist!');</script>");
+                    }
+                    catch (Exception)
+                    {
+                        Response.Write("<script>alert('Error Adding to the Wishlist.');</script>");
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error: Product Not Found.');</script>");
+                }
+
+            }
+            else
+            {
+                Response.Write("<script>alert('Error: User Not Found.');</script>");
+            }
+        }
+
+        /*protected async void productGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "AddToWishlist")
+            {
+                string prodName = e.CommandArgument.ToString();
+
+                // Register the expected value for validation
+                string eventName = "AddToWishlist";
+                string argument = "prodName"; // or whatever argument you're passing
+                Page.ClientScript.RegisterForEventValidation(productGridView.UniqueID, eventName + argument);
+
+
+                // Get the selected product's details from the Product collection in Firestore database
+                CollectionReference productCol = database.Collection("Users").Document("sazebacvenn@gmail.com").Collection("Product");
+                QuerySnapshot querySnapshot = await productCol.WhereEqualTo("prodName", prodName).Limit(1).GetSnapshotAsync();
+
+                DocumentSnapshot documentSnapshot = querySnapshot.Documents[0];
+                Dictionary<string, object> productData = documentSnapshot.ToDictionary();
+
+                string prodImage = productData["prodImage"].ToString();
+                string prodDesc = productData["prodDesc"].ToString();
+                string prodPrice = productData["prodPrice"].ToString();
+                string prodTag = productData["prodTag"].ToString();
+                string prodShopName = productData["prodShopName"].ToString();
+
+                // Add the selected product's details to the Wishlist collection in Firestore database
+                CollectionReference wishlistCol = database.Collection("Users").Document("sazebacvenn@gmail.com").Collection("Wishlist");
+                DocumentReference wishlistDocRef = wishlistCol.Document();
+                Dictionary<string, object> wishlistData = new Dictionary<string, object>
+                {
+                    { "prodName", prodName },
+                    { "prodImage", prodImage },
+                    { "prodDesc", prodDesc },
+                    { "prodPrice", prodPrice },
+                    { "prodTag", prodTag },
+                    { "prodShopName", prodShopName }
+                };
+                await wishlistDocRef.SetAsync(wishlistData);
+
+                Response.Write("<script>alert('Successfully Added Product to the Wishlist!');</script>");
+            }
+        }*/
+
+
     }
 }
