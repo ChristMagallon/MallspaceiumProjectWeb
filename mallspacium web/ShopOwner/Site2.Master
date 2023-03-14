@@ -14,6 +14,15 @@
 
      <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
+     <style type="text/css">
+       .logoutbtn
+{
+ border: none;
+ background:none;
+ outline: none;
+}
+    </style>
 </head>
 
 <body >
@@ -24,7 +33,7 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"></>Mallspaceium</div>
             <div class="list-group list-group-flush my-3">
                 <a href="HomePage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-tachometer-alt me-2"></i>Home</a>
+                        class="fas fa-tachometer-alt me-2 "></i>Home</a>
                 <a href="PopularShopsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Popular Shops</a>
                 <a href="SalesAndDiscountsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
@@ -37,14 +46,10 @@
                         class="fas fa-power-off me-2"></i>Post Sales & Discounts</a>
                  <a href="NotificationPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-power-off me-2"></i>Notification</a>
-                  <a href="ProfilePage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-power-off me-2"></i>Profile</a>
-                 <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
-                        class="fas fa-power-off me-2"></i>Logout</a>
-
+               
             </div>
         </div>
-     
+             
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
@@ -69,8 +74,8 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li><a class="dropdown-item" href="ProfileSettings.aspx">Settings</a></li>
+                                <li><a class="dropdown-item"> <asp:Button ID="Button1" runat="server" Text="Logout" OnClick="Button1_Click" class="logoutbtn" /></a></li>
                             </ul>
                         </li>
                     </ul>

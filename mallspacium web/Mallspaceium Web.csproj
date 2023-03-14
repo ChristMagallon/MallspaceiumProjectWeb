@@ -199,6 +199,7 @@
     <Content Include="ShopOwner\ProfilePage.aspx" />
     <Content Include="ShopOwner\AllShopProductsPage.aspx" />
     <Content Include="ShopOwner\Style.css" />
+    <Content Include="ShopOwner\ProfileSettings.aspx" />
     <Content Include="Shopper\HomePage.aspx" />
     <Content Include="Shopper\PopularShopsPage.aspx" />
     <Content Include="Shopper\SalesAndDiscountsPage.aspx" />
@@ -208,6 +209,7 @@
     <Content Include="Shopper\ProfilePage.aspx" />
     <Content Include="MasterForm\Style.css" />
     <Content Include="Shopper\Style.css" />
+    <Content Include="Shopper\ProfileSettings.aspx" />
     <Content Include="Web.config" />
     <Content Include="MasterForm\ManageUserForm.aspx" />
     <Content Include="MasterForm\ManageSubscriptionForm.aspx" />
@@ -392,6 +394,13 @@
     <Compile Include="ShopOwner\ProfilePage.aspx.designer.cs">
       <DependentUpon>ProfilePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ShopOwner\ProfileSettings.aspx.cs">
+      <DependentUpon>ProfileSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\ProfileSettings.aspx.designer.cs">
+      <DependentUpon>ProfileSettings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Shopper\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -490,6 +499,13 @@
     </Compile>
     <Compile Include="MasterForm\DowntimeForm.aspx.designer.cs">
       <DependentUpon>DowntimeForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shopper\ProfileSettings.aspx.cs">
+      <DependentUpon>ProfileSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\ProfileSettings.aspx.designer.cs">
+      <DependentUpon>ProfileSettings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
