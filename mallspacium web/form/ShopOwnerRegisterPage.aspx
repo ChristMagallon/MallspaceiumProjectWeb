@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="ShopOwnerRegisterPage.aspx.cs" Inherits="mallspacium_web.form.ShopOwnerRegisterPage" %>
+﻿<%@ Page Language="C#" Async="true" UnobtrusiveValidationMode = "none" AutoEventWireup="true" CodeBehind="ShopOwnerRegisterPage.aspx.cs" Inherits="mallspacium_web.form.ShopOwnerRegisterPage" %>
 
 <!DOCTYPE html>
 
@@ -21,17 +21,20 @@
                 
                 <div class="mb-3 mt-3">
                       <label for="firstName" class="form-label">First Name:</label>
-                      <asp:TextBox ID="FirstNameTextBox" runat="server" type="text" class="form-control" placeholder="Enter First Name" AutoCompleteType="Disabled"></asp:TextBox>
+                      <asp:TextBox ID="FirstNameTextBox" runat="server" type="text" class="form-control" placeholder="Enter First Name" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Field is required *" ControlToValidate="FirstNameTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>
                 
                 <div class="mb-3 mt-3">
                       <label for="lastName" class="form-label">Last Name:</label>
-                      <asp:TextBox ID="LastNameTextBox" runat="server" type="text" class="form-control" placeholder="Enter Last Name" AutoCompleteType="Disabled"></asp:TextBox>
+                      <asp:TextBox ID="LastNameTextBox" runat="server" type="text" class="form-control" placeholder="Enter Last Name" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Field is required *" ControlToValidate="LastNameTextBox" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-3 mt-3">
                       <label for="shopName" class="form-label">Shop Name:</label>
-                      <asp:TextBox ID="ShopNameTextBox" runat="server" type="text" class="form-control" placeholder="Enter Shop Name" AutoCompleteType="Disabled"></asp:TextBox>
+                      <asp:TextBox ID="ShopNameTextBox" runat="server" type="text" class="form-control" placeholder="Enter Shop Name" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Field is required *" ControlToValidate="ShopNameTextBox" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>                           
 
                 <div class="mb-3">
@@ -47,36 +50,43 @@
 
                 <div class="mb-3">
                       <label for="email" class="form-label">Email:</label>
-                      <asp:TextBox ID="EmailTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email"></asp:TextBox>
+                      <asp:TextBox ID="EmailTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="EmailTextBox" Display="Dynamic" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
+                      <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="EmailTextBox" Display="Dynamic" ErrorMessage="Invalid email address!" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Validate"></asp:RegularExpressionValidator>
                 </div>
 
                 <div class="mb-3">
                       <label for="phoneNumber" class="form-label">Phone Number:</label>
-                      <asp:TextBox ID="PhoneNumberTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Phone Number" AutoCompleteType="Disabled" TextMode="Phone"></asp:TextBox>
+                      <asp:TextBox ID="PhoneNumberTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Phone Number" AutoCompleteType="Disabled" TextMode="Phone" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="PhoneNumberTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-3">
                       <label for="address" class="form-label">Address:</label>
                       <asp:TextBox ID="AddressTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Address" AutoCompleteType="Disabled"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="AddressTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-3">
                       <label for="password" class="form-label">Password:</label>
-                      <asp:TextBox ID="PasswordTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Password" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
+                      <asp:TextBox ID="PasswordTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Password" AutoCompleteType="Disabled" TextMode="Password" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="PasswordTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-3">
                       <label for="confirmPassword" class="form-label">ConfirmPassword:</label>
-                      <asp:TextBox ID="ConfirmPasswordTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Confirm Password" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
+                      <asp:TextBox ID="ConfirmPasswordTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Confirm Password" AutoCompleteType="Disabled" TextMode="Password" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="PasswordTextBox" Display="Dynamic" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
+                      <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="PasswordTextBox" ControlToValidate="ConfirmPasswordTextBox" Display="Dynamic" ErrorMessage="Password does not match!" ForeColor="Red" ValidationGroup="Validate"></asp:CompareValidator>
                 </div>
 
             </div>
 
             <div class="mb-3">
-                <asp:Button ID="SignupButton" runat="server" class="btn btn-primary" Text="Sign Up" OnClick="SignupButton_Click" />
+                <asp:Button ID="SignupButton" runat="server" class="btn btn-primary" Text="Sign Up" OnClick="SignupButton_Click" ValidationGroup="Validate" />
                 <br />
                 <br />
-                <asp:LinkButton ID="LoginLinkButton" runat="server" OnClick="LoginLinkButton_Click">Already have an account?</asp:LinkButton>
+                <asp:LinkButton ID="LoginLinkButton" runat="server" OnClick="LoginLinkButton_Click" ValidationGroup="None">Already have an account?</asp:LinkButton>
             </div>
         </div>  
     </form>

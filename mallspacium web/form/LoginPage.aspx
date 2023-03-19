@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Async="true" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="mallspacium_web.form.LoginPage" %>
+﻿<%@ Page Language="C#" Async="true" UnobtrusiveValidationMode = "none" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="mallspacium_web.form.LoginPage" %>
 
 <!DOCTYPE html>
 
@@ -21,18 +21,21 @@
 
                 <div class="mb-3">
                       <label for="email" class="form-label">Email:</label>
-                      <asp:TextBox ID="EmailTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email"></asp:TextBox>
+                      <asp:TextBox ID="EmailTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="EmailRequiredFieldValidator" runat="server" ControlToValidate="EmailTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate" Display="Dynamic"></asp:RequiredFieldValidator>
+                      <asp:RegularExpressionValidator ID="EmailRegularExpressionValidator" runat="server" ControlToValidate="EmailTextBox" Display="Dynamic" ErrorMessage="Invalid email address!" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Validate"></asp:RegularExpressionValidator>
                 </div>
 
                 <div class="mb-3">
                       <label for="password" class="form-label">Password:</label>
-                      <asp:TextBox ID="PasswordTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Password" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
+                      <asp:TextBox ID="PasswordTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Password" AutoCompleteType="Disabled" TextMode="Password" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="PasswordRequiredFieldValidator" runat="server" ControlToValidate="PasswordTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>
 
             </div>
 
             <div class="mb-3">
-                <asp:Button ID="SigninButton" runat="server" type="submit" class="btn btn-primary" Text="Sign In" OnClick="SignupButton_Click"/>
+                <asp:Button ID="SigninButton" runat="server" type="submit" class="btn btn-primary" Text="Sign In" OnClick="SignupButton_Click" ValidationGroup="Validate"/>
             </div>
         </div>  
     </form>

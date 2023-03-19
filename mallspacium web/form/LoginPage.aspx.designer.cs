@@ -33,6 +33,24 @@ namespace mallspacium_web.form
         protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
 
         /// <summary>
+        /// EmailRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailRequiredFieldValidator;
+
+        /// <summary>
+        /// EmailRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailRegularExpressionValidator;
+
+        /// <summary>
         /// PasswordTextBox control.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,15 @@ namespace mallspacium_web.form
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
+
+        /// <summary>
+        /// PasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordRequiredFieldValidator;
 
         /// <summary>
         /// SigninButton control.
