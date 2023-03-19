@@ -30,8 +30,8 @@
             <asp:BoundField HeaderText="Email" DataField="email" SortExpression ="email"/>
             <asp:BoundField HeaderText="Address" DataField="address" SortExpression="address"/>
             <asp:BoundField HeaderText="Contact Number" DataField="contactNumber" SortExpression="contactNumber"/>
-            <asp:CommandField ShowSelectButton="True" SelectText="View Data" ValidationGroup="ViewDataButton" />
-             
+            <asp:CommandField ShowSelectButton="True" SelectText="View Data" ValidationGroup="ViewDataButton"  />
+
 
         </Columns>
              <FooterStyle BackColor="White" ForeColor="#000066" />
