@@ -69,8 +69,8 @@ namespace mallspacium_web.Shopper
                 }
             }
             // Bind the DataTable to the GridView control
-            productGridView.DataSource = productGridViewTable;
-            productGridView.DataBind();
+            myWishlistGridView.DataSource = productGridViewTable;
+            myWishlistGridView.DataBind();
         }
 
         protected void myWishlistGridView_RowDataBound(object sender, GridViewRowEventArgs e)

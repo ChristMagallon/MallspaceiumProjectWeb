@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shopper/Site1.Master" AutoEventWireup="true" CodeBehind="ProfileSettings.aspx.cs" Inherits="mallspacium_web.Shopper.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" Async="true" MasterPageFile="~/Shopper/Site1.Master" AutoEventWireup="true" CodeBehind="ProfileSettings.aspx.cs" Inherits="mallspacium_web.Shopper.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
       <style type="text/css">
         .auto-style1 {
@@ -20,7 +20,7 @@
           </tr>
           <tr>
               <td class="auto-style2">Download Account Data</td>
-              <td><asp:Button ID="Button2" runat="server" Text="Button" /></td>
+              <td><asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click" /></td>
           </tr>
           <tr>
               <td class="auto-style2">Set Language</td>

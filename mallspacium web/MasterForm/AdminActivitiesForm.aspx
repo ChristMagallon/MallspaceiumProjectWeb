@@ -5,7 +5,7 @@
     <style type="text/css">
         .auto-style1 {
             margin-left: 0px;
-        }
+        /*}*/
     </style>
 
 </asp:Content>
