@@ -177,6 +177,7 @@
     <Content Include="form\LoginPage.aspx" />
     <Content Include="form\ShopOwnerRegisterPage.aspx" />
     <Content Include="form\ShopperRegisterPage.aspx" />
+    <Content Include="Images\no-image.jpg" />
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
@@ -187,6 +188,7 @@
     <Content Include="ShopOwner\ChangeProductImagePage.aspx" />
     <Content Include="ShopOwner\HomePage.aspx" />
     <Content Include="ShopOwner\MyShopProductDetailsPage.aspx" />
+    <Content Include="ShopOwner\PopularShopDetailsPage.aspx" />
     <Content Include="ShopOwner\PopularShopsPage.aspx" />
     <Content Include="ShopOwner\ProductDetailsPage.aspx" />
     <Content Include="ShopOwner\SalesAndDiscountsPage.aspx" />
@@ -308,6 +310,13 @@
     </Compile>
     <Compile Include="ShopOwner\MyShopProductDetailsPage.aspx.designer.cs">
       <DependentUpon>MyShopProductDetailsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopOwner\PopularShopDetailsPage.aspx.cs">
+      <DependentUpon>PopularShopDetailsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\PopularShopDetailsPage.aspx.designer.cs">
+      <DependentUpon>PopularShopDetailsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\ProductDetailsPage.aspx.cs">
       <DependentUpon>ProductDetailsPage.aspx</DependentUpon>
@@ -515,9 +524,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

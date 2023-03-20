@@ -18,72 +18,183 @@ namespace mallspacium_web.Shopper
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             database = FirestoreDb.Create("mallspaceium");
+
             getWishlist();
         }
 
         public async void getWishlist()
         {
-            CollectionReference usersRef = database.Collection("Users");
-            // Retrieve the documents from the parent collection
-            QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
+            // Query the Firestore database to get the Wishlist collection for the current user
+            string userId = "test@gmail.com"; // replace with the actual user ID
+            CollectionReference wishlistRef = database.Collection("Users").Document(userId).Collection("Wishlist");
+            QuerySnapshot querySnapshot = await wishlistRef.GetSnapshotAsync();
 
             // Create a DataTable to store the retrieved data
+            DataTable wishlistGridViewTable = new DataTable();
+            wishlistGridViewTable.Columns.Add("prodName", typeof(string));
+            wishlistGridViewTable.Columns.Add("prodImage", typeof(byte[]));
+            wishlistGridViewTable.Columns.Add("prodDesc", typeof(string));
+            wishlistGridViewTable.Columns.Add("prodPrice", typeof(string));
+            wishlistGridViewTable.Columns.Add("prodTag", typeof(string));
+            wishlistGridViewTable.Columns.Add("prodShopName", typeof(string));
 
-            DataTable productGridViewTable = new DataTable();
-            productGridViewTable.Columns.Add("prodName", typeof(string));
-            productGridViewTable.Columns.Add("prodImage", typeof(byte[]));
-            productGridViewTable.Columns.Add("prodDesc", typeof(string));
-            productGridViewTable.Columns.Add("prodPrice", typeof(string));
-            productGridViewTable.Columns.Add("prodTag", typeof(string));
-            productGridViewTable.Columns.Add("prodShopName", typeof(string));
-
-            // Iterate through the documents and populate the DataTable
-            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            // Loop through each document in the Wishlist collection and add its data to the products list
+            foreach (DocumentSnapshot doc in querySnapshot.Documents)
             {
-                // Create a reference to the child collection inside the parent document
-                CollectionReference productsRef = documentSnapshot.Reference.Collection("Product");
+                string productName = doc.GetValue<string>("prodName");
+                string base64String = doc.GetValue<string>("prodImage");
+                byte[] productImage = Convert.FromBase64String(base64String);
+                string productDescription = doc.GetValue<string>("prodDesc");
+                string productPrice = doc.GetValue<string>("prodPrice");
+                string productTag = doc.GetValue<string>("prodTag");
+                string productShopName = doc.GetValue<string>("prodShopName");
 
-                // Retrieve the documents from the child collection
-                QuerySnapshot productsSnapshot = await productsRef.GetSnapshotAsync();
+                DataRow dataRow = wishlistGridViewTable.NewRow();
 
-                foreach (DocumentSnapshot productDoc in productsSnapshot.Documents)
-                {
-                    string productName = productDoc.GetValue<string>("prodName");
-                    string base64String = productDoc.GetValue<string>("prodImage");
-                    byte[] productImage = Convert.FromBase64String(base64String);
-                    string productDescription = productDoc.GetValue<string>("prodDesc");
-                    string productPrice = productDoc.GetValue<string>("prodPrice");
-                    string productTag = productDoc.GetValue<string>("prodTag");
-                    string productShopName = productDoc.GetValue<string>("prodShopName");
+                dataRow["prodName"] = productName;
+                dataRow["prodImage"] = productImage;
+                dataRow["prodDesc"] = productDescription;
+                dataRow["prodPrice"] = productPrice;
+                dataRow["prodTag"] = productTag;
+                dataRow["prodShopName"] = productShopName;
 
-                    DataRow dataRow = productGridViewTable.NewRow();
-
-                    dataRow["prodName"] = productName;
-                    dataRow["prodImage"] = productImage;
-                    dataRow["prodDesc"] = productDescription;
-                    dataRow["prodPrice"] = productPrice;
-                    dataRow["prodTag"] = productTag;
-                    dataRow["prodShopName"] = productShopName;
-
-                    productGridViewTable.Rows.Add(dataRow);
-                }
+                wishlistGridViewTable.Rows.Add(dataRow);
             }
-            // Bind the DataTable to the GridView control
-            myWishlistGridView.DataSource = productGridViewTable;
+
+            // Bind the products list to the GridView
+            myWishlistGridView.DataSource = wishlistGridViewTable;
             myWishlistGridView.DataBind();
         }
+    
 
         protected void myWishlistGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                // Find the automatically generated Delete button
-                Button btnDelete = e.Row.Cells[0].Controls[0] as Button;
-                if (btnDelete != null && btnDelete.CommandName == "Delete")
+
+                byte[] imageBytes = (byte[])DataBinder.Eval(e.Row.DataItem, "prodImage");
+                System.Web.UI.WebControls.Image imageControl = (System.Web.UI.WebControls.Image)e.Row.FindControl("Image1");
+
+                if (imageBytes != null && imageBytes.Length > 0)
                 {
-                    // Change the button text to "Remove"
-                    btnDelete.Text = "Remove";
+                    // Convert the byte array to a base64-encoded string and bind it to the Image control
+                    imageControl.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
+                    imageControl.Width = 100; // set the width of the image
+                    imageControl.Height = 100; // set the height of the image
                 }
+
+                
+            }
+            
+            /*if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                byte[] imageBytes = (byte[])DataBinder.Eval(e.Row.DataItem, "prodImage");
+                System.Web.UI.WebControls.Image imageControl = (System.Web.UI.WebControls.Image)e.Row.FindControl("Image1");
+
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    // Convert the byte array to a base64-encoded string and bind it to the Image control
+                    imageControl.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
+                    imageControl.Width = 100; // set the width of the image
+                    imageControl.Height = 100; // set the height of the image
+                }
+            }*/
+        }
+
+        /*protected async void myWishlistGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            // Get the prodName and prodShopName values of the selected row
+            string prodName = myWishlistGridView.DataKeys[e.RowIndex].Values["prodName"].ToString();
+            
+
+            // Query the Users collection to get the User document that contains the Product collection
+            Query query = database.Collection("Users").WhereEqualTo("email", "test@gmail.com");
+            QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+
+            // Get the first document from the query result (assuming there's only one matching document)
+            DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
+            if (userDoc != null)
+            {
+                // Get the Product collection from the User document
+                CollectionReference wishlistRef = userDoc.Reference.Collection("Wishlist");
+
+                // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
+                Query wishlistQuery = wishlistRef.WhereEqualTo("prodName", prodName);
+                QuerySnapshot wishlistQuerySnapshot = await wishlistQuery.GetSnapshotAsync();
+
+                // Get the first document from the query result (assuming there's only one matching document)
+                DocumentSnapshot wishlistDoc = wishlistQuerySnapshot.Documents.FirstOrDefault();
+                if (wishlistDoc != null)
+                {
+                    // Delete the document from the Product collection
+                    await wishlistDoc.Reference.DeleteAsync();
+
+                    // Remove the row from the GridView
+                    myWishlistGridView.DeleteRow(e.RowIndex);
+
+                    // Show a success message
+                    Response.Write("<script>alert('Product deleted successfully.');</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error: Product not found.');</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Error: User not found.');</script>");
+            }
+        }*/
+
+        protected async void myWishlistGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow row = myWishlistGridView.SelectedRow;
+            if (row != null)
+            {
+                // Get shop name from the selected row
+                string prodName = row.Cells[0].Text;
+
+                // Query the Users collection to get the User document that contains the Wishlist collection
+                Query query = database.Collection("Users").WhereEqualTo("email", "test@gmail.com");
+                QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+
+                // Get the first document from the query result (assuming there's only one matching document)
+                DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
+                if (userDoc != null)
+                {
+                    // Get the Product collection from the User document
+                    CollectionReference wishlistRef = userDoc.Reference.Collection("Wishlist");
+
+                    // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
+                    Query wishlistQuery = wishlistRef.WhereEqualTo("prodName", prodName);
+                    QuerySnapshot wishlistQuerySnapshot = await wishlistQuery.GetSnapshotAsync();
+
+                    // Get the first document from the query result (assuming there's only one matching document)
+                    DocumentSnapshot wishlistDoc = wishlistQuerySnapshot.Documents.FirstOrDefault();
+                    if (wishlistDoc != null)
+                    {
+                        // Delete the document from the Wishlist collection
+                        await wishlistDoc.Reference.DeleteAsync();
+                        
+                        // Refresh the GridView
+                        Response.Write("<script>alert('Successfully Removed Product to the Wishlist!');</script>");
+                        getWishlist();
+
+
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Error Removing to the Wishlist.');</script>");
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error: User Not Found.');</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Error: No product selected.');</script>");
             }
         }
     }
