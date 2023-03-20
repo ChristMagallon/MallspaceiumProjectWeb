@@ -90,6 +90,82 @@ namespace mallspacium_web.MasterForm3
             }
         }
 
+        protected async void productGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected prodName value from the productGridView
+            GridViewRow row = productGridView.SelectedRow;
+            if (row != null)
+            {
+                string prodName = row.Cells[0].Text;
+                string prodShopName = row.Cells[5].Text;
+
+                // Query the Users collection to get the User document that contains the Product collection
+                Query query = database.Collection("Users").WhereEqualTo("shopName", prodShopName);
+                QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+
+                // Get the first document from the query result (assuming there's only one matching document)
+                DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
+                if (userDoc != null)
+                {
+                    // Get the Product collection from the User document
+                    CollectionReference productsRef = userDoc.Reference.Collection("Product");
+
+                    // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
+                    Query productQuery = productsRef.WhereEqualTo("prodName", prodName);
+                    QuerySnapshot productQuerySnapshot = await productQuery.GetSnapshotAsync();
+
+                    // Get the first document from the query result (assuming there's only one matching document)
+                    DocumentSnapshot productDoc = productQuerySnapshot.Documents.FirstOrDefault();
+                    if (productDoc != null)
+                    {
+                        // Get the product details from the document data
+                        string productName = productDoc.GetValue<string>("prodName");
+                        string productImage = productDoc.GetValue<string>("prodImage");
+                        string productDescription = productDoc.GetValue<string>("prodDesc");
+                        string productPrice = productDoc.GetValue<string>("prodPrice");
+                        string productTag = productDoc.GetValue<string>("prodTag");
+                        string productShopName = productDoc.GetValue<string>("prodShopName");
+
+                        // Save the product details to the Wishlist collection in Firestore
+                        // You can use the AddAsync method to add a new document to a collection
+                        DocumentReference wishlistRef = database.Collection("Users").Document("test@gmail.com").Collection("Wishlist").Document(prodName);
+                        Dictionary<string, object> wishlistData = new Dictionary<string, object>()
+                    {
+                        { "prodName", productName },
+                        { "prodImage", productImage },
+                        { "prodDesc", productDescription },
+                        { "prodPrice", productPrice },
+                        { "prodTag", productTag },
+                        { "prodShopName", productShopName },
+                        };
+
+                        try
+                        {
+                            await wishlistRef.SetAsync(wishlistData);
+                            Response.Write("<script>alert('Successfully Added Product to the Wishlist!');</script>");
+                        }
+                        catch (Exception)
+                        {
+                            Response.Write("<script>alert('Error Adding to the Wishlist.');</script>");
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Error: Product Not Found.');</script>");
+                    }
+
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error: User Not Found.');</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Error: No product selected.');</script>");
+            }
+        }
+
         /*protected async void productGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -165,157 +241,82 @@ namespace mallspacium_web.MasterForm3
             }
         }*/
 
-       /*protected async void btnSelect_Click(object sender, EventArgs e)
-        {
-            // Get the selected prodName value from the productGridView
-            GridViewRow row = productGridView.SelectedRow;
-            if (row != null)
-            {
-                string prodName = row.Cells[0].Text;
-                string prodShopName = row.Cells[5].Text;
+        /*protected async void btnSelect_Click(object sender, EventArgs e)
+         {
+             // Get the selected prodName value from the productGridView
+             GridViewRow row = productGridView.SelectedRow;
+             if (row != null)
+             {
+                 string prodName = row.Cells[0].Text;
+                 string prodShopName = row.Cells[5].Text;
 
-                // Query the Users collection to get the User document that contains the Product collection
-                Query query = database.Collection("Users").WhereEqualTo("shopName", prodShopName);
-                QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+                 // Query the Users collection to get the User document that contains the Product collection
+                 Query query = database.Collection("Users").WhereEqualTo("shopName", prodShopName);
+                 QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
 
-                // Get the first document from the query result (assuming there's only one matching document)
-                DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
-                if (userDoc != null)
-                {
-                    // Get the Product collection from the User document
-                    CollectionReference productsRef = userDoc.Reference.Collection("Product");
+                 // Get the first document from the query result (assuming there's only one matching document)
+                 DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
+                 if (userDoc != null)
+                 {
+                     // Get the Product collection from the User document
+                     CollectionReference productsRef = userDoc.Reference.Collection("Product");
 
-                    // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
-                    Query productQuery = productsRef.WhereEqualTo("prodName", prodName);
-                    QuerySnapshot productQuerySnapshot = await productQuery.GetSnapshotAsync();
+                     // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
+                     Query productQuery = productsRef.WhereEqualTo("prodName", prodName);
+                     QuerySnapshot productQuerySnapshot = await productQuery.GetSnapshotAsync();
 
-                    // Get the first document from the query result (assuming there's only one matching document)
-                    DocumentSnapshot productDoc = productQuerySnapshot.Documents.FirstOrDefault();
-                    if (productDoc != null)
-                    {
-                        // Get the product details from the document data
-                        string productName = productDoc.GetValue<string>("prodName");
-                        string productImage = productDoc.GetValue<string>("prodImage");
-                        string productDescription = productDoc.GetValue<string>("prodDesc");
-                        string productPrice = productDoc.GetValue<string>("prodPrice");
-                        string productTag = productDoc.GetValue<string>("prodTag");
-                        string productShopName = productDoc.GetValue<string>("prodShopName");
+                     // Get the first document from the query result (assuming there's only one matching document)
+                     DocumentSnapshot productDoc = productQuerySnapshot.Documents.FirstOrDefault();
+                     if (productDoc != null)
+                     {
+                         // Get the product details from the document data
+                         string productName = productDoc.GetValue<string>("prodName");
+                         string productImage = productDoc.GetValue<string>("prodImage");
+                         string productDescription = productDoc.GetValue<string>("prodDesc");
+                         string productPrice = productDoc.GetValue<string>("prodPrice");
+                         string productTag = productDoc.GetValue<string>("prodTag");
+                         string productShopName = productDoc.GetValue<string>("prodShopName");
 
-                        // Save the product details to the Wishlist collection in Firestore
-                        // You can use the AddAsync method to add a new document to a collection
-                        DocumentReference wishlistRef = database.Collection("Users").Document("sazebacvenn@gmail.com").Collection("Wishlist").Document(prodName);
-                        Dictionary<string, object> wishlistData = new Dictionary<string, object>()
-                    {
-                        { "prodName", productName },
-                        { "prodImage", productImage },
-                        { "prodDesc", productDescription },
-                        { "prodPrice", productPrice },
-                        { "prodTag", productTag },
-                        { "prodShopName", productShopName },
-                        };
+                         // Save the product details to the Wishlist collection in Firestore
+                         // You can use the AddAsync method to add a new document to a collection
+                         DocumentReference wishlistRef = database.Collection("Users").Document("sazebacvenn@gmail.com").Collection("Wishlist").Document(prodName);
+                         Dictionary<string, object> wishlistData = new Dictionary<string, object>()
+                     {
+                         { "prodName", productName },
+                         { "prodImage", productImage },
+                         { "prodDesc", productDescription },
+                         { "prodPrice", productPrice },
+                         { "prodTag", productTag },
+                         { "prodShopName", productShopName },
+                         };
 
-                        try
-                        {
-                            await wishlistRef.SetAsync(wishlistData);
-                            Response.Write("<script>alert('Successfully Added Product to the Wishlist!');</script>");
-                        }
-                        catch (Exception)
-                        {
-                            Response.Write("<script>alert('Error Adding to the Wishlist.');</script>");
-                        }
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Error: Product Not Found.');</script>");
-                    }
+                         try
+                         {
+                             await wishlistRef.SetAsync(wishlistData);
+                             Response.Write("<script>alert('Successfully Added Product to the Wishlist!');</script>");
+                         }
+                         catch (Exception)
+                         {
+                             Response.Write("<script>alert('Error Adding to the Wishlist.');</script>");
+                         }
+                     }
+                     else
+                     {
+                         Response.Write("<script>alert('Error: Product Not Found.');</script>");
+                     }
 
-                }
-                else
-                {
-                    Response.Write("<script>alert('Error: User Not Found.');</script>");
-                }
-            }
-            else
-            {
-                Response.Write("<script>alert('Error: No product selected.');</script>");
-            }
-        } */
+                 }
+                 else
+                 {
+                     Response.Write("<script>alert('Error: User Not Found.');</script>");
+                 }
+             }
+             else
+             {
+                 Response.Write("<script>alert('Error: No product selected.');</script>");
+             }
+         } */
 
-        protected async void productGridView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Get the selected prodName value from the productGridView
-            GridViewRow row = productGridView.SelectedRow;
-            if (row != null)
-            {
-                string prodName = row.Cells[0].Text;
-                string prodShopName = row.Cells[5].Text;
 
-                // Query the Users collection to get the User document that contains the Product collection
-                Query query = database.Collection("Users").WhereEqualTo("shopName", prodShopName);
-                QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
-
-                // Get the first document from the query result (assuming there's only one matching document)
-                DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
-                if (userDoc != null)
-                {
-                    // Get the Product collection from the User document
-                    CollectionReference productsRef = userDoc.Reference.Collection("Product");
-
-                    // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
-                    Query productQuery = productsRef.WhereEqualTo("prodName", prodName);
-                    QuerySnapshot productQuerySnapshot = await productQuery.GetSnapshotAsync();
-
-                    // Get the first document from the query result (assuming there's only one matching document)
-                    DocumentSnapshot productDoc = productQuerySnapshot.Documents.FirstOrDefault();
-                    if (productDoc != null)
-                    {
-                        // Get the product details from the document data
-                        string productName = productDoc.GetValue<string>("prodName");
-                        string productImage = productDoc.GetValue<string>("prodImage");
-                        string productDescription = productDoc.GetValue<string>("prodDesc");
-                        string productPrice = productDoc.GetValue<string>("prodPrice");
-                        string productTag = productDoc.GetValue<string>("prodTag");
-                        string productShopName = productDoc.GetValue<string>("prodShopName");
-
-                        // Save the product details to the Wishlist collection in Firestore
-                        // You can use the AddAsync method to add a new document to a collection
-                        DocumentReference wishlistRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Wishlist").Document(prodName);
-                        Dictionary<string, object> wishlistData = new Dictionary<string, object>()
-                    {
-                        { "prodName", productName },
-                        { "prodImage", productImage },
-
-                        { "prodDesc", productDescription },
-                        { "prodPrice", productPrice },
-                        { "prodTag", productTag },
-                        { "prodShopName", productShopName },
-                        };
-
-                        try
-                        {
-                            await wishlistRef.SetAsync(wishlistData);
-                            Response.Write("<script>alert('Successfully Added Product to the Wishlist!');</script>");
-                        }
-                        catch (Exception)
-                        {
-                            Response.Write("<script>alert('Error Adding to the Wishlist.');</script>");
-                        }
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Error: Product Not Found.');</script>");
-                    }
-
-                }
-                else
-                {
-                    Response.Write("<script>alert('Error: User Not Found.');</script>");
-                }
-            }
-            else
-            {
-                Response.Write("<script>alert('Error: No product selected.');</script>");
-            }
-        }
     }
 }
