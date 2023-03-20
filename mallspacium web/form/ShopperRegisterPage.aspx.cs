@@ -23,9 +23,8 @@ namespace mallspacium_web.form
 
         protected void SignupButton_Click(object sender, EventArgs e)
         {
-            signupUser();
+            validateInput();
         }
-
 
         protected void LoginLinkButton_Click(object sender, EventArgs e)
         {
@@ -81,6 +80,44 @@ namespace mallspacium_web.form
 
             // Set the data in the Firestore document
             await documentRef.SetAsync(data);
+        }
+
+        public async void validateInput()
+        {
+            Boolean checker = true;
+            // Define the regular expression pattern
+            /*string pattern = @"^\+63\s(9\d{2})\s\d{3}\s\d{4}$";*/
+
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = db.Collection("Users");
+            Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Iterate over the results to find the user
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (document.Exists)
+                {
+                    // Do something with the user document
+                    Response.Write("<script>alert('Email is already registered!');</script>");
+                    checker = false;
+                }
+            }
+
+            if (Convert.ToInt32(PhoneNumberTextBox.Text) > 11)
+            {
+                Response.Write("<script>alert('Invalid phone number!');</script>");
+                checker = false;
+            }
+            /*if (PhoneNumberTextBox.Text != pattern)
+            {
+                Response.Write("<script>alert('Invalid phone number!');</script>");
+                checker = false;
+            }*/
+            if (checker == true)
+            {
+                signupUser();
+            }
         }
 
         // Clear all the data inputted

@@ -1,6 +1,6 @@
-﻿<%@ Page Async="true"  Title="" Language="C#" MasterPageFile="~/ShopOwner/Site2.Master" AutoEventWireup="true" CodeBehind="ProfileSettings.aspx.cs" Inherits="mallspacium_web.ShopOwner.WebForm1" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/ShopOwner/Site2.Master" AutoEventWireup="true" CodeBehind="ProfileSetting.aspx.cs" Inherits="mallspacium_web.ShopOwner.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
+  <style type="text/css">
         .auto-style1 {
             width: 100%;
         }
