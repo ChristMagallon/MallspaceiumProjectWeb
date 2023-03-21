@@ -34,7 +34,8 @@
                 <div class="mb-3 mt-3">
                       <label for="shopName" class="form-label">Shop Name:</label>
                       <asp:TextBox ID="ShopNameTextBox" runat="server" type="text" class="form-control" placeholder="Enter Shop Name" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
-                      <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Field is required *" ControlToValidate="ShopNameTextBox" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Field is required *" ControlToValidate="ShopNameTextBox" ForeColor="Red" ValidationGroup="Validate" Display="Dynamic"></asp:RequiredFieldValidator>
+                      <asp:Label ID="ErrorShopNameLabel" runat="server" ForeColor="Red"></asp:Label>
                 </div>                           
 
                 <div class="mb-3">
@@ -58,7 +59,8 @@
                 <div class="mb-3">
                       <label for="phoneNumber" class="form-label">Phone Number:</label>
                       <asp:TextBox ID="PhoneNumberTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Phone Number" AutoCompleteType="Disabled" TextMode="Phone" ValidationGroup="Validate"></asp:TextBox>
-                      <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="PhoneNumberTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="PhoneNumberTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate" Display="Dynamic"></asp:RequiredFieldValidator>
+                      <asp:Label ID="ErrorPhoneNumberLabel" runat="server" ForeColor="Red"></asp:Label>
                 </div>
 
                 <div class="mb-3">
@@ -86,7 +88,7 @@
                 <asp:Button ID="SignupButton" runat="server" class="btn btn-primary" Text="Sign Up" OnClick="SignupButton_Click" ValidationGroup="Validate" />
                 <br />
                 <br />
-                <asp:LinkButton ID="LoginLinkButton" runat="server" OnClick="LoginLinkButton_Click" ValidationGroup="None">Already have an account?</asp:LinkButton>
+                <asp:LinkButton ID="LoginLinkButton" runat="server" OnClick="LoginLinkButton_Click" ValidationGroup="None" ForeColor="#0066FF">already have an account?</asp:LinkButton>
             </div>
         </div>  
     </form>
