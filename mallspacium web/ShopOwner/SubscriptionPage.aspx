@@ -1,14 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SubscriptionsPage.aspx.cs" Inherits="mallspacium_web.Shopper.SubscriptionsPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ShopOwner/Site2.Master" AutoEventWireup="true" CodeBehind="SubscriptionPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.WebForm2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div class="subscription-choice">
+     <div class="subscription-choice">
   <h2>
       <asp:Label ID="BasicSubscriptionLabel" runat="server" Text="Basic Subscription"></asp:Label>
             </h2>
@@ -49,6 +44,4 @@
   </ul>
     <asp:Button ID="PremiumSubButton" runat="server" OnClick="PremiumSubButton_Click" Text="Subscribe" />
 </div>
-    </form>
-</body>
-</html>
+</asp:Content>

@@ -206,7 +206,7 @@
     <Content Include="ShopOwner\AllShopProductsPage.aspx" />
     <Content Include="ShopOwner\Style.css" />
     <Content Include="ShopOwner\ProfileSetting.aspx" />
-    <Content Include="ShopOwner\SubscriptionsPage.aspx" />
+    <Content Include="ShopOwner\SubscriptionPage.aspx" />
     <Content Include="Shopper\HomePage.aspx" />
     <Content Include="Shopper\MyWishlistPage.aspx" />
     <Content Include="Shopper\PopularShopsPage.aspx" />
@@ -216,9 +216,10 @@
     <Content Include="Shopper\NotificationPage.aspx" />
     <Content Include="Shopper\ProfilePage.aspx" />
     <Content Include="MasterForm\Style.css" />
+    <Content Include="Shopper\Site1.Master" />
     <Content Include="Shopper\Style.css" />
     <Content Include="Shopper\ProfileSettings.aspx" />
-    <Content Include="Shopper\SubscriptionsPage.aspx" />
+    <Content Include="Shopper\SubscriptionPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="MasterForm\ManageUserForm.aspx" />
     <Content Include="MasterForm\ManageSubscriptionForm.aspx" />
@@ -410,12 +411,12 @@
     <Compile Include="ShopOwner\ProfileSetting.aspx.designer.cs">
       <DependentUpon>ProfileSetting.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShopOwner\SubscriptionsPage.aspx.cs">
-      <DependentUpon>SubscriptionsPage.aspx</DependentUpon>
+    <Compile Include="ShopOwner\SubscriptionPage.aspx.cs">
+      <DependentUpon>SubscriptionPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ShopOwner\SubscriptionsPage.aspx.designer.cs">
-      <DependentUpon>SubscriptionsPage.aspx</DependentUpon>
+    <Compile Include="ShopOwner\SubscriptionPage.aspx.designer.cs">
+      <DependentUpon>SubscriptionPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shopper\MyWishlistPage.aspx.cs">
       <DependentUpon>MyWishlistPage.aspx</DependentUpon>
@@ -423,13 +424,6 @@
     </Compile>
     <Compile Include="Shopper\MyWishlistPage.aspx.designer.cs">
       <DependentUpon>MyWishlistPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Shopper\Site1.Master.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shopper\Site1.Master.designer.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
     <Compile Include="Shopper\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
@@ -530,12 +524,19 @@
     <Compile Include="Shopper\ProfileSettings.aspx.designer.cs">
       <DependentUpon>ProfileSettings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Shopper\SubscriptionsPage.aspx.cs">
-      <DependentUpon>SubscriptionsPage.aspx</DependentUpon>
+    <Compile Include="Shopper\Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Shopper\SubscriptionsPage.aspx.designer.cs">
-      <DependentUpon>SubscriptionsPage.aspx</DependentUpon>
+    <Compile Include="Shopper\Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Shopper\SubscriptionPage.aspx.cs">
+      <DependentUpon>SubscriptionPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\SubscriptionPage.aspx.designer.cs">
+      <DependentUpon>SubscriptionPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -543,7 +544,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ShopOwner\Site2.Master" />
-    <Content Include="Shopper\Site1.Master" />
     <None Include="packages.config" />
     <Content Include="MasterForm\Site1.Master" />
     <None Include="Web.Debug.config">
