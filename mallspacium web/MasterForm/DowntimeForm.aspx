@@ -28,7 +28,11 @@
                 <br/> 
 
                 <asp:Label ID="Label2" runat="server" Text="End Date: "></asp:Label> 
-                <asp:Textbox ID="endDateTextbox" runat="server" Text=""></asp:Textbox> <br/> 
+                <asp:Textbox ID="startDateTextbox" runat="server" Text="" TextMode="DateTimeLocal"></asp:Textbox> 
+                <br />
+
+                <asp:Label ID="Label5" runat="server" Text="End Date: "></asp:Label> 
+                <asp:Textbox ID="endDateTextbox" runat="server" Text="" TextMode="DateTimeLocal"></asp:Textbox> <br/> 
 
                 <asp:Label ID="Label3" runat="server" Text="Message: "></asp:Label> 
                 <asp:Textbox ID="messageTextbox" runat="server" Text="" Height="58px" Width="364px"></asp:Textbox> <br/> <br />

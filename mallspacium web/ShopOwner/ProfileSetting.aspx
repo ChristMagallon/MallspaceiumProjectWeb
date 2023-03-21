@@ -20,7 +20,7 @@
           </tr>
           <tr>
               <td class="auto-style2">Download Account Data</td>
-              <td><asp:Button ID="Button2" runat="server" Text="Button" /></td>
+              <td><asp:Button ID="Button2" runat="server" Text="Download Data" OnClick="Button2_Click1" /></td>
           </tr>
           <tr>
               <td class="auto-style2">Set Language</td>

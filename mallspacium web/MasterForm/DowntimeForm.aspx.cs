@@ -27,12 +27,13 @@ namespace mallspacium_web
 
         public async void save()
         {
-            DocumentReference downtimeRef = database.Collection("Users").Document();
+            string datetime2 = DateTime.UtcNow.ToString("MM-dd-yyyy-HH-mm-ss");
+            DocumentReference downtimeRef = database.Collection("AdminSystemDowntime").Document("DT: " + datetime2);
 
             Dictionary<string, object> downtimeData = new Dictionary<string, object>
 {
-            {"startTime", DateTime.UtcNow},
-            {"endTime", DateTime.UtcNow.AddDays(1)},
+            {"startTime", startDateTextbox.Text},
+            {"endTime", endDateTextbox.Text},
             {"message", messageTextbox.Text}
 };
             await downtimeRef.SetAsync(downtimeData);
