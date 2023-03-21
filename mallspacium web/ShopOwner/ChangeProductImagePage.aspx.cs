@@ -33,7 +33,7 @@ namespace mallspacium_web.ShopOwner
                 if (!string.IsNullOrEmpty(prodName))
                 {
                     // Fetch the product details from Firestore database
-                    Query query = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product").WhereEqualTo("prodName", prodName);
+                    Query query = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product").WhereEqualTo("prodName", prodName);
                     QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
 
                     if (querySnapshot.Documents.Count > 0)
@@ -69,7 +69,7 @@ namespace mallspacium_web.ShopOwner
                 string documentId = nameLabel.Text;
 
                 // Update the file in Firestore
-                DocumentReference docRef = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product").Document(documentId);
+                DocumentReference docRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product").Document(documentId);
                 Dictionary<string, object> data = new Dictionary<string, object>()
                 {
                     //{ "ContentType", contentType },

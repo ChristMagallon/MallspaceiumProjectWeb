@@ -32,8 +32,6 @@
           <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"></>Mallspaceium</div>
             <div class="list-group list-group-flush my-3">
-                <a href="HomePage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-tachometer-alt me-2 "></i>Home</a>
                 <a href="PopularShopsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Popular Shops</a>
                 <a href="AllSalesAndDiscountsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
@@ -41,12 +39,9 @@
                 <a href="AllShopProductsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paperclip me-2"></i>Products</a>
                 <a href="AdvertiseProductsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-shopping-cart me-2"></i>Advertise Products</a> 
-                <a href="PostSalesAndDiscountsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-power-off me-2"></i>Post Sales & Discounts</a>
-                 <a href="NotificationPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-shopping-cart me-2"></i>Advertise Products</a>
+                <a href="NotificationPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-power-off me-2"></i>Notification</a>
-               
             </div>
         </div>
              

@@ -196,7 +196,6 @@
     <Content Include="ShopOwner\AllSalesAndDiscountsPage.aspx" />
     <Content Include="ShopOwner\MyShopProductsPage.aspx" />
     <Content Include="ShopOwner\AdvertiseProductsPage.aspx" />
-    <Content Include="ShopOwner\PostSalesAndDiscountsPage.aspx" />
     <Content Include="ShopOwner\NotificationPage.aspx" />
     <Content Include="ShopOwner\ProfilePage.aspx" />
     <Content Include="ShopOwner\AllShopProductsPage.aspx" />
@@ -382,13 +381,6 @@
     </Compile>
     <Compile Include="ShopOwner\AdvertiseProductsPage.aspx.designer.cs">
       <DependentUpon>AdvertiseProductsPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ShopOwner\PostSalesAndDiscountsPage.aspx.cs">
-      <DependentUpon>PostSalesAndDiscountsPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ShopOwner\PostSalesAndDiscountsPage.aspx.designer.cs">
-      <DependentUpon>PostSalesAndDiscountsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\NotificationPage.aspx.cs">
       <DependentUpon>NotificationPage.aspx</DependentUpon>

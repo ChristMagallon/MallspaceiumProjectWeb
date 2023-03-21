@@ -41,7 +41,7 @@ namespace mallspacium_web.ShopOwner
             //Convert the Bitmap image to a Base64 string
             string base64String = Convert.ToBase64String(bytes);
 
-            DocumentReference doc = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product").Document(nameTextbox.Text);
+            DocumentReference doc = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product").Document(nameTextbox.Text);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
                 { "prodId", uniqueId},

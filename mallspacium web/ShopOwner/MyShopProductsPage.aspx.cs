@@ -27,8 +27,7 @@ namespace mallspacium_web.MasterForm2
             // Create a reference to the parent collection 
             CollectionReference usersRef = database.Collection("Users");
 
-            //to be change ni siya 
-            DocumentReference docRef = usersRef.Document("ruYerFhJsxLm3ONnMzdc");
+            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
 
             CollectionReference productRef = docRef.Collection("Product");
 
@@ -98,8 +97,8 @@ namespace mallspacium_web.MasterForm2
             // Get the document ID from the DataKeys collection
             string docId = ownShopProductGridView.DataKeys[e.RowIndex]["prodName"].ToString();
 
-            // Get a reference to the document to be deleted (to be edited)
-            DocumentReference docRef = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product").Document(docId);
+            // Get a reference to the document to be deleted 
+            DocumentReference docRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product").Document(docId);
 
             // Delete the document
             await docRef.DeleteAsync();
@@ -121,7 +120,7 @@ namespace mallspacium_web.MasterForm2
             string searchTerm = searchTextBox.Text;
 
             // Query the Firebase Cloud Firestore database for documents that match the search term in either the prodName or prodTag field
-            Query query = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product")
+            Query query = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product")
                 .WhereEqualTo("prodName", searchTerm)
                 //.WhereArrayContains("prodTag", searchTerm)
                 ;

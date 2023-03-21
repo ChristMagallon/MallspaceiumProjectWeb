@@ -41,7 +41,7 @@ namespace mallspacium_web.ShopOwner
                 string prodName = Request.QueryString["prodName"];
 
                 // Use the document ID to retrieve the data from Firestore
-                DocumentReference docRef = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product").Document(prodName);
+                DocumentReference docRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product").Document(prodName);
                 DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
 
                 // Check if the document exists
@@ -80,7 +80,7 @@ namespace mallspacium_web.ShopOwner
             // Retrieve the document ID from the query string
             string prodName = Request.QueryString["prodName"];
 
-            DocumentReference docRef = database.Collection("Users").Document("ruYerFhJsxLm3ONnMzdc").Collection("Product").Document(prodName);
+            DocumentReference docRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product").Document(prodName);
 
             Dictionary<string, object> data = new Dictionary<string, object>
 {
