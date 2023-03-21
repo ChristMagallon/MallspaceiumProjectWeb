@@ -186,6 +186,7 @@
     <Content Include="design\mallspaceium_logo.png" />
     <Content Include="ShopOwner\AddProductPage.aspx" />
     <Content Include="ShopOwner\AddSalesAndDiscountPage.aspx" />
+    <Content Include="ShopOwner\AllSaleDiscountDetailsPage.aspx" />
     <Content Include="ShopOwner\ChangeProductImagePage.aspx" />
     <Content Include="ShopOwner\MySaleDiscountPage.aspx" />
     <Content Include="ShopOwner\MyShopProductDetailsPage.aspx" />
@@ -296,6 +297,13 @@
     </Compile>
     <Compile Include="ShopOwner\AddSalesAndDiscountPage.aspx.designer.cs">
       <DependentUpon>AddSalesAndDiscountPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopOwner\AllSaleDiscountDetailsPage.aspx.cs">
+      <DependentUpon>AllSaleDiscountDetailsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\AllSaleDiscountDetailsPage.aspx.designer.cs">
+      <DependentUpon>AllSaleDiscountDetailsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\AllShopProductsPage.aspx.cs">
       <DependentUpon>AllShopProductsPage.aspx</DependentUpon>

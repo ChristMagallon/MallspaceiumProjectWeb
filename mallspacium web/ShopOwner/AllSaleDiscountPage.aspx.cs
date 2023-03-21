@@ -31,11 +31,9 @@ namespace mallspacium_web.MasterForm2
             // Create a DataTable to store the retrieved data
             DataTable allSaleDiscountGridViewTable = new DataTable();
 
-            allSaleDiscountGridViewTable.Columns.Add("saleDiscId", typeof(string));
+            allSaleDiscountGridViewTable.Columns.Add("saleDiscShopName", typeof(string));
             allSaleDiscountGridViewTable.Columns.Add("saleDiscImage", typeof(byte[]));
             allSaleDiscountGridViewTable.Columns.Add("saleDiscDesc", typeof(string));
-            allSaleDiscountGridViewTable.Columns.Add("saleDiscStartDate", typeof(string));
-            allSaleDiscountGridViewTable.Columns.Add("saleDiscEndDate", typeof(string));
 
             // Iterate through the documents and populate the DataTable
             foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
@@ -48,20 +46,16 @@ namespace mallspacium_web.MasterForm2
 
                 foreach (DocumentSnapshot productDoc in productsSnapshot.Documents)
                 {
-                    //string saleDiscId = productDoc.GetValue<string>("saleDiscId");
+                    string saleDiscShopName = productDoc.GetValue<string>("saleDiscShopName");
                     string base64String = productDoc.GetValue<string>("saleDiscImage");
                     byte[] saleDiscImage = Convert.FromBase64String(base64String);
                     string saleDiscDescription = productDoc.GetValue<string>("saleDiscDesc");
-                    string saleDiscStartDate = productDoc.GetValue<string>("saleDiscStartDate");
-                    string saleDiscEndDate = productDoc.GetValue<string>("saleDiscEndDate");
 
                     DataRow dataRow = allSaleDiscountGridViewTable.NewRow();
 
-                    dataRow["saleDiscId"] = saleDiscDescription;
+                    dataRow["saleDiscShopName"] = saleDiscShopName;
                     dataRow["saleDiscImage"] = saleDiscImage;
                     dataRow["saleDiscDesc"] = saleDiscDescription;
-                    dataRow["saleDiscStartDate"] = saleDiscStartDate;
-                    dataRow["saleDiscEndDate"] = saleDiscEndDate;
 
                     allSaleDiscountGridViewTable.Rows.Add(dataRow);
                 }
@@ -86,6 +80,25 @@ namespace mallspacium_web.MasterForm2
                     imageControl.Height = 200; // set the height of the image
                 }
             }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(allSaleDiscountGridView, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to view more details.";
+            }
+        }
+
+        protected void allSaleDiscountGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the index of the selected row
+            int selectedIndex = allSaleDiscountGridView.SelectedIndex;
+
+            // Get the value of the shopName column from the DataKeys collection
+            string saleDiscShopName = allSaleDiscountGridView.DataKeys[selectedIndex].Values["saleDiscShopName"].ToString();
+            string saleDiscDesc = allSaleDiscountGridView.DataKeys[selectedIndex].Values["saleDiscDesc"].ToString();
+
+            // Redirect to another page and pass the shopName as a query string parameter
+            Response.Redirect("AllSaleDiscountDetailsPage.aspx?saleDiscShopName=" + saleDiscShopName + "&saleDiscDesc=" + saleDiscDesc);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master"  AutoEventWireup="true" CodeBehind="AllSaleDiscountPage.aspx.cs" Inherits="mallspacium_web.MasterForm2.WebForm2" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master"  AutoEventWireup="true" CodeBehind="AllSaleDiscountPage.aspx.cs" Inherits="mallspacium_web.MasterForm2.WebForm2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -15,16 +15,15 @@
 
     <div class="form">
         <div class="form">
-            <asp:GridView ID="allSaleDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnRowDataBound="allSaleDiscountGridView_RowDataBound">
+            <asp:GridView ID="allSaleDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="saleDiscShopName, saleDiscDesc" OnRowDataBound="allSaleDiscountGridView_RowDataBound" OnSelectedIndexChanged="allSaleDiscountGridView_SelectedIndexChanged">
                 <Columns>
+                    <asp:BoundField HeaderText="Shop Name" DataField="saleDiscShopName" SortExpression="saleDiscShopName"></asp:BoundField>
                     <asp:TemplateField HeaderText="Image">
                         <ItemTemplate>
                             <asp:Image ID="Image1" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="Description" DataField="saleDiscDesc" SortExpression="saleDiscDesc"></asp:BoundField>
-                    <asp:BoundField HeaderText="Start Date" DataField="saleDiscStartDate" SortExpression="saleDiscEndDate"></asp:BoundField>
-                    <asp:BoundField HeaderText="End Date" DataField="saleDiscEndDate" SortExpression="saleDiscEndDate"></asp:BoundField>
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />
                      <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
