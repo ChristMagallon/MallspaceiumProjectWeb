@@ -185,13 +185,15 @@
     <Content Include="MasterForm\UserDetailsPage.aspx" />
     <Content Include="design\mallspaceium_logo.png" />
     <Content Include="ShopOwner\AddProductPage.aspx" />
+    <Content Include="ShopOwner\AddSalesAndDiscountPage.aspx" />
     <Content Include="ShopOwner\ChangeProductImagePage.aspx" />
     <Content Include="ShopOwner\HomePage.aspx" />
+    <Content Include="ShopOwner\MySalesAndDiscountsPage.aspx" />
     <Content Include="ShopOwner\MyShopProductDetailsPage.aspx" />
     <Content Include="ShopOwner\PopularShopDetailsPage.aspx" />
     <Content Include="ShopOwner\PopularShopsPage.aspx" />
     <Content Include="ShopOwner\ProductDetailsPage.aspx" />
-    <Content Include="ShopOwner\SalesAndDiscountsPage.aspx" />
+    <Content Include="ShopOwner\AllSalesAndDiscountsPage.aspx" />
     <Content Include="ShopOwner\MyShopProductsPage.aspx" />
     <Content Include="ShopOwner\AdvertiseProductsPage.aspx" />
     <Content Include="ShopOwner\PostSalesAndDiscountsPage.aspx" />
@@ -290,6 +292,13 @@
     <Compile Include="ShopOwner\AddProductPage.aspx.designer.cs">
       <DependentUpon>AddProductPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ShopOwner\AddSalesAndDiscountPage.aspx.cs">
+      <DependentUpon>AddSalesAndDiscountPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\AddSalesAndDiscountPage.aspx.designer.cs">
+      <DependentUpon>AddSalesAndDiscountPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ShopOwner\AllShopProductsPage.aspx.cs">
       <DependentUpon>AllShopProductsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -303,6 +312,13 @@
     </Compile>
     <Compile Include="ShopOwner\ChangeProductImagePage.aspx.designer.cs">
       <DependentUpon>ChangeProductImagePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopOwner\MySalesAndDiscountsPage.aspx.cs">
+      <DependentUpon>MySalesAndDiscountsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\MySalesAndDiscountsPage.aspx.designer.cs">
+      <DependentUpon>MySalesAndDiscountsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\MyShopProductDetailsPage.aspx.cs">
       <DependentUpon>MyShopProductDetailsPage.aspx</DependentUpon>
@@ -346,12 +362,12 @@
     <Compile Include="ShopOwner\PopularShopsPage.aspx.designer.cs">
       <DependentUpon>PopularShopsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShopOwner\SalesAndDiscountsPage.aspx.cs">
-      <DependentUpon>SalesAndDiscountsPage.aspx</DependentUpon>
+    <Compile Include="ShopOwner\AllSalesAndDiscountsPage.aspx.cs">
+      <DependentUpon>AllSalesAndDiscountsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ShopOwner\SalesAndDiscountsPage.aspx.designer.cs">
-      <DependentUpon>SalesAndDiscountsPage.aspx</DependentUpon>
+    <Compile Include="ShopOwner\AllSalesAndDiscountsPage.aspx.designer.cs">
+      <DependentUpon>AllSalesAndDiscountsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\MyShopProductsPage.aspx.cs">
       <DependentUpon>MyShopProductsPage.aspx</DependentUpon>
