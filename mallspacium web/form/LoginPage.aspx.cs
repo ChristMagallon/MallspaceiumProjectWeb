@@ -36,7 +36,7 @@ namespace mallspacium_web.form
             if (snapshot.Count == 0)
             {
                 // Handle the case where the snapshot is empty
-                Response.Write("<script>alert('If your email matches an existing account we will send you a recovery code within a few minutes.');</script>");
+                Response.Write("<script>alert('It seems like the email you entered doesn't match our records.');</script>");
             }
             else
             {
