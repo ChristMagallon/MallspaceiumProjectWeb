@@ -19,6 +19,9 @@ namespace mallspacium_web.ShopOwner
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             database = FirestoreDb.Create("mallspaceium");
+
+            shopNameTextbox.Enabled = false;
+            getShopName();
         }
 
         protected void addButton_Click(object sender, EventArgs e)
@@ -59,7 +62,25 @@ namespace mallspacium_web.ShopOwner
                 Response.Write("<script>alert('Successfully Added a New Product.');</script>");
             }
 
-            Response.Redirect("~/ShopOwner/OwnShopProductsPage.aspx", false);
+            Response.Redirect("~/ShopOwner/MyShopProductsPage.aspx", false);
+        }
+
+        public async void getShopName()
+        {
+            if (!IsPostBack)
+            {
+                Query query = database.Collection("Users").WhereEqualTo("email", (string)Application.Get("usernameget"));
+                QuerySnapshot snap = await query.GetSnapshotAsync();
+
+                // Loop through the documents in the query snapshot
+                foreach (DocumentSnapshot documentSnapshot in snap.Documents)
+                {
+                    // Retrieve the data from the document
+                    string shopName = documentSnapshot.GetValue<string>("shopName");
+
+                    shopNameTextbox.Text = shopName;
+                }
+            }
         }
     }
 }

@@ -19,10 +19,10 @@ namespace mallspacium_web.MasterForm2
 
             database = FirestoreDb.Create("mallspaceium");
 
-            getOwnShopProducts();
+            getMyShopProducts();
         }
 
-        public void getOwnShopProducts()
+        public void getMyShopProducts()
         {
             // Create a reference to the parent collection 
             CollectionReference usersRef = database.Collection("Users");
@@ -105,7 +105,11 @@ namespace mallspacium_web.MasterForm2
 
             Response.Write("<script>alert('Product Deleted Successfully!');</script>");
 
-            // Rebind the GridView control to reflect the changes
+            // Rebind the data to the GridView control
+            CollectionReference colRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product");
+            QuerySnapshot querySnapshot = await colRef.GetSnapshotAsync();
+
+            ownShopProductGridView.DataSource = querySnapshot.Documents.Select(d => d.ToDictionary()).ToList();
             ownShopProductGridView.DataBind();
         }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master"  AutoEventWireup="true" CodeBehind="AllSalesAndDiscountsPage.aspx.cs" Inherits="mallspacium_web.MasterForm2.WebForm2" %>
+﻿<%@ Page Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master"  AutoEventWireup="true" CodeBehind="MySaleDiscountPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.MySalesAndDiscountsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -7,16 +7,18 @@
     <div class="row">
          <div class="container">
              <center>  
-                    <asp:HyperLink ID="allSalesDiscounts" runat="server" NavigateUrl="~/ShopOwner/AllSalesAndDiscountsPage.aspx" Text="All Sales and Discounts"></asp:HyperLink> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:HyperLink ID="mySalesDiscounts" runat="server" NavigateUrl="~/ShopOwner/MySalesAndDiscountsPage.aspx" Text="My Sales and Discounts"></asp:HyperLink>
+                    <asp:HyperLink ID="allSalesDiscounts" runat="server" NavigateUrl="~/ShopOwner/AllSaleDiscountPage.aspx" Text="All Sale or Discount"></asp:HyperLink> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:HyperLink ID="mySalesDiscounts" runat="server" NavigateUrl="~/ShopOwner/MySaleDiscountPage.aspx" Text="My Sale or Discount"></asp:HyperLink>
              </center>
          </div>
     </div>
 
     <div class="form">
+        <asp:Button ID="addButton" runat="server" Text="+ SALES AND DISCOUNTS" OnClick="addButton_Click" />
         <div class="form">
-            <asp:GridView ID="allSaleDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnRowDataBound="allSaleDiscountGridView_RowDataBound">
+            <asp:GridView ID="mySaleDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="saleDiscId"  OnRowDataBound="mySaleDiscountGridView_RowDataBound" OnRowDeleting="mySaleDiscountGridView_RowDeleting">
                 <Columns>
+                    <asp:BoundField HeaderText="ID" DataField="saleDiscId" SortExpression="saleDiscId"></asp:BoundField>
                     <asp:TemplateField HeaderText="Image">
                         <ItemTemplate>
                             <asp:Image ID="Image1" runat="server" />
@@ -25,6 +27,9 @@
                     <asp:BoundField HeaderText="Description" DataField="saleDiscDesc" SortExpression="saleDiscDesc"></asp:BoundField>
                     <asp:BoundField HeaderText="Start Date" DataField="saleDiscStartDate" SortExpression="saleDiscEndDate"></asp:BoundField>
                     <asp:BoundField HeaderText="End Date" DataField="saleDiscEndDate" SortExpression="saleDiscEndDate"></asp:BoundField>
+                    <asp:CommandField ShowDeleteButton="True" ValidationGroup="DeleteButton" ButtonType="Button" ControlStyle-BackColor="Red" >
+                    <ControlStyle BackColor="Red" BorderColor="Red" BorderStyle="Outset"></ControlStyle>
+                    </asp:CommandField>
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />
                      <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />

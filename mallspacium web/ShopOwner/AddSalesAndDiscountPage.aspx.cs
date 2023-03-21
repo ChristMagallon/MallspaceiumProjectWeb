@@ -64,7 +64,7 @@ namespace mallspacium_web.ShopOwner
                 Response.Write("<script>alert('Error!');</script>");
             }
 
-            Response.Redirect("~/ShopOwner/MySalesAndDiscountsPage.aspx", false);
+            Response.Redirect("~/ShopOwner/MySaleDiscountPage.aspx", false);
         }
 
         public async void getShopName()

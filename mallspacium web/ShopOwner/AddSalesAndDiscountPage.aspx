@@ -9,7 +9,7 @@
        <asp:Label ID="Label4" runat="server" Text="Add New Sale and Discount"></asp:Label>  <br/> <br /> 
 
         <asp:Label ID="Label1" runat="server" Text="Shop Name: "></asp:Label> 
-        <asp:Textbox ID="shopNameTextbox" runat="server" Text=""></asp:Textbox>  <br/> 
+        <asp:Textbox ID="shopNameTextbox" runat="server" Text="" AutoCompleteType="Disabled" ></asp:Textbox>  <br/> 
 
         <asp:Label ID="Label6" runat="server" Text="Image: "></asp:Label> 
         <asp:FileUpload ID="imageFileUpload" runat="server" />
@@ -19,7 +19,7 @@
             style="color: red" /> <br/>
 
         <asp:Label ID="Label2" runat="server" Text="Description: "></asp:Label> 
-        <asp:Textbox ID="descriptionTextbox" runat="server" Text=""></asp:Textbox> 
+        <asp:Textbox ID="descriptionTextbox" runat="server" Text="" AutoCompleteType="Disabled" TextMode="MultiLine" Height="80px" Width="205px" ></asp:Textbox> 
         <asp:RequiredFieldValidator ID="descriptionTextboxValidator" runat="server"
             ControlToValidate="descriptionTextbox"
             ErrorMessage="*Required"

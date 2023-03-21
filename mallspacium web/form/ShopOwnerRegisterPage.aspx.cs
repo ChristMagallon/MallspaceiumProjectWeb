@@ -115,11 +115,11 @@ namespace mallspacium_web.form
                 }
             }
 
-            if (Convert.ToInt32(PhoneNumberTextBox.Text) > 11)
+            /*if (Convert.ToInt32(PhoneNumberTextBox.Text) > 11)
             {
                 Response.Write("<script>alert('Invalid phone number!');</script>");
                 checker = false;
-            }
+            }*/
             /*if (PhoneNumberTextBox.Text != pattern)
             {
                 Response.Write("<script>alert('Invalid phone number!');</script>");
