@@ -25,8 +25,7 @@ namespace mallspacium_web.Shopper
         public async void getWishlist()
         {
             // Query the Firestore database to get the Wishlist collection for the current user
-            string userId = "test@gmail.com"; // replace with the actual user ID
-            CollectionReference wishlistRef = database.Collection("Users").Document(userId).Collection("Wishlist");
+            CollectionReference wishlistRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Wishlist");
             QuerySnapshot querySnapshot = await wishlistRef.GetSnapshotAsync();
 
             // Create a DataTable to store the retrieved data

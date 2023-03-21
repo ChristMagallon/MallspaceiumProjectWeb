@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Google.Cloud.Firestore;
 
-namespace mallspacium_web.ShopOwner
+namespace mallspacium_web.Shopper
 {
-    public partial class AllSaleDiscountDetailsPage : System.Web.UI.Page
+    public partial class SalesAndDiscountsPageDetails : System.Web.UI.Page
     {
         FirestoreDb database;
         protected void Page_Load(object sender, EventArgs e)
@@ -21,7 +20,6 @@ namespace mallspacium_web.ShopOwner
 
             retrieveSaleDiscountDetails();
         }
-
         public async void retrieveSaleDiscountDetails()
         {
             if (!IsPostBack)

@@ -201,15 +201,14 @@
     <Content Include="ShopOwner\AllShopProductsPage.aspx" />
     <Content Include="ShopOwner\Style.css" />
     <Content Include="ShopOwner\ProfileSetting.aspx" />
-    <Content Include="Shopper\HomePage.aspx" />
     <Content Include="Shopper\MyWishlistPage.aspx" />
     <Content Include="Shopper\PopularShopsPage.aspx" />
     <Content Include="Shopper\SalesAndDiscountsPage.aspx" />
     <Content Include="Shopper\ProductsPage.aspx" />
-    <Content Include="Shopper\LocatePage.aspx" />
     <Content Include="Shopper\NotificationPage.aspx" />
     <Content Include="Shopper\ProfilePage.aspx" />
     <Content Include="MasterForm\Style.css" />
+    <Content Include="Shopper\SalesAndDiscountsPageDetails.aspx" />
     <Content Include="Shopper\Style.css" />
     <Content Include="Shopper\ProfileSettings.aspx" />
     <Content Include="Web.config" />
@@ -410,19 +409,19 @@
     <Compile Include="Shopper\MyWishlistPage.aspx.designer.cs">
       <DependentUpon>MyWishlistPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Shopper\SalesAndDiscountsPageDetails.aspx.cs">
+      <DependentUpon>SalesAndDiscountsPageDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\SalesAndDiscountsPageDetails.aspx.designer.cs">
+      <DependentUpon>SalesAndDiscountsPageDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Shopper\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Shopper\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Shopper\HomePage.aspx.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shopper\HomePage.aspx.designer.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shopper\PopularShopsPage.aspx.cs">
       <DependentUpon>PopularShopsPage.aspx</DependentUpon>
@@ -444,13 +443,6 @@
     </Compile>
     <Compile Include="Shopper\ProductsPage.aspx.designer.cs">
       <DependentUpon>ProductsPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Shopper\LocatePage.aspx.cs">
-      <DependentUpon>LocatePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shopper\LocatePage.aspx.designer.cs">
-      <DependentUpon>LocatePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shopper\NotificationPage.aspx.cs">
       <DependentUpon>NotificationPage.aspx</DependentUpon>
