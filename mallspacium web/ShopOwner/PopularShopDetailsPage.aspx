@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="PopularShopDetailsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.PopularShopDetailsPage" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="PopularShopDetailsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.PopularShopDetailsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -63,20 +63,17 @@
         </div>
 
     <div class="form">
-            <div class="col p-5">
-                <asp:TextBox ID="salesDiscountSearchTextBox" runat="server" class="form-control" type="search" placeholder="Search Shop Name" aria-label="Search" AutoPostBack="True"></asp:TextBox>
-        </div>
-
         <div class="form">
-            <asp:GridView ID="salesDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="shopName">
+            <asp:GridView ID="saleDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="saleDiscShopName, saleDiscDesc" OnRowDataBound="saleDiscountGridView_RowDataBound" OnSelectedIndexChanged="saleDiscountGridView_SelectedIndexChanged">
                 <Columns>
-                    <asp:BoundField HeaderText="ID" DataField="saleDiscId" SortExpression="saleDiscId" ></asp:BoundField>
+                    <asp:BoundField HeaderText="Shop" DataField="saleDiscShopName" SortExpression="saleDiscShopName"></asp:BoundField>
                     <asp:TemplateField HeaderText="Image">
                         <ItemTemplate>
                             <asp:Image ID="Image1" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField HeaderText="Description" DataField="saleDiscDescription" SortExpression="saleDiscDescription"></asp:BoundField>
+                    <asp:BoundField HeaderText="Description" DataField="saleDiscDesc" SortExpression="saleDiscDesc"></asp:BoundField>
+                    
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />
                      <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />

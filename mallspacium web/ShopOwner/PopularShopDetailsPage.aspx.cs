@@ -25,9 +25,12 @@ namespace mallspacium_web.ShopOwner
 
             label.Text = shopName + " Details";
 
-            retrieveShopDetails();
-            getShopProducts();
-
+            if (!IsPostBack)
+            {
+                retrieveShopDetails();
+                getShopProducts();
+                getShopSaleDiscount();
+            }
         }
 
         public async void retrieveShopDetails()
@@ -133,7 +136,64 @@ namespace mallspacium_web.ShopOwner
                     productGridView.DataSource = ownProductsGridViewTable;
                     productGridView.DataBind();
                 }
-            } else
+            } 
+            else
+            {
+                Response.Write("<script>alert('Error: User Not Found.');</script>");
+            }
+        }
+
+        public async void getShopSaleDiscount()
+        {
+            // Retrieve the shop name from the query string
+            string shopName = Request.QueryString["shopName"];
+
+            // Use the shop name to retrieve the data from Firestore
+            Query query = database.Collection("Users").WhereEqualTo("shopName", shopName);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Get the first document from the query result (assuming there's only one matching document)
+            DocumentSnapshot userDoc = snapshot.Documents.FirstOrDefault();
+            if (userDoc != null)
+            {
+                // Get the Sale Discount collection from the User document
+                CollectionReference saleDiscRef = userDoc.Reference.Collection("SaleDiscount");
+
+                // Retrieve the documents from the child collection
+                QuerySnapshot querySnapshot = await saleDiscRef.GetSnapshotAsync();
+
+                // Create a DataTable to store the retrieved data
+                DataTable saleDiscountGridViewTable = new DataTable();
+
+                //saleDiscountGridViewTable.Columns.Add("shopName", typeof(string));
+                saleDiscountGridViewTable.Columns.Add("saleDiscShopName", typeof(string));
+                saleDiscountGridViewTable.Columns.Add("saleDiscImage", typeof(byte[]));
+                saleDiscountGridViewTable.Columns.Add("saleDiscDesc", typeof(string));
+
+                // Iterate through the documents and populate the DataTable
+                foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+                {
+                    string saleDiscShopName = documentSnapshot.GetValue<string>("saleDiscShopName");
+                    string base64String = documentSnapshot.GetValue<string>("saleDiscImage");
+                    byte[] saleDiscImage = Convert.FromBase64String(base64String);
+                    string saleDiscDesc = documentSnapshot.GetValue<string>("saleDiscDesc");
+
+                    DataRow dataRow = saleDiscountGridViewTable.NewRow();
+
+                    //dataRow["shopName"] = shopName;
+                    dataRow["saleDiscShopName"] = saleDiscShopName;
+                    dataRow["saleDiscImage"] = saleDiscImage;
+                    dataRow["saleDiscDesc"] = saleDiscDesc;
+
+                    saleDiscountGridViewTable.Rows.Add(dataRow);
+
+                    // Bind the DataTable to the GridView control
+                    saleDiscountGridView.DataSource = saleDiscountGridViewTable;
+                    saleDiscountGridView.DataBind();
+                }
+                
+            }
+            else
             {
                 Response.Write("<script>alert('Error: User Not Found.');</script>");
             }
@@ -154,6 +214,42 @@ namespace mallspacium_web.ShopOwner
                     imageControl.Height = 100; // set the height of the image
                 }
             }
+        }
+
+        protected void saleDiscountGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                byte[] imageBytes = (byte[])DataBinder.Eval(e.Row.DataItem, "saleDiscImage");
+                System.Web.UI.WebControls.Image imageControl = (System.Web.UI.WebControls.Image)e.Row.FindControl("Image1");
+
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    // Convert the byte array to a base64-encoded string and bind it to the Image control
+                    imageControl.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
+                    imageControl.Width = 100; // set the width of the image
+                    imageControl.Height = 100; // set the height of the image
+                }
+            }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(saleDiscountGridView, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to view more details.";
+            }
+        }
+
+        protected void saleDiscountGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the index of the selected row
+            int selectedIndex = saleDiscountGridView.SelectedIndex;
+
+            // Get the value of the shopName column from the DataKeys collection
+            string saleDiscShopName = saleDiscountGridView.DataKeys[selectedIndex].Values["saleDiscShopName"].ToString();
+            string saleDiscDesc = saleDiscountGridView.DataKeys[selectedIndex].Values["saleDiscDesc"].ToString();
+
+            // Redirect to another page and pass the shopName as a query string parameter
+            Response.Redirect("AllSaleDiscountDetailsPage.aspx?saleDiscShopName=" + saleDiscShopName + "&saleDiscDesc=" + saleDiscDesc);
         }
     }
 }

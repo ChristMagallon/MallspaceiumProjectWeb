@@ -83,7 +83,7 @@ namespace mallspacium_web.MasterForm2
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(shopsGridView, "Select$" + e.Row.RowIndex);
-                e.Row.ToolTip = "Click to select this row.";
+                e.Row.ToolTip = "Click to view more details.";
             }
         }
 

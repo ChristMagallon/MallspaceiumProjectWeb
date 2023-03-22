@@ -150,22 +150,13 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label productErrorMessageLabel;
 
         /// <summary>
-        /// salesDiscountSearchTextBox control.
+        /// saleDiscountGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox salesDiscountSearchTextBox;
-
-        /// <summary>
-        /// salesDiscountGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView salesDiscountGridView;
+        protected global::System.Web.UI.WebControls.GridView saleDiscountGridView;
 
         /// <summary>
         /// salesDiscountErrorMessageLabel control.
