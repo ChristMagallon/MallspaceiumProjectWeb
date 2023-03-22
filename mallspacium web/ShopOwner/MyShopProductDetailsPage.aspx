@@ -26,6 +26,10 @@
             ErrorMessage="*Required" 
             style="color: red"  /> <br/> 
 
+        <asp:Label ID="Label6" runat="server" Text="Image: "></asp:Label> <asp:Image ID="Image1" runat="server" />
+        <asp:HiddenField ID="imageHiddenField" runat="server" /> 
+        <asp:Button ID="changeButton" runat="server" Text="CHANGE" OnClick="changeButton_Click" /> <br />
+
         <asp:Label ID="Label2" runat="server" Text="Description: "></asp:Label> 
         <asp:Textbox ID="descriptionTextbox" runat="server" Text=""></asp:Textbox> 
         <asp:RequiredFieldValidator ID="descriptionTextboxValidator" runat="server"
@@ -46,10 +50,6 @@
             ControlToValidate="tagTextbox"
             ErrorMessage="*Required" 
             style="color: red"  /> <br/> 
-        
-        <asp:Label ID="Label6" runat="server" Text="Image: "></asp:Label> <asp:Image ID="Image1" runat="server" />
-        <asp:HiddenField ID="imageHiddenField" runat="server" /> 
-        <asp:Button ID="changeButton" runat="server" Text="CHANGE" OnClick="changeButton_Click" /> <br />
 
         <asp:Label ID="Label8" runat="server" Text="Shop Name: "></asp:Label> 
         <asp:Textbox ID="shopNameTextbox" runat="server" Text=""></asp:Textbox>
