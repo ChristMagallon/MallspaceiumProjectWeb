@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static Google.Cloud.Language.V1.PartOfSpeech.Types;
 
 namespace mallspacium_web.Shopper
 {
@@ -17,6 +18,7 @@ namespace mallspacium_web.Shopper
         static string notif = "";
         protected async void Page_Load(object sender, EventArgs e)
         {
+            bool choice = false;
             string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
@@ -37,7 +39,16 @@ namespace mallspacium_web.Shopper
                 // Get the data as a Dictionary
                 Dictionary<string, object> data = snapshot.ToDictionary();
                 // Access the specific field you want
-                field = data["userNotif"];
+                try
+                {
+                    field = data["userNotif"];
+                }
+                catch (Exception ex)
+                {
+                    choice = true;
+                    createNotif();
+                    notif = "true";
+                }
                 // Do something with the field value
             }
             else
@@ -45,8 +56,30 @@ namespace mallspacium_web.Shopper
                 // Document does not exist
             }
 
-            notif = field.ToString();
-            Button1.Text = notif;
+            if (choice == false)
+            {
+                notif = field.ToString();
+                Button1.Text = notif;
+
+            }
+
+        }
+
+        public async void createNotif()
+        {
+
+            DocumentReference usersRef2 = db.Collection("Users").Document((string)Application.Get("usernameget"));
+            Dictionary<string, object> data = new Dictionary<string, object>()
+                {
+                    {"userNotif","true" }
+                };
+            DocumentSnapshot snap = await usersRef2.GetSnapshotAsync();
+            if (snap.Exists)
+            {
+                await usersRef2.UpdateAsync(data);
+            }
+            Button1.Text = "true";
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
