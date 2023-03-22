@@ -8,7 +8,7 @@
          <div class="container">
              <center>  
                     <asp:HyperLink ID="allProducts" runat="server" NavigateUrl="~/ShopOwner/AllShopProductsPage.aspx" Text="All Products"></asp:HyperLink> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:HyperLink ID="ownProducts" runat="server" NavigateUrl="~/ShopOwner/OwnShopProductsPage.aspx" Text="Own Products"></asp:HyperLink>
+                    <asp:HyperLink ID="ownProducts" runat="server" NavigateUrl="~/ShopOwner/OwnShopProductsPage.aspx" Text="My Products"></asp:HyperLink>
              </center>
          </div>
     </div>

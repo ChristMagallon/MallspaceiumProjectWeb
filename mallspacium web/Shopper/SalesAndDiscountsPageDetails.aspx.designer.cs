@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mallspacium_web.ShopOwner
+namespace mallspacium_web.Shopper
 {
 
 
-    public partial class PopularShopDetailsPage
+    public partial class SalesAndDiscountsPageDetails
     {
 
         /// <summary>
@@ -24,6 +24,24 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label label;
 
         /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+
+        /// <summary>
+        /// shopNameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label shopNameLabel;
+
+        /// <summary>
         /// Image1 control.
         /// </summary>
         /// <remarks>
@@ -31,24 +49,6 @@ namespace mallspacium_web.ShopOwner
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Image1;
-
-        /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-
-        /// <summary>
-        /// nameLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nameLabel;
 
         /// <summary>
         /// Label1 control.
@@ -78,13 +78,13 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// emailLabel control.
+        /// startDateLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailLabel;
+        protected global::System.Web.UI.WebControls.Label startDateLabel;
 
         /// <summary>
         /// Label3 control.
@@ -96,75 +96,12 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// phoneNumberLabel control.
+        /// endDateLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label phoneNumberLabel;
-
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-
-        /// <summary>
-        /// addressLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label addressLabel;
-
-        /// <summary>
-        /// productSearchTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox productSearchTextBox;
-
-        /// <summary>
-        /// productGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView productGridView;
-
-        /// <summary>
-        /// productErrorMessageLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label productErrorMessageLabel;
-
-        /// <summary>
-        /// saleDiscountGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView saleDiscountGridView;
-
-        /// <summary>
-        /// salesDiscountErrorMessageLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label salesDiscountErrorMessageLabel;
+        protected global::System.Web.UI.WebControls.Label endDateLabel;
     }
 }

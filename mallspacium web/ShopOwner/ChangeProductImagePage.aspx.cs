@@ -81,12 +81,14 @@ namespace mallspacium_web.ShopOwner
                 // Display a message
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Changed the Image!');", true);
 
-                // Redirect to another page after a delay
-                string url = "MyShopProductsPage.aspx";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 3000);", true);
+                // Retrieve the document ID from the DataKeys collection
+                string prodName = documentId;
 
-                // Close the pop-up window
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "closePopupScript", "window.close();", true);
+                // Redirect to another page after a delay
+                string url = "MyShopProductDetailsPage.aspx?prodName=" + prodName;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 1000);", true);
+
+
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="PopularShopDetailsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.PopularShopDetailsPage" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title=""  Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="PopularShopDetailsPage.aspx.cs" Inherits="mallspacium_web.Shopper.PopularShopDetailsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

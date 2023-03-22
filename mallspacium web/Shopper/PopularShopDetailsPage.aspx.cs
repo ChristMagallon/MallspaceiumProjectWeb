@@ -1,5 +1,4 @@
-﻿using Google.Cloud.Firestore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -7,8 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Google.Cloud.Firestore;
 
-namespace mallspacium_web.ShopOwner
+namespace mallspacium_web.Shopper
 {
     public partial class PopularShopDetailsPage : System.Web.UI.Page
     {
@@ -136,7 +136,7 @@ namespace mallspacium_web.ShopOwner
                     productGridView.DataSource = ownProductsGridViewTable;
                     productGridView.DataBind();
                 }
-            } 
+            }
             else
             {
                 Response.Write("<script>alert('Error: User Not Found.');</script>");
@@ -191,7 +191,7 @@ namespace mallspacium_web.ShopOwner
                     saleDiscountGridView.DataSource = saleDiscountGridViewTable;
                     saleDiscountGridView.DataBind();
                 }
-                
+
             }
             else
             {

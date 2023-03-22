@@ -1,26 +1,12 @@
-﻿<%@ Page Async="true" UnobtrusiveValidationMode="none" Language="C#" AutoEventWireup="true" CodeBehind="ChangeProductImagePage.aspx.cs" Inherits="mallspacium_web.ShopOwner.ChangeImagePopUp" %>
+﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master"  AutoEventWireup="true" CodeBehind="ChangeProductImagePage.aspx.cs" Inherits="mallspacium_web.ShopOwner.ChangeImagePopUp" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <style>
-        #myDiv {
-            width: 300px; /* set a width for the div */
-            height: 200px; /* set a height for the div */
-            margin: auto; /* center the div horizontally */
-            text-align: center; /* center the content vertically */
-            display: flex; /* enable flexbox */
-            justify-content: center; /* center the content horizontally */
-            align-items: center; /* center the content vertically */
-        }
-    </style>
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-            <div id="myDiv">
-            <center> 
+    <!-- starts here-->
+
+    <div class="form">
+            <div class="col p-5">
                 <asp:Label ID="Label1" runat="server" Text="Changing the Image of the "></asp:Label> 
                 <asp:Label ID="nameLabel" runat="server" Text=""></asp:Label> <br /> <br /> <br />
 
@@ -30,8 +16,7 @@
 
                 <asp:Button ID="saveButton" runat="server" Text="SAVE" OnClick="saveButton_Click" />
 
-            </center>
+           
         </div>
-    </form>
-</body>
-</html>
+    </div>
+</asp:Content>

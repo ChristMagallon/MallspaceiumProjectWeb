@@ -82,9 +82,6 @@ namespace mallspacium_web.MasterForm2
 
         protected void OwnShopProductGridView_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            // Get the selected row
-            GridViewRow row = ownShopProductGridView.Rows[e.NewEditIndex];
-
             // Retrieve the document ID from the DataKeys collection
             string prodName= ownShopProductGridView.DataKeys[e.NewEditIndex].Value.ToString();
 
