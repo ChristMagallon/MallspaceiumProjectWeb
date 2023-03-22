@@ -7,119 +7,92 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mallspacium_web.form
+namespace mallspacium_web.Shopper
 {
 
 
-    public partial class LoginPage
+    public partial class WebForm2
     {
 
         /// <summary>
-        /// form1 control.
+        /// BasicSubscriptionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label BasicSubscriptionLabel;
 
         /// <summary>
-        /// EmailTextBox control.
+        /// BasicSubPriceLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
+        protected global::System.Web.UI.WebControls.Label BasicSubPriceLabel;
 
         /// <summary>
-        /// EmailRequiredFieldValidator control.
+        /// BasicSubButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.Button BasicSubButton;
 
         /// <summary>
-        /// EmailRegularExpressionValidator control.
+        /// AdvancedSubscriptionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailRegularExpressionValidator;
+        protected global::System.Web.UI.WebControls.Label AdvancedSubscriptionLabel;
 
         /// <summary>
-        /// ErrorEmailAddressLabel control.
+        /// AdvancedSubPriceLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorEmailAddressLabel;
+        protected global::System.Web.UI.WebControls.Label AdvancedSubPriceLabel;
 
         /// <summary>
-        /// PasswordTextBox control.
+        /// AdvanceSubButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
+        protected global::System.Web.UI.WebControls.Button AdvanceSubButton;
 
         /// <summary>
-        /// PasswordRequiredFieldValidator control.
+        /// PremiumSubscriptionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.Label PremiumSubscriptionLabel;
 
         /// <summary>
-        /// SigninButton control.
+        /// PremiumSubPriceLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SigninButton;
+        protected global::System.Web.UI.WebControls.Label PremiumSubPriceLabel;
 
         /// <summary>
-        /// Label1 control.
+        /// PremiumSubButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// ShopperRegisterLinkButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ShopperRegisterLinkButton;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// ShopOwnerLinkButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ShopOwnerLinkButton;
+        protected global::System.Web.UI.WebControls.Button PremiumSubButton;
     }
 }

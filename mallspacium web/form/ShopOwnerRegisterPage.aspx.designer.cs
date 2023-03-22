@@ -78,6 +78,15 @@ namespace mallspacium_web.form
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
+        /// ErrorShopNameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorShopNameLabel;
+
+        /// <summary>
         /// ShopDescriptionTextBox control.
         /// </summary>
         /// <remarks>
@@ -139,6 +148,15 @@ namespace mallspacium_web.form
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+
+        /// <summary>
+        /// ErrorPhoneNumberLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorPhoneNumberLabel;
 
         /// <summary>
         /// AddressTextBox control.

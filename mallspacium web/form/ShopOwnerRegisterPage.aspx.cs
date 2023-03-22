@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -33,71 +35,9 @@ namespace mallspacium_web.form
             Response.Redirect("~/form/LoginPage.aspx", false);
         }
 
-        public async void signupUser()
-        {
-            String email = EmailTextBox.Text;
-
-            // Create a new collection reference
-            DocumentReference documentRef = db.Collection("Users").Document(email);
-
-            //Create an instance of Bitmap from the uploaded file using the FileUpload control
-            Bitmap image = new Bitmap(ImageFileUpload.PostedFile.InputStream);
-            MemoryStream stream = new MemoryStream();
-            image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] bytes = stream.ToArray();
-
-            //Convert the Bitmap image to a Base64 string
-            string base64String = Convert.ToBase64String(bytes);
-
-            // Set the data for the new document
-            Dictionary<string, object> data = new Dictionary<string, object>
-            {
-                {"firstName", FirstNameTextBox.Text},
-                {"lastName", LastNameTextBox.Text},
-                {"shopName", ShopNameTextBox.Text},
-                {"shopDescription", ShopDescriptionTextBox.Text},
-                {"imageFile", base64String},
-                {"email", EmailTextBox.Text},
-                {"phoneNumber", PhoneNumberTextBox.Text},
-                {"address", AddressTextBox.Text},
-                {"password", PasswordTextBox.Text},
-                {"confirmPassword", ConfirmPasswordTextBox.Text},
-                {"userRole", user_role}
-            };
-
-            // Set the data in the Firestore document
-            await documentRef.SetAsync(data);
-            collectionNotif();
-
-            // Message Box
-            Response.Write("<script>alert('Successfully registered');</script>");
-            Response.Buffer = true;
-            Response.Redirect("~/form/LoginPage.aspx", false);
-            clearInputs();
-        }
-
-        public async void collectionNotif()
-        {
-            String email = EmailTextBox.Text;
-
-            // Create a new collection reference
-            DocumentReference documentRef = db.Collection("Users").Document(email).Collection("Notification").Document("notif");
-
-            // Set the data for the new document
-            Dictionary<string, object> data = new Dictionary<string, object>
-            {
-                {"notifyUser", "null"}
-            };
-
-            // Set the data in the Firestore document
-            await documentRef.SetAsync(data);
-        }
-
         public async void validateInput()
         {
             Boolean checker = true;
-            // Define the regular expression pattern
-            /*string pattern = @"^\+63\s(9\d{2})\s\d{3}\s\d{4}$";*/
 
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
@@ -115,20 +55,107 @@ namespace mallspacium_web.form
                 }
             }
 
-            /*if (Convert.ToInt32(PhoneNumberTextBox.Text) > 11)
+            // Query the Firestore collection for a specific shop name
+            CollectionReference usersRef2 = db.Collection("Users");
+            Query query2 = usersRef2.WhereEqualTo("shopName", ShopNameTextBox.Text);
+            QuerySnapshot snapshot2 = await query2.GetSnapshotAsync();
+
+            // Iterate over the results to find the if the shop name is already taken
+            foreach (DocumentSnapshot document2 in snapshot2.Documents)
             {
-                Response.Write("<script>alert('Invalid phone number!');</script>");
-                checker = false;
-            }*/
-            /*if (PhoneNumberTextBox.Text != pattern)
+                if (document2.Exists)
+                {
+                    // Do something with the registered document
+                    ErrorShopNameLabel.Text = "Shop name is already taken!";
+                    checker = false;
+                }
+                else
+                {
+                    ErrorShopNameLabel.Text = "";
+                }
+            }
+
+            // Validate a Philippine phone number with no spaces
+            bool isValidPhoneNumber = System.Text.RegularExpressions.Regex.IsMatch(PhoneNumberTextBox.Text, @"^\+63\d{10}$");
+            if (!isValidPhoneNumber)
             {
-                Response.Write("<script>alert('Invalid phone number!');</script>");
+                ErrorPhoneNumberLabel.Text = "Invalid phone number!";
                 checker = false;
-            }*/
+            }
+            else
+            {
+                ErrorPhoneNumberLabel.Text = "";
+            }
+
+            // If the input values are valid proceed to complete registration
             if (checker == true)
             {
                 signupUser();
             }
+        }
+
+        public async void signupUser()
+        {
+            String email = EmailTextBox.Text;
+            String shopImage = "";
+
+            // Capitalize first letter of each word in a string
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            TextInfo ti = cultureInfo.TextInfo;
+
+            // Create a new collection reference
+            DocumentReference documentRef = db.Collection("Users").Document(email);
+
+            //Create an instance of Bitmap from the uploaded file using the FileUpload control
+            Bitmap image = new Bitmap(ImageFileUpload.PostedFile.InputStream);
+            MemoryStream stream = new MemoryStream();
+            image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            byte[] bytes = stream.ToArray();
+
+            //Convert the Bitmap image to a Base64 string
+            string base64String = Convert.ToBase64String(bytes);
+
+            // Set the data for the new document
+            Dictionary<string, object> data = new Dictionary<string, object>
+            {
+                {"firstName", ti.ToTitleCase(FirstNameTextBox.Text)},
+                {"lastName", ti.ToTitleCase(LastNameTextBox.Text)},
+                {"shopImage", shopImage},
+                {"shopName", ShopNameTextBox.Text},
+                {"shopDescription", ti.ToTitleCase(ShopDescriptionTextBox.Text)},
+                {"imageFile", base64String},
+                {"email", EmailTextBox.Text},
+                {"phoneNumber", PhoneNumberTextBox.Text},
+                {"address", ti.ToTitleCase(AddressTextBox.Text)},
+                {"password", PasswordTextBox.Text},
+                {"confirmPassword", ConfirmPasswordTextBox.Text},
+                {"userRole", user_role}
+            };
+
+            // Set the data in the Firestore document
+            await documentRef.SetAsync(data);
+            collectionNotif();
+            clearInputs();
+
+            string loginPageUrl = ResolveUrl("~/form/LoginPage.aspx");
+            Response.Write("<script>alert('Successfully Registered'); window.location='" + loginPageUrl + "';</script>");
+        }
+
+        public async void collectionNotif()
+        {
+            String email = EmailTextBox.Text;
+
+            // Create a new collection reference
+            DocumentReference documentRef = db.Collection("Users").Document(email).Collection("Notification").Document("notif");
+
+            // Set the data for the new document
+            Dictionary<string, object> data = new Dictionary<string, object>
+            {
+                {"notifyUser", "null"}
+            };
+
+            // Set the data in the Firestore document
+            await documentRef.SetAsync(data);
         }
 
         // Clear all the data inputted

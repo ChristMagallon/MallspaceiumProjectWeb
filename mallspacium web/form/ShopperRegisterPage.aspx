@@ -40,18 +40,21 @@
                 <div class="mb-3">
                       <label for="gender" class="form-label">Gender:</label>
                       <br />
-                      <asp:DropDownList ID="GenderDropDownList" runat="server">
-                          <asp:ListItem Value="0">--Select a Gender--</asp:ListItem>
-                          <asp:ListItem Value="1">Male</asp:ListItem>
-                          <asp:ListItem Value="2">Female</asp:ListItem>
-                          <asp:ListItem Value="3">Others</asp:ListItem>
+                      <asp:DropDownList ID="GenderDropDownList" runat="server" ValidationGroup="Validate">
+                          <asp:ListItem Value="">--Select a Gender--</asp:ListItem>
+                          <asp:ListItem Value="Male">Male</asp:ListItem>
+                          <asp:ListItem Value="Female">Female</asp:ListItem>
+                          <asp:ListItem Value="Others">Others</asp:ListItem>
                       </asp:DropDownList>
+                      <br />
+                      <asp:RequiredFieldValidator ID="GenderRequiredFieldValidator" runat="server" ControlToValidate="GenderDropDownList" InitialValue="" ErrorMessage="Please select a gender*" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-3">
                       <label for="phoneNumber" class="form-label">Phone Number:</label>
                       <asp:TextBox ID="PhoneNumberTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Phone Number" AutoCompleteType="Disabled" TextMode="Phone" ValidationGroup="Validate"></asp:TextBox>
-                      <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="PhoneNumberTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="PhoneNumberTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate" Display="Dynamic"></asp:RequiredFieldValidator>
+                      <asp:Label ID="ErrorPhoneNumberLabel" runat="server" ForeColor="Red"></asp:Label>
                 </div>
 
                 <div class="mb-3">
@@ -65,12 +68,14 @@
                       <asp:TextBox ID="EmailTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email" ValidationGroup="Validate"></asp:TextBox>
                       <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="EmailTextBox" Display="Dynamic" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                       <asp:RegularExpressionValidator ID="EmailRegularExpressionValidator" runat="server" ControlToValidate="EmailTextBox" Display="Dynamic" ErrorMessage="Invalid email address!" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Validate"></asp:RegularExpressionValidator>
+                      <asp:Label ID="ErrorEmailAddressLabel" runat="server" ForeColor="Red"></asp:Label>
                 </div>
 
                 <div class="mb-3">
                       <label for="username" class="form-label">Username:</label>
                       <asp:TextBox ID="UsernameTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Username" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
-                      <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="UsernameTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="UsernameTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate" Display="Dynamic"></asp:RequiredFieldValidator>
+                      <asp:Label ID="ErrorUsernameLabel" runat="server" ForeColor="Red"></asp:Label>
                 </div>
 
                 <div class="mb-3">
@@ -92,7 +97,7 @@
                 <asp:Button ID="SignupButton" runat="server" class="btn btn-primary" Text="Sign Up" OnClick="SignupButton_Click" ValidationGroup="Validate" />
                 <br />
                 <br />
-                <asp:LinkButton ID="LoginLinkButton" runat="server" OnClick="LoginLinkButton_Click">Already have an account?</asp:LinkButton>
+                <asp:LinkButton ID="LoginLinkButton" runat="server" OnClick="LoginLinkButton_Click" ForeColor="#0066FF">already have an account?</asp:LinkButton>
             </div>
         </div>  
     </form>

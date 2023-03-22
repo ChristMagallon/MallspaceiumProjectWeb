@@ -87,6 +87,15 @@ namespace mallspacium_web.form
         protected global::System.Web.UI.WebControls.DropDownList GenderDropDownList;
 
         /// <summary>
+        /// GenderRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator GenderRequiredFieldValidator;
+
+        /// <summary>
         /// PhoneNumberTextBox control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace mallspacium_web.form
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+
+        /// <summary>
+        /// ErrorPhoneNumberLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorPhoneNumberLabel;
 
         /// <summary>
         /// AddressTextBox control.
@@ -150,6 +168,15 @@ namespace mallspacium_web.form
         protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailRegularExpressionValidator;
 
         /// <summary>
+        /// ErrorEmailAddressLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorEmailAddressLabel;
+
+        /// <summary>
         /// UsernameTextBox control.
         /// </summary>
         /// <remarks>
@@ -166,6 +193,15 @@ namespace mallspacium_web.form
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+
+        /// <summary>
+        /// ErrorUsernameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorUsernameLabel;
 
         /// <summary>
         /// PasswordTextBox control.

@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\Accessibility.dll</HintPath>
+    </Reference>
     <Reference Include="FireSharp, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FireSharp.1.1.0\lib\net45\FireSharp.dll</HintPath>
     </Reference>
@@ -155,7 +158,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -201,6 +206,8 @@
     <Content Include="ShopOwner\AllShopProductsPage.aspx" />
     <Content Include="ShopOwner\Style.css" />
     <Content Include="ShopOwner\ProfileSetting.aspx" />
+    <Content Include="ShopOwner\SubscriptionPage.aspx" />
+    <Content Include="Shopper\HomePage.aspx" />
     <Content Include="Shopper\MyWishlistPage.aspx" />
     <Content Include="Shopper\PopularShopsPage.aspx" />
     <Content Include="Shopper\SalesAndDiscountsPage.aspx" />
@@ -208,9 +215,10 @@
     <Content Include="Shopper\NotificationPage.aspx" />
     <Content Include="Shopper\ProfilePage.aspx" />
     <Content Include="MasterForm\Style.css" />
-    <Content Include="Shopper\SalesAndDiscountsPageDetails.aspx" />
+    <Content Include="Shopper\Site1.Master" />
     <Content Include="Shopper\Style.css" />
     <Content Include="Shopper\ProfileSettings.aspx" />
+    <Content Include="Shopper\SubscriptionPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="MasterForm\ManageUserForm.aspx" />
     <Content Include="MasterForm\ManageSubscriptionForm.aspx" />
@@ -402,6 +410,13 @@
     <Compile Include="ShopOwner\ProfileSetting.aspx.designer.cs">
       <DependentUpon>ProfileSetting.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ShopOwner\SubscriptionPage.aspx.cs">
+      <DependentUpon>SubscriptionPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\SubscriptionPage.aspx.designer.cs">
+      <DependentUpon>SubscriptionPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Shopper\MyWishlistPage.aspx.cs">
       <DependentUpon>MyWishlistPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -409,19 +424,12 @@
     <Compile Include="Shopper\MyWishlistPage.aspx.designer.cs">
       <DependentUpon>MyWishlistPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Shopper\SalesAndDiscountsPageDetails.aspx.cs">
-      <DependentUpon>SalesAndDiscountsPageDetails.aspx</DependentUpon>
+    <Compile Include="Shopper\HomePage.aspx.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Shopper\SalesAndDiscountsPageDetails.aspx.designer.cs">
-      <DependentUpon>SalesAndDiscountsPageDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Shopper\Site1.Master.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shopper\Site1.Master.designer.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
+    <Compile Include="Shopper\HomePage.aspx.designer.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shopper\PopularShopsPage.aspx.cs">
       <DependentUpon>PopularShopsPage.aspx</DependentUpon>
@@ -508,13 +516,26 @@
     <Compile Include="Shopper\ProfileSettings.aspx.designer.cs">
       <DependentUpon>ProfileSettings.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Shopper\Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Shopper\SubscriptionPage.aspx.cs">
+      <DependentUpon>SubscriptionPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\SubscriptionPage.aspx.designer.cs">
+      <DependentUpon>SubscriptionPage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="mallspaceium.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ShopOwner\Site2.Master" />
-    <Content Include="Shopper\Site1.Master" />
     <None Include="packages.config" />
     <Content Include="MasterForm\Site1.Master" />
     <None Include="Web.Debug.config">

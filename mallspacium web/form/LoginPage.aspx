@@ -24,6 +24,7 @@
                       <asp:TextBox ID="EmailTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email" ValidationGroup="Validate"></asp:TextBox>
                       <asp:RequiredFieldValidator ID="EmailRequiredFieldValidator" runat="server" ControlToValidate="EmailTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate" Display="Dynamic"></asp:RequiredFieldValidator>
                       <asp:RegularExpressionValidator ID="EmailRegularExpressionValidator" runat="server" ControlToValidate="EmailTextBox" Display="Dynamic" ErrorMessage="Invalid email address!" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Validate"></asp:RegularExpressionValidator>
+                      <asp:Label ID="ErrorEmailAddressLabel" runat="server" ForeColor="Red"></asp:Label>
                 </div>
 
                 <div class="mb-3">
@@ -36,6 +37,12 @@
 
             <div class="mb-3">
                 <asp:Button ID="SigninButton" runat="server" type="submit" class="btn btn-primary" Text="Sign In" OnClick="SignupButton_Click" ValidationGroup="Validate"/>
+                <br />
+                <br />
+                <asp:Label ID="Label1" runat="server" Text="don't have an account?"></asp:Label>
+&nbsp;<asp:LinkButton ID="ShopperRegisterLinkButton" runat="server" ForeColor="#0066FF" OnClick="ShopperRegisterLinkButton_Click" ValidationGroup="None">Shopper</asp:LinkButton>
+&nbsp;<asp:Label ID="Label2" runat="server" Text="or"></asp:Label>
+&nbsp;<asp:LinkButton ID="ShopOwnerLinkButton" runat="server" ForeColor="#0066FF" OnClick="ShopOwnerRegisterLinkButton_Click" ValidationGroup="None">Shop Owner</asp:LinkButton>
             </div>
         </div>  
     </form>
