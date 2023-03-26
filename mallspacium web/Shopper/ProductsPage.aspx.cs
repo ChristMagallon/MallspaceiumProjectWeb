@@ -33,8 +33,6 @@ namespace mallspacium_web.MasterForm3
             productGridViewTable.Columns.Add("prodName", typeof(string));
             productGridViewTable.Columns.Add("prodImage", typeof(byte[]));
             productGridViewTable.Columns.Add("prodDesc", typeof(string));
-            productGridViewTable.Columns.Add("prodPrice", typeof(string));
-            productGridViewTable.Columns.Add("prodTag", typeof(string));
             productGridViewTable.Columns.Add("prodShopName", typeof(string));
 
             // Iterate through the documents and populate the DataTable
@@ -52,8 +50,6 @@ namespace mallspacium_web.MasterForm3
                     string base64String = productDoc.GetValue<string>("prodImage");
                     byte[] productImage = Convert.FromBase64String(base64String);
                     string productDescription = productDoc.GetValue<string>("prodDesc");
-                    string productPrice = productDoc.GetValue<string>("prodPrice");
-                    string productTag = productDoc.GetValue<string>("prodTag");
                     string productShopName = productDoc.GetValue<string>("prodShopName");
 
                     DataRow dataRow = productGridViewTable.NewRow();
@@ -61,8 +57,6 @@ namespace mallspacium_web.MasterForm3
                     dataRow["prodName"] = productName;
                     dataRow["prodImage"] = productImage;
                     dataRow["prodDesc"] = productDescription;
-                    dataRow["prodPrice"] = productPrice;
-                    dataRow["prodTag"] = productTag;
                     dataRow["prodShopName"] = productShopName;
 
                     productGridViewTable.Rows.Add(dataRow);
@@ -88,82 +82,25 @@ namespace mallspacium_web.MasterForm3
                     imageControl.Height = 100; // set the height of the image
                 }
             }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(productGridView, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to view more details.";
+            }
         }
 
-        protected async void productGridView_SelectedIndexChanged(object sender, EventArgs e)
+        protected void productGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Get the selected prodName value from the productGridView
-            GridViewRow row = productGridView.SelectedRow;
-            if (row != null)
-            {
-                string prodName = row.Cells[0].Text;
-                string prodShopName = row.Cells[5].Text;
+            // Get the index of the selected row
+            int selectedIndex = productGridView.SelectedIndex;
 
-                // Query the Users collection to get the User document that contains the Product collection
-                Query query = database.Collection("Users").WhereEqualTo("shopName", prodShopName);
-                QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
+            // Get the value of the shopName column from the DataKeys collection
+            string prodShopName = productGridView.DataKeys[selectedIndex].Values["prodShopName"].ToString();
+            string prodName = productGridView.DataKeys[selectedIndex].Values["prodName"].ToString();
 
-                // Get the first document from the query result (assuming there's only one matching document)
-                DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
-                if (userDoc != null)
-                {
-                    // Get the Product collection from the User document
-                    CollectionReference productsRef = userDoc.Reference.Collection("Product");
-
-                    // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
-                    Query productQuery = productsRef.WhereEqualTo("prodName", prodName);
-                    QuerySnapshot productQuerySnapshot = await productQuery.GetSnapshotAsync();
-
-                    // Get the first document from the query result (assuming there's only one matching document)
-                    DocumentSnapshot productDoc = productQuerySnapshot.Documents.FirstOrDefault();
-                    if (productDoc != null)
-                    {
-                        // Get the product details from the document data
-                        string productName = productDoc.GetValue<string>("prodName");
-                        string productImage = productDoc.GetValue<string>("prodImage");
-                        string productDescription = productDoc.GetValue<string>("prodDesc");
-                        string productPrice = productDoc.GetValue<string>("prodPrice");
-                        string productTag = productDoc.GetValue<string>("prodTag");
-                        string productShopName = productDoc.GetValue<string>("prodShopName");
-
-                        // Save the product details to the Wishlist collection in Firestore
-                        // You can use the AddAsync method to add a new document to a collection
-                        DocumentReference wishlistRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Wishlist").Document(prodName);
-                        Dictionary<string, object> wishlistData = new Dictionary<string, object>()
-                    {
-                        { "prodName", productName },
-                        { "prodImage", productImage },
-                        { "prodDesc", productDescription },
-                        { "prodPrice", productPrice },
-                        { "prodTag", productTag },
-                        { "prodShopName", productShopName },
-                        };
-
-                        try
-                        {
-                            await wishlistRef.SetAsync(wishlistData);
-                            Response.Write("<script>alert('Successfully Added Product to the Wishlist!');</script>");
-                        }
-                        catch (Exception)
-                        {
-                            Response.Write("<script>alert('Error Adding to the Wishlist.');</script>");
-                        }
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Error: Product Not Found.');</script>");
-                    }
-
-                }
-                else
-                {
-                    Response.Write("<script>alert('Error: User Not Found.');</script>");
-                }
-            }
-            else
-            {
-                Response.Write("<script>alert('Error: No product selected.');</script>");
-            }
+            // Redirect to another page and pass the shopName as a query string parameter
+            Response.Redirect("ProductDetailsPage.aspx?prodShopName=" + prodShopName + "&prodName=" + prodName, false);
         }
     }
 }

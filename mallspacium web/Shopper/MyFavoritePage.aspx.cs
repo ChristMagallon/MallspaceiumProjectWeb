@@ -106,18 +106,18 @@ namespace mallspacium_web.Shopper
             if (userDoc != null)
             {
                 // Get the Favorite collection from the User document
-                CollectionReference wishlistRef = userDoc.Reference.Collection("Favorite");
+                CollectionReference favoriteRef = userDoc.Reference.Collection("Favorite");
 
                 // Query the Favorite collection to get the shops with the given document ID (which is equal to the selected shopName value)
-                Query wishlistQuery = wishlistRef.WhereEqualTo("shopName", shopName);
-                QuerySnapshot wishlistQuerySnapshot = await wishlistQuery.GetSnapshotAsync();
+                Query favoriteQuery = favoriteRef.WhereEqualTo("shopName", shopName);
+                QuerySnapshot favoriteQuerySnapshot = await favoriteQuery.GetSnapshotAsync();
 
                 // Get the first document from the query result (assuming there's only one matching document)
-                DocumentSnapshot wishlistDoc = wishlistQuerySnapshot.Documents.FirstOrDefault();
-                if (wishlistDoc != null)
+                DocumentSnapshot favoriteDoc = favoriteQuerySnapshot.Documents.FirstOrDefault();
+                if (favoriteDoc != null)
                 {
                     // Delete the document from the Wishlist collection
-                    await wishlistDoc.Reference.DeleteAsync();
+                    await favoriteDoc.Reference.DeleteAsync();
 
                     // Refresh the GridView
                     Response.Write("<script>alert('Successfully Removed Shop to the Favorite List!');</script>");

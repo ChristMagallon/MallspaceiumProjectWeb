@@ -211,6 +211,7 @@
     <Content Include="Shopper\MyWishlistPage.aspx" />
     <Content Include="Shopper\PopularShopDetailsPage.aspx" />
     <Content Include="Shopper\PopularShopsPage.aspx" />
+    <Content Include="Shopper\ProductDetailsPage.aspx" />
     <Content Include="Shopper\SalesAndDiscountsPage.aspx" />
     <Content Include="Shopper\ProductsPage.aspx" />
     <Content Include="Shopper\NotificationPage.aspx" />
@@ -445,6 +446,13 @@
     </Compile>
     <Compile Include="Shopper\PopularShopsPage.aspx.designer.cs">
       <DependentUpon>PopularShopsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shopper\ProductDetailsPage.aspx.cs">
+      <DependentUpon>ProductDetailsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\ProductDetailsPage.aspx.designer.cs">
+      <DependentUpon>ProductDetailsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shopper\SalesAndDiscountsPage.aspx.cs">
       <DependentUpon>SalesAndDiscountsPage.aspx</DependentUpon>

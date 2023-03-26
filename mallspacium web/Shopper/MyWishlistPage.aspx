@@ -6,7 +6,7 @@
 
 <!-- start here -->
     <div class="form">
-            <asp:GridView ID="myWishlistGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnRowDataBound="myWishlistGridView_RowDataBound" OnSelectedIndexChanged="myWishlistGridView_SelectedIndexChanged" >
+            <asp:GridView ID="myWishlistGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnRowDataBound="myWishlistGridView_RowDataBound" OnRowDeleting="myWishlistGridView_RowDeleting" >
                 <Columns>
 
                     <asp:BoundField HeaderText="Name" DataField="prodName" SortExpression="prodName" ></asp:BoundField>
@@ -19,8 +19,7 @@
                     <asp:BoundField HeaderText="Price" DataField="prodPrice" SortExpression="prodPrice"></asp:BoundField>
                     <asp:BoundField HeaderText="Tag" DataField="prodTag" SortExpression="prodTag"></asp:BoundField>
                     <asp:BoundField HeaderText="Shop" DataField="prodShopName" SortExpression="prodShopName"></asp:BoundField>
-                    
-                    <asp:CommandField ShowSelectButton="True" SelectText="Remove" ValidationGroup="RemoveButton"/>
+                   <asp:CommandField DeleteText="Remove" ValidationGroup="RemoveButton" ShowDeleteButton="True" ButtonType="Button" />
                     
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />

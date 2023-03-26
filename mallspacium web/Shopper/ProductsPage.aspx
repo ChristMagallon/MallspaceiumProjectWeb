@@ -20,7 +20,7 @@
         <div class="form">
 
 
-            <asp:GridView ID="productGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="prodName" OnRowDataBound="productGridView_RowDataBound" OnSelectedIndexChanged="productGridView_SelectedIndexChanged"  >
+            <asp:GridView ID="productGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="prodName, prodShopName" OnRowDataBound="productGridView_RowDataBound" OnSelectedIndexChanged="productGridView_SelectedIndexChanged"  >
                 <Columns>
 
                     <asp:BoundField HeaderText="Name" DataField="prodName" SortExpression="prodName" ></asp:BoundField>
@@ -30,10 +30,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="Description" DataField="prodDesc" SortExpression="prodDesc"></asp:BoundField>
-                    <asp:BoundField HeaderText="Price" DataField="prodPrice" SortExpression="prodPrice"></asp:BoundField>
-                    <asp:BoundField HeaderText="Tag" DataField="prodTag" SortExpression="prodTag"></asp:BoundField>
                     <asp:BoundField HeaderText="Shop" DataField="prodShopName" SortExpression="prodShopName"></asp:BoundField>
-                    <asp:CommandField ShowSelectButton="True" SelectText="+ Wishlist" ValidationGroup="WishlistButton"  />
 
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />

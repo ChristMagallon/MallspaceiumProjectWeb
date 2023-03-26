@@ -84,24 +84,26 @@ namespace mallspacium_web.Shopper
             }
         }
 
-        /*protected async void myWishlistGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected async void myWishlistGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            // Get the prodName and prodShopName values of the selected row
-            string prodName = myWishlistGridView.DataKeys[e.RowIndex].Values["prodName"].ToString();
-            
+            // Get the row being deleted
+            GridViewRow row = myWishlistGridView.Rows[e.RowIndex];
 
-            // Query the Users collection to get the User document that contains the Product collection
-            Query query = database.Collection("Users").WhereEqualTo("email", "test@gmail.com");
+            // Get shop name from the row
+            string prodName = row.Cells[0].Text;
+
+            // Query the Users collection to get the User document that contains the Wishlist collection
+            Query query = database.Collection("Users").WhereEqualTo("email", (string)Application.Get("usernameget"));
             QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
 
             // Get the first document from the query result (assuming there's only one matching document)
             DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
             if (userDoc != null)
             {
-                // Get the Product collection from the User document
+                // Get the Wishlist collection from the User document
                 CollectionReference wishlistRef = userDoc.Reference.Collection("Wishlist");
 
-                // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
+                // Query the Wishlist collection to get the product with the given document ID (which is equal to the selected shopName value)
                 Query wishlistQuery = wishlistRef.WhereEqualTo("prodName", prodName);
                 QuerySnapshot wishlistQuerySnapshot = await wishlistQuery.GetSnapshotAsync();
 
@@ -109,75 +111,21 @@ namespace mallspacium_web.Shopper
                 DocumentSnapshot wishlistDoc = wishlistQuerySnapshot.Documents.FirstOrDefault();
                 if (wishlistDoc != null)
                 {
-                    // Delete the document from the Product collection
+                    // Delete the document from the Wishlist collection
                     await wishlistDoc.Reference.DeleteAsync();
 
-                    // Remove the row from the GridView
-                    myWishlistGridView.DeleteRow(e.RowIndex);
-
-                    // Show a success message
-                    Response.Write("<script>alert('Product deleted successfully.');</script>");
+                    // Refresh the GridView
+                    Response.Write("<script>alert('Successfully Removed Shop to the Wishlist!');</script>");
+                    getWishlist();
                 }
                 else
                 {
-                    Response.Write("<script>alert('Error: Product not found.');</script>");
+                    Response.Write("<script>alert('Error Removing to the Wishlist.');</script>");
                 }
             }
             else
             {
-                Response.Write("<script>alert('Error: User not found.');</script>");
-            }
-        }*/
-
-        protected async void myWishlistGridView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GridViewRow row = myWishlistGridView.SelectedRow;
-            if (row != null)
-            {
-                // Get shop name from the selected row
-                string prodName = row.Cells[0].Text;
-
-                // Query the Users collection to get the User document that contains the Wishlist collection
-                Query query = database.Collection("Users").WhereEqualTo("email", (string)Application.Get("usernameget"));
-                QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
-
-                // Get the first document from the query result (assuming there's only one matching document)
-                DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
-                if (userDoc != null)
-                {
-                    // Get the Product collection from the User document
-                    CollectionReference wishlistRef = userDoc.Reference.Collection("Wishlist");
-
-                    // Query the Product collection to get the product with the given document ID (which is equal to the selected prodName value)
-                    Query wishlistQuery = wishlistRef.WhereEqualTo("prodName", prodName);
-                    QuerySnapshot wishlistQuerySnapshot = await wishlistQuery.GetSnapshotAsync();
-
-                    // Get the first document from the query result (assuming there's only one matching document)
-                    DocumentSnapshot wishlistDoc = wishlistQuerySnapshot.Documents.FirstOrDefault();
-                    if (wishlistDoc != null)
-                    {
-                        // Delete the document from the Wishlist collection
-                        await wishlistDoc.Reference.DeleteAsync();
-                        
-                        // Refresh the GridView
-                        Response.Write("<script>alert('Successfully Removed Product to the Wishlist!');</script>");
-                        getWishlist();
-
-
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Error Removing to the Wishlist.');</script>");
-                    }
-                }
-                else
-                {
-                    Response.Write("<script>alert('Error: User Not Found.');</script>");
-                }
-            }
-            else
-            {
-                Response.Write("<script>alert('Error: No product selected.');</script>");
+                Response.Write("<script>alert('Error: User Not Found.');</script>");
             }
         }
     }
