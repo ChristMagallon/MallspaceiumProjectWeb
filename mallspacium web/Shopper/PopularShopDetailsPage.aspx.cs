@@ -264,7 +264,10 @@ namespace mallspacium_web.Shopper
             {
                 { "shopName", nameLabel.Text},
                 { "image", imageHiddenField.Value},
-                { "shopDescription", descriptionLabel.Text}
+                { "shopDescription", descriptionLabel.Text},
+                { "email", emailLabel.Text },
+                { "phoneNumber", phoneNumberLabel.Text },
+                { "address", addressLabel.Text}
             };
 
             await doc.SetAsync(data1);

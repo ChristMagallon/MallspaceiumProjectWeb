@@ -6,7 +6,7 @@
 
      <!-- starts here-->
         <div class="form">
-            <asp:GridView ID="myFavoriteGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" DataKeyNames="shopName" AutoGenerateColumns="False" OnSelectedIndexChanged="myFavoriteGridView_SelectedIndexChanged" OnRowDataBound="myFavoriteGridView_RowDataBound" OnRowDeleting="myFavoriteGridView_RowDeleting" >
+            <asp:GridView ID="myFavoriteGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" DataKeyNames="shopName" AutoGenerateColumns="False" OnRowDataBound="myFavoriteGridView_RowDataBound" OnRowDeleting="myFavoriteGridView_RowDeleting" >
                 <Columns>
                     <asp:BoundField HeaderText="Shop Name" DataField="shopName" SortExpression="shopName" ></asp:BoundField>
                     <asp:TemplateField HeaderText="Image">
@@ -15,7 +15,10 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="Description" DataField="shopDescription" SortExpression="shopDescription"></asp:BoundField>
-                    <asp:CommandField DeleteText="Remove" ValidationGroup="RemoveButton" ShowDeleteButton="True"/>
+                    <asp:BoundField HeaderText="Email" DataField="email" SortExpression="email"></asp:BoundField>
+                    <asp:BoundField HeaderText="Phone Number" DataField="phoneNumber" SortExpression="phoneNumber"></asp:BoundField>
+                    <asp:BoundField HeaderText="Address" DataField="address" SortExpression="address"></asp:BoundField>
+                    <asp:CommandField DeleteText="Remove" ValidationGroup="RemoveButton" ShowDeleteButton="True" ButtonType="Button" />
                     
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />

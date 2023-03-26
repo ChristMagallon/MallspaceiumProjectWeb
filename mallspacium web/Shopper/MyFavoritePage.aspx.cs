@@ -33,6 +33,9 @@ namespace mallspacium_web.Shopper
             favoriteGridViewTable.Columns.Add("shopName", typeof(string));
             favoriteGridViewTable.Columns.Add("image", typeof(byte[]));
             favoriteGridViewTable.Columns.Add("shopDescription", typeof(string));
+            favoriteGridViewTable.Columns.Add("email", typeof(string));
+            favoriteGridViewTable.Columns.Add("phoneNumber", typeof(string));
+            favoriteGridViewTable.Columns.Add("address", typeof(string));
 
             // Loop through each document in the Wishlist collection and add its data to the products list
             foreach (DocumentSnapshot doc in querySnapshot.Documents)
@@ -41,12 +44,18 @@ namespace mallspacium_web.Shopper
                 string base64String = doc.GetValue<string>("image");
                 byte[] image = Convert.FromBase64String(base64String);
                 string description = doc.GetValue<string>("shopDescription");
+                string email = doc.GetValue<string>("email");
+                string phoneNumber = doc.GetValue<string>("phoneNumber");
+                string address = doc.GetValue<string>("address");
 
                 DataRow dataRow = favoriteGridViewTable.NewRow();
 
                 dataRow["shopName"] = name;
                 dataRow["image"] = image;
                 dataRow["shopDescription"] = description;
+                dataRow["email"] = email;
+                dataRow["phoneNumber"] = phoneNumber;
+                dataRow["address"] = address;
 
                 favoriteGridViewTable.Rows.Add(dataRow);
             }
@@ -54,65 +63,6 @@ namespace mallspacium_web.Shopper
             // Bind the products list to the GridView
             myFavoriteGridView.DataSource = favoriteGridViewTable;
             myFavoriteGridView.DataBind();
-        }
-
-        protected void myFavoriteGridView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*GridViewRow row = myFavoriteGridView.SelectedRow;
-            if (row != null)
-            {
-                // Get shop name from the selected row
-                string shopName = row.Cells[0].Text;
-
-                // Query the Users collection to get the User document that contains the Favorite collection
-                Query query = database.Collection("Users").WhereEqualTo("email", (string)Application.Get("usernameget"));
-                QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
-
-                // Get the first document from the query result (assuming there's only one matching document)
-                DocumentSnapshot userDoc = querySnapshot.Documents.FirstOrDefault();
-                if (userDoc != null)
-                {
-                    // Get the Product collection from the User document
-                    CollectionReference wishlistRef = userDoc.Reference.Collection("Favorite");
-
-                    // Query the Favorite collection to get the shops with the given document ID (which is equal to the selected shopName value)
-                    Query wishlistQuery = wishlistRef.WhereEqualTo("shopName", shopName);
-                    QuerySnapshot wishlistQuerySnapshot = await wishlistQuery.GetSnapshotAsync();
-
-                    // Get the first document from the query result (assuming there's only one matching document)
-                    DocumentSnapshot wishlistDoc = wishlistQuerySnapshot.Documents.FirstOrDefault();
-                    if (wishlistDoc != null)
-                    {
-                        // Delete the document from the Wishlist collection
-                        await wishlistDoc.Reference.DeleteAsync();
-
-                        // Refresh the GridView
-                        Response.Write("<script>alert('Successfully Removed Shop to the Wishlist!');</script>");
-                        getFavorite();
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Error Removing to the Wishlist.');</script>");
-                    }
-                }
-                else
-                {
-                    Response.Write("<script>alert('Error: User Not Found.');</script>");
-                }
-            }
-            else
-            {
-                Response.Write("<script>alert('Error: No product selected.');</script>");
-            }*/
-
-            // Get the index of the selected row
-            int selectedIndex = myFavoriteGridView.SelectedIndex;
-
-            // Get the value of the shopName column from the DataKeys collection
-            string shopName = myFavoriteGridView.DataKeys[selectedIndex].Values["shopName"].ToString();
-
-            // Redirect to another page and pass the shopName as a query string parameter
-            Response.Redirect("PopularShopDetailsPage.aspx?shopName=" + shopName, false);
         }
 
         protected void myFavoriteGridView_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -137,13 +87,6 @@ namespace mallspacium_web.Shopper
                     imageControl.Height = 100; // set the height of the image
                 }
             }
-
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(myFavoriteGridView, "Select$" + e.Row.RowIndex);
-                e.Row.ToolTip = "Click to view more details.";
-            }
-
         }
 
         protected async void myFavoriteGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -177,12 +120,12 @@ namespace mallspacium_web.Shopper
                     await wishlistDoc.Reference.DeleteAsync();
 
                     // Refresh the GridView
-                    Response.Write("<script>alert('Successfully Removed Shop to the Wishlist!');</script>");
+                    Response.Write("<script>alert('Successfully Removed Shop to the Favorite List!');</script>");
                     getFavorite();
                 }
                 else
                 {
-                    Response.Write("<script>alert('Error Removing to the Wishlist.');</script>");
+                    Response.Write("<script>alert('Error Removing to the Favorite List.');</script>");
                 }
             }
             else
