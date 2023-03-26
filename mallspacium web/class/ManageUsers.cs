@@ -17,7 +17,7 @@ namespace mallspacium_web
         [FirestoreProperty]
         public string id { get; set; }
         [FirestoreProperty]
-        public string accountType { get; set; }
+        public string userRole { get; set; }
         [FirestoreProperty]
         public Timestamp dateCreated { get; set; }
         [FirestoreProperty]
@@ -25,6 +25,6 @@ namespace mallspacium_web
         [FirestoreProperty]
         public string address { get; set; }
         [FirestoreProperty]
-        public Int64 contactNumber { get; set; }
+        public string phoneNumber { get; set; }
     }
 }

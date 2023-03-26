@@ -21,15 +21,15 @@
     </div>
         <div class="form">
 
-         <asp:GridView ID="manageUsersGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged1">
+         <asp:GridView ID="manageUsersGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged1">
              <Columns>
             <asp:BoundField HeaderText="Username" DataField="username" SortExpression="username"/>
             <asp:BoundField HeaderText="ID" DataField="id" SortExpression="id"/>
-            <asp:BoundField HeaderText="Account Type" DataField="accountType" SortExpression="accountType"/>
+            <asp:BoundField HeaderText="Account Type" DataField="userRole" SortExpression="accountType"/>
             <asp:BoundField HeaderText="Date Created" DataField="dateCreated" SortExpression="dateCreated"/>    
             <asp:BoundField HeaderText="Email" DataField="email" SortExpression ="email"/>
             <asp:BoundField HeaderText="Address" DataField="address" SortExpression="address"/>
-            <asp:BoundField HeaderText="Contact Number" DataField="contactNumber" SortExpression="contactNumber"/>
+            <asp:BoundField HeaderText="Contact Number" DataField="phoneNumber" SortExpression="contactNumber"/>
             <asp:CommandField ShowSelectButton="True" SelectText="View Data" ValidationGroup="ViewDataButton"  />
 
 

@@ -14,5 +14,9 @@ namespace mallspacium_web
            profileName.Text = (string)Application.Get("usernameget");
           
         }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/form/LoginPage.aspx", false);
+        }
     }
 }

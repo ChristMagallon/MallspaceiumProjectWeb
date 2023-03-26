@@ -20,8 +20,36 @@ namespace mallspacium_web.AdditionalForm
 
             database = FirestoreDb.Create("mallspaceium");
 
-            IfUserBanned("username");
-            showData();
+            checkbannedaccount();
+           
+        }
+        public async void checkbannedaccount()
+        {
+            Boolean choice = false;
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = database.Collection("AdminBannedUsers");
+            Query query = usersRef.WhereEqualTo("email", Request.QueryString["email"].ToString());
+
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Iterate over the results to find the user
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (document.Exists)
+                {
+                    // Do something with the user document
+                    showData();
+                    banButton.Enabled = false;
+                    unbanButton.Enabled = true;
+                    choice = true;
+                }
+            }
+            if (choice == false)
+            {
+                showData();
+                banButton.Enabled = true;
+                unbanButton.Enabled = false;
+            }
         }
 
         public void showData()
@@ -32,8 +60,7 @@ namespace mallspacium_web.AdditionalForm
             dateCreatedLabel.Text = Request.QueryString["dateCreated"].ToString();
             emailLabel.Text = Request.QueryString["email"].ToString();
             addressLabel.Text = Request.QueryString["address"].ToString();
-            contactNumberLabel.Text = Request.QueryString["contactNumber"].ToString();
-            
+            contactNumberLabel.Text = Request.QueryString["contactNumber"].ToString();  
         }
 
         protected void banButton_Click(object sender, EventArgs e)
@@ -82,19 +109,6 @@ namespace mallspacium_web.AdditionalForm
             string message = "Successfully Unbanned User";
             string script = "alert('" + message + "')";
             ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
-        }
-
-        // Check if a user is banned
-        protected async Task<bool> IfUserBanned(string username)
-        {
-            var bannedUsersCollection = database.Collection("AdminBannedUsers");
-            var userDocRef = bannedUsersCollection.Document(usernameLabel.Text);
-            
-            var snapshot = await userDocRef.GetSnapshotAsync();
-            banButton.Enabled = false;
-            return snapshot.Exists;
-            //Button banButton = (Button)FindControl("banButton");
-
         }
     }
 }
