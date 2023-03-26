@@ -32,7 +32,8 @@ namespace mallspacium_web.ShopOwner
         public async void AddProduct()
         {
             //auto generated unique id
-            Guid id = Guid.NewGuid();
+            Guid id = Guid.NewGuid(
+                );
             string uniqueId = id.ToString();
 
             //Create an instance of Bitmap from the uploaded file using the FileUpload control

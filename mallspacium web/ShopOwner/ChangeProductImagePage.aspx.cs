@@ -87,8 +87,6 @@ namespace mallspacium_web.ShopOwner
                 // Redirect to another page after a delay
                 string url = "MyShopProductDetailsPage.aspx?prodName=" + prodName;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 1000);", true);
-
-
             }
         }
     }

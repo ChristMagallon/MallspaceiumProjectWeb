@@ -207,6 +207,7 @@
     <Content Include="ShopOwner\Style.css" />
     <Content Include="ShopOwner\ProfileSetting.aspx" />
     <Content Include="ShopOwner\SubscriptionPage.aspx" />
+    <Content Include="Shopper\MyFavoritePage.aspx" />
     <Content Include="Shopper\MyWishlistPage.aspx" />
     <Content Include="Shopper\PopularShopDetailsPage.aspx" />
     <Content Include="Shopper\PopularShopsPage.aspx" />
@@ -416,6 +417,13 @@
     </Compile>
     <Compile Include="ShopOwner\SubscriptionPage.aspx.designer.cs">
       <DependentUpon>SubscriptionPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shopper\MyFavoritePage.aspx.cs">
+      <DependentUpon>MyFavoritePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\MyFavoritePage.aspx.designer.cs">
+      <DependentUpon>MyFavoritePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shopper\MyWishlistPage.aspx.cs">
       <DependentUpon>MyWishlistPage.aspx</DependentUpon>

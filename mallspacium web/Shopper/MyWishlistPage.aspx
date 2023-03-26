@@ -6,8 +6,6 @@
 
 <!-- start here -->
     <div class="form">
-
-
             <asp:GridView ID="myWishlistGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnRowDataBound="myWishlistGridView_RowDataBound" OnSelectedIndexChanged="myWishlistGridView_SelectedIndexChanged" >
                 <Columns>
 

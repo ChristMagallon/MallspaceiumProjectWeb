@@ -19,7 +19,11 @@ namespace mallspacium_web.MasterForm3
 
             database = FirestoreDb.Create("mallspaceium");
 
-            getShops();
+            
+            if (!IsPostBack)
+            {
+                getShops();
+            }
         }
 
         public void getShops()

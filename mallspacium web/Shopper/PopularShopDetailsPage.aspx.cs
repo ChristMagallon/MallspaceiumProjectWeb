@@ -78,6 +78,7 @@ namespace mallspacium_web.Shopper
                     emailLabel.Text = email;
                     phoneNumberLabel.Text = phoneNumber;
                     addressLabel.Text = address;
+                    imageHiddenField.Value = image;
                 }
             }
         }
@@ -180,7 +181,6 @@ namespace mallspacium_web.Shopper
 
                     DataRow dataRow = saleDiscountGridViewTable.NewRow();
 
-                    //dataRow["shopName"] = shopName;
                     dataRow["saleDiscShopName"] = saleDiscShopName;
                     dataRow["saleDiscImage"] = saleDiscImage;
                     dataRow["saleDiscDesc"] = saleDiscDesc;
@@ -250,6 +250,25 @@ namespace mallspacium_web.Shopper
 
             // Redirect to another page and pass the shopName as a query string parameter
             Response.Redirect("AllSaleDiscountDetailsPage.aspx?saleDiscShopName=" + saleDiscShopName + "&saleDiscDesc=" + saleDiscDesc);
+        }
+
+        protected void addFavoriteButton_Click(object sender, EventArgs e)
+        {
+            AddFavorite();
+        }
+
+        public async void AddFavorite()
+        {
+            DocumentReference doc = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Favorite").Document(nameLabel.Text);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "shopName", nameLabel.Text},
+                { "image", imageHiddenField.Value},
+                { "shopDescription", descriptionLabel.Text}
+            };
+
+            await doc.SetAsync(data1);
+            Response.Write("<script>alert('Successfully Added Shop to the Favorites.');</script>");
         }
     }
 }

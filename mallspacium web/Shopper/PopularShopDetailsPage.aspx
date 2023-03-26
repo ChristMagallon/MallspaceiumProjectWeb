@@ -7,7 +7,8 @@
     <div class="form">
         <asp:Label ID="label" runat="server" Text=""></asp:Label>  <br/> <br /> 
 
-        <asp:Image ID="Image1" runat="server" /> <br />
+        <asp:Image ID="Image1" runat="server" />
+        <asp:HiddenField ID="imageHiddenField" runat="server" /> <br />
 
         <asp:Label ID="Label7" runat="server" Text="Shop Name: "></asp:Label> 
         <asp:Label ID="nameLabel" runat="server" Text=""></asp:Label> <br/> 
@@ -23,6 +24,8 @@
 
         <asp:Label ID="Label5" runat="server" Text="Address: "></asp:Label> 
         <asp:Label ID="addressLabel" runat="server" Text=""></asp:Label> <br/> <br /> 
+
+        <asp:Button ID="addFavoriteButton" runat="server" Text="ADD TO FAVORITE" OnClick="addFavoriteButton_Click" />
    </div>
 
     <div class="form">
