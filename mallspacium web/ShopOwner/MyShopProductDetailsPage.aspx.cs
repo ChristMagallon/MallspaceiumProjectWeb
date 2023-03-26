@@ -22,10 +22,14 @@ namespace mallspacium_web.ShopOwner
 
             database = FirestoreDb.Create("mallspaceium");
 
+            
             idTextbox.Enabled = false;
             nameTextbox.Enabled = false;
             shopNameTextbox.Enabled = false;
-            retrieveData();
+
+            if (!IsPostBack){
+                retrieveData();
+            }
         }
 
         protected void updateButton_Click(object sender, EventArgs e)

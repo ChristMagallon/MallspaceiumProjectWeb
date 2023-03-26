@@ -7,93 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mallspacium_web.ShopOwner
+namespace mallspacium_web.Shopper
 {
 
 
-    public partial class OwnProductDetailsPage
+    public partial class PopularShopDetailsPage
     {
 
         /// <summary>
-        /// Label4 control.
+        /// label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-
-        /// <summary>
-        /// hfProductName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfProductName;
-
-        /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-
-        /// <summary>
-        /// idTextbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox idTextbox;
-
-        /// <summary>
-        /// IdTextBoxRequiredFieldValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator IdTextBoxRequiredFieldValidator;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// nameTextbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nameTextbox;
-
-        /// <summary>
-        /// nameTextBoxValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator nameTextBoxValidator;
-
-        /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label label;
 
         /// <summary>
         /// Image1 control.
@@ -114,13 +42,40 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.HiddenField imageHiddenField;
 
         /// <summary>
-        /// changeButton control.
+        /// Label7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button changeButton;
+        protected global::System.Web.UI.WebControls.Label Label7;
+
+        /// <summary>
+        /// nameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nameLabel;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// descriptionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label descriptionLabel;
 
         /// <summary>
         /// Label2 control.
@@ -132,22 +87,13 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// descriptionTextbox control.
+        /// emailLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox descriptionTextbox;
-
-        /// <summary>
-        /// descriptionTextboxValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator descriptionTextboxValidator;
+        protected global::System.Web.UI.WebControls.Label emailLabel;
 
         /// <summary>
         /// Label3 control.
@@ -159,22 +105,13 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// priceTextbox control.
+        /// phoneNumberLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox priceTextbox;
-
-        /// <summary>
-        /// priceTextboxValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator priceTextboxValidator;
+        protected global::System.Web.UI.WebControls.Label phoneNumberLabel;
 
         /// <summary>
         /// Label5 control.
@@ -186,57 +123,66 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// tagTextbox control.
+        /// addressLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tagTextbox;
+        protected global::System.Web.UI.WebControls.Label addressLabel;
 
         /// <summary>
-        /// tagTextboxValidator control.
+        /// addFavoriteButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator tagTextboxValidator;
+        protected global::System.Web.UI.WebControls.Button addFavoriteButton;
 
         /// <summary>
-        /// Label8 control.
+        /// productSearchTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.TextBox productSearchTextBox;
 
         /// <summary>
-        /// shopNameTextbox control.
+        /// productGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox shopNameTextbox;
+        protected global::System.Web.UI.WebControls.GridView productGridView;
 
         /// <summary>
-        /// shopNameRequiredFieldValidator control.
+        /// productErrorMessageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator shopNameRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.Label productErrorMessageLabel;
 
         /// <summary>
-        /// updateButton control.
+        /// saleDiscountGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button updateButton;
+        protected global::System.Web.UI.WebControls.GridView saleDiscountGridView;
+
+        /// <summary>
+        /// salesDiscountErrorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label salesDiscountErrorMessageLabel;
     }
 }

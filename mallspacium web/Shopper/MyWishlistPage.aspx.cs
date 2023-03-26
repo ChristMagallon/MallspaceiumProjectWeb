@@ -25,8 +25,7 @@ namespace mallspacium_web.Shopper
         public async void getWishlist()
         {
             // Query the Firestore database to get the Wishlist collection for the current user
-            string userId = "test@gmail.com"; // replace with the actual user ID
-            CollectionReference wishlistRef = database.Collection("Users").Document(userId).Collection("Wishlist");
+            CollectionReference wishlistRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Wishlist");
             QuerySnapshot querySnapshot = await wishlistRef.GetSnapshotAsync();
 
             // Create a DataTable to store the retrieved data
@@ -82,23 +81,7 @@ namespace mallspacium_web.Shopper
                     imageControl.Width = 100; // set the width of the image
                     imageControl.Height = 100; // set the height of the image
                 }
-
-                
             }
-            
-            /*if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                byte[] imageBytes = (byte[])DataBinder.Eval(e.Row.DataItem, "prodImage");
-                System.Web.UI.WebControls.Image imageControl = (System.Web.UI.WebControls.Image)e.Row.FindControl("Image1");
-
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    // Convert the byte array to a base64-encoded string and bind it to the Image control
-                    imageControl.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
-                    imageControl.Width = 100; // set the width of the image
-                    imageControl.Height = 100; // set the height of the image
-                }
-            }*/
         }
 
         /*protected async void myWishlistGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -155,7 +138,7 @@ namespace mallspacium_web.Shopper
                 string prodName = row.Cells[0].Text;
 
                 // Query the Users collection to get the User document that contains the Wishlist collection
-                Query query = database.Collection("Users").WhereEqualTo("email", "test@gmail.com");
+                Query query = database.Collection("Users").WhereEqualTo("email", (string)Application.Get("usernameget"));
                 QuerySnapshot querySnapshot = await query.GetSnapshotAsync();
 
                 // Get the first document from the query result (assuming there's only one matching document)

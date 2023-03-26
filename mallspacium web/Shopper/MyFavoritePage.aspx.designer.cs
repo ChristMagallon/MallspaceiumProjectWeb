@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mallspacium_web.MasterForm3
+namespace mallspacium_web.Shopper
 {
 
 
-    public partial class WebForm3
+    public partial class MyFavoritePage
     {
 
         /// <summary>
-        /// saleDiscountGridView control.
+        /// myFavoriteGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView saleDiscountGridView;
+        protected global::System.Web.UI.WebControls.GridView myFavoriteGridView;
     }
 }
