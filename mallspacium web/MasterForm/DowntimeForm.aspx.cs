@@ -37,10 +37,37 @@ namespace mallspacium_web
             {"message", messageTextbox.Text}
 };
             await downtimeRef.SetAsync(downtimeData);
-            Response.Write("<script>alert('Successfully saved setting downtime');</script>");
-
+           
             DocumentSnapshot snapshot = await downtimeRef.GetSnapshotAsync();
 
+
+
+            Query usersQue = database.Collection("Users");
+            QuerySnapshot snap = await usersQue.GetSnapshotAsync();
+
+            foreach (DocumentSnapshot docsnap in snap.Documents)
+            {
+                ManageUsers user = docsnap.ConvertTo<ManageUsers>();
+
+                if (docsnap.Exists)
+                {
+                    // Specify the name of the document using a variable or a string literal
+                    string documentName = "server down: " + datetime2;
+                    DocumentReference downtimeRef1 = database.Collection("Users").Document(docsnap.Id).Collection("Notification").Document(documentName);
+
+                    Dictionary<string, object> downtimeData1 = new Dictionary<string, object>
+                        {
+                            {"startTime", startDateTextbox.Text},
+                            {"endTime", endDateTextbox.Text},
+                            {"message", messageTextbox.Text}
+                        };
+                    await downtimeRef1.SetAsync(downtimeData1);
+
+                    DocumentSnapshot snapshot1 = await downtimeRef1.GetSnapshotAsync();
+                }
+            }
+
+            Response.Write("<script>alert('Successfully saved setting downtime');</script>");
             /*if (snapshot.Exists)
             {
                 DateTime startTime = snapshot.GetValue<DateTime>("startTime");

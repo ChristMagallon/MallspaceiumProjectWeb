@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ShopOwner/Site2.Master" AutoEventWireup="true" CodeBehind="SubscriptionPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ShopOwner/Site2.Master" Async="true" AutoEventWireup="true" CodeBehind="SubscriptionPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.WebForm2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

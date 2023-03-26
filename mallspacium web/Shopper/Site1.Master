@@ -78,7 +78,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                     <li><a class="dropdown-item" href="SubscriptionPage.aspx">Subscription</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="ProfileSettings.aspx">Settings</a></li>
                                 <li><a class="dropdown-item"><asp:Button ID="Button1" runat="server" Text="Logout" OnClick="Button1_Click" class="logoutbtn" /></a></li>
                             </ul>
                         </li>

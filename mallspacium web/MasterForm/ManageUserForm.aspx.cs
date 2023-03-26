@@ -22,7 +22,7 @@ namespace mallspacium_web
 
             database = FirestoreDb.Create("mallspaceium");
 
-            getManageUsers("AdminManageUsers");
+            getManageUsers("Users");
         }
 
      
@@ -31,11 +31,11 @@ namespace mallspacium_web
            DataTable usersGridViewTable = new DataTable();
            usersGridViewTable.Columns.Add("username");
            usersGridViewTable.Columns.Add("id");
-           usersGridViewTable.Columns.Add("accountType");
+           usersGridViewTable.Columns.Add("userRole");
            usersGridViewTable.Columns.Add("dateCreated");
            usersGridViewTable.Columns.Add("email");
            usersGridViewTable.Columns.Add("address");
-           usersGridViewTable.Columns.Add("contactNumber");
+           usersGridViewTable.Columns.Add("phoneNumber");
 
 
            Query usersQue = database.Collection(AdminManageUsers);
@@ -47,8 +47,8 @@ namespace mallspacium_web
 
                if (docsnap.Exists)
                {              
-                   usersGridViewTable.Rows.Add(user.username, user.id, user.accountType, user.dateCreated, user.email, user.address, 
-                       user.contactNumber);                  
+                   usersGridViewTable.Rows.Add(user.username, user.id, user.userRole, user.dateCreated, user.email, user.address, 
+                       user.phoneNumber);                  
                }
            }
            manageUsersGridView.DataSource = usersGridViewTable;

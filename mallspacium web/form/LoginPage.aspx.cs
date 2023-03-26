@@ -22,7 +22,7 @@ namespace mallspacium_web.form
 
         protected void SignupButton_Click(object sender, EventArgs e)
         {
-            getUserStatus();
+            getAdmin();
         }
 
         public async void getLoginDetails()
@@ -66,14 +66,35 @@ namespace mallspacium_web.form
                         {
                             Application.Set("usernameget", EmailTextBox.Text);
                             Response.Redirect("~/ShopOwner/PopularShopsPage.aspx", false);
-                        }
-                        else if (localUserRole == "Admin")
-                        {
-                            Application.Set("usernameget", EmailTextBox.Text);
-                            Response.Redirect("~/MasterForm/ManageUserForm.aspx", false);
-                        }
+                        }                
                     }
                 }
+            }
+        }
+
+        public async void getAdmin()
+        {
+            Boolean choice = false;
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = db.Collection("AdminAccount");
+            Query query = usersRef.WhereEqualTo("adminEmail", EmailTextBox.Text).WhereEqualTo("adminPassword", PasswordTextBox.Text);
+
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Iterate over the results to find the user
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (document.Exists)
+                {
+                    // Do something with the user document
+                    Application.Set("usernameget", EmailTextBox.Text);
+                    Response.Redirect("~/MasterForm/ManageUserForm.aspx", false);
+                    choice = true;
+                }
+            }
+            if (choice == false)
+            {
+                getUserStatus();
             }
         }
 
