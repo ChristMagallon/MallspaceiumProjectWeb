@@ -67,7 +67,7 @@ namespace mallspacium_web.form
                 Application.Set("emailGet", EmailTextBox.Text);
 
                 // Alert message
-                Response.Redirect("~/form/ConfirmResetPage.aspx", false);
+                Response.Redirect("~/form/ConfirmationResetPage.aspx", false);
                 /*string confirmResetPageUrl = ResolveUrl("~/form/ConfirmResetPage.aspx");
                 Response.Write("<script>alert('Check your email and view the confirmation code we've sent for you.'); window.location='" + confirmResetPageUrl + "';</script>");*/
             }

@@ -98,7 +98,7 @@ namespace mallspacium_web.form
 
             if (!userExists)
             {
-                ErrorEmailAddressLabel.Text = "It seems like the email you entered doesn't match our records.";
+                ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
             }
 
             if (choice == false)
