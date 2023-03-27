@@ -132,5 +132,10 @@ namespace mallspacium_web.form
         {
             Response.Redirect("~/form/ShopOwnerRegisterPage.aspx");
         }
+
+        protected void ForgotPasswordLinkButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/form/ForgotPasswordPage.aspx");
+        }
     }
 }
