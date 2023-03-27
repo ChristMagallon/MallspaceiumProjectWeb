@@ -60,7 +60,6 @@ namespace mallspacium_web.form
             }
             else
             {
-                ErrorConfirmationCodeLabel.Text = "";
                 Response.Redirect("~/form/ResetPasswordPage.aspx");
             }
         }

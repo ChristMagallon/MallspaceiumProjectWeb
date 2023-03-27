@@ -35,8 +35,7 @@ namespace mallspacium_web.form
             if (usersQuery.Documents.Count == 0)
             {
                 // Email address not found
-                string script = "alert('It seems like the email you entered doesn't match our records.');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+                ErrorEmailAddressLabel.Text = "It seems like the email you entered doesn't match our records.";
             }
             else
             {
