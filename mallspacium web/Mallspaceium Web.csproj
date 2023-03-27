@@ -179,10 +179,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="form\ConfirmationResetPasswordPage.aspx" />
-    <Content Include="form\ForgotPasswordPage.aspx" />
     <Content Include="form\LoginPage.aspx" />
-    <Content Include="form\ResetPasswordPage.aspx" />
     <Content Include="form\ShopOwnerRegisterPage.aspx" />
     <Content Include="form\ShopperRegisterPage.aspx" />
     <Content Include="Images\no-image.jpg" />
@@ -238,33 +235,12 @@
     <Compile Include="class\ManageSubscription.cs" />
     <Compile Include="class\Product.cs" />
     <Compile Include="class\Report.cs" />
-    <Compile Include="form\ConfirmationResetPasswordPage.aspx.cs">
-      <DependentUpon>ConfirmationResetPasswordPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="form\ConfirmationResetPasswordPage.aspx.designer.cs">
-      <DependentUpon>ConfirmationResetPasswordPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="form\ForgotPasswordPage.aspx.cs">
-      <DependentUpon>ForgotPasswordPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="form\ForgotPasswordPage.aspx.designer.cs">
-      <DependentUpon>ForgotPasswordPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="form\LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="form\LoginPage.aspx.designer.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="form\ResetPasswordPage.aspx.cs">
-      <DependentUpon>ResetPasswordPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="form\ResetPasswordPage.aspx.designer.cs">
-      <DependentUpon>ResetPasswordPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="form\ShopOwnerRegisterPage.aspx.cs">
       <DependentUpon>ShopOwnerRegisterPage.aspx</DependentUpon>

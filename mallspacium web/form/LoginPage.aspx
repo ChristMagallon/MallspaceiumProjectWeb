@@ -15,37 +15,34 @@
           <h1>Mallspaceium</h1>
           <p>Improving the Quality of Shopping Experience</p> 
         </div>
+  
         <div class="container" style="width: 40%; height: 40%;">
             <div class="row">              
+
                 <div class="mb-3">
                       <label for="email" class="form-label">Email:</label>
-                      <asp:TextBox ID="EmailTextBox" runat="server" type="text" class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:TextBox ID="EmailTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" TextMode="Email" ValidationGroup="Validate"></asp:TextBox>
                       <asp:RequiredFieldValidator ID="EmailRequiredFieldValidator" runat="server" ControlToValidate="EmailTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate" Display="Dynamic"></asp:RequiredFieldValidator>
                       <asp:RegularExpressionValidator ID="EmailRegularExpressionValidator" runat="server" ControlToValidate="EmailTextBox" Display="Dynamic" ErrorMessage="Invalid email address!" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="Validate"></asp:RegularExpressionValidator>
                       <asp:Label ID="ErrorEmailAddressLabel" runat="server" ForeColor="Red"></asp:Label>
                 </div>
+
                 <div class="mb-3">
                       <label for="password" class="form-label">Password:</label>
                       <asp:TextBox ID="PasswordTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Password" AutoCompleteType="Disabled" TextMode="Password" ValidationGroup="Validate"></asp:TextBox>
                       <asp:RequiredFieldValidator ID="PasswordRequiredFieldValidator" runat="server" ControlToValidate="PasswordTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>
+
             </div>
+
             <div class="mb-3">
-                <div style="text-align: right;">
-                    <asp:LinkButton ID="ForgotPasswordLinkButton" runat="server" ForeColor="#0066FF" OnClick="ForgotPasswordLinkButton_Click">forgot password?</asp:LinkButton>
-                    <br />
-                    <br />
-                </div>           
-                <div style="text-align: center;">
-                    <asp:Button ID="SigninButton" runat="server" type="submit" class="btn btn-primary" Text="Sign In" OnClick="SignupButton_Click" ValidationGroup="Validate" Width="100px"/>
-                    <br />
-                    <br />
-                    <br />
-                    <asp:Label ID="Label1" runat="server" Text="don't have an account?"></asp:Label>                
-                    &nbsp;<asp:LinkButton ID="ShopperRegisterLinkButton" runat="server" ForeColor="#0066FF" OnClick="ShopperRegisterLinkButton_Click" ValidationGroup="None">Shopper</asp:LinkButton>
-                    &nbsp;<asp:Label ID="Label2" runat="server" Text="or"></asp:Label>
-                    &nbsp;<asp:LinkButton ID="ShopOwnerLinkButton" runat="server" ForeColor="#0066FF" OnClick="ShopOwnerRegisterLinkButton_Click" ValidationGroup="None">Shop Owner</asp:LinkButton>
-                </div>           
+                <asp:Button ID="SigninButton" runat="server" type="submit" class="btn btn-primary" Text="Sign In" OnClick="SignupButton_Click" ValidationGroup="Validate"/>
+                <br />
+                <br />
+                <asp:Label ID="Label1" runat="server" Text="don't have an account?"></asp:Label>
+&nbsp;<asp:LinkButton ID="ShopperRegisterLinkButton" runat="server" ForeColor="#0066FF" OnClick="ShopperRegisterLinkButton_Click" ValidationGroup="None">Shopper</asp:LinkButton>
+&nbsp;<asp:Label ID="Label2" runat="server" Text="or"></asp:Label>
+&nbsp;<asp:LinkButton ID="ShopOwnerLinkButton" runat="server" ForeColor="#0066FF" OnClick="ShopOwnerRegisterLinkButton_Click" ValidationGroup="None">Shop Owner</asp:LinkButton>
             </div>
         </div>  
     </form>
