@@ -1,4 +1,4 @@
-﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="EditProfilePicturePage.aspx.cs" Inherits="mallspacium_web.ShopOwner.EditProfilePicturePage" %>
+﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="EditProfilePicturePage.aspx.cs" Inherits="mallspacium_web.Shopper.EditProfilePicturePage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -20,4 +20,3 @@
         </div>
     </div>
 </asp:Content>
-

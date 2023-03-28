@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Google.Cloud.Firestore;
 
-namespace mallspacium_web.ShopOwner
+namespace mallspacium_web.Shopper
 {
     public partial class EditProfilePage : System.Web.UI.Page
     {
@@ -21,22 +21,8 @@ namespace mallspacium_web.ShopOwner
 
             if (!IsPostBack)
             {
-                shopNameTextbox.Enabled = false;
-
                 getProfileDetails();
             }
-        }
-
-        protected void editImageButton_Click(object sender, EventArgs e)
-        {
-            // Open the second popup page
-            string url = "EditProfilePicturePage.aspx?";
-            Response.Redirect(url);
-        }
-
-        protected void updateButton_Click(object sender, EventArgs e)
-        {
-            update();
         }
 
         public async void getProfileDetails()
@@ -49,11 +35,11 @@ namespace mallspacium_web.ShopOwner
             if (snapshot.Exists)
             {
                 // Retrieve the data from the document
-                string image = snapshot.GetValue<string>("shopImage");
-                string shopName = snapshot.GetValue<string>("shopName");
+                string image = snapshot.GetValue<string>("shopperImage");
                 string firstName = snapshot.GetValue<string>("firstName");
                 string lastName = snapshot.GetValue<string>("lastName");
-                string desc = snapshot.GetValue<string>("shopDescription");
+                string birthday = snapshot.GetValue<string>("dob");
+                string gender = snapshot.GetValue<string>("gender");
                 string phoneNumber = snapshot.GetValue<string>("phoneNumber");
                 string address = snapshot.GetValue<string>("address");
 
@@ -76,14 +62,26 @@ namespace mallspacium_web.ShopOwner
 
                 // Display the data
                 imageHiddenField.Value = image;
-                shopNameTextbox.Text = shopName;
                 firstNameTextBox.Text = firstName;
                 lastNameTextBox.Text = lastName;
-                descriptionTextbox.Text = desc;
+                birthdayTextbox.Text = birthday;
+                genderDropDownList.SelectedValue = gender;
                 phoneNumberTextbox.Text = phoneNumber;
                 addressTextbox.Text = address;
-                
+
             }
+        }
+
+        protected void editImageButton_Click(object sender, EventArgs e)
+        {
+            // Redirect to another page
+            string url = "EditProfilePicturePage.aspx";
+            Response.Redirect(url);
+        }
+
+        protected void updateButton_Click(object sender, EventArgs e)
+        {
+            update();
         }
 
         public async void update()
@@ -93,15 +91,15 @@ namespace mallspacium_web.ShopOwner
             Dictionary<string, object> data = new Dictionary<string, object>
 {
                 {"shopImage", imageHiddenField.Value},
-                {"shopName", shopNameTextbox.Text},
                 {"firstName", firstNameTextBox.Text},
                 {"lastName", lastNameTextBox.Text},
-                {"shopDescription", descriptionTextbox.Text},
+                {"birthday", birthdayTextbox.Text},
+                {"gender", genderDropDownList.SelectedItem.Text},
                 {"phoneNumber", phoneNumberTextbox.Text},
                 {"address", addressTextbox.Text }
             };
 
-            if (shopNameRequiredFieldValidator.IsValid && firstNameRequiredFieldValidator.IsValid && lastNameRequiredFieldValidator.IsValid && descriptionRequiredFieldValidator.IsValid && phoneNumberRequiredFieldValidator.IsValid && addressRequiredFieldValidator.IsValid)
+            if (firstNameRequiredFieldValidator.IsValid && lastNameRequiredFieldValidator.IsValid && birthdayRequiredFieldValidator.IsValid && genderRequiredFieldValidator.IsValid  && phoneNumberRequiredFieldValidator.IsValid && addressRequiredFieldValidator.IsValid)
             {
 
                 try
@@ -113,7 +111,7 @@ namespace mallspacium_web.ShopOwner
 
                     // Redirect to another page after a delay
                     string url = "ProfilePage.aspx?";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 1000);", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
                 }
                 catch (Exception)
                 {
@@ -122,7 +120,7 @@ namespace mallspacium_web.ShopOwner
 
                     // Redirect to another page after a delay
                     string url = "ProfilePage.aspx?";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 1000);", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
                 }
             }
         }

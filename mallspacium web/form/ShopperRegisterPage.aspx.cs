@@ -99,6 +99,7 @@ namespace mallspacium_web.form
         public async void signupUser()
         {
             String email = EmailTextBox.Text;
+            string shopperImage = "";
 
             // Capitalize first letter of each word in a string
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
@@ -120,7 +121,8 @@ namespace mallspacium_web.form
                 {"username", UsernameTextBox.Text},
                 {"password", PasswordTextBox.Text},
                 {"confirmPassword", ConfirmPasswordTextBox.Text},
-                {"userRole", user_role}
+                {"userRole", user_role},
+                {"shopperImage", shopperImage}
             };
 
             // Set the data in the Firestore document

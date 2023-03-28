@@ -237,10 +237,8 @@ namespace mallspacium_web.MasterForm2
 
         protected void editProfileButton_Click(object sender, EventArgs e)
         {
-            string shopName = nameLabel.Text;
-
-            // Redirect to another page and pass the shopName as a query string parameter
-            Response.Redirect("EditProfilePage.aspx?shopName=" + shopName);
+            // Redirect to another page 
+            Response.Redirect("EditProfilePage.aspx");
         }
     }
 }

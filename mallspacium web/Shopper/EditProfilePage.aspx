@@ -1,4 +1,4 @@
-﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master"  AutoEventWireup="true" CodeBehind="EditProfilePage.aspx.cs" Inherits="mallspacium_web.ShopOwner.EditProfilePage" %>
+﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#" MasterPageFile="Site1.Master"  AutoEventWireup="true" CodeBehind="EditProfilePage.aspx.cs" Inherits="mallspacium_web.Shopper.EditProfilePage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -26,17 +26,22 @@
             ErrorMessage="*Required" 
             style="color: red"  /> <br/> 
 
-        <asp:Label ID="Label7" runat="server" Text="Shop Name: "></asp:Label> 
-        <asp:TextBox ID="shopNameTextbox" runat="server" Text="" AutoCompleteType="Disabled"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="shopNameRequiredFieldValidator" runat="server"
-            ControlToValidate="shopNameTextbox"
+        <asp:Label ID="Label7" runat="server" Text="Birthday: "></asp:Label> 
+        <asp:TextBox ID="birthdayTextbox" runat="server" Text="" type="text" TextMode="Date" AutoCompleteType="Disabled" ></asp:TextBox>
+        <asp:RequiredFieldValidator ID="birthdayRequiredFieldValidator" runat="server"
+            ControlToValidate="birthdayTextbox"
             ErrorMessage="*Required" 
             style="color: red"  /> <br/> 
 
-        <asp:Label ID="Label1" runat="server" Text="Description: "></asp:Label> 
-        <asp:TextBox ID="descriptionTextbox" runat="server" Text="" TextMode="MultiLine" AutoCompleteType="Disabled"></asp:TextBox> 
-        <asp:RequiredFieldValidator ID="descriptionRequiredFieldValidator" runat="server"
-            ControlToValidate="descriptionTextbox"
+        <asp:Label ID="Label1" runat="server" Text="Gender: "></asp:Label>
+        <asp:DropDownList ID="genderDropDownList" runat="server" ValidationGroup="Validate">
+            <asp:ListItem Value="">--Select a Gender--</asp:ListItem>
+            <asp:ListItem Value="Male">Male</asp:ListItem>
+            <asp:ListItem Value="Female">Female</asp:ListItem>
+            <asp:ListItem Value="Others">Others</asp:ListItem>
+        </asp:DropDownList> 
+        <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server"
+            ControlToValidate="genderDropDownList"
             ErrorMessage="*Required" 
             style="color: red"  /> <br/> 
 

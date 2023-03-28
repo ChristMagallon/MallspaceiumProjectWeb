@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mallspacium_web.ShopOwner
+namespace mallspacium_web.Shopper
 {
 
 
@@ -114,22 +114,22 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// shopNameTextbox control.
+        /// birthdayTextbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox shopNameTextbox;
+        protected global::System.Web.UI.WebControls.TextBox birthdayTextbox;
 
         /// <summary>
-        /// shopNameRequiredFieldValidator control.
+        /// birthdayRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator shopNameRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator birthdayRequiredFieldValidator;
 
         /// <summary>
         /// Label1 control.
@@ -141,22 +141,22 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// descriptionTextbox control.
+        /// genderDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox descriptionTextbox;
+        protected global::System.Web.UI.WebControls.DropDownList genderDropDownList;
 
         /// <summary>
-        /// descriptionRequiredFieldValidator control.
+        /// genderRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator descriptionRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator genderRequiredFieldValidator;
 
         /// <summary>
         /// Label3 control.
