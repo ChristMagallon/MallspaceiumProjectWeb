@@ -75,6 +75,8 @@ namespace mallspacium_web.form
         public async void getAdmin()
         {
             Boolean choice = false;
+            bool userExists = false;
+
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("AdminAccount");
             Query query = usersRef.WhereEqualTo("adminEmail", EmailTextBox.Text).WhereEqualTo("adminPassword", PasswordTextBox.Text);
@@ -90,8 +92,15 @@ namespace mallspacium_web.form
                     Application.Set("usernameget", EmailTextBox.Text);
                     Response.Redirect("~/MasterForm/ManageUserForm.aspx", false);
                     choice = true;
+                    userExists = true;
                 }
             }
+
+            if (!userExists)
+            {
+                ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
+            }
+
             if (choice == false)
             {
                 getUserStatus();
@@ -131,6 +140,11 @@ namespace mallspacium_web.form
         protected void ShopOwnerRegisterLinkButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/form/ShopOwnerRegisterPage.aspx");
+        }
+
+        protected void ForgotPasswordLinkButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/form/ForgotPasswordPage.aspx");
         }
     }
 }
