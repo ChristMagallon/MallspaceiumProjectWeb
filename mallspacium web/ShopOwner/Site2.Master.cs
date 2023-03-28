@@ -16,7 +16,7 @@ namespace mallspacium_web.MasterForm
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/form/LoginPage.aspx");
+            Response.Redirect("~/form/LoginPage.aspx", false);
         }
     }
 }

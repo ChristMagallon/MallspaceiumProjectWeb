@@ -39,7 +39,7 @@
             <div class="list-group list-group-flush my-3">
                 <a href="PopularShopsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Popular Shops</a>
-                <a href="AllSaleDiscountPage.aspx" cl   ass="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="AllSaleDiscountPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-chart-line me-2"></i>Sales and Discounts</a>
                 <a href="AllShopProductsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paperclip me-2"></i>Products</a>

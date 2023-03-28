@@ -132,8 +132,6 @@ namespace mallspacium_web.ShopOwner
             // Open the second popup page
             string url = "ChangeProductImagePage.aspx?prodName=" + prodName;
             Response.Redirect(url);
-            //string s = "window.open('" + url + "', 'popup_window', 'width=500,height=300,left=100,top=100,resizable=yes');";
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "popupScript", s, true);
         }
     }
 }

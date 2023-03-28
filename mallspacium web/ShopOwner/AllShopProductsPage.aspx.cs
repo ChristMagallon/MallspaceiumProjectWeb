@@ -37,8 +37,6 @@ namespace mallspacium_web.ShopOwner
             allShopProductGridViewTable.Columns.Add("prodName", typeof(string));
             allShopProductGridViewTable.Columns.Add("prodImage", typeof(byte[]));
             allShopProductGridViewTable.Columns.Add("prodDesc", typeof(string));
-            allShopProductGridViewTable.Columns.Add("prodPrice", typeof(string));
-            allShopProductGridViewTable.Columns.Add("prodTag", typeof(string));
             allShopProductGridViewTable.Columns.Add("prodShopName", typeof(string));
 
             // Iterate through the documents and populate the DataTable
@@ -58,8 +56,6 @@ namespace mallspacium_web.ShopOwner
                     string base64String = productDoc.GetValue<string>("prodImage");
                     byte[] productImage = Convert.FromBase64String(base64String);
                     string productDescription = productDoc.GetValue<string>("prodDesc");
-                    string productPrice = productDoc.GetValue<string>("prodPrice");
-                    string productTag = productDoc.GetValue<string>("prodTag");
                     string productShopName = productDoc.GetValue<string>("prodShopName");
 
                     DataRow dataRow = allShopProductGridViewTable.NewRow();
@@ -67,8 +63,6 @@ namespace mallspacium_web.ShopOwner
                     dataRow["prodName"] = productName;
                     dataRow["prodImage"] = productImage;
                     dataRow["prodDesc"] = productDescription;
-                    dataRow["prodPrice"] = productPrice;
-                    dataRow["prodTag"] = productTag;
                     dataRow["prodShopName"] = productShopName;
 
                     allShopProductGridViewTable.Rows.Add(dataRow);
@@ -94,6 +88,25 @@ namespace mallspacium_web.ShopOwner
                     imageControl.Height = 100; // set the height of the image
                 }
             }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(allShopProductGridView, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to view more details.";
+            }
+        }
+
+        protected void allShopProductGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the index of the selected row
+            int selectedIndex = allShopProductGridView.SelectedIndex;
+
+            // Get the value of the shopName column from the DataKeys collection
+            string prodShopName = allShopProductGridView.DataKeys[selectedIndex].Values["prodShopName"].ToString();
+            string prodName = allShopProductGridView.DataKeys[selectedIndex].Values["prodName"].ToString();
+
+            // Redirect to another page and pass the shopName as a query string parameter
+            Response.Redirect("AllProductDetailsPage.aspx?prodShopName=" + prodShopName + "&prodName=" + prodName, false);
         }
     }
 }

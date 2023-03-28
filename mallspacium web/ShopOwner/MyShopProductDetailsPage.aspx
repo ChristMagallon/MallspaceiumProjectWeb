@@ -26,7 +26,8 @@
             ErrorMessage="*Required" 
             style="color: red"  /> <br/> 
 
-        <asp:Label ID="Label6" runat="server" Text="Image: "></asp:Label> <asp:Image ID="Image1" runat="server" />
+        <asp:Label ID="Label6" runat="server" Text="Image: "></asp:Label> 
+        <asp:Image ID="Image1" runat="server" />
         <asp:HiddenField ID="imageHiddenField" runat="server" /> 
         <asp:Button ID="changeButton" runat="server" Text="CHANGE" OnClick="changeButton_Click" /> <br />
 

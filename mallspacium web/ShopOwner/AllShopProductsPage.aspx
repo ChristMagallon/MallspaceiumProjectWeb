@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="AllShopProductsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.ShopOwnProductsPage" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="AllShopProductsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.ShopOwnProductsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -23,7 +23,7 @@
         <div class="form">
 
 
-            <asp:GridView ID="allShopProductGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnRowDataBound="allShopProductGridView_RowDataBound">
+            <asp:GridView ID="allShopProductGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" DataKeyNames="prodName, prodShopName" AutoGenerateColumns="False" OnRowDataBound="allShopProductGridView_RowDataBound" OnSelectedIndexChanged="allShopProductGridView_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField HeaderText="Name" DataField="prodName" SortExpression="prodName" ></asp:BoundField>
                     <asp:TemplateField HeaderText="Image">
@@ -32,8 +32,6 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="Description" DataField="prodDesc" SortExpression="prodDesc"></asp:BoundField>
-                    <asp:BoundField HeaderText="Price" DataField="prodPrice" SortExpression="prodPrice"></asp:BoundField>
-                    <asp:BoundField HeaderText="Tag" DataField="prodTag" SortExpression="prodTag"></asp:BoundField>
                     <asp:BoundField HeaderText="Shop" DataField="prodShopName" SortExpression="prodShopName"></asp:BoundField>
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />
