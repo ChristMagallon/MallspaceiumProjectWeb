@@ -15,24 +15,6 @@ namespace mallspacium_web.MasterForm
     {
 
         /// <summary>
-        /// downtime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink downtime;
-
-        /// <summary>
-        /// adminAccount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink adminAccount;
-
-        /// <summary>
         /// searchTextBox control.
         /// </summary>
         /// <remarks>

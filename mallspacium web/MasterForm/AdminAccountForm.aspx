@@ -10,39 +10,38 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <!-- starts here-->
-    <div class="row">
-         <div class="container">
-             <center>  
-                    <asp:HyperLink ID="downtime" runat="server" NavigateUrl="~/MasterForm/DowntimeForm.aspx" Text="Downtime"></asp:HyperLink> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:HyperLink ID="adminAccount" runat="server" NavigateUrl="~/MasterForm/AdminAccountForm.aspx" Text="Admin Account"></asp:HyperLink>
-             </center>
-         </div>
+ <div class="container">
+  <div class="row mb-3">
+    <div class="col-md-6 text-center">
+      <a href="DowntimeForm.aspx" class="btn btn-primary btn-lg">Downtime</a>
     </div>
-
-        <div class="row">
-            <div class="container">
-            </div>
-        </div>
-        
-        <div class="form">
-            <div class="col p-5">
-                  
-                <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Username" aria-label="Search" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
-                <asp:Button ID="addButton" runat="server" Text="+CREATE NEW ACCOUNT" OnClick="addButton_Click"> </asp:Button>
-        </div>
+    <div class="col-md-6 text-center">
+      <a href="AdminAccountForm.aspx" class="btn btn-primary btn-lg">Admin Account</a>
     </div>
+  </div>
 
-        <div class="form">
-                 <asp:GridView ID="accountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="adminUsername" AutoGenerateEditButton="true" OnRowEditing="accountGridView_RowEditing" >
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <asp:TextBox ID="searchTextBox" runat="server" CssClass="form-control" type="search" placeholder="Search Username" aria-label="Search" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
+      </div>
+    </div>
+    <div class="col text-end">
+      <asp:Button ID="addButton" runat="server" CssClass="btn btn-primary" Text="+CREATE NEW ACCOUNT" OnClick="addButton_Click"></asp:Button>
+    </div>
+  </div>
+
+  <div class="form">
+            <asp:GridView ID="accountGridView" CssClass="table table-striped table-bordered table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="adminUsername" AutoGenerateEditButton="true" OnRowEditing="accountGridView_RowEditing" >
                 <Columns>
-                    <asp:BoundField HeaderText="Username" DataField="adminUsername" SortExpression="adminUsername" ></asp:BoundField>
-                    <asp:BoundField HeaderText="ID" DataField="adminId" SortExpression="adminId"></asp:BoundField>
-                    <asp:BoundField HeaderText="Email Address" DataField="adminEmail" SortExpression="adminEmail"></asp:BoundField>
-                    <asp:BoundField HeaderText="Phone Number" DataField="adminPhoneNumber" SortExpression="adminPhoneNumber"></asp:BoundField>
-                    <asp:BoundField HeaderText="Date Created" DataField="adminDateCreated" SortExpression="adminDateCreated"></asp:BoundField>
+                    <asp:BoundField HeaderText="Username" DataField="adminUsername" SortExpression="adminUsername"  ItemStyle-CssClass="text-center" ></asp:BoundField>
+                    <asp:BoundField HeaderText="ID" DataField="adminId" SortExpression="adminId"  ItemStyle-CssClass="text-center"></asp:BoundField>
+                    <asp:BoundField HeaderText="Email Address" DataField="adminEmail" SortExpression="adminEmail"  ItemStyle-CssClass="text-center"></asp:BoundField>
+                    <asp:BoundField HeaderText="Phone Number" DataField="adminPhoneNumber" SortExpression="adminPhoneNumber"  ItemStyle-CssClass="text-center"></asp:BoundField>
+                    <asp:BoundField HeaderText="Date Created" DataField="adminDateCreated" SortExpression="adminDateCreated"  ItemStyle-CssClass="text-center"></asp:BoundField>
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />
                      <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
@@ -54,8 +53,8 @@
                      <SortedDescendingCellStyle BackColor="#CAC9C9" />
                      <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
-            
-        </div>
-   
+  </div>
+</div>
+
 </asp:Content>
 
