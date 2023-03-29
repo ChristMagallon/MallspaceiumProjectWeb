@@ -4,52 +4,57 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+
     <div class="form">
+    <h3 class="mb-3">Add New Product</h3>
 
-       <asp:Label ID="Label4" runat="server" Text="Add New Product"></asp:Label>  <br/> <br /> 
+    <div class="form-group">
+        <label for="nameTextbox">Name:</label>
+        <asp:TextBox ID="nameTextbox" runat="server" CssClass="form-control" Text="" AutoCompleteType="Disabled"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="nameTextBoxValidator" runat="server" ControlToValidate="nameTextbox" ErrorMessage="*Required" 
+            CssClass="text-danger" />
+    </div>
 
-        <asp:Label ID="Label1" runat="server" Text="Name: "></asp:Label> 
-        <asp:Textbox ID="nameTextbox" runat="server" Text="" AutoCompleteType="Disabled"></asp:Textbox>
-        <asp:RequiredFieldValidator ID="nameTextBoxValidator" runat="server"
-            ControlToValidate="nameTextbox"
-            ErrorMessage="*Required" 
-            style="color: red"  /> <br/> 
+    <div class="form-group">
+        <label for="descriptionTextbox">Description:</label>
+        <asp:TextBox ID="descriptionTextbox" runat="server" CssClass="form-control" Text="" AutoCompleteType="Disabled" 
+            TextMode="MultiLine" Rows="4"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="descriptionTextboxValidator" runat="server" ControlToValidate="descriptionTextbox" 
+            ErrorMessage="*Required" CssClass="text-danger" />
+    </div>
 
-        <asp:Label ID="Label2" runat="server" Text="Description: "></asp:Label> 
-        <asp:Textbox ID="descriptionTextbox" runat="server" Text="" AutoCompleteType="Disabled" TextMode="MultiLine" Height="80px" Width="205px" ></asp:Textbox> 
-        <asp:RequiredFieldValidator ID="descriptionTextboxValidator" runat="server"
-            ControlToValidate="descriptionTextbox"
-            ErrorMessage="*Required"
-            style="color: red" /> <br/> 
+    <div class="form-group">
+        <label for="priceTextbox">Price:</label>
+        <asp:TextBox ID="priceTextbox" runat="server" CssClass="form-control" Text="" AutoCompleteType="Disabled"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="priceTextboxValidator" runat="server" ControlToValidate="priceTextbox" 
+            ErrorMessage="*Required" CssClass="text-danger" />
+    </div>
 
-        <asp:Label ID="Label3" runat="server" Text="Price: "></asp:Label> 
-        <asp:Textbox ID="priceTextbox" runat="server" Text="" AutoCompleteType="Disabled"></asp:Textbox> 
-        <asp:RequiredFieldValidator ID="priceTextboxValidator" runat="server"
-            ControlToValidate="priceTextbox"
-            ErrorMessage="*Required"
-            style="color: red" /> <br/> 
+    <div class="form-group">
+        <label for="tagTextbox">Tag:</label>
+        <asp:TextBox ID="tagTextbox" runat="server" CssClass="form-control" Text="" AutoCompleteType="Disabled"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="tagTextboxValidator" runat="server" ControlToValidate="tagTextbox" 
+            ErrorMessage="*Required" CssClass="text-danger" />
+    </div>
 
-        <asp:Label ID="Label5" runat="server" Text="Tag: "></asp:Label> 
-        <asp:Textbox ID="tagTextbox" runat="server" Text="" AutoCompleteType="Disabled" ></asp:Textbox>
-        <asp:RequiredFieldValidator ID="tagTextboxValidator" runat="server"
-            ControlToValidate="tagTextbox"
-            ErrorMessage="*Required" 
-            style="color: red"  /> <br/> 
-        
-        <asp:Label ID="Label6" runat="server" Text="Image: "></asp:Label> 
-        <asp:FileUpload ID="imageFileUpload" runat="server" />
-        <asp:RequiredFieldValidator ID="imageFileUploadValidator" runat="server"
-            ControlToValidate="imageFileUpload"
-            ErrorMessage="*Required" 
-            style="color: red" /> <br/>
+    <div class="form-group">
+        <label for="imageFileUpload">Image:</label>
+        <asp:FileUpload ID="imageFileUpload" runat="server" CssClass="form-control" />
+        <asp:RequiredFieldValidator ID="imageFileUploadValidator" runat="server" ControlToValidate="imageFileUpload" 
+            ErrorMessage="*Required" CssClass="text-danger" />
+    </div>
 
-        <asp:Label ID="Label7" runat="server" Text="Shop Name: "></asp:Label> 
-        <asp:Textbox ID="shopNameTextbox" runat="server" Text="" AutoCompleteType="Disabled"></asp:Textbox>
-        <asp:RequiredFieldValidator ID="shopNameRequiredFieldValidator" runat="server"
-            ControlToValidate="shopNameTextbox"
-            ErrorMessage="*Required" 
-            style="color: red"  /> <br/>  <br>
-        
-        <asp:Button ID="addButton" runat="server" Text="Add Product" OnClick="addButton_Click" />
+    <div class="form-group">
+        <label for="shopNameTextbox">Shop Name:</label>
+        <asp:TextBox ID="shopNameTextbox" runat="server" CssClass="form-control" Text="" AutoCompleteType="Disabled"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="shopNameRequiredFieldValidator" runat="server" ControlToValidate="shopNameTextbox" 
+            ErrorMessage="*Required" CssClass="text-danger" />
+    </div>
+
+    <asp:Button ID="addButton" runat="server" Text="Add Product" OnClick="addButton_Click" CssClass="btn btn-primary" />
 </div>
+
 </asp:Content>

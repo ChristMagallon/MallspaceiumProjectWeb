@@ -33,15 +33,6 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Image Image1;
 
         /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-
-        /// <summary>
         /// nameLabel control.
         /// </summary>
         /// <remarks>
@@ -49,15 +40,6 @@ namespace mallspacium_web.ShopOwner
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label nameLabel;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// descriptionLabel control.
@@ -69,15 +51,6 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label descriptionLabel;
 
         /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
         /// emailLabel control.
         /// </summary>
         /// <remarks>
@@ -87,15 +60,6 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.Label emailLabel;
 
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
         /// phoneNumberLabel control.
         /// </summary>
         /// <remarks>
@@ -103,15 +67,6 @@ namespace mallspacium_web.ShopOwner
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label phoneNumberLabel;
-
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
         /// addressLabel control.
