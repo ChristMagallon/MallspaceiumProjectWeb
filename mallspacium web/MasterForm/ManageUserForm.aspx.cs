@@ -70,10 +70,13 @@ namespace mallspacium_web
         // method for searching username 
         public async void search()
         {
+
+
             string searchUsername = searchTextBox.Text;
-            Query query = database.Collection("AdminManageUsers")
-                          .WhereEqualTo("username", searchUsername);
-            
+            Query query = database.Collection("Users")
+                          .WhereGreaterThanOrEqualTo("username", searchUsername)
+                          .WhereLessThanOrEqualTo("username", searchUsername + "\uf8ff");
+
             // Retrieve the search results
             QuerySnapshot snapshot = await query.GetSnapshotAsync();
             List<ManageUsers> results = new List<ManageUsers>();
@@ -89,7 +92,7 @@ namespace mallspacium_web
                 manageUsersGridView.DataSource = results;
                 manageUsersGridView.DataBind();
             }
-            else 
+            else
             {
                 manageUsersGridView.DataSource = null;
                 manageUsersGridView.DataBind();
@@ -98,6 +101,7 @@ namespace mallspacium_web
                 string script = "alert('" + message + "')";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
             }
+
 
         }
     }
