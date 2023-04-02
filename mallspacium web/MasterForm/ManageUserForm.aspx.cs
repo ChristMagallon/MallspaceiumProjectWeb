@@ -28,34 +28,45 @@ namespace mallspacium_web
             search();
         }
 
-        protected void manageUsersGridView_SelectedIndexChanged1(object sender, EventArgs e)
+        protected void manageUsersGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow gr = manageUsersGridView.SelectedRow;
-            Response.Redirect("UserDetailsPage.aspx?username=" + gr.Cells[0].Text + "&userRole=" + gr.Cells[1].Text + "&email=" +
-                gr.Cells[2].Text + "&address=" + gr.Cells[3].Text + "&contactNumber=" + gr.Cells[4].Text, false);
+            Response.Redirect("UserDetailsPage.aspx?userID=" + gr.Cells[0].Text + "&email=" + gr.Cells[1].Text + "&userRole=" + gr.Cells[2].Text + "&address=" 
+                + gr.Cells[3].Text + "&contactNumber=" + gr.Cells[4].Text + "&dateCreated=" + gr.Cells[5].Text, false);
+        }
+
+        protected void manageUsersGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(manageUsersGridView, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to view more details.";
+            }
         }
 
         public async void getManageUsers(string Users)
         {
-           DataTable usersGridViewTable = new DataTable();
-           usersGridViewTable.Columns.Add("username");
-           usersGridViewTable.Columns.Add("userRole");
-           usersGridViewTable.Columns.Add("email");
-           usersGridViewTable.Columns.Add("address");
-           usersGridViewTable.Columns.Add("phoneNumber");
+            DataTable usersGridViewTable = new DataTable();
 
-           Query usersQue = database.Collection(Users);
-           QuerySnapshot snap = await usersQue.GetSnapshotAsync();
+            usersGridViewTable.Columns.Add("userID");
+            usersGridViewTable.Columns.Add("email");
+            usersGridViewTable.Columns.Add("userRole");
+            usersGridViewTable.Columns.Add("address");
+            usersGridViewTable.Columns.Add("phoneNumber");
+            usersGridViewTable.Columns.Add("dateCreated");
 
-           foreach (DocumentSnapshot docsnap in snap.Documents)
-           {
+            Query usersQue = database.Collection(Users);
+            QuerySnapshot snap = await usersQue.GetSnapshotAsync();
+
+            foreach (DocumentSnapshot docsnap in snap.Documents)
+            {
                ManageUsers user = docsnap.ConvertTo<ManageUsers>();
 
                if (docsnap.Exists)
                {              
-                   usersGridViewTable.Rows.Add(user.username, user.userRole, user.email, user.address, user.phoneNumber);                  
+                   usersGridViewTable.Rows.Add(user.userID, user.email, user.userRole, user.address, user.phoneNumber, user.dateCreated);                  
                }
-           }
+            }
            manageUsersGridView.DataSource = usersGridViewTable;
            manageUsersGridView.DataBind();
         }

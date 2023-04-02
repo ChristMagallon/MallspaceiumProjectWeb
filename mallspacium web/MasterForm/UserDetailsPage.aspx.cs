@@ -21,22 +21,24 @@ namespace mallspacium_web.AdditionalForm
             database = FirestoreDb.Create("mallspaceium");
 
             checkbannedaccount();
-           
         }
 
         protected void banButton_Click(object sender, EventArgs e)
         {
-            banUser("username");
+            banUser();
+            banActivity();
         }
 
         protected void unbanButton_Click(object sender, EventArgs e)
         {
-            unbanUser("username");
+            unbanUser();
+            unbanActivity();
         }
 
         protected void sendButton_Click(object sender, EventArgs e)
         {
             sendWarningMessage();
+            sendWarningMessageActivity();
         }
 
         public async void checkbannedaccount()
@@ -71,29 +73,32 @@ namespace mallspacium_web.AdditionalForm
 
         public void showData()
         {
-            usernameLabel.Text = Request.QueryString["username"].ToString();
-            userRoleLabel.Text = Request.QueryString["userRole"].ToString();
+            
+            idLabel.Text = Request.QueryString["userID"].ToString();
             emailLabel.Text = Request.QueryString["email"].ToString();
+            userRoleLabel.Text = Request.QueryString["userRole"].ToString();
             addressLabel.Text = Request.QueryString["address"].ToString();
-            contactNumberLabel.Text = Request.QueryString["contactNumber"].ToString();  
+            contactNumberLabel.Text = Request.QueryString["contactNumber"].ToString();
+            dateCreatedLabel.Text = Request.QueryString["dateCreated"].ToString();
         }
         
 
         // Ban a user
-        public async void banUser(string username)
+        public async void banUser()
         {
             var bannedUsersCollection = database.Collection("AdminBannedUsers");
-            var userDocRef = bannedUsersCollection.Document(usernameLabel.Text);
+            var userDocRef = bannedUsersCollection.Document(emailLabel.Text);
 
             // Create a new document for the banned user
             var bannedUserData = new Dictionary<string, object>
             {
-                {"username", usernameLabel.Text},
-                {"accountType", userRoleLabel.Text },
+                {"userID", idLabel.Text},
                 {"email",emailLabel.Text },
+                {"accountType", userRoleLabel.Text },
                 {"address",addressLabel.Text },
-                {"contactNumber", contactNumberLabel.Text}
-        };
+                {"contactNumber", contactNumberLabel.Text},
+                {"dateCreated", dateCreatedLabel.Text }
+            };
             await userDocRef.SetAsync(bannedUserData);
 
             // Display a message
@@ -104,13 +109,34 @@ namespace mallspacium_web.AdditionalForm
             ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
         }
 
+        public async void banActivity()
+        {
+            //auto generated unique id
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string activityID = "ACT" + randomIDNumber.ToString();
+
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "id", activityID },
+                { "activity", (string)Application.Get("usernameget") + " banned user " + emailLabel.Text },
+                { "email", emailLabel.Text },
+                { "date", date }
+            };
+            await userRef.SetAsync(data1);
+        }
+
 
         // Unban a user
-        protected async void unbanUser(string username)
+        protected async void unbanUser()
         {
-            
             var bannedUsersCollection = database.Collection("AdminBannedUsers");
-            var userDocRef = bannedUsersCollection.Document(usernameLabel.Text);
+            var userDocRef = bannedUsersCollection.Document(emailLabel.Text);
 
             await userDocRef.DeleteAsync();
 
@@ -120,6 +146,29 @@ namespace mallspacium_web.AdditionalForm
             // Redirect to another page after a delay
             string url = "ManageUserForm.aspx";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+        }
+
+
+        public async void unbanActivity()
+        {
+            //auto generated unique id
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string activityID = "ACT" + randomIDNumber.ToString();
+
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "id", activityID },
+                { "activity", (string)Application.Get("usernameget") + " unbanned user " + emailLabel.Text },
+                { "email", emailLabel.Text },
+                { "date", date }
+            };
+            await userRef.SetAsync(data1);
         }
 
 
@@ -152,5 +201,27 @@ namespace mallspacium_web.AdditionalForm
             string url = "ManageUserForm.aspx";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
         }
-    }
+
+        public async void sendWarningMessageActivity()
+        {
+            //auto generated unique id
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string activityID = "ACT" + randomIDNumber.ToString();
+
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "id", activityID },
+                { "activity", (string)Application.Get("usernameget") + " send warning message to user " + emailLabel.Text },
+                { "email", emailLabel.Text },
+                { "date", date }
+            };
+            await userRef.SetAsync(data1);
+        }
+    }   
 }

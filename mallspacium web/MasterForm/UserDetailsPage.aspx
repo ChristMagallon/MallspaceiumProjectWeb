@@ -15,18 +15,18 @@
         </div>
         
         <div class="form-group">
-            <asp:Label ID="Label4" runat="server" Text="Username: "></asp:Label> 
-            <asp:Label ID="usernameLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
-        </div>
-
-        <div class="form-group">
-            <asp:Label ID="Label2" runat="server" Text="Account Type: "></asp:Label> 
-            <asp:Label ID="userRoleLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
+            <asp:Label ID="Label4" runat="server" Text="ID: "></asp:Label> 
+            <asp:Label ID="idLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
         </div>
 
         <div class="form-group">
             <asp:Label ID="Label5" runat="server" Text="Email: "></asp:Label> 
             <asp:Label ID="emailLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
+        </div>
+
+        <div class="form-group">
+            <asp:Label ID="Label2" runat="server" Text="Account Type: "></asp:Label> 
+            <asp:Label ID="userRoleLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
         </div>
 
         <div class="form-group">
@@ -37,6 +37,11 @@
         <div class="form-group">
             <asp:Label ID="Label9" runat="server" Text="Contact Number: "></asp:Label> 
             <asp:Label ID="contactNumberLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
+        </div>
+
+         <div class="form-group">
+            <asp:Label ID="Label3" runat="server" Text="Date Created: "></asp:Label> 
+            <asp:Label ID="dateCreatedLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
         </div>
 
         <div class="form-group">

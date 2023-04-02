@@ -10,12 +10,12 @@ namespace mallspacium_web
     public class Activity
     {
         [FirestoreProperty]
-        public string activityId { get; set; }
+        public string id { get; set; }
         [FirestoreProperty]
         public string activity { get; set; }
         [FirestoreProperty]
-        public string username { get; set; }
+        public string email { get; set; }
         [FirestoreProperty]
-        public Timestamp date { get; set; }
+        public string date { get; set; }
     }
 }

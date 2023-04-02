@@ -13,16 +13,16 @@ namespace mallspacium_web
     public class ManageUsers
     {
         [FirestoreProperty]
-        public string username { get; set; }
-        [FirestoreProperty]
-        public string id { get; set; }
-        [FirestoreProperty]
-        public string userRole { get; set; }
+        public string userID { get; set; }
         [FirestoreProperty]
         public string email { get; set; }
+        [FirestoreProperty]
+        public string userRole { get; set; }
         [FirestoreProperty]
         public string address { get; set; }
         [FirestoreProperty]
         public string phoneNumber { get; set; }
+        [FirestoreProperty]
+        public string dateCreated { get; set; }
     }
 }

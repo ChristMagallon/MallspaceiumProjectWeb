@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ManageUserForm.aspx.cs" Inherits="mallspacium_web.WebForm1" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ManageUserForm.aspx.cs" Inherits="mallspacium_web.WebForm1" %>
  
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -17,21 +17,19 @@
     <div class="form">
         <div class="col p-5">  
             
-            <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Username" aria-label="Search usernameS" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Email" aria-label="Search" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
         </div>
     </div>
         <div class="form">
 
-         <asp:GridView ID="manageUsersGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged1">
-             <Columns>
-            <asp:BoundField HeaderText="Username" DataField="username" SortExpression="username"/>
-            <asp:BoundField HeaderText="Account Type" DataField="userRole" SortExpression="accountType"/>  
-            <asp:BoundField HeaderText="Email" DataField="email" SortExpression ="email"/>
-            <asp:BoundField HeaderText="Address" DataField="address" SortExpression="address"/>
-            <asp:BoundField HeaderText="Contact Number" DataField="phoneNumber" SortExpression="contactNumber"/>
-            <asp:CommandField ShowSelectButton="True" SelectText="View Data" ValidationGroup="ViewDataButton"  />
-
-
+         <asp:GridView ID="manageUsersGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="manageUsersGridView_SelectedIndexChanged" OnRowDataBound="manageUsersGridView_RowDataBound">
+            <Columns>
+                <asp:BoundField HeaderText="ID" DataField="userID" SortExpression ="userID"/>
+                <asp:BoundField HeaderText="Email" DataField="email" SortExpression ="email"/>
+                <asp:BoundField HeaderText="Account Type" DataField="userRole" SortExpression="accountType"/>
+                <asp:BoundField HeaderText="Address" DataField="address" SortExpression="address"/>
+                <asp:BoundField HeaderText="Contact Number" DataField="phoneNumber" SortExpression="contactNumber"/>
+                <asp:BoundField HeaderText="Date Created" DataField="dateCreated" SortExpression="dateCreated"/>
         </Columns>
              <FooterStyle BackColor="White" ForeColor="#000066" />
              <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
