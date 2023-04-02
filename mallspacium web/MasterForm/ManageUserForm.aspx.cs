@@ -70,39 +70,44 @@ namespace mallspacium_web
         // method for searching username 
         public async void search()
         {
-
-
             string searchUsername = searchTextBox.Text;
-            Query query = database.Collection("Users")
-                          .WhereGreaterThanOrEqualTo("username", searchUsername)
-                          .WhereLessThanOrEqualTo("username", searchUsername + "\uf8ff");
 
-            // Retrieve the search results
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-            List<ManageUsers> results = new List<ManageUsers>();
-
-            if (snapshot.Documents.Count > 0)
+            if (searchTextBox.Text == "")
             {
-                foreach (DocumentSnapshot document in snapshot.Documents)
-                {
-                    ManageUsers model = document.ConvertTo<ManageUsers>();
-                    results.Add(model);
-                }
-                // Bind the search results to the GridView control
-                manageUsersGridView.DataSource = results;
-                manageUsersGridView.DataBind();
+                getManageUsers("Users");
             }
             else
             {
-                manageUsersGridView.DataSource = null;
-                manageUsersGridView.DataBind();
+                Query query = database.Collection("Users")
+                        .WhereGreaterThanOrEqualTo("username", searchUsername)
+                        .WhereLessThanOrEqualTo("username", searchUsername + "\uf8ff");
 
-                string message = "No records found!";
-                string script = "alert('" + message + "')";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+                // Retrieve the search results
+                QuerySnapshot snapshot = await query.GetSnapshotAsync();
+                List<ManageUsers> results = new List<ManageUsers>();
+
+                if (snapshot.Documents.Count > 0)
+                {
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                        ManageUsers model = document.ConvertTo<ManageUsers>();
+                        results.Add(model);
+                    }
+                    // Bind the search results to the GridView control
+                    manageUsersGridView.DataSource = results;
+                    manageUsersGridView.DataBind();
+                }
+                else
+                {
+                    manageUsersGridView.DataSource = null;
+                    manageUsersGridView.DataBind();
+
+                    string message = "No records found!";
+                    string script = "alert('" + message + "')";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+                }
+
             }
-
-
         }
     }
 }
