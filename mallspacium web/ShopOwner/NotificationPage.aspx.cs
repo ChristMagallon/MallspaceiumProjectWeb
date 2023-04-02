@@ -13,9 +13,12 @@ namespace mallspacium_web.MasterForm2
 {
     public partial class WebForm6 : System.Web.UI.Page
     {
-        FirestoreDb database;
+      
+        FirestoreDb database;    
         protected void Page_Load(object sender, EventArgs e)
         {
+
+         
             string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
@@ -24,8 +27,50 @@ namespace mallspacium_web.MasterForm2
             getShops();
         }
 
+        protected void NotificationGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected row from the GridView
+            GridViewRow selectedRow = NotificationGridView.SelectedRow;
+
+            // Get the value of the selected column
+            string selectedValue = selectedRow.Cells[0].Text;
+
+            // Display the selected value in the Label control
+            SelectedNotificationLabel.Text = selectedValue;
+            getmessage();
+        }
+        public async void getmessage()
+        {
+            object field = "";
+
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = database.Collection("Users");
+            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget")).Collection("Notification").Document(SelectedNotificationLabel.Text);
+
+            // Retrieve the document data asynchronously
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+            // Check if the document exists
+            if (snapshot.Exists)
+            {
+                // Get the data as a Dictionary
+                Dictionary<string, object> data = snapshot.ToDictionary();
+                // Access the specific field you want
+                    field = data["message"];
+
+                // Do something with the field value     
+
+                Response.Write(field);
+            }
+            else
+            {
+                // Document does not exist
+            }
+        }
+
         public async void getShops()
         {
+           
             Query usersQue = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Notification");
             QuerySnapshot snap = await usersQue.GetSnapshotAsync();
 
@@ -50,6 +95,7 @@ namespace mallspacium_web.MasterForm2
                 }
             }
 
+     
             // Set the DataTable as the DataSource for the GridView
             NotificationGridView.DataSource = notificationTable;
 

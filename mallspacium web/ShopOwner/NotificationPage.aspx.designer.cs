@@ -33,12 +33,12 @@ namespace mallspacium_web.MasterForm2
         protected global::System.Web.UI.WebControls.GridView NotificationGridView;
 
         /// <summary>
-        /// errorMessageLabel control.
+        /// SelectedNotificationLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorMessageLabel;
+        protected global::System.Web.UI.WebControls.Label SelectedNotificationLabel;
     }
 }
