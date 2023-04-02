@@ -51,7 +51,7 @@
                             CssClass="text-danger" />
                     </div>
                     <div class="form-group text-center">
-                        <asp:Button ID="addButton" runat="server" Text="Add" OnClick="addButton_Click" CssClass="btn btn-primary" />
+                        <asp:Button ID="addButton" runat="server" Text="Add" CssClass="btn btn-primary" />
                     </div>
                 </div>
             </div>
