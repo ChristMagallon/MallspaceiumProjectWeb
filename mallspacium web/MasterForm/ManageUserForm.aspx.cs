@@ -71,34 +71,43 @@ namespace mallspacium_web
         public async void search()
         {
             string searchUsername = searchTextBox.Text;
-            Query query = database.Collection("AdminManageUsers")
-                          .WhereEqualTo("username", searchUsername);
-            
-            // Retrieve the search results
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-            List<ManageUsers> results = new List<ManageUsers>();
 
-            if (snapshot.Documents.Count > 0)
+            if (searchTextBox.Text == "")
             {
-                foreach (DocumentSnapshot document in snapshot.Documents)
+                getManageUsers("Users");
+            }
+            else
+            {
+                Query query = database.Collection("Users")
+                        .WhereGreaterThanOrEqualTo("username", searchUsername)
+                        .WhereLessThanOrEqualTo("username", searchUsername + "\uf8ff");
+
+                // Retrieve the search results
+                QuerySnapshot snapshot = await query.GetSnapshotAsync();
+                List<ManageUsers> results = new List<ManageUsers>();
+
+                if (snapshot.Documents.Count > 0)
                 {
-                    ManageUsers model = document.ConvertTo<ManageUsers>();
-                    results.Add(model);
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                        ManageUsers model = document.ConvertTo<ManageUsers>();
+                        results.Add(model);
+                    }
+                    // Bind the search results to the GridView control
+                    manageUsersGridView.DataSource = results;
+                    manageUsersGridView.DataBind();
                 }
-                // Bind the search results to the GridView control
-                manageUsersGridView.DataSource = results;
-                manageUsersGridView.DataBind();
-            }
-            else 
-            {
-                manageUsersGridView.DataSource = null;
-                manageUsersGridView.DataBind();
+                else
+                {
+                    manageUsersGridView.DataSource = null;
+                    manageUsersGridView.DataBind();
 
-                string message = "No records found!";
-                string script = "alert('" + message + "')";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
-            }
+                    string message = "No records found!";
+                    string script = "alert('" + message + "')";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+                }
 
+            }
         }
     }
 }

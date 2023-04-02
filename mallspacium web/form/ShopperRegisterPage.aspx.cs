@@ -128,6 +128,7 @@ namespace mallspacium_web.form
             // Set the data in the Firestore document
             await documentRef.SetAsync(data);
             collectionNotif();
+            defaultSubscription();
             clearInputs();
 
             string loginPageUrl = ResolveUrl("~/form/LoginPage.aspx");
@@ -149,6 +150,45 @@ namespace mallspacium_web.form
 
             // Set the data in the Firestore document
             await documentRef.SetAsync(data);
+        }
+
+        // Default subscription
+        public async void defaultSubscription()
+        {
+            String email = EmailTextBox.Text;
+            String subscriptionType = "Free";
+            String subscriptionPrice = "0.00";
+            String status = "Active";
+
+            // Generate random ID number
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string subscriptionID = "SUB" + randomIDNumber.ToString();
+
+            // Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            DateTime expirationDate = currentDate.AddMonths(3);
+            string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+            string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            // Create a new collection reference
+            DocumentReference documentRef = db.Collection("AdminManageSubscription").Document(email);
+
+            // Set the data for the new document
+            Dictionary<string, object> dataInsert = new Dictionary<string, object>
+                {
+                    {"subscriptionID", subscriptionID},
+                    {"subscriptionType", subscriptionType},
+                    {"price", subscriptionPrice},
+                    {"userEmail", email},
+                    {"userRole", user_role},
+                    {"startDate", startDate},
+                    {"endDate", endDate},
+                    {"status", status}
+                };
+
+            // Set the data in the Firestore document
+            await documentRef.SetAsync(dataInsert);
         }
 
         // Clear all the data inputted
