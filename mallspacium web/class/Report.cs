@@ -10,14 +10,18 @@ namespace mallspacium_web
     public class Report
     {
         [FirestoreProperty]
-        public string reportedUsername { get; set; }
+        public string id { get; set; }
         [FirestoreProperty]
-        public string reportId { get; set; }
+        public string shopName { get; set; }
+        [FirestoreProperty]
+        public string reason { get; set; }
+        [FirestoreProperty]
+        public string detailedReason { get; set; }
+        [FirestoreProperty]
+        public string supportingImage { get; set; }
         [FirestoreProperty]
         public string reportedBy { get; set; }
         [FirestoreProperty]
-        public string reportMessage { get; set; }
-        [FirestoreProperty]
-        public Timestamp reportDate { get; set; }
+        public string date { get; set; }
     }
 }

@@ -13,8 +13,8 @@
             <asp:Image ID="Image1" runat="server" />
         </div>
         <div class="col-md-6">
-            <h4><asp:Label ID="nameLabel" runat="server" Text=""></asp:Label></h4>
-            <asp:Button ID="reportButton" runat="server" Text="Report" CssClass="btn btn-primary" OnClick="reportButton_Click"/>
+            <h4><asp:Label ID="nameLabel" runat="server" Text=""></asp:Label> <asp:Button ID="reportButton" runat="server" Text="Report" CssClass="btn btn-primary" OnClick="reportButton_Click"/> </h4>
+            
             <p><asp:Label ID="descriptionLabel" runat="server" Text=""></asp:Label></p>
             <p><i class="fas fa-envelope"></i> <asp:Label ID="emailLabel" runat="server" Text=""></asp:Label></p>
             <p><i class="fas fa-phone"></i> <asp:Label ID="phoneNumberLabel" runat="server" Text=""></asp:Label></p>

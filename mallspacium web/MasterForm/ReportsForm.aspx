@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ReportsForm.aspx.cs" Inherits="mallspacium_web.WebForm4" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ReportsForm.aspx.cs" Inherits="mallspacium_web.WebForm4" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -24,14 +24,12 @@
     </div>
      <div class="form">
         
-            <asp:GridView ID="reportGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="reportGridView_SelectedIndexChanged" >
+            <asp:GridView ID="reportGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnSelectedIndexChanged="reportGridView_SelectedIndexChanged" OnRowDataBound="reportGridView_RowDataBound" >
         <Columns>
-            <asp:BoundField HeaderText="Username" DataField="reportedUsername" SortExpression="reportedUsername"></asp:BoundField>
-            <asp:BoundField HeaderText="Id" DataField="reportId" SortExpression="reportId"></asp:BoundField>
-            <asp:BoundField HeaderText="Message" DataField="reportMessage" SortExpression="reportMessage"></asp:BoundField>
+            <asp:BoundField HeaderText="ID" DataField="id" SortExpression="id"></asp:BoundField>
+            <asp:BoundField HeaderText="Shop Name" DataField="shopName" SortExpression="shopName"></asp:BoundField>
+            <asp:BoundField HeaderText="Reason" DataField="reason" SortExpression="reason"></asp:BoundField>
             <asp:BoundField HeaderText="Reported by" DataField="reportedBy" SortExpression="reportedBy"></asp:BoundField>
-            <asp:BoundField HeaderText="Date" DataField="reportDate" SortExpression="reportDate"></asp:BoundField>
-            <asp:CommandField ShowSelectButton="True" SelectText="Resolve" ValidationGroup="ResolveButton" />
         </Columns>
              <FooterStyle BackColor="White" ForeColor="#000066" />
              <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />

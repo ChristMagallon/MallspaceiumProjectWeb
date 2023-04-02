@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <asp:Label ID="Label2" runat="server" Text="Detailed Reason " CssClass="font-weight-bold"></asp:Label>  <br />
                             <asp:TextBox ID="reasonTextbox" runat="server" placeholder="Please further elaborate on your selected reason" 
-                                AutoCompleteType="Disabled" TextMode="MultiLine" Text="" Rows="5" CssClass="font-weight-bold" Width="399px"></asp:TextBox>
+                                AutoCompleteType="Disabled" TextMode="MultiLine" Text="" Rows="5" CssClass="font-weight-bold" Width="456px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="reasonRequiredFieldValidator" runat="server" 
                                 ControlToValidate="reasonTextbox" 
                                 ErrorMessage="Required*" 

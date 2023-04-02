@@ -72,6 +72,23 @@ namespace mallspacium_web.ShopOwner
                     string imageSrc = $"data:image/png;base64,{imageBase64String}";
                     Image1.ImageUrl = imageSrc;
 
+                    
+                    // Retrieve the user's email from the Application object
+                    string userEmail = (string)Application.Get("usernameget");
+                    string reportEmail = email;
+
+
+                    if (userEmail == reportEmail)
+                    {
+                        // Disable the report button if the emails match
+                        reportButton.Enabled = false;
+                    }
+                    else
+                    {
+                        // Enable the report button if the emails do not match
+                        reportButton.Enabled = true;
+                    }
+
                     // Display the data
                     nameLabel.Text = name;
                     descriptionLabel.Text = desc;
