@@ -1,4 +1,4 @@
-﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="PopularShopDetailsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.PopularShopDetailsPage" %>
+﻿<%@ Page UnobtrusiveValidationMode="none" EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="PopularShopDetailsPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.PopularShopDetailsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -14,6 +14,7 @@
         </div>
         <div class="col-md-6">
             <h4><asp:Label ID="nameLabel" runat="server" Text=""></asp:Label></h4>
+            <asp:Button ID="reportButton" runat="server" Text="Report" CssClass="btn btn-primary" OnClick="reportButton_Click"/>
             <p><asp:Label ID="descriptionLabel" runat="server" Text=""></asp:Label></p>
             <p><i class="fas fa-envelope"></i> <asp:Label ID="emailLabel" runat="server" Text=""></asp:Label></p>
             <p><i class="fas fa-phone"></i> <asp:Label ID="phoneNumberLabel" runat="server" Text=""></asp:Label></p>

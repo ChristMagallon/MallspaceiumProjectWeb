@@ -189,6 +189,7 @@
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
+    <Content Include="ShopOwner\ReportShopPage.aspx" />
     <Content Include="MasterForm\ResolveReportForm.aspx" />
     <Content Include="MasterForm\UserDetailsPage.aspx" />
     <Content Include="design\mallspaceium_logo.png" />
@@ -304,6 +305,13 @@
     </Compile>
     <Compile Include="MasterForm\CreateAdminAccountForm.aspx.designer.cs">
       <DependentUpon>CreateAdminAccountForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopOwner\ReportShopPage.aspx.cs">
+      <DependentUpon>ReportShopPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\ReportShopPage.aspx.designer.cs">
+      <DependentUpon>ReportShopPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterForm\ResolveReportForm.aspx.cs">
       <DependentUpon>ResolveReportForm.aspx</DependentUpon>

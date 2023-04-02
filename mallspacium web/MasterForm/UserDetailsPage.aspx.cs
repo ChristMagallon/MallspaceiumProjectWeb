@@ -73,7 +73,6 @@ namespace mallspacium_web.AdditionalForm
 
         public void showData()
         {
-            
             idLabel.Text = Request.QueryString["userID"].ToString();
             emailLabel.Text = Request.QueryString["email"].ToString();
             userRoleLabel.Text = Request.QueryString["userRole"].ToString();

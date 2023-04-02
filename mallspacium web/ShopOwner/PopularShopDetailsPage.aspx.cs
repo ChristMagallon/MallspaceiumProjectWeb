@@ -251,5 +251,18 @@ namespace mallspacium_web.ShopOwner
             // Redirect to another page and pass the shopName as a query string parameter
             Response.Redirect("AllSaleDiscountDetailsPage.aspx?saleDiscShopName=" + saleDiscShopName + "&saleDiscDesc=" + saleDiscDesc);
         }
+
+        protected void reportButton_Click(object sender, EventArgs e)
+        {
+            report();
+        }
+        public void report() 
+        {
+            string shopName = nameLabel.Text;
+
+            // Redirect to another page after a delay
+            string url = " ReportShopPage.aspx?shopName=" + shopName;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 1000);", true);
+        }
     }
 }
