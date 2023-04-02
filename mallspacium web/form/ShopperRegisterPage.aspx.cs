@@ -101,6 +101,15 @@ namespace mallspacium_web.form
             String email = EmailTextBox.Text;
             string shopperImage = "";
 
+            // Generate random ID number
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string userID = "USER" + randomIDNumber.ToString();
+
+            // Get current date time of the account created
+            DateTime currentDate = DateTime.Now;
+            string dateCreated = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
             // Capitalize first letter of each word in a string
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
             TextInfo ti = cultureInfo.TextInfo;
@@ -111,6 +120,7 @@ namespace mallspacium_web.form
             // Set the data for the new document
             Dictionary<string, object> data = new Dictionary<string, object>
             {
+                {"userID", userID},
                 {"firstName", ti.ToTitleCase(FirstNameTextBox.Text)},
                 {"lastName", ti.ToTitleCase(LastNameTextBox.Text)},
                 {"dob", DOBTextBox.Text},
@@ -122,7 +132,8 @@ namespace mallspacium_web.form
                 {"password", PasswordTextBox.Text},
                 {"confirmPassword", ConfirmPasswordTextBox.Text},
                 {"userRole", user_role},
-                {"shopperImage", shopperImage}
+                {"shopperImage", shopperImage},
+                {"dateCreated", dateCreated }
             };
 
             // Set the data in the Firestore document
