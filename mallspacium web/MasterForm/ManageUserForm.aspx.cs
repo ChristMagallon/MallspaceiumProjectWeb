@@ -26,19 +26,16 @@ namespace mallspacium_web
         }
 
      
-        public async void getManageUsers(string AdminManageUsers)
+        public async void getManageUsers(string Users)
         {
            DataTable usersGridViewTable = new DataTable();
            usersGridViewTable.Columns.Add("username");
-           usersGridViewTable.Columns.Add("id");
            usersGridViewTable.Columns.Add("userRole");
-           usersGridViewTable.Columns.Add("dateCreated");
            usersGridViewTable.Columns.Add("email");
            usersGridViewTable.Columns.Add("address");
            usersGridViewTable.Columns.Add("phoneNumber");
 
-
-           Query usersQue = database.Collection(AdminManageUsers);
+           Query usersQue = database.Collection(Users);
            QuerySnapshot snap = await usersQue.GetSnapshotAsync();
 
            foreach (DocumentSnapshot docsnap in snap.Documents)
@@ -47,18 +44,18 @@ namespace mallspacium_web
 
                if (docsnap.Exists)
                {              
-                   usersGridViewTable.Rows.Add(user.username, user.id, user.userRole, user.dateCreated, user.email, user.address, 
-                       user.phoneNumber);                  
+                   usersGridViewTable.Rows.Add(user.username, user.userRole, user.email, user.address, user.phoneNumber);                  
                }
            }
            manageUsersGridView.DataSource = usersGridViewTable;
            manageUsersGridView.DataBind();
 
+
         }
         protected void manageUsersGridView_SelectedIndexChanged1(object sender, EventArgs e)
         {
             GridViewRow gr = manageUsersGridView.SelectedRow;
-                    Response.Redirect("UserDetailsPage.aspx?username="+ gr.Cells[0].Text+"&id="+gr.Cells[1].Text + "&accountType=" + gr.Cells[2].Text +"&dateCreated=" + gr.Cells[3].Text + "&email=" + gr.Cells[4].Text + "&address=" + gr.Cells[5].Text + "&contactNumber=" + gr.Cells[6].Text, false);
+                    Response.Redirect("UserDetailsPage.aspx?username="+ gr.Cells[0].Text+"&userRole=" + gr.Cells[1].Text +"&email=" + gr.Cells[2].Text + "&address=" + gr.Cells[3].Text + "&contactNumber=" + gr.Cells[4].Text, false);
 
         }
 

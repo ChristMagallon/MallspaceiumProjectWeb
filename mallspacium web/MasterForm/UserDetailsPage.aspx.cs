@@ -72,8 +72,7 @@ namespace mallspacium_web.AdditionalForm
         public void showData()
         {
             usernameLabel.Text = Request.QueryString["username"].ToString();
-            accountTypeLabel.Text = Request.QueryString["accountType"].ToString();
-            dateCreatedLabel.Text = Request.QueryString["dateCreated"].ToString();
+            userRoleLabel.Text = Request.QueryString["userRole"].ToString();
             emailLabel.Text = Request.QueryString["email"].ToString();
             addressLabel.Text = Request.QueryString["address"].ToString();
             contactNumberLabel.Text = Request.QueryString["contactNumber"].ToString();  
@@ -90,17 +89,19 @@ namespace mallspacium_web.AdditionalForm
             var bannedUserData = new Dictionary<string, object>
             {
                 {"username", usernameLabel.Text},
-                {"accountType", accountTypeLabel.Text },
-                {"dateCreated",dateCreatedLabel.Text },
+                {"accountType", userRoleLabel.Text },
                 {"email",emailLabel.Text },
                 {"address",addressLabel.Text },
                 {"contactNumber", contactNumberLabel.Text}
         };
             await userDocRef.SetAsync(bannedUserData);
 
-            string message = "Successfully Banned User";
-            string script = "alert('" + message + "')";
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+            // Display a message
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Banned User!');", true);
+
+            // Redirect to another page after a delay
+            string url = "ManageUserForm.aspx";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
         }
 
 
@@ -113,9 +114,12 @@ namespace mallspacium_web.AdditionalForm
 
             await userDocRef.DeleteAsync();
 
-            string message = "Successfully Unbanned User";
-            string script = "alert('" + message + "')";
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+            // Display a message
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Unbanned User!');", true);
+
+            // Redirect to another page after a delay
+            string url = "ManageUserForm.aspx";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
         }
 
 
@@ -139,17 +143,14 @@ namespace mallspacium_web.AdditionalForm
                 { "date", dateString }
             };
 
-            if (warningMessageValidator.IsValid)
-            {
-                await userRef.SetAsync(data1);
+            await userRef.SetAsync(data1);
 
-                // Display a message
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Send Warning Message!');", true);
+            // Display a message
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Send Warning Message!');", true);
 
-                // Redirect to another page after a delay
-                string url = "ManageUserForm.aspx";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
-            }
+            // Redirect to another page after a delay
+            string url = "ManageUserForm.aspx";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
         }
     }
 }

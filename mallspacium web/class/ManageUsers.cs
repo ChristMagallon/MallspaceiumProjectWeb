@@ -19,8 +19,6 @@ namespace mallspacium_web
         [FirestoreProperty]
         public string userRole { get; set; }
         [FirestoreProperty]
-        public Timestamp dateCreated { get; set; }
-        [FirestoreProperty]
         public string email { get; set; }
         [FirestoreProperty]
         public string address { get; set; }

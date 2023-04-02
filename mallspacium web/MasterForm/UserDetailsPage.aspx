@@ -1,4 +1,4 @@
-﻿<%@ Page UnobtrusiveValidationMode="none"  Async="true" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="UserDetailsPage.aspx.cs" Inherits="mallspacium_web.AdditionalForm.UserDetailsPage" %>
+﻿<%@ Page Async="true" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="UserDetailsPage.aspx.cs" Inherits="mallspacium_web.AdditionalForm.UserDetailsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -21,12 +21,7 @@
 
         <div class="form-group">
             <asp:Label ID="Label2" runat="server" Text="Account Type: "></asp:Label> 
-            <asp:Label ID="accountTypeLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
-        </div>
-
-        <div class="form-group">
-            <asp:Label ID="Label3" runat="server" Text="Date Created: "></asp:Label> 
-            <asp:Label ID="dateCreatedLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
+            <asp:Label ID="userRoleLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
         </div>
 
         <div class="form-group">
@@ -59,11 +54,6 @@
                 AutoCompleteType="Disabled" 
                 CssClass="form-control" 
                 Rows="5"></asp:TextBox>
-
-            <asp:RequiredFieldValidator ID="warningMessageValidator" runat="server" 
-                ControlToValidate="warningMessageTextbox" 
-                ErrorMessage="*Required" 
-                CssClass="text-danger" />
         </div>
 
         <div class="form-group">
