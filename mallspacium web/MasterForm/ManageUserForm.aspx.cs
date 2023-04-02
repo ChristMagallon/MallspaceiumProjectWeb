@@ -13,8 +13,6 @@ namespace mallspacium_web
     public partial class WebForm1 : System.Web.UI.Page
     {
         FirestoreDb database;
-        
-
         protected void Page_Load(object sender, EventArgs e)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
@@ -25,7 +23,18 @@ namespace mallspacium_web
             getManageUsers("Users");
         }
 
-     
+        protected void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            search();
+        }
+
+        protected void manageUsersGridView_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            GridViewRow gr = manageUsersGridView.SelectedRow;
+            Response.Redirect("UserDetailsPage.aspx?username=" + gr.Cells[0].Text + "&userRole=" + gr.Cells[1].Text + "&email=" +
+                gr.Cells[2].Text + "&address=" + gr.Cells[3].Text + "&contactNumber=" + gr.Cells[4].Text, false);
+        }
+
         public async void getManageUsers(string Users)
         {
            DataTable usersGridViewTable = new DataTable();
@@ -49,19 +58,6 @@ namespace mallspacium_web
            }
            manageUsersGridView.DataSource = usersGridViewTable;
            manageUsersGridView.DataBind();
-
-
-        }
-        protected void manageUsersGridView_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-            GridViewRow gr = manageUsersGridView.SelectedRow;
-                    Response.Redirect("UserDetailsPage.aspx?username="+ gr.Cells[0].Text+"&userRole=" + gr.Cells[1].Text +"&email=" + gr.Cells[2].Text + "&address=" + gr.Cells[3].Text + "&contactNumber=" + gr.Cells[4].Text, false);
-
-        }
-
-        protected void searchTextBox_TextChanged(object sender, EventArgs e)
-        {
-            search();
         }
 
         // method for searching username 
@@ -76,8 +72,8 @@ namespace mallspacium_web
             else
             {
                 Query query = database.Collection("Users")
-                        .WhereGreaterThanOrEqualTo("username", searchUsername)
-                        .WhereLessThanOrEqualTo("username", searchUsername + "\uf8ff");
+                    .WhereGreaterThanOrEqualTo("username", searchUsername)
+                    .WhereLessThanOrEqualTo("username", searchUsername + "\uf8ff");
 
                 // Retrieve the search results
                 QuerySnapshot snapshot = await query.GetSnapshotAsync();
