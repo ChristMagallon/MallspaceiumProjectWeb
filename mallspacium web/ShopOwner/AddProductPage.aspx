@@ -14,7 +14,9 @@
     <div class="form-group">
         <label for="nameTextbox">Name:</label>
         <asp:TextBox ID="nameTextbox" runat="server" CssClass="form-control" Text="" AutoCompleteType="Disabled"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="nameTextBoxValidator" runat="server" ControlToValidate="nameTextbox" ErrorMessage="*Required" 
+        <asp:RequiredFieldValidator ID="nameTextBoxValidator" runat="server" 
+            ControlToValidate="nameTextbox" 
+            ErrorMessage="*Required" 
             CssClass="text-danger" />
     </div>
 

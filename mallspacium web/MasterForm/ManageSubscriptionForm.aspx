@@ -10,25 +10,25 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-      <link rel="stylesheet" href="Style.css" />
+    <link rel="stylesheet" href="Style.css" />
+
     <!-- start here -->
-       <div class="container"> 
-    <div class="form">
-        <div class="col p-5">
-                 
-  <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Username" aria-label="Search" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
+    <div class="container"> 
+        <div class="form">
+            <div class="col p-5">
+                <asp:TextBox ID="searchTextBox" runat="server" class="form-control" type="search" placeholder="Search Email" aria-label="Search" OnTextChanged="searchTextBox_TextChanged" AutoPostBack="True"></asp:TextBox>
+            </div>
         </div>
-    </div>
 
-     <div class="form">
-
-                   <asp:GridView  ID="manageSubscriptionGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" >
+    <div class="form">
+        <asp:GridView  ID="manageSubscriptionGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" >
         <Columns>
-            <asp:BoundField HeaderText="Subscription ID" DataField="subscriptionId"></asp:BoundField>
-            <asp:BoundField HeaderText="Subscription Type" DataField="subscriptionType"></asp:BoundField>
-            <asp:BoundField HeaderText="Username" DataField="username"></asp:BoundField>
+            <asp:BoundField HeaderText="ID" DataField="subscriptionID"></asp:BoundField>
+            <asp:BoundField HeaderText="Email" DataField="userEmail"></asp:BoundField>
+            <asp:BoundField HeaderText="Role" DataField="userRole"></asp:BoundField>
+            <asp:BoundField HeaderText="Type" DataField="subscriptionType"></asp:BoundField>
             <asp:BoundField HeaderText="Price" DataField="price"></asp:BoundField>
             <asp:BoundField HeaderText="Start Date" DataField="startDate"></asp:BoundField>
             <asp:BoundField HeaderText="End Date" DataField="endDate" ></asp:BoundField>
@@ -43,13 +43,7 @@
              <SortedAscendingHeaderStyle BackColor="#007DBB" />
              <SortedDescendingCellStyle BackColor="#CAC9C9" />
              <SortedDescendingHeaderStyle BackColor="#00547E" />
-    </asp:GridView>
-
-        </div>
-        <br/> 
-    <br/> 
-   
-        </div>
-     
-
+        </asp:GridView>
+    </div>
+</div>
 </asp:Content>

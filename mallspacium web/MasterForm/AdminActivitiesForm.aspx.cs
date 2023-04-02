@@ -26,9 +26,9 @@ namespace mallspacium_web
         {
             DataTable activityGridViewTable = new DataTable();
 
-            activityGridViewTable.Columns.Add("activityId");
+            activityGridViewTable.Columns.Add("id");
             activityGridViewTable.Columns.Add("activity");
-            activityGridViewTable.Columns.Add("username");
+            activityGridViewTable.Columns.Add("email");
             activityGridViewTable.Columns.Add("date");
 
             Query subQue = database.Collection(AdminActivity);
@@ -40,7 +40,7 @@ namespace mallspacium_web
 
                 if (docsnap.Exists)
                 {
-                    activityGridViewTable.Rows.Add(act.activityId, act.activity, act.username, act.date);
+                    activityGridViewTable.Rows.Add(act.id, act.activity, act.email, act.date);
                 }
             }
             activityGridView.DataSource = activityGridViewTable;
@@ -53,37 +53,47 @@ namespace mallspacium_web
             search();
         }
 
-        // method for searching username 
+        // method for searching email
         public async void search()
         {
-            string searchUsername = searchTextBox.Text;
-            Query query = database.Collection("AdminActivity")
-                          .WhereEqualTo("username", searchUsername);
+            string searchEmail = searchTextBox.Text;
 
-            // Retrieve the search results
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-            List<Activity> results = new List<Activity>();
-
-            if (snapshot.Documents.Count > 0)
+            if (searchTextBox.Text == "")
             {
-                foreach (DocumentSnapshot document in snapshot.Documents)
-                {
-                    Activity model = document.ConvertTo<Activity>();
-                    results.Add(model);
-                }
-                // Bind the search results to the GridView control
-                activityGridView.DataSource = results;
-                activityGridView.DataBind();
+                getAdminActivity("AdminActivity");
             }
             else
             {
-                activityGridView.DataSource = null;
-                activityGridView.DataBind();
-                string message = "No records found!";
-                string script = "alert('" + message + "')";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
-            }
+                Query query = database.Collection("AdminActivity")
+                    .WhereGreaterThanOrEqualTo("email", searchEmail)
+                    .WhereLessThanOrEqualTo("email", searchEmail + "\uf8ff");
 
+                // Retrieve the search results
+                QuerySnapshot snapshot = await query.GetSnapshotAsync();
+                List<Activity> results = new List<Activity>();
+
+                if (snapshot.Documents.Count > 0)
+                {
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                        Activity model = document.ConvertTo<Activity>();
+                        results.Add(model);
+                    }
+                    // Bind the search results to the GridView control
+                    activityGridView.DataSource = results;
+                    activityGridView.DataBind();
+                }
+                else
+                {
+                    activityGridView.DataSource = null;
+                    activityGridView.DataBind();
+
+                    string message = "No records found!";
+                    string script = "alert('" + message + "')";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+                }
+
+            }
         }
     }
 }

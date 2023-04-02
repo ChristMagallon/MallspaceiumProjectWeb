@@ -27,9 +27,10 @@ namespace mallspacium_web
         {
             DataTable subscriptionGridViewTable = new DataTable();
 
-            subscriptionGridViewTable.Columns.Add("subscriptionId");
+            subscriptionGridViewTable.Columns.Add("subscriptionID");
+            subscriptionGridViewTable.Columns.Add("userEmail");
+            subscriptionGridViewTable.Columns.Add("userRole");
             subscriptionGridViewTable.Columns.Add("subscriptionType");
-            subscriptionGridViewTable.Columns.Add("username");
             subscriptionGridViewTable.Columns.Add("price");
             subscriptionGridViewTable.Columns.Add("startDate");
             subscriptionGridViewTable.Columns.Add("endDate");
@@ -44,8 +45,8 @@ namespace mallspacium_web
 
                 if (docsnap.Exists)
                 {
-                    subscriptionGridViewTable.Rows.Add(sub.subscriptionId, sub.subscriptionType, sub.username, sub.price, sub.startDate, sub.endDate, 
-                        sub.status);
+                    subscriptionGridViewTable.Rows.Add(sub.subscriptionID, sub.userEmail, sub.userRole, sub.subscriptionType, 
+                        sub.price, sub.startDate, sub.endDate, sub.status);
                 }
             }
             manageSubscriptionGridView.DataSource = subscriptionGridViewTable;
@@ -61,34 +62,44 @@ namespace mallspacium_web
         // method for searching username 
         public async void search()
         {
-            string searchUsername = searchTextBox.Text;
-            Query query = database.Collection("AdminManageSubscription")
-                          .WhereEqualTo("username", searchUsername);
+            string searchEmail = searchTextBox.Text;
 
-            // Retrieve the search results
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-            List<ManageSubscription> results = new List<ManageSubscription>();
-
-            if (snapshot.Documents.Count > 0)
+            if (searchTextBox.Text == "")
             {
-                foreach (DocumentSnapshot document in snapshot.Documents)
-                {
-                    ManageSubscription model = document.ConvertTo<ManageSubscription>();
-                    results.Add(model);
-                }
-                // Bind the search results to the GridView control
-                manageSubscriptionGridView.DataSource = results;
-                manageSubscriptionGridView.DataBind();
+                getManageSubscription("AdminManageSubscription");
             }
             else
             {
-                manageSubscriptionGridView.DataSource = null;
-                manageSubscriptionGridView.DataBind();
-                string message = "No records found!";
-                string script = "alert('" + message + "')";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
-            }
+                Query query = database.Collection("AdminManageSubscription")
+                    .WhereGreaterThanOrEqualTo("userEmail", searchEmail)
+                    .WhereLessThanOrEqualTo("userEmail", searchEmail + "\uf8ff");
 
+                // Retrieve the search results
+                QuerySnapshot snapshot = await query.GetSnapshotAsync();
+                List<ManageSubscription> results = new List<ManageSubscription>();
+
+                if (snapshot.Documents.Count > 0)
+                {
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                        ManageSubscription model = document.ConvertTo<ManageSubscription>();
+                        results.Add(model);
+                    }
+                    // Bind the search results to the GridView control
+                    manageSubscriptionGridView.DataSource = results;
+                    manageSubscriptionGridView.DataBind();
+                }
+                else
+                {
+                    manageSubscriptionGridView.DataSource = null;
+                    manageSubscriptionGridView.DataBind();
+
+                    string message = "No records found!";
+                    string script = "alert('" + message + "')";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+                }
+
+            }
         }
     }
 }

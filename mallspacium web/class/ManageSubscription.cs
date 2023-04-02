@@ -11,17 +11,19 @@ namespace mallspacium_web
     public class ManageSubscription
     {
         [FirestoreProperty]
-        public string subscriptionId { get; set; }
+        public string subscriptionID { get; set; }
+        [FirestoreProperty]
+        public string userEmail { get; set; }
+        [FirestoreProperty]
+        public string userRole { get; set; }
         [FirestoreProperty]
         public string subscriptionType { get; set; }
         [FirestoreProperty]
-        public string username { get; set; }
+        public string price { get; set; }
         [FirestoreProperty]
-        public float price { get; set; }
+        public string startDate { get; set; }
         [FirestoreProperty]
-        public Timestamp startDate { get; set; }
-        [FirestoreProperty]
-        public Timestamp endDate { get; set; }
+        public string endDate { get; set; }
         [FirestoreProperty]
         public string status { get; set; }
     }
