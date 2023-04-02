@@ -23,6 +23,22 @@ namespace mallspacium_web.AdditionalForm
             checkbannedaccount();
            
         }
+
+        protected void banButton_Click(object sender, EventArgs e)
+        {
+            banUser("username");
+        }
+
+        protected void unbanButton_Click(object sender, EventArgs e)
+        {
+            unbanUser("username");
+        }
+
+        protected void sendButton_Click(object sender, EventArgs e)
+        {
+            sendWarningMessage();
+        }
+
         public async void checkbannedaccount()
         {
             Boolean choice = false;
@@ -52,26 +68,17 @@ namespace mallspacium_web.AdditionalForm
             }
         }
 
+
         public void showData()
         {
             usernameLabel.Text = Request.QueryString["username"].ToString();
-            idLabel.Text       = Request.QueryString["id"].ToString();
             accountTypeLabel.Text = Request.QueryString["accountType"].ToString();
             dateCreatedLabel.Text = Request.QueryString["dateCreated"].ToString();
             emailLabel.Text = Request.QueryString["email"].ToString();
             addressLabel.Text = Request.QueryString["address"].ToString();
             contactNumberLabel.Text = Request.QueryString["contactNumber"].ToString();  
         }
-
-        protected void banButton_Click(object sender, EventArgs e)
-        {
-            banUser("username");
-        }
-
-        protected void unbanButton_Click(object sender, EventArgs e)
-        {
-            unbanUser("username");
-        }
+        
 
         // Ban a user
         public async void banUser(string username)
@@ -83,7 +90,6 @@ namespace mallspacium_web.AdditionalForm
             var bannedUserData = new Dictionary<string, object>
             {
                 {"username", usernameLabel.Text},
-                {"id", idLabel.Text},
                 {"accountType", accountTypeLabel.Text },
                 {"dateCreated",dateCreatedLabel.Text },
                 {"email",emailLabel.Text },
@@ -97,6 +103,7 @@ namespace mallspacium_web.AdditionalForm
             ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
         }
 
+
         // Unban a user
         protected async void unbanUser(string username)
         {
@@ -109,6 +116,40 @@ namespace mallspacium_web.AdditionalForm
             string message = "Successfully Unbanned User";
             string script = "alert('" + message + "')";
             ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+        }
+
+
+        public async void sendWarningMessage()
+        {
+            //auto generated unique id
+            Guid id = Guid.NewGuid();
+            string uniqueId = id.ToString();
+
+            //get the current UTC date and time
+            DateTime now = DateTime.UtcNow;
+
+            // Format the date and time as a string
+            string dateString = now.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+
+            DocumentReference userRef = database.Collection("Users").Document(emailLabel.Text).Collection("Notification").Document(uniqueId);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "id", uniqueId },
+                { "message", warningMessageTextbox.Text },
+                { "date", dateString }
+            };
+
+            if (warningMessageValidator.IsValid)
+            {
+                await userRef.SetAsync(data1);
+
+                // Display a message
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Send Warning Message!');", true);
+
+                // Redirect to another page after a delay
+                string url = "ManageUserForm.aspx";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+            }
         }
     }
 }

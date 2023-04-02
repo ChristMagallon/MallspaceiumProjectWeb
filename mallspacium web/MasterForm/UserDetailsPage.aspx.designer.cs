@@ -42,24 +42,6 @@ namespace mallspacium_web.AdditionalForm
         protected global::System.Web.UI.WebControls.Label usernameLabel;
 
         /// <summary>
-        /// Label8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
-
-        /// <summary>
-        /// idLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label idLabel;
-
-        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -184,6 +166,15 @@ namespace mallspacium_web.AdditionalForm
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox warningMessageTextbox;
+
+        /// <summary>
+        /// warningMessageValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator warningMessageValidator;
 
         /// <summary>
         /// sendButton control.

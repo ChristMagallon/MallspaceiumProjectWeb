@@ -1,14 +1,8 @@
-﻿<%@ Page Async="true" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="UserDetailsPage.aspx.cs" Inherits="mallspacium_web.AdditionalForm.UserDetailsPage" %>
+﻿<%@ Page UnobtrusiveValidationMode="none"  Async="true" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="UserDetailsPage.aspx.cs" Inherits="mallspacium_web.AdditionalForm.UserDetailsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <style type="text/css">
-        .auto-style1 {
-            margin-left: 0px;
-        }
-    </style>
-
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -25,11 +19,6 @@
             <asp:Label ID="usernameLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
         </div>
 
-        <div class="form-group">
-            <asp:Label ID="Label8" runat="server" Text="ID: "></asp:Label> 
-            <asp:Label ID="idLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
-        </div>
-        
         <div class="form-group">
             <asp:Label ID="Label2" runat="server" Text="Account Type: "></asp:Label> 
             <asp:Label ID="accountTypeLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
@@ -65,11 +54,20 @@
         </div>
 
         <div class="form-group">
-            <asp:TextBox ID="warningMessageTextbox" runat="server" hint="Warning Message Here" CssClass="form-control" Rows="5"></asp:TextBox>
+            <asp:TextBox ID="warningMessageTextbox" runat="server" hint="Warning Message Here" 
+                TextMode="MultiLine" 
+                AutoCompleteType="Disabled" 
+                CssClass="form-control" 
+                Rows="5"></asp:TextBox>
+
+            <asp:RequiredFieldValidator ID="warningMessageValidator" runat="server" 
+                ControlToValidate="warningMessageTextbox" 
+                ErrorMessage="*Required" 
+                CssClass="text-danger" />
         </div>
 
         <div class="form-group">
-            <asp:Button ID="sendButton" runat="server" Text="Send" CssClass="btn btn-primary" />
+            <asp:Button ID="sendButton" runat="server" Text="Send" CssClass="btn btn-primary" OnClick="sendButton_Click" />
         </div>
     </div>
 </div>
