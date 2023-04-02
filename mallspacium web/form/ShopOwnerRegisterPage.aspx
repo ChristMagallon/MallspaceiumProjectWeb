@@ -69,10 +69,16 @@
                       <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="AddressTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>
 
+                <div class="mb-3 mt-3">
+                      <label for="username" class="form-label">Username:</label>
+                      <asp:TextBox ID="UsernameTextBox" runat="server" type="text" class="form-control" placeholder="Enter Username" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Field is required *" ControlToValidate="UsernameTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
+                </div>
+
                 <div class="mb-3">
                       <label for="password" class="form-label">Password:</label>
                       <asp:TextBox ID="PasswordTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Password" AutoCompleteType="Disabled" TextMode="Password" ValidationGroup="Validate"></asp:TextBox>
-                      <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="PasswordTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
+                      <asp:RequiredFieldValidator ID="UsernameRequiredFieldValidator" runat="server" ControlToValidate="PasswordTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-3">

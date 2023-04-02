@@ -127,6 +127,7 @@ namespace mallspacium_web.form
                 {"email", EmailTextBox.Text},
                 {"phoneNumber", PhoneNumberTextBox.Text},
                 {"address", ti.ToTitleCase(AddressTextBox.Text)},
+                {"username", UsernameTextBox.Text},
                 {"password", PasswordTextBox.Text},
                 {"confirmPassword", ConfirmPasswordTextBox.Text},
                 {"userRole", user_role}

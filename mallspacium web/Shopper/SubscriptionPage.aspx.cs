@@ -182,7 +182,6 @@ namespace mallspacium_web.Shopper
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-
                 // Create a new collection reference
                 DocumentReference documentRef = db.Collection("AdminManageSubscription").Document(userEmail);
 
