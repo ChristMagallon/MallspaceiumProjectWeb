@@ -130,24 +130,34 @@ namespace mallspacium_web.ShopOwner
             downloadData();
         }
 
-        public async Task downloadData()
+        public async void downloadData()
         {
-            // Set the path and name of the file to be downloaded
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\";
-            string filename = "MyData.txt";
-            string filePath = path + filename;
+            // Define collection and document reference
+            CollectionReference usersCollectionRef = db.Collection("Users");
+            DocumentReference userDocRef = usersCollectionRef.Document((string)Application.Get("usernameget"));
 
-            // Retrieve the data from the Firestore collection
-            DocumentReference docRef = db.Collection("Users").Document((string)Application.Get("usernameget"));
-            DocumentSnapshot documentSnapshot = await docRef.GetSnapshotAsync();
+            // Get user data as dictionary
+            DocumentSnapshot userSnapshot = await userDocRef.GetSnapshotAsync();
+            Dictionary<string, object> userData = userSnapshot.ToDictionary();
 
-            // Write the data to a file
-            using (StreamWriter streamWriter = new StreamWriter(filePath))
+            // Create file stream and writer
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            string downloadsPath = Path.Combine(folderPath, "Downloads");
+            string fileName = "My-User-Details.txt";
+            string filePath = Path.Combine(downloadsPath, fileName);
+            FileStream fileStream = new FileStream(filePath, FileMode.Create);
+            StreamWriter writer = new StreamWriter(fileStream);
+
+            // Write user data to file
+            foreach (KeyValuePair<string, object> entry in userData)
             {
-                string data = documentSnapshot.ToJson();
-                streamWriter.WriteLine(data);
-                Response.Write("<script>alert('Your data is downloaded!');</script>");
+                string line = $"{entry.Key}: {entry.Value}";
+                writer.WriteLine(line);
             }
+
+            // Close writer and stream
+            writer.Close();
+            fileStream.Close();
         }
     }
 }
