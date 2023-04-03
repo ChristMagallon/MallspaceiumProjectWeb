@@ -109,6 +109,9 @@ namespace mallspacium_web.ShopOwner
             {
                 // Document does not exist
             }
+
+            // Redirect to the same page to apply the changes
+            Response.Redirect(Request.RawUrl, false);
         }
 
         public async void advancedSubscription()
@@ -186,6 +189,9 @@ namespace mallspacium_web.ShopOwner
             {
                 // Document does not exist
             }
+
+            // Redirect to the same page to apply the changes
+            Response.Redirect(Request.RawUrl, false);
         }
 
         public async void premiumSubscription()
@@ -229,13 +235,13 @@ namespace mallspacium_web.ShopOwner
                 {
                     // Document exists, update the fields
                     Dictionary<string, object> dataUpdate = new Dictionary<string, object>
-                {
-                    {"subscriptionType", PremiumSubscriptionLabel.Text.ToString()},
-                    {"price", PremiumSubPriceLabel.Text.ToString()},
-                    {"startDate", startDate},
-                    {"endDate", endDate},
-                    {"status", status}
-                };
+                    {
+                        {"subscriptionType", PremiumSubscriptionLabel.Text.ToString()},
+                        {"price", PremiumSubPriceLabel.Text.ToString()},
+                        {"startDate", startDate},
+                        {"endDate", endDate},
+                        {"status", status}
+                    };
 
                     // Update the data in the Firestore document
                     await documentRef.UpdateAsync(dataUpdate);
@@ -263,6 +269,57 @@ namespace mallspacium_web.ShopOwner
             {
                 // Document does not exist
             }
+
+            // Redirect to the same page to apply the changes
+            Response.Redirect(Request.RawUrl, false);
+        }
+
+        public async void getCurrentSubDetails()
+        {
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = db.Collection("AdminManageSubscription");
+            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
+
+            // Retrieve the document data asynchronously
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+            // Check if the document exists
+            if (snapshot.Exists)
+            {
+                // Get the data as a Dictionary
+                Dictionary<string, object> data = snapshot.ToDictionary();
+                // Access the specific field you want
+                string subscriptionType = data["subscriptionType"].ToString();
+                CurrentSubscriptionLabel.Text = subscriptionType.ToString();
+
+                if (subscriptionType == BasicSubscriptionLabel.Text)
+                {
+                    BasicSubButton.Enabled = false;
+                }
+                else if (subscriptionType == AdvancedSubscriptionLabel.Text)
+                {
+                    AdvanceSubButton.Enabled = false;
+                }
+                else if (subscriptionType == PremiumSubscriptionLabel.Text)
+                {
+                    PremiumSubButton.Enabled = false;
+                }
+                else
+                {
+                    BasicSubButton.Enabled = true;
+                    AdvanceSubButton.Enabled = true;
+                    PremiumSubButton.Enabled = true;
+                }
+            }
+            else
+            {
+                // Document does not exist
+            }
+        }
+
+        protected void ViewSubscriptionButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ShopOwner/MyCurrentSubscriptionPage.aspx", false);
         }
     }
 }

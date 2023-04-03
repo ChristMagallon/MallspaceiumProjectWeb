@@ -5,24 +5,32 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
+
     <div class="row">
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow subscription-choice">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">
-                    <asp:Label ID="BasicSubscriptionLabel" runat="server" Text="Basic Subscription"></asp:Label>
-                </h4>
-            </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">₱<asp:Label ID="BasicSubPriceLabel" runat="server" Text="149.80"></asp:Label> <small class="text-muted">/ month</small></h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li>Access to basic content</li>
-                    <li>Monthly newsletter</li>
-                </ul>
-                <asp:Button ID="BasicSubButton" runat="server" OnClick="BasicSubButton_Click" CssClass="btn btn-lg btn-block btn-outline-primary" Text="Subscribe" />
-            </div>
+        <div class="col-md-12 mb-4">
+            <h3>Current subscription: <asp:Label ID="CurrentSubscriptionLabel" runat="server"></asp:Label></h3>
+            <asp:Button ID="ViewSubscriptionButton" runat="server" OnClick="ViewSubscriptionButton_Click" CssClass="btn btn-lg btn-block btn-primary" Text="View My Subscription" />
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow subscription-choice">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        <asp:Label ID="BasicSubscriptionLabel" runat="server" Text="Basic Subscription"></asp:Label>
+                    </h4>
+                </div>
+                <div class="card-body h-100">
+                    <h1 class="card-title pricing-card-title">₱<asp:Label ID="BasicSubPriceLabel" runat="server" Text="149.80"></asp:Label> <small class="text-muted">/ 1 month</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Access to basic content</li>
+                        <li>Monthly newsletter</li>
+                    </ul>
+                    <asp:Button ID="BasicSubButton" runat="server" OnClick="BasicSubButton_Click" CssClass="btn btn-lg btn-block btn-primary" Text="Subscribe" />
+                </div>
+            </div>
+        </div>
 
     <div class="col-md-4">
         <div class="card mb-4 box-shadow subscription-choice">
@@ -31,8 +39,8 @@
                     <asp:Label ID="AdvancedSubscriptionLabel" runat="server" Text="Advanced Subscription"></asp:Label>
                 </h4>
             </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">₱<asp:Label ID="AdvancedSubPriceLabel" runat="server" Text="299.06"></asp:Label> <small class="text-muted">/ month</small></h1>
+            <div class="card-body h-100">
+                <h1 class="card-title pricing-card-title">₱<asp:Label ID="AdvancedSubPriceLabel" runat="server" Text="299.06"></asp:Label> <small class="text-muted">/ 3 month</small></h1>
                 <ul class="list-unstyled mt-3 mb-4">
                     <li>Access to advanced content</li>
                     <li>Weekly newsletter</li>
@@ -50,8 +58,8 @@
                     <asp:Label ID="PremiumSubscriptionLabel" runat="server" Text="Premium Subscription"></asp:Label>
                 </h4>
             </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">₱<asp:Label ID="PremiumSubPriceLabel" runat="server" Text="449.04"></asp:Label> <small class="text-muted">/ month</small></h1>
+            <div class="card-body h-100">
+                <h1 class="card-title pricing-card-title">₱<asp:Label ID="PremiumSubPriceLabel" runat="server" Text="449.04"></asp:Label> <small class="text-muted">/ 5 month</small></h1>
                 <ul class="list-unstyled mt-3 mb-4">
                     <li>Access to premium content</li>
                     <li>Weekly newsletter</li>

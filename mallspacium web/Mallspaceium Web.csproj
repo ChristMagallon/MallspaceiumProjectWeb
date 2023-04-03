@@ -193,6 +193,7 @@
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
     <Content Include="MasterForm\PopUpReportProofImage.aspx" />
     <Content Include="MasterForm\PopUpSupportingImage.aspx" />
+    <Content Include="ShopOwner\MyCurrentSubscriptionPage.aspx" />
     <Content Include="ShopOwner\ReportShopPage.aspx" />
     <Content Include="MasterForm\ReportDetailsForm.aspx" />
     <Content Include="MasterForm\UserDetailsPage.aspx" />
@@ -219,6 +220,7 @@
     <Content Include="ShopOwner\SubscriptionPage.aspx" />
     <Content Include="Shopper\EditProfilePage.aspx" />
     <Content Include="Shopper\EditProfilePicturePage.aspx" />
+    <Content Include="Shopper\MyCurrentSubscriptionPage.aspx" />
     <Content Include="Shopper\MyFavoritePage.aspx" />
     <Content Include="Shopper\MyWishlistPage.aspx" />
     <Content Include="Shopper\PopularShopDetailsPage.aspx" />
@@ -326,6 +328,13 @@
     </Compile>
     <Compile Include="MasterForm\PopUpSupportingImage.aspx.designer.cs">
       <DependentUpon>PopUpSupportingImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopOwner\MyCurrentSubscriptionPage.aspx.cs">
+      <DependentUpon>MyCurrentSubscriptionPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\MyCurrentSubscriptionPage.aspx.designer.cs">
+      <DependentUpon>MyCurrentSubscriptionPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\ReportShopPage.aspx.cs">
       <DependentUpon>ReportShopPage.aspx</DependentUpon>
@@ -503,6 +512,13 @@
     </Compile>
     <Compile Include="Shopper\EditProfilePicturePage.aspx.designer.cs">
       <DependentUpon>EditProfilePicturePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shopper\MyCurrentSubscriptionPage.aspx.cs">
+      <DependentUpon>MyCurrentSubscriptionPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\MyCurrentSubscriptionPage.aspx.designer.cs">
+      <DependentUpon>MyCurrentSubscriptionPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shopper\MyFavoritePage.aspx.cs">
       <DependentUpon>MyFavoritePage.aspx</DependentUpon>

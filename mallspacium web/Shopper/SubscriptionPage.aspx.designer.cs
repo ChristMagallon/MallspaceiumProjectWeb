@@ -15,6 +15,24 @@ namespace mallspacium_web.Shopper
     {
 
         /// <summary>
+        /// CurrentSubscriptionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CurrentSubscriptionLabel;
+
+        /// <summary>
+        /// ViewSubscriptionButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ViewSubscriptionButton;
+
+        /// <summary>
         /// BasicSubscriptionLabel control.
         /// </summary>
         /// <remarks>
