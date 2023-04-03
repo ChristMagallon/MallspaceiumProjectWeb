@@ -30,6 +30,7 @@
             <asp:BoundField HeaderText="Shop Name" DataField="shopName" SortExpression="shopName"></asp:BoundField>
             <asp:BoundField HeaderText="Reason" DataField="reason" SortExpression="reason"></asp:BoundField>
             <asp:BoundField HeaderText="Reported by" DataField="reportedBy" SortExpression="reportedBy"></asp:BoundField>
+            <asp:BoundField HeaderText="Status" DataField="status" SortExpression="status"></asp:BoundField>
         </Columns>
              <FooterStyle BackColor="White" ForeColor="#000066" />
              <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />

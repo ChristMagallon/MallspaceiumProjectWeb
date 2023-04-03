@@ -35,6 +35,7 @@ namespace mallspacium_web.MasterForm
         public async void report()
         {
             string shopName = Request.QueryString["shopName"];
+            string defaultStatus = "Pending";
 
             //auto generated unique id
             Random random = new Random();
@@ -65,7 +66,8 @@ namespace mallspacium_web.MasterForm
                 { "detailedReason", reasonTextbox.Text },
                 { "supportingImage", base64String },
                 { "reportedBy", (string)Application.Get("usernameget")},
-                { "date", date }
+                { "date", date },
+                { "status", defaultStatus}
             };
             await userRef.SetAsync(data1);
 

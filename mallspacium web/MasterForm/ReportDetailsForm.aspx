@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ReportDetailsForm.aspx.cs" Inherits="mallspacium_web.MasterForm.ReportDetailsForm" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="ReportDetailsForm.aspx.cs" Inherits="mallspacium_web.MasterForm.ReportDetailsForm" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -10,7 +10,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
       <link rel="stylesheet" href="Style.css" />
         <!-- start here -->
@@ -38,37 +38,47 @@
     </div>
     <div class="form-group">
         <asp:Label ID="Label6" runat="server" Text="Date: "></asp:Label>
-        <asp:Label ID="dateLabel" runat="server" Text=""></asp:Label>
+        <asp:Label ID="dateLabel" runat="server" Text=""></asp:Label> 
     </div>
 
-   <div class="form-group">
-    <asp:Button ID="viewSupportingImageButton" runat="server" Text="View Supporting Image" CssClass="btn btn-primary" OnClick="viewSupportingImageButton_Click"/>
-    <br /><br /><br />
-</div>
-
-<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="imageModalLabel">Image Preview</h4>
-            </div>
-            <div class="modal-body">
-                <img src="" id="modalImage" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
+    <div class="form-group">
+        <asp:Label ID="Label8" runat="server" Text="Status: "></asp:Label>
+        <asp:Label ID="statusLabel" runat="server" Text=""></asp:Label> <br /> <br />
     </div>
-</div>
 
-<script type="text/javascript">
-    function showModal(imageString) {
-        document.getElementById("modalImage").src = "data:image/jpeg;base64," + imageString;
-        $('#imageModal').modal('show');
-    }
-</script>
+    <div class="form-group">
+        <asp:HiddenField ID="imageHiddenField" runat="server" />
+        <asp:Button ID="viewSupportingImageButton" runat="server" Text="View Supporting Image" CssClass="btn btn-primary" OnClick="viewSupportingImageButton_Click" /> <br /> <br /> <br />
+     </div>
+
+     <div class="form">
+            <asp:GridView ID="reportstatusGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" DataKeyNames="noteId" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="reportstatusGridView_SelectedIndexChanged" OnRowDataBound="reportstatusGridView_RowDataBound">
+        <Columns>
+            <asp:BoundField HeaderText="ID" DataField="noteId" SortExpression="noteId"></asp:BoundField>
+            <asp:BoundField HeaderText="Note" DataField="note" SortExpression="note"></asp:BoundField>
+            <asp:BoundField HeaderText="date" DataField="date" SortExpression="date"></asp:BoundField>
+        </Columns>
+             <FooterStyle BackColor="White" ForeColor="#000066" />
+             <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+             <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
+             <RowStyle ForeColor="#000066" />
+             <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+             <SortedAscendingCellStyle BackColor="#F1F1F1" />
+             <SortedAscendingHeaderStyle BackColor="#007DBB" />
+             <SortedDescendingCellStyle BackColor="#CAC9C9" />
+             <SortedDescendingHeaderStyle BackColor="#00547E" />
+    </asp:GridView> <br /> <br />
+    </div>
+
+    <div class="form-group">
+        <asp:Label ID="Label9" runat="server" Text="Status: "></asp:Label>
+        <asp:DropDownList ID="statusDropDownList" runat="server" ValidationGroup="Validate">
+            <asp:ListItem Value="">--Select a Status--</asp:ListItem>
+            <asp:ListItem Value="Pending">Pending</asp:ListItem>
+            <asp:ListItem Value="In Progress">In Progress</asp:ListItem>
+            <asp:ListItem Value="Resolved">Resolved</asp:ListItem>
+            </asp:DropDownList> <br /> <br />
+    </div>
 
     <div class="form-group">
         <asp:Label ID="Label5" runat="server" Text="Upload Proof: "></asp:Label>
@@ -83,3 +93,6 @@
      </div>
 </div>
 </asp:Content>
+    
+
+

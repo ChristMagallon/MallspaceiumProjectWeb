@@ -165,6 +165,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -190,6 +191,8 @@
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
+    <Content Include="MasterForm\PopUpReportProofImage.aspx" />
+    <Content Include="MasterForm\PopUpSupportingImage.aspx" />
     <Content Include="ShopOwner\ReportShopPage.aspx" />
     <Content Include="MasterForm\ReportDetailsForm.aspx" />
     <Content Include="MasterForm\UserDetailsPage.aspx" />
@@ -309,6 +312,20 @@
     </Compile>
     <Compile Include="MasterForm\CreateAdminAccountForm.aspx.designer.cs">
       <DependentUpon>CreateAdminAccountForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm\PopUpReportProofImage.aspx.cs">
+      <DependentUpon>PopUpReportProofImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\PopUpReportProofImage.aspx.designer.cs">
+      <DependentUpon>PopUpReportProofImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm\PopUpSupportingImage.aspx.cs">
+      <DependentUpon>PopUpSupportingImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\PopUpSupportingImage.aspx.designer.cs">
+      <DependentUpon>PopUpSupportingImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\ReportShopPage.aspx.cs">
       <DependentUpon>ReportShopPage.aspx</DependentUpon>

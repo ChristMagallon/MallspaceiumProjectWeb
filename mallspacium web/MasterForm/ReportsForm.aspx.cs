@@ -35,13 +35,15 @@ namespace mallspacium_web
             reportGridViewTable.Columns.Add("shopName", typeof(string));
             reportGridViewTable.Columns.Add("reason", typeof(string));
             reportGridViewTable.Columns.Add("reportedBy", typeof(string));
-            
+            reportGridViewTable.Columns.Add("status", typeof(string));
+
             foreach (DocumentSnapshot docsnap in querySnapshot.Documents)
             {
                 string id = docsnap.GetValue<string>("id");
                 string shopName = docsnap.GetValue<string>("shopName");
                 string reason = docsnap.GetValue<string>("reason");
                 string reportedBy = docsnap.GetValue<string>("reportedBy");
+                string status= docsnap.GetValue<string>("status");
 
                 DataRow dataRow = reportGridViewTable.NewRow();
 
@@ -49,6 +51,7 @@ namespace mallspacium_web
                 dataRow["shopName"] = shopName;
                 dataRow["reason"] = reason;
                 dataRow["reportedBy"] = reportedBy;
+                dataRow["status"] = status;
 
                 reportGridViewTable.Rows.Add(dataRow);
             }
@@ -121,7 +124,7 @@ namespace mallspacium_web
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(reportGridView, "Select$" + e.Row.RowIndex);
-                e.Row.ToolTip = "Click to view more details.";
+                e.Row.ToolTip = "Click to view proof.";
             }
         }
     }

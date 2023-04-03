@@ -14,12 +14,14 @@ namespace mallspacium_web.MasterForm2
     public partial class WebForm6 : System.Web.UI.Page
     {
       
-        FirestoreDb database;    
+        FirestoreDb database;
+        static string notificationpicker = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
          
             string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
+            
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             database = FirestoreDb.Create("mallspaceium");
@@ -36,16 +38,17 @@ namespace mallspacium_web.MasterForm2
             string selectedValue = selectedRow.Cells[0].Text;
 
             // Display the selected value in the Label control
-            SelectedNotificationLabel.Text = selectedValue;
+            notificationpicker = selectedValue;
             getmessage();
         }
+
         public async void getmessage()
         {
             object field = "";
 
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = database.Collection("Users");
-            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget")).Collection("Notification").Document(SelectedNotificationLabel.Text);
+            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget")).Collection("Notification").Document(notificationpicker);
 
             // Retrieve the document data asynchronously
             DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
@@ -60,7 +63,7 @@ namespace mallspacium_web.MasterForm2
 
                 // Do something with the field value     
 
-                Response.Write(field);
+                SelectedNotificationLabel.Text = field.ToString();
             }
             else
             {

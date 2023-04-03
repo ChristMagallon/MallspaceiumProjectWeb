@@ -7,29 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mallspacium_web.MasterForm2
+namespace mallspacium_web.MasterForm
 {
 
 
-    public partial class WebForm6
+    public partial class PopUpSupportingImage
     {
 
         /// <summary>
-        /// NotificationGridView control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView NotificationGridView;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// SelectedNotificationLabel control.
+        /// MyImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SelectedNotificationLabel;
+        protected global::System.Web.UI.WebControls.Image MyImage;
     }
 }
