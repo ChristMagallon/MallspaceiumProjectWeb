@@ -22,7 +22,7 @@ namespace mallspacium_web
             getAdminReport();
         }
 
-        public async void getAdminReport()
+        public void getAdminReport()
         {
             CollectionReference usersRef = database.Collection("AdminReport");
             // Retrieve the documents from the parent collection

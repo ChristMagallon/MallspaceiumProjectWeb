@@ -75,13 +75,11 @@
         <asp:FileUpload ID="proofFileUpload" runat="server" /> <br /> <br />
     </div>
     <div class="form-group">
-        <asp:Label ID="Label7" runat="server" Text="Add Note: "></asp:Label>
+        <asp:Label ID="Label7" runat="server" Text="Note: "></asp:Label>
         <asp:TextBox ID="noteTextBox" runat="server" TextMode="MultiLine" Rows="4" AutoCompleteType="Disabled" Width="234px"></asp:TextBox> <br /> <br />
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" id="addNoteButton" runat="server" >Add Note</button>
+        <asp:Button ID="addProofNoteButton" runat="server" Text="Add Proof & Note"  CssClass="btn btn-primary" OnClick="addProofNoteButton_Click"/>
      </div>
 </div>
-
-
 </asp:Content>

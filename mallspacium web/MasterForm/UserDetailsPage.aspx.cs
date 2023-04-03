@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -174,21 +174,20 @@ namespace mallspacium_web.AdditionalForm
         public async void sendWarningMessage()
         {
             //auto generated unique id
-            Guid id = Guid.NewGuid();
-            string uniqueId = id.ToString();
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string notofID = "NOTIF" + randomIDNumber.ToString();
 
-            //get the current UTC date and time
-            DateTime now = DateTime.UtcNow;
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-            // Format the date and time as a string
-            string dateString = now.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
-
-            DocumentReference userRef = database.Collection("Users").Document(emailLabel.Text).Collection("Notification").Document(uniqueId);
+            DocumentReference userRef = database.Collection("Users").Document(emailLabel.Text).Collection("Notification").Document(notofID);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
-                { "id", uniqueId },
+                { "id", notofID },
                 { "message", warningMessageTextbox.Text },
-                { "date", dateString }
+                { "date", date }
             };
 
             await userRef.SetAsync(data1);
