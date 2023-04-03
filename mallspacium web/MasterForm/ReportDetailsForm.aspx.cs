@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
 
 namespace mallspacium_web.MasterForm
@@ -24,6 +27,15 @@ namespace mallspacium_web.MasterForm
             {
                 retrieveReportDetails();
             }
+        }
+        protected void addProofNoteButton_Click(object sender, EventArgs e)
+        {
+            addProofNote();
+        }
+
+        protected void viewSupportingImageButton_Click(object sender, EventArgs e)
+        {
+            viewSupportingImage();
         }
 
         public async void retrieveReportDetails()
@@ -47,6 +59,8 @@ namespace mallspacium_web.MasterForm
                     string detailedReason = documentSnapshot.GetValue<string>("detailedReason");
                     string reportedBy = documentSnapshot.GetValue<string>("reportedBy");
                     string date = documentSnapshot.GetValue<string>("date");
+                    string status = documentSnapshot.GetValue<string>("status");
+                    string image = documentSnapshot.GetValue<string>("supportingImage");
 
                     // Display the data
                     idLabel.Text = id;
@@ -55,34 +69,40 @@ namespace mallspacium_web.MasterForm
                     detailedReasonLabel.Text = detailedReason;
                     reportedByLabel.Text = reportedBy;
                     dateLabel.Text = date;
+                    statusLabel.Text = status;
+                    imageHiddenField.Value = image;
                 }
+
+                CollectionReference usersRef = database.Collection("AdminReport").Document(idLabel.Text).Collection("ReportStatus");
+                // Retrieve the documents from the parent collection
+                QuerySnapshot querySnapshot = usersRef.GetSnapshotAsync().Result;
+
+                // Create a DataTable to store the retrieved data
+                DataTable reportstatusGridViewTable = new DataTable();
+
+                reportstatusGridViewTable.Columns.Add("noteId", typeof(string));
+                reportstatusGridViewTable.Columns.Add("note", typeof(string));
+                reportstatusGridViewTable.Columns.Add("date", typeof(string));
+
+                foreach (DocumentSnapshot docsnap in querySnapshot.Documents)
+                {
+                    string noteId = docsnap.GetValue<string>("noteId");
+                    string note = docsnap.GetValue<string>("note");
+                    string date = docsnap.GetValue<string>("date");
+
+                    DataRow dataRow = reportstatusGridViewTable.NewRow();
+
+                    dataRow["noteId"] = noteId;
+                    dataRow["note"] = note;
+                    dataRow["date"] = date;
+
+                    reportstatusGridViewTable.Rows.Add(dataRow);
+                }
+                reportstatusGridView.DataSource = reportstatusGridViewTable;
+                reportstatusGridView.DataBind();
             }
         }
 
-        protected void viewSupportingImageButton_Click(object sender, EventArgs e)
-        {
-            viewSupportingImage();
-        }
-
-        public async void viewSupportingImage()
-        {
-            // Retrieve the shop name from the query string
-            string id = Request.QueryString["id"];
-
-            // Retrieve the data from Firestore database
-            DocumentReference docRef = database.Collection("AdminReport").Document(id);
-            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-
-            string imageString = snapshot.GetValue<string>("supportingImage");
-
-            // Show the modal with the image
-            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "showModal", "showModal('" + imageString + "');", true);
-        }
-
-        protected void addProofNoteButton_Click(object sender, EventArgs e)
-        {
-            addProofNote();
-        }
 
         public async void addProofNote()
         {
@@ -104,16 +124,32 @@ namespace mallspacium_web.MasterForm
             //Convert the Bitmap image to a Base64 string
             string base64String = Convert.ToBase64String(bytes);
 
-            DocumentReference userRef = database.Collection("AdminReport").Document(idLabel.Text).Collection("ReportStatus").Document(noteID);
+            DocumentReference userRef1 = database.Collection("AdminReport").Document(idLabel.Text);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
-                { "id", noteID },
-                { "message", noteTextBox.Text },
-                { "date", date },
-                { "proofImage", base64String}
+                { "id", idLabel.Text },
+                { "shopName", shopNameLabel.Text },
+                { "reason", reasonLabel.Text},
+                { "detailedReason", detailedReasonLabel.Text },
+                { "supportingImage", imageHiddenField.Value },
+                { "reportedBy", reportedByLabel.Text},
+                { "date", dateLabel.Text },
+                { "status", statusDropDownList.SelectedItem.Text }
             };
 
-            await userRef.SetAsync(data1);
+            await userRef1.SetAsync(data1);
+
+            DocumentReference userRef2 = database.Collection("AdminReport").Document(idLabel.Text).Collection("ReportStatus").Document(noteID);
+            Dictionary<string, object> data2 = new Dictionary<string, object>()
+            {
+                { "noteId", noteID },
+                { "note", noteTextBox.Text },
+                { "date", date },
+                { "proofImage", base64String},
+                { "status", statusDropDownList.SelectedItem.Text }
+            };
+
+            await userRef2.SetAsync(data2);
 
             // Display a message
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Added Proof and Note!');", true);
@@ -121,6 +157,54 @@ namespace mallspacium_web.MasterForm
             // Redirect to another page after a delay
             string url = "ReportsForm.aspx";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+        }
+
+
+        public void viewSupportingImage()
+        {
+            string id = idLabel.Text;
+
+            // Get the URL for the webform with the image control
+            string url = "PopUpSupportingImage.aspx?id=" + id;
+
+            // Set the height and width of the popup window
+            int height = 800;
+            int width = 800;
+
+            // Open the popup window
+            string script = $"window.open('{url}&height={height}&width={width}', '_blank', 'height={height},width={width},status=yes,toolbar=no,menubar=no,location=no,resizable=no');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "PopupWindow", script, true);
+        }
+
+        protected void reportstatusGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string reportId = idLabel.Text;
+
+            // Get the index of the selected row
+            int selectedIndex = reportstatusGridView.SelectedIndex;
+
+            // Get the value of the shopName column from the DataKeys collection
+            string noteId = reportstatusGridView.DataKeys[selectedIndex].Values["noteId"].ToString();
+
+            // Get the URL for the webform with the image control
+            string url = "PopUpReportProofImage.aspx?noteId=" + noteId + "&id=" + reportId;
+
+            // Set the height and width of the popup window
+            int height = 800;
+            int width = 800;
+
+            // Open the popup window
+            string script = $"window.open('{url}&height={height}&width={width}', '_blank', 'height={height},width={width},status=yes,toolbar=no,menubar=no,location=no,resizable=no');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "PopupWindow", script, true);
+        }
+
+        protected void reportstatusGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(reportstatusGridView, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to view more details.";
+            }
         }
     }
 }
