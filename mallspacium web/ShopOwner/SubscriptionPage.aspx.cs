@@ -66,25 +66,44 @@ namespace mallspacium_web.ShopOwner
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-
                 // Create a new collection reference
                 DocumentReference documentRef = db.Collection("AdminManageSubscription").Document(userEmail);
 
-                // Set the data for the new document
-                Dictionary<string, object> dataInsert = new Dictionary<string, object>
+                // Check if the document exists
+                DocumentSnapshot documentSnapshot = await documentRef.GetSnapshotAsync();
+                if (documentSnapshot.Exists)
                 {
-                    {"subscriptionID", subscriptionID},
+                    // Document exists, update the fields
+                    Dictionary<string, object> dataUpdate = new Dictionary<string, object>
+                {
                     {"subscriptionType", BasicSubscriptionLabel.Text.ToString()},
                     {"price", BasicSubPriceLabel.Text.ToString()},
-                    {"userEmail", userEmail},
-                    {"userRole", userRole},
                     {"startDate", startDate},
                     {"endDate", endDate},
                     {"status", status}
                 };
 
-                // Set the data in the Firestore document
-                await documentRef.SetAsync(dataInsert);
+                    // Update the data in the Firestore document
+                    await documentRef.UpdateAsync(dataUpdate);
+                }
+                else
+                {
+                    // Document does not exist, create a new document and set the data
+                    Dictionary<string, object> dataInsert = new Dictionary<string, object>
+                    {
+                        {"subscriptionID", subscriptionID},
+                        {"subscriptionType", BasicSubscriptionLabel.Text.ToString()},
+                        {"price", BasicSubPriceLabel.Text.ToString()},
+                        {"userEmail", userEmail},
+                        {"userRole", userRole},
+                        {"startDate", startDate},
+                        {"endDate", endDate},
+                        {"status", status}
+                    };
+
+                    // Set the data in the Firestore document
+                    await documentRef.SetAsync(dataInsert);
+                }
             }
             else
             {
@@ -124,25 +143,44 @@ namespace mallspacium_web.ShopOwner
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-
                 // Create a new collection reference
                 DocumentReference documentRef = db.Collection("AdminManageSubscription").Document(userEmail);
 
-                // Set the data for the new document
-                Dictionary<string, object> dataInsert = new Dictionary<string, object>
+                // Check if the document exists
+                DocumentSnapshot documentSnapshot = await documentRef.GetSnapshotAsync();
+                if (documentSnapshot.Exists)
                 {
-                    {"subscriptionID", subscriptionID},
-                    {"subscriptionType", BasicSubscriptionLabel.Text.ToString()},
-                    {"price", BasicSubPriceLabel.Text.ToString()},
-                    {"userEmail", userEmail},
-                    {"userRole", userRole},
+                    // Document exists, update the fields
+                    Dictionary<string, object> dataUpdate = new Dictionary<string, object>
+                {
+                    {"subscriptionType", AdvancedSubscriptionLabel.Text.ToString()},
+                    {"price", AdvancedSubPriceLabel.Text.ToString()},
                     {"startDate", startDate},
                     {"endDate", endDate},
                     {"status", status}
                 };
 
-                // Set the data in the Firestore document
-                await documentRef.SetAsync(dataInsert);
+                    // Update the data in the Firestore document
+                    await documentRef.UpdateAsync(dataUpdate);
+                }
+                else
+                {
+                    // Document does not exist, create a new document and set the data
+                    Dictionary<string, object> dataInsert = new Dictionary<string, object>
+                    {
+                        {"subscriptionID", subscriptionID},
+                        {"subscriptionType", AdvancedSubscriptionLabel.Text.ToString()},
+                        {"price", AdvancedSubPriceLabel.Text.ToString()},
+                        {"userEmail", userEmail},
+                        {"userRole", userRole},
+                        {"startDate", startDate},
+                        {"endDate", endDate},
+                        {"status", status}
+                    };
+
+                    // Set the data in the Firestore document
+                    await documentRef.SetAsync(dataInsert);
+                }
             }
             else
             {
@@ -182,25 +220,44 @@ namespace mallspacium_web.ShopOwner
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-
                 // Create a new collection reference
                 DocumentReference documentRef = db.Collection("AdminManageSubscription").Document(userEmail);
 
-                // Set the data for the new document
-                Dictionary<string, object> dataInsert = new Dictionary<string, object>
+                // Check if the document exists
+                DocumentSnapshot documentSnapshot = await documentRef.GetSnapshotAsync();
+                if (documentSnapshot.Exists)
                 {
-                    {"subscriptionID", subscriptionID},
-                    {"subscriptionType", BasicSubscriptionLabel.Text.ToString()},
-                    {"price", BasicSubPriceLabel.Text.ToString()},
-                    {"userEmail", userEmail},
-                    {"userRole", userRole},
+                    // Document exists, update the fields
+                    Dictionary<string, object> dataUpdate = new Dictionary<string, object>
+                {
+                    {"subscriptionType", PremiumSubscriptionLabel.Text.ToString()},
+                    {"price", PremiumSubPriceLabel.Text.ToString()},
                     {"startDate", startDate},
                     {"endDate", endDate},
                     {"status", status}
                 };
 
-                // Set the data in the Firestore document
-                await documentRef.SetAsync(dataInsert);
+                    // Update the data in the Firestore document
+                    await documentRef.UpdateAsync(dataUpdate);
+                }
+                else
+                {
+                    // Document does not exist, create a new document and set the data
+                    Dictionary<string, object> dataInsert = new Dictionary<string, object>
+                    {
+                        {"subscriptionID", subscriptionID},
+                        {"subscriptionType", PremiumSubscriptionLabel.Text.ToString()},
+                        {"price",PremiumSubPriceLabel.Text.ToString()},
+                        {"userEmail", userEmail},
+                        {"userRole", userRole},
+                        {"startDate", startDate},
+                        {"endDate", endDate},
+                        {"status", status}
+                    };
+
+                    // Set the data in the Firestore document
+                    await documentRef.SetAsync(dataInsert);
+                }
             }
             else
             {
