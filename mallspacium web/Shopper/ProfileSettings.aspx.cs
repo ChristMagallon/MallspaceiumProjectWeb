@@ -2,8 +2,11 @@
 using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
@@ -63,6 +66,20 @@ namespace mallspacium_web.Shopper
 
             }
 
+            if (!IsPostBack)
+            {
+                // Check if the cookie exists
+                if (Request.Cookies["Language"] != null)
+                {
+                    // Set the selected value of the drop-down list to the cookie value
+                    ddlLanguage.SelectedValue = Request.Cookies["Language"].Value;
+                }
+                else
+                {
+                    // Set the default language to English
+                    ddlLanguage.SelectedValue = "en-US";
+                }
+            }
         }
 
         public async void createNotif()
@@ -160,6 +177,17 @@ namespace mallspacium_web.Shopper
             // Close writer and stream
             writer.Close();
             fileStream.Close();
+        }
+
+        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Set the language cookie to the selected value
+            HttpCookie cookie = new HttpCookie("Language");
+            cookie.Value = ddlLanguage.SelectedValue;
+            Response.Cookies.Add(cookie);
+
+            // Redirect to the same page to apply the language change
+            Response.Redirect(Request.RawUrl, false);
         }
     }
 }

@@ -185,6 +185,7 @@
     <Content Include="form\ResetPasswordPage.aspx" />
     <Content Include="form\ShopOwnerRegisterPage.aspx" />
     <Content Include="form\ShopperRegisterPage.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Images\no-image.jpg" />
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
@@ -284,6 +285,9 @@
     </Compile>
     <Compile Include="form\ShopperRegisterPage.aspx.designer.cs">
       <DependentUpon>ShopperRegisterPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MasterForm\AccountDetailsForm.aspx.cs">
       <DependentUpon>AccountDetailsForm.aspx</DependentUpon>
@@ -625,7 +629,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_GlobalResources\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

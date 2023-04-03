@@ -28,7 +28,14 @@
           <tr>
             <td class="col-sm-8">Set Language</td>
             <td class="col-sm-4">
-                <asp:Button ID="Button3" runat="server" Text="Change"  CssClass="btn btn-primary" Width="145px" /></td>
+                <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" Width="145px" >
+                    <asp:ListItem Text="English" Value="en-US"></asp:ListItem>
+                    <asp:ListItem Text="Chinese" Value="zh-CN"></asp:ListItem>
+                    <asp:ListItem Text="Korean" Value="ko-KR"></asp:ListItem>
+                    <asp:ListItem Text="Japanese" Value="ja-JP"></asp:ListItem>
+                    <asp:ListItem Text="Spanish" Value="es-ES"></asp:ListItem>
+                    <asp:ListItem Text="French" Value="fr-FR"></asp:ListItem>
+                </asp:DropDownList>
           </tr>
           <tr>
             <td class="col-sm-8">About Us</td>
