@@ -16,6 +16,9 @@
 .primary-bg {
     background-color: var(--main-bg-color);
 }
+.subscription-choice {
+    margin-bottom: 20px;
+}
 
 .secondary-bg {
     background-color: var(--second-bg-color);

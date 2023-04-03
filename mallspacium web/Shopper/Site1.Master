@@ -18,16 +18,8 @@
     </asp:ContentPlaceHolder>
 
       <style type="text/css">
-       .logoutbtn
-{
- border: none;
- background:none;
- outline: none;
+      
 }
-        .px-6{
-           margin-left: 6px;
-           margin-right: 6px;
-       }
     </style>
 </head>
 
