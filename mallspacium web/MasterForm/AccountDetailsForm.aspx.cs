@@ -18,21 +18,26 @@ namespace mallspacium_web.MasterForm
 
             database = FirestoreDb.Create("mallspaceium");
 
-            retrieveData();
+            if (!IsPostBack)
+            {
+                retrieveData();
 
-            usernameTextbox.Enabled = false;
-            idTextbox.Enabled = false;
-            dateCreatedTextbox.Enabled = false;
+                emailTextbox.Enabled = false;
+                idTextbox.Enabled = false;
+                usernameTextbox.Enabled = false;
+                dateCreatedTextbox.Enabled = false;
+            }
         }
 
         protected void updateButton_Click(object sender, EventArgs e)
         {
-            update();
+            getAdminPassword();
         }
 
         protected void deleteButton_Click(object sender, EventArgs e)
         {
             delete();
+            deleteAccountActivity();
         }
 
         public async void retrieveData()
@@ -40,49 +45,60 @@ namespace mallspacium_web.MasterForm
             if (!IsPostBack)
             {
                 // Retrieve the document ID from the query string
-                string adminUsername = Request.QueryString["adminUsername"];
+                string adminEmail = Request.QueryString["adminEmail"];
 
                 // Use the document ID to retrieve the data from Firestore
-                DocumentReference docRef = database.Collection("AdminAccount").Document(adminUsername);
+                DocumentReference docRef = database.Collection("AdminAccount").Document(adminEmail);
                 DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
 
                 // Check if the document exists
                 if (snapshot.Exists)
                 {
                     // Retrieve the data from the document
-                    string username1 = snapshot.GetValue<string>("adminUsername");
+                    string username = snapshot.GetValue<string>("adminUsername");
                     string id = snapshot.GetValue<string>("adminId");
                     string email = snapshot.GetValue<string>("adminEmail");
-                    string phoneNumber = snapshot.GetValue<string>("adminPhoneNumber");
                     string dateCreated = snapshot.GetValue<string>("adminDateCreated");
-                    string password = snapshot.GetValue<string>("adminPassword");
-                    string confrimPassword = snapshot.GetValue<string>("adminConfirmPassword");
 
                     // Display the data
-                    usernameTextbox.Text = username1;
+                    usernameTextbox.Text = username;
                     idTextbox.Text = id;
                     emailTextbox.Text = email;
-                    phoneNumberTextbox.Text = phoneNumber;
                     dateCreatedTextbox.Text = dateCreated;
-                    passwordTextbox.Text = password;
-                    confirmPasswordTextbox.Text = confrimPassword;
                 }
+            }
+        }
+
+        private async void getAdminPassword()
+        {
+            // Check if email address exists in Firestore
+            string adminPassword = currentPasswordTextbox.Text;
+            CollectionReference usersRef = database.Collection("AdminAccount");
+            QuerySnapshot usersQuery = await usersRef.WhereEqualTo("adminPassword", adminPassword).GetSnapshotAsync();
+            if (usersQuery.Documents.Count == 0)
+            {
+                // current password not found
+                errorCurrentPasswordLabel.Text = "It seems like the password you entered doesn't match our records.";
+            }
+            else
+            {
+                update();
+                updateAccountActivity();
             }
         }
 
         public async void update()
         {
-            DocumentReference docRef = database.Collection("AdminAccount").Document(usernameTextbox.Text);
+            DocumentReference docRef = database.Collection("AdminAccount").Document(emailTextbox.Text);
 
             Dictionary<string, object> data = new Dictionary<string, object>
 {
                 {"adminUsername", usernameTextbox.Text},
                 {"adminId", idTextbox.Text},
                 {"adminEmail", emailTextbox.Text},
-                {"adminPhoneNumber", phoneNumberTextbox.Text},
                 {"adminDateCreated", dateCreatedTextbox.Text},
-                {"adminPassword", passwordTextbox.Text},
-                {"adminConfirmPassword", confirmPasswordTextbox.Text}
+                {"adminPassword", newPasswordTextbox.Text},
+                {"adminConfirmPassword", confirmNewPasswordTextbox.Text}
             };
 
             try
@@ -101,15 +117,39 @@ namespace mallspacium_web.MasterForm
                 string script = "alert('" + message + "')";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
 
-                Response.Redirect("~/MasterForm/AdminAccountForm.aspx", false);
+                Response.Redirect("AdminAccountForm.aspx", false);
             }
         }
+
+        public async void updateAccountActivity()
+        {
+            //auto generated unique id
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string activityID = "ACT" + randomIDNumber.ToString();
+
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "id", activityID },
+                { "activity", (string)Application.Get("usernameget") + " updated the admin account " + emailTextbox.Text },
+                { "userRole", "Admin"},
+                { "email", emailTextbox.Text },
+                { "date", date }
+            };
+            await userRef.SetAsync(data1);
+        }
+
 
         public async void delete()
         {
             // Specify the collection and document to delete
             CollectionReference collection = database.Collection("AdminAccount");
-            DocumentReference document = collection.Document(usernameTextbox.Text);
+            DocumentReference document = collection.Document(emailTextbox.Text);
 
             // Delete the document
             await document.DeleteAsync();
@@ -118,7 +158,31 @@ namespace mallspacium_web.MasterForm
             string script = "alert('" + message + "')";
             ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
 
-            Response.Redirect("~/MasterForm/AdminAccountForm.aspx", false);
+            Response.Redirect("AdminAccountForm.aspx", false);
+        }
+        
+
+        public async void deleteAccountActivity()
+        {
+            //auto generated unique id
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string activityID = "ACT" + randomIDNumber.ToString();
+
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "id", activityID },
+                { "activity", (string)Application.Get("usernameget") + " deleted the admin account " + emailTextbox.Text },
+                { "userRole", "Admin"},
+                { "email", emailTextbox.Text },
+                { "date", date }
+            };
+            await userRef.SetAsync(data1);
         }
     }
 }

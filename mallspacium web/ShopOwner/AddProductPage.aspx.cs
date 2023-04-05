@@ -65,6 +65,7 @@ namespace mallspacium_web.ShopOwner
             Response.Redirect("~/ShopOwner/MyShopProductsPage.aspx", false);
         }
 
+
         public async void getShopName()
         {
             if (!IsPostBack)

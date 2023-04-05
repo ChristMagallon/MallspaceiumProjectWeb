@@ -24,6 +24,24 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.TextBox usernameTextbox;
 
         /// <summary>
+        /// usernameRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator usernameRequiredFieldValidator;
+
+        /// <summary>
+        /// errorUsernameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorUsernameLabel;
+
+        /// <summary>
         /// emailTextbox control.
         /// </summary>
         /// <remarks>
@@ -33,22 +51,31 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.TextBox emailTextbox;
 
         /// <summary>
-        /// phoneNumberTextbox control.
+        /// emailRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox phoneNumberTextbox;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator emailRequiredFieldValidator;
 
         /// <summary>
-        /// dateCreatedTextbox control.
+        /// emailRegularExpressionValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dateCreatedTextbox;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator emailRegularExpressionValidator;
+
+        /// <summary>
+        /// errorEmailLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorEmailLabel;
 
         /// <summary>
         /// passwordTextbox control.
@@ -60,6 +87,15 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.TextBox passwordTextbox;
 
         /// <summary>
+        /// passwordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordRequiredFieldValidator;
+
+        /// <summary>
         /// confirmPasswordTextbox control.
         /// </summary>
         /// <remarks>
@@ -67,6 +103,24 @@ namespace mallspacium_web.MasterForm
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox confirmPasswordTextbox;
+
+        /// <summary>
+        /// confirmPasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator confirmPasswordRequiredFieldValidator;
+
+        /// <summary>
+        /// passwordCompareValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator passwordCompareValidator;
 
         /// <summary>
         /// addButton control.

@@ -17,42 +17,120 @@ namespace mallspacium_web.MasterForm
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             database = FirestoreDb.Create("mallspaceium");
-
-            // Set the initial value of the TextBox control to today's date and time
-            DateTime currentDate = DateTime.Now;
-            dateCreatedTextbox.Text = currentDate.ToString();
-
-            // Make the TextBox control read-only
-            dateCreatedTextbox.Enabled = false;
         }
 
         protected void addButton_Click(object sender, EventArgs e)
         {
-            AddAccount();
+            validateInput();
         }
 
-        public async void AddAccount()
+
+        public async void validateInput()
+        {
+            Boolean checker = true;
+
+            // Query the Firestore collection for a specific username
+            CollectionReference usersRef2 = database.Collection("AdminAccount");
+            Query query2 = usersRef2.WhereEqualTo("adminUsername", usernameTextbox.Text);
+            QuerySnapshot snapshot2 = await query2.GetSnapshotAsync();
+
+            // Iterate over the results to find the if the username is already taken
+            foreach (DocumentSnapshot document2 in snapshot2.Documents)
+            {
+                if (document2.Exists)
+                {
+                    // Do something with the registered document
+                    errorUsernameLabel.Text = "Username is already taken!";
+                    checker = false;
+                }
+                else
+                {
+                    errorUsernameLabel.Text = "";
+                }
+            }
+
+            // Query the Firestore collection for a admin account with a specific email address
+            CollectionReference usersRef = database.Collection("AdminAccount");
+            Query query = usersRef.WhereEqualTo("adminEmail", emailTextbox.Text);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Iterate over the results to find the admin account
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (document.Exists)
+                {
+                    // Do something with the user document
+                    errorEmailLabel.Text = "Email is already registered!";
+                    checker = false;
+                }
+                else
+                {
+                    errorUsernameLabel.Text = "";
+                }
+            }
+
+            // If the input values are valid proceed to complete registration
+            if (checker == true)
+            {
+                addAccount();
+                addAccountActivity();
+            }
+        }
+
+        public async void addAccount()
         {
             //auto generated unique id
-            Guid id = Guid.NewGuid();
-            string uniqueId = id.ToString();
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string adminID = "ADM" + randomIDNumber.ToString();
 
-            DocumentReference doc = database.Collection("AdminAccount").Document(usernameTextbox.Text);
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference doc = database.Collection("AdminAccount").Document(emailTextbox.Text);
 
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
               { "adminUsername", usernameTextbox.Text},
-              {"adminId", uniqueId},
+              { "adminId", adminID},
               { "adminEmail", emailTextbox.Text},
-              { "adminPhoneNumber", phoneNumberTextbox.Text},
-              { "adminDateCreated", dateCreatedTextbox.Text},
+              { "adminDateCreated", date},
               { "adminPassword", passwordTextbox.Text},
               { "adminConfirmPassword", confirmPasswordTextbox.Text}
             };
-            await doc.SetAsync(data1); 
-            Response.Write("<script>alert('Successfully added a new admin account.');</script>");
+            await doc.SetAsync(data1);
 
-            Response.Redirect("~/MasterForm/AdminAccountForm.aspx", false);
+            // Display a message
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully added a new admin account!');", true);
+
+            // Redirect to another page after a delay
+            string url = "AdminAccountForm.aspx";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+        }
+
+
+        public async void addAccountActivity()
+        {
+            //auto generated unique id
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string activityID = "ACT" + randomIDNumber.ToString();
+
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "id", activityID },
+                { "activity", (string)Application.Get("usernameget") + " created a new admin account " + emailTextbox.Text },
+                { "userRole", "Admin"},
+                { "email", emailTextbox.Text },
+                { "date", date }
+            };
+            await userRef.SetAsync(data1);
         }
     }
 }

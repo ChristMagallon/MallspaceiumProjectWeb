@@ -19,10 +19,10 @@ namespace mallspacium_web
 
             database = FirestoreDb.Create("mallspaceium");
 
-            getAdminReport();
+            getAdminReport("AdminReport");
         }
 
-        public void getAdminReport()
+        public void getAdminReport(string AdminReport)
         {
             CollectionReference usersRef = database.Collection("AdminReport");
             // Retrieve the documents from the parent collection
@@ -71,11 +71,11 @@ namespace mallspacium_web
 
             if (searchTextBox.Text == "")
             {
-                getAdminReport();
+                getAdminReport("AdminReport");
             }
             else
             {
-                Query query = database.Collection("Users")
+                Query query = database.Collection("AdminReport")
                     .WhereGreaterThanOrEqualTo("shopName", searchShopName)
                     .WhereLessThanOrEqualTo("shopName", searchShopName + "\uf8ff");
 

@@ -26,10 +26,8 @@ namespace mallspacium_web.MasterForm
         {
             DataTable accountGridViewTable = new DataTable();
 
-            accountGridViewTable.Columns.Add("adminUsername");
             accountGridViewTable.Columns.Add("adminId");
             accountGridViewTable.Columns.Add("adminEmail");
-            accountGridViewTable.Columns.Add("adminPhoneNumber");
             accountGridViewTable.Columns.Add("adminDateCreated");
 
             Query subQue = database.Collection(AdminAccount);
@@ -41,12 +39,11 @@ namespace mallspacium_web.MasterForm
 
                 if (docsnap.Exists)
                 {
-                    accountGridViewTable.Rows.Add(acc.adminUsername, acc.adminId, acc.adminEmail, acc.adminPhoneNumber, acc.adminDateCreated);
+                    accountGridViewTable.Rows.Add(acc.adminId, acc.adminEmail, acc.adminDateCreated);
                 }
             }
             accountGridView.DataSource = accountGridViewTable;
             accountGridView.DataBind();
-
         }
 
         protected void searchTextBox_TextChanged(object sender, EventArgs e)
@@ -54,37 +51,47 @@ namespace mallspacium_web.MasterForm
             search();
         }
 
-        // method for searching username 
+        // method for searching admin email 
         public async void search()
         {
-            string searchUsername = searchTextBox.Text;
-            Query query = database.Collection("AdminAccount").WhereEqualTo("username", searchUsername);
+            string searchEmail = searchTextBox.Text;
 
-            // Retrieve the search results
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-            List<AdminAccount> results = new List<AdminAccount>();
-
-            if (snapshot.Documents.Count > 0)
+            if (searchTextBox.Text == "")
             {
-                foreach (DocumentSnapshot document in snapshot.Documents)
-                {
-                    AdminAccount model = document.ConvertTo<AdminAccount>();
-                    results.Add(model);
-                }
-                // Bind the search results to the GridView control
-                accountGridView.DataSource = results;
-                accountGridView.DataBind();
+                getAdminAccount("AdminAccount");
             }
             else
             {
-                accountGridView.DataSource = null;
-                accountGridView.DataBind();
+                Query query = database.Collection("AdminAccount")
+                    .WhereGreaterThanOrEqualTo("adminEmail", searchEmail)
+                    .WhereLessThanOrEqualTo("adminEmail", searchEmail + "\uf8ff");
 
-                string message = "No records found! Please search another username.";
-                string script = "alert('" + message + "')";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+                // Retrieve the search results
+                QuerySnapshot snapshot = await query.GetSnapshotAsync();
+                List<AdminAccount> results = new List<AdminAccount>();
+
+                if (snapshot.Documents.Count > 0)
+                {
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                        AdminAccount model = document.ConvertTo<AdminAccount>();
+                        results.Add(model);
+                    }
+                    // Bind the search results to the GridView control
+                    accountGridView.DataSource = results;
+                    accountGridView.DataBind();
+                }
+                else
+                {
+                    accountGridView.DataSource = null;
+                    accountGridView.DataBind();
+
+                    string message = "No records found!";
+                    string script = "alert('" + message + "')";
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+                }
+
             }
-
         }
 
         protected void addButton_Click(object sender, EventArgs e)
@@ -98,10 +105,10 @@ namespace mallspacium_web.MasterForm
             GridViewRow row = accountGridView.Rows[e.NewEditIndex];
 
             // Retrieve the document ID from the DataKeys collection
-            string adminUsername = accountGridView.DataKeys[e.NewEditIndex].Value.ToString();
+            string adminEmail = accountGridView.DataKeys[e.NewEditIndex].Value.ToString();
 
             // Redirect to the edit page, passing the document ID as a query string parameter
-            Response.Redirect("AccountDetailsForm.aspx?adminUsername=" + adminUsername, false);
+            Response.Redirect("AccountDetailsForm.aspx?adminEmail=" + adminEmail, false);
         }
     }
 }

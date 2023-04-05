@@ -53,7 +53,6 @@ namespace mallspacium_web.MasterForm
                 foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
                 {
                     // Retrieve the data from the document
-                    //string shopName = documentSnapshot.GetValue<string>("shopImage");
                     string shopName = documentSnapshot.GetValue<string>("shopName");
                     string reason = documentSnapshot.GetValue<string>("reason");
                     string detailedReason = documentSnapshot.GetValue<string>("detailedReason");
@@ -115,48 +114,49 @@ namespace mallspacium_web.MasterForm
             DateTime currentDate = DateTime.Now;
             string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-            //Create an instance of Bitmap from the uploaded file using the FileUpload control
-            Bitmap image = new Bitmap(proofFileUpload.PostedFile.InputStream);
-            MemoryStream stream = new MemoryStream();
-            image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] bytes = stream.ToArray();
-
-            //Convert the Bitmap image to a Base64 string
-            string base64String = Convert.ToBase64String(bytes);
-
-            DocumentReference userRef1 = database.Collection("AdminReport").Document(idLabel.Text);
-            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            if (proofFileUpload.HasFile)
             {
-                { "id", idLabel.Text },
-                { "shopName", shopNameLabel.Text },
-                { "reason", reasonLabel.Text},
-                { "detailedReason", detailedReasonLabel.Text },
-                { "supportingImage", imageHiddenField.Value },
-                { "reportedBy", reportedByLabel.Text},
-                { "date", dateLabel.Text },
-                { "status", statusDropDownList.SelectedItem.Text }
-            };
+                //Create an instance of Bitmap from the uploaded file using the FileUpload control
+                Bitmap image = new Bitmap(proofFileUpload.PostedFile.InputStream);
+                MemoryStream stream = new MemoryStream();
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] bytes = stream.ToArray();
 
-            await userRef1.SetAsync(data1);
+                //Convert the Bitmap image to a Base64 string
+                string base64String = Convert.ToBase64String(bytes);
 
-            DocumentReference userRef2 = database.Collection("AdminReport").Document(idLabel.Text).Collection("ReportStatus").Document(noteID);
-            Dictionary<string, object> data2 = new Dictionary<string, object>()
-            {
-                { "noteId", noteID },
-                { "note", noteTextBox.Text },
-                { "date", date },
-                { "proofImage", base64String},
-                { "status", statusDropDownList.SelectedItem.Text }
-            };
+                DocumentReference userRef1 = database.Collection("AdminReport").Document(idLabel.Text);
+                Dictionary<string, object> data1 = new Dictionary<string, object>()
+                {
+                    { "id", idLabel.Text },
+                    { "shopName", shopNameLabel.Text },
+                    { "reason", reasonLabel.Text},
+                    { "detailedReason", detailedReasonLabel.Text },
+                    { "supportingImage", imageHiddenField.Value },
+                    { "reportedBy", reportedByLabel.Text},
+                    { "date", dateLabel.Text },
+                    { "status", statusDropDownList.SelectedItem.Text }
+                };
+                await userRef1.SetAsync(data1);
 
-            await userRef2.SetAsync(data2);
+                DocumentReference userRef2 = database.Collection("AdminReport").Document(idLabel.Text).Collection("ReportStatus").Document(noteID);
+                Dictionary<string, object> data2 = new Dictionary<string, object>()
+                {
+                    { "noteId", noteID },
+                    { "note", noteTextBox.Text },
+                    { "date", date },
+                    { "proofImage", base64String},
+                    { "status", statusDropDownList.SelectedItem.Text }
+                };
+                await userRef2.SetAsync(data2);
 
-            // Display a message
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Added Proof and Note!');", true);
+                // Display a message
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Added Proof and Note!');", true);
 
-            // Redirect to another page after a delay
-            string url = "ReportsForm.aspx";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+                // Redirect to another page after a delay
+                string url = "ReportsForm.aspx";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+            }
         }
 
 

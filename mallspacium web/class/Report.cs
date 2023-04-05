@@ -23,5 +23,7 @@ namespace mallspacium_web
         public string reportedBy { get; set; }
         [FirestoreProperty]
         public string date { get; set; }
+        [FirestoreProperty]
+        public string status { get; set; }
     }
 }

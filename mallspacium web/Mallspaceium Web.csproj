@@ -190,6 +190,7 @@
     <Content Include="Images\no-image.jpg" />
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
+    <Content Include="MasterForm\ChangeAdminAccountPassword.aspx" />
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
     <Content Include="MasterForm\PopUpReportProofImage.aspx" />
     <Content Include="MasterForm\PopUpSupportingImage.aspx" />
@@ -307,6 +308,13 @@
     </Compile>
     <Compile Include="MasterForm\AdminAccountForm.aspx.designer.cs">
       <DependentUpon>AdminAccountForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm\ChangeAdminAccountPassword.aspx.cs">
+      <DependentUpon>ChangeAdminAccountPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\ChangeAdminAccountPassword.aspx.designer.cs">
+      <DependentUpon>ChangeAdminAccountPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterForm\CreateAdminAccountForm.aspx.cs">
       <DependentUpon>CreateAdminAccountForm.aspx</DependentUpon>

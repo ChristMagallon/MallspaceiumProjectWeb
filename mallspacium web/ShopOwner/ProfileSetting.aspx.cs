@@ -43,7 +43,7 @@ namespace mallspacium_web.ShopOwner
                 {
                     field = data["userNotif"];
                 }
-                catch(Exception ex)
+                catch(Exception)
                 {
                     choice = true;
                     createNotif();

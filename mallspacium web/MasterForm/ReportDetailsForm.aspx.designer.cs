@@ -186,6 +186,15 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.DropDownList statusDropDownList;
 
         /// <summary>
+        /// statusRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator statusRequiredFieldValidator;
+
+        /// <summary>
         /// Label5 control.
         /// </summary>
         /// <remarks>
@@ -204,6 +213,15 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.FileUpload proofFileUpload;
 
         /// <summary>
+        /// proofRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator proofRequiredFieldValidator;
+
+        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>
@@ -220,6 +238,15 @@ namespace mallspacium_web.MasterForm
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox noteTextBox;
+
+        /// <summary>
+        /// noteRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator noteRequiredFieldValidator;
 
         /// <summary>
         /// addProofNoteButton control.

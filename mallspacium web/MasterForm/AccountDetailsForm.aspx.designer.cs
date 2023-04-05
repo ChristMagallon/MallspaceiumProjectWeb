@@ -24,24 +24,6 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-
-        /// <summary>
-        /// usernameTextbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox usernameTextbox;
-
-        /// <summary>
         /// Label8 control.
         /// </summary>
         /// <remarks>
@@ -78,22 +60,22 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.TextBox emailTextbox;
 
         /// <summary>
-        /// Label3 control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// phoneNumberTextbox control.
+        /// usernameTextbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox phoneNumberTextbox;
+        protected global::System.Web.UI.WebControls.TextBox usernameTextbox;
 
         /// <summary>
         /// Label5 control.
@@ -114,6 +96,15 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.TextBox dateCreatedTextbox;
 
         /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+
+        /// <summary>
         /// Label6 control.
         /// </summary>
         /// <remarks>
@@ -123,13 +114,31 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
-        /// passwordTextbox control.
+        /// currentPasswordTextbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordTextbox;
+        protected global::System.Web.UI.WebControls.TextBox currentPasswordTextbox;
+
+        /// <summary>
+        /// currentPasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator currentPasswordRequiredFieldValidator;
+
+        /// <summary>
+        /// errorCurrentPasswordLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorCurrentPasswordLabel;
 
         /// <summary>
         /// Label7 control.
@@ -141,13 +150,94 @@ namespace mallspacium_web.MasterForm
         protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// confirmPasswordTextbox control.
+        /// confirmCurrentPasswordTextbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmPasswordTextbox;
+        protected global::System.Web.UI.WebControls.TextBox confirmCurrentPasswordTextbox;
+
+        /// <summary>
+        /// confirmCurrentPasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator confirmCurrentPasswordRequiredFieldValidator;
+
+        /// <summary>
+        /// confirmCurrentPasswordCompareValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator confirmCurrentPasswordCompareValidator;
+
+        /// <summary>
+        /// Label9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
+
+        /// <summary>
+        /// newPasswordTextbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox newPasswordTextbox;
+
+        /// <summary>
+        /// newPasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator newPasswordRequiredFieldValidator;
+
+        /// <summary>
+        /// Label10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
+
+        /// <summary>
+        /// confirmNewPasswordTextbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox confirmNewPasswordTextbox;
+
+        /// <summary>
+        /// confirmNewPasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator confirmNewPasswordRequiredFieldValidator;
+
+        /// <summary>
+        /// confirmNewPasswordCompareValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator confirmNewPasswordCompareValidator;
 
         /// <summary>
         /// updateButton control.

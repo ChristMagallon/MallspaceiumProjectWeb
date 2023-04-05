@@ -46,7 +46,7 @@ namespace mallspacium_web.Shopper
                 {
                     field = data["userNotif"];
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     choice = true;
                     createNotif();
