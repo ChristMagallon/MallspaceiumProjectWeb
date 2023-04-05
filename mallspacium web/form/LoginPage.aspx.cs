@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -132,37 +134,45 @@ namespace mallspacium_web.form
             }
         }
 
-        // Check the server status
+        // Check the server status incase of maintenance
         public async void getServerStatus()
         {
-            bool choice = false;
-            DateTime currentDate = DateTime.UtcNow;
-
+            DateTime currentDate = DateTime.Now;
+            bool isMaintenanceInProgress = false;
+            DateTime latestEndTime = DateTime.MinValue;
             CollectionReference downtimeRef = db.Collection("AdminSystemDowntime");
 
             QuerySnapshot downtimeSnapshot = await downtimeRef.GetSnapshotAsync();
 
             foreach (DocumentSnapshot documentSnapshot in downtimeSnapshot.Documents)
             {
-                Dictionary<string, object> documentData = documentSnapshot.ToDictionary();
+                DateTime startTime;
+                DateTime endTime;
 
-                DateTime startTime = DateTime.Parse(documentData["startTime"].ToString());
-                DateTime endTime = DateTime.Parse(documentData["endTime"].ToString());
-
-                if (currentDate >= startTime && currentDate <= endTime)
+                if (DateTime.TryParseExact(documentSnapshot.GetValue<string>("startTime"), "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime) &&
+                    DateTime.TryParseExact(documentSnapshot.GetValue<string>("endTime"), "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime))
                 {
-                    Response.Write("<script>alert('Server is under maintenance. Try logging back again later.');</script>");
-                    choice = true;
-                    break;
+                    if (currentDate >= startTime && currentDate <= endTime.AddSeconds(30))
+                    {
+                        // Display the maintenance message to the user
+                        Response.Write("<script>alert('Server is under maintenance. Try logging back again later.');</script>");
+                        isMaintenanceInProgress = true;
+                        break;
+                    }
+
+                    if (endTime > latestEndTime)
+                    {
+                        latestEndTime = endTime;
+                    }
                 }
             }
 
-            if (!choice)
+            if (!isMaintenanceInProgress && currentDate > latestEndTime.AddSeconds(30))
             {
+                // If there is no maintenance in progress and the current time is after the latest end time plus 30 seconds, proceed with login
                 getAdmin();
             }
         }
-
 
         protected void ShopperRegisterLinkButton_Click(object sender, EventArgs e)
         {
