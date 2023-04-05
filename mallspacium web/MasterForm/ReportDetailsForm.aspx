@@ -20,6 +20,8 @@
         <h2>Report Details</h2>
 
         <div class="form-group">
+            <asp:HiddenField ID="emailHiddenField" runat="server" />
+            <asp:HiddenField ID="userRoleHiddenField" runat="server" />
             <asp:Label ID="Label" runat="server" Text="ID: "></asp:Label>
             <asp:Label ID="idLabel" runat="server" Text=""></asp:Label>
         </div>
@@ -53,7 +55,9 @@
             <asp:Label ID="Label8" runat="server" Text="Status: "></asp:Label>
             <asp:Label ID="statusLabel" runat="server" Text=""></asp:Label> <br /> <br />
         </div>
+    </div>
 
+    <div class="form">
         <div class="form-group">
             <asp:HiddenField ID="imageHiddenField" runat="server" />
             <asp:Button ID="viewSupportingImageButton" runat="server" Text="View Supporting Image" CssClass="btn btn-primary" OnClick="viewSupportingImageButton_Click" /> <br /> <br /> <br />

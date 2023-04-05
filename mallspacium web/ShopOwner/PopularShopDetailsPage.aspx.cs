@@ -276,9 +276,10 @@ namespace mallspacium_web.ShopOwner
         public void report() 
         {
             string shopName = nameLabel.Text;
+            string email = emailLabel.Text;
 
             // Redirect to another page after a delay
-            string url = " ReportShopPage.aspx?shopName=" + shopName;
+            string url = " ReportShopPage.aspx?shopName=" + shopName + "&email=" + email;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 1000);", true);
         }
     }

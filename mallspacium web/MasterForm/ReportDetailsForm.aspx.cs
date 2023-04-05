@@ -31,6 +31,8 @@ namespace mallspacium_web.MasterForm
         protected void addProofNoteButton_Click(object sender, EventArgs e)
         {
             addProofNote();
+            addProofNoteActivity();
+
         }
 
         protected void viewSupportingImageButton_Click(object sender, EventArgs e)
@@ -40,66 +42,78 @@ namespace mallspacium_web.MasterForm
 
         public async void retrieveReportDetails()
         {
-            if (!IsPostBack)
+            // Retrieve the shop name from the query string
+            string id = Request.QueryString["id"];
+
+            // Use the shop name to retrieve the data from Firestore
+            Query query = database.Collection("AdminReport").WhereEqualTo("id", id);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Loop through the documents in the query snapshot
+            foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
             {
-                // Retrieve the shop name from the query string
-                string id = Request.QueryString["id"];
+                // Retrieve the data from the document
+                string shopName = documentSnapshot.GetValue<string>("shopName");
+                string reason = documentSnapshot.GetValue<string>("reason");
+                string detailedReason = documentSnapshot.GetValue<string>("detailedReason");
+                string reportedBy = documentSnapshot.GetValue<string>("reportedBy");
+                string date = documentSnapshot.GetValue<string>("date");
+                string status = documentSnapshot.GetValue<string>("status");
+                string image = documentSnapshot.GetValue<string>("supportingImage");
+                string email = documentSnapshot.GetValue<string>("email");
 
-                // Use the shop name to retrieve the data from Firestore
-                Query query = database.Collection("AdminReport").WhereEqualTo("id", id);
-                QuerySnapshot snapshot = await query.GetSnapshotAsync();
-
-                // Loop through the documents in the query snapshot
-                foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
-                {
-                    // Retrieve the data from the document
-                    string shopName = documentSnapshot.GetValue<string>("shopName");
-                    string reason = documentSnapshot.GetValue<string>("reason");
-                    string detailedReason = documentSnapshot.GetValue<string>("detailedReason");
-                    string reportedBy = documentSnapshot.GetValue<string>("reportedBy");
-                    string date = documentSnapshot.GetValue<string>("date");
-                    string status = documentSnapshot.GetValue<string>("status");
-                    string image = documentSnapshot.GetValue<string>("supportingImage");
-
-                    // Display the data
-                    idLabel.Text = id;
-                    shopNameLabel.Text = shopName;
-                    reasonLabel.Text = reason;
-                    detailedReasonLabel.Text = detailedReason;
-                    reportedByLabel.Text = reportedBy;
-                    dateLabel.Text = date;
-                    statusLabel.Text = status;
-                    imageHiddenField.Value = image;
-                }
-
-                CollectionReference usersRef = database.Collection("AdminReport").Document(idLabel.Text).Collection("ReportStatus");
-                // Retrieve the documents from the parent collection
-                QuerySnapshot querySnapshot = usersRef.GetSnapshotAsync().Result;
-
-                // Create a DataTable to store the retrieved data
-                DataTable reportstatusGridViewTable = new DataTable();
-
-                reportstatusGridViewTable.Columns.Add("noteId", typeof(string));
-                reportstatusGridViewTable.Columns.Add("note", typeof(string));
-                reportstatusGridViewTable.Columns.Add("date", typeof(string));
-
-                foreach (DocumentSnapshot docsnap in querySnapshot.Documents)
-                {
-                    string noteId = docsnap.GetValue<string>("noteId");
-                    string note = docsnap.GetValue<string>("note");
-                    string date = docsnap.GetValue<string>("date");
-
-                    DataRow dataRow = reportstatusGridViewTable.NewRow();
-
-                    dataRow["noteId"] = noteId;
-                    dataRow["note"] = note;
-                    dataRow["date"] = date;
-
-                    reportstatusGridViewTable.Rows.Add(dataRow);
-                }
-                reportstatusGridView.DataSource = reportstatusGridViewTable;
-                reportstatusGridView.DataBind();
+                // Display the data
+                idLabel.Text = id;
+                shopNameLabel.Text = shopName;
+                reasonLabel.Text = reason;
+                detailedReasonLabel.Text = detailedReason;
+                reportedByLabel.Text = reportedBy;
+                dateLabel.Text = date;
+                statusLabel.Text = status;
+                imageHiddenField.Value = image;
+                emailHiddenField.Value = email;
             }
+
+            // Use the shop name to retrieve the data from Firestore
+            Query roleQuery = database.Collection("Users").WhereEqualTo("email", emailHiddenField.Value);
+            QuerySnapshot roleSnapshot = await roleQuery.GetSnapshotAsync();
+
+            // Loop through the documents in the query snapshot
+            foreach (DocumentSnapshot roleDocumentSnapshot in roleSnapshot.Documents)
+            {
+                // Retrieve the data from the document
+                string userRole = roleDocumentSnapshot.GetValue<string>("userRole");
+                userRoleHiddenField.Value = userRole;
+            }
+
+            CollectionReference usersRef = database.Collection("AdminReport").Document(idLabel.Text).Collection("ReportStatus");
+            // Retrieve the documents from the parent collection
+            QuerySnapshot querySnapshot = usersRef.GetSnapshotAsync().Result;
+
+            // Create a DataTable to store the retrieved data
+            DataTable reportstatusGridViewTable = new DataTable();
+
+            reportstatusGridViewTable.Columns.Add("noteId", typeof(string));
+            reportstatusGridViewTable.Columns.Add("note", typeof(string));
+            reportstatusGridViewTable.Columns.Add("date", typeof(string));
+
+            foreach (DocumentSnapshot docsnap in querySnapshot.Documents)
+            {
+                string noteId = docsnap.GetValue<string>("noteId");
+                string note = docsnap.GetValue<string>("note");
+                string date = docsnap.GetValue<string>("date");
+
+                DataRow dataRow = reportstatusGridViewTable.NewRow();
+
+                dataRow["noteId"] = noteId;
+                dataRow["note"] = note;
+                dataRow["date"] = date;
+
+                reportstatusGridViewTable.Rows.Add(dataRow);
+            }
+            reportstatusGridView.DataSource = reportstatusGridViewTable;
+            reportstatusGridView.DataBind();
+
         }
 
 
@@ -135,7 +149,8 @@ namespace mallspacium_web.MasterForm
                     { "supportingImage", imageHiddenField.Value },
                     { "reportedBy", reportedByLabel.Text},
                     { "date", dateLabel.Text },
-                    { "status", statusDropDownList.SelectedItem.Text }
+                    { "status", statusDropDownList.SelectedItem.Text },
+                    { "email", emailHiddenField.Value }
                 };
                 await userRef1.SetAsync(data1);
 
@@ -159,6 +174,28 @@ namespace mallspacium_web.MasterForm
             }
         }
 
+        public async void addProofNoteActivity()
+        {
+            //auto generated unique id
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string activityID = "ACT" + randomIDNumber.ToString();
+
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "id", activityID },
+                { "activity", (string)Application.Get("usernameget") + " send warning message to user " + emailHiddenField.Value},
+                { "email", emailHiddenField.Value },
+                { "userRole", userRoleHiddenField.Value },
+                { "date", date }
+            };
+            await userRef.SetAsync(data1);
+        }
 
         public void viewSupportingImage()
         {

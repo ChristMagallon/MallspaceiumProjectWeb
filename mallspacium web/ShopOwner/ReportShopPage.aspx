@@ -13,6 +13,7 @@
                 <div class="card mt-5">
                     <div class="card-body">
                         <div class="form-group">
+                            <asp:HiddenField ID="emailHiddenField" runat="server" />
                             <asp:Label ID="Label1" runat="server" Text="Reporting " CssClass="font-weight-bold"></asp:Label> 
                             <asp:Label ID="shopNameLabel" runat="server" Text="" CssClass="font-weight-bold"></asp:Label>
                         </div>

@@ -29,6 +29,7 @@
                     <asp:BoundField HeaderText="ID" DataField="id" SortExpression="id"></asp:BoundField>
                     <asp:BoundField HeaderText="Activity" DataField="activity" SortExpression="activity"></asp:BoundField>
                     <asp:BoundField HeaderText="Email" DataField="email" SortExpression="email"></asp:BoundField>
+                    <asp:BoundField HeaderText="Role" DataField="userRole" SortExpression="userRole"></asp:BoundField>
                     <asp:BoundField HeaderText="Date" DataField="date" SortExpression="date"></asp:BoundField>
                 </Columns>
                      <FooterStyle BackColor="White" ForeColor="#000066" />

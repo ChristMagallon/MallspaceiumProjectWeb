@@ -125,6 +125,7 @@ namespace mallspacium_web.AdditionalForm
                 { "id", activityID },
                 { "activity", (string)Application.Get("usernameget") + " banned user " + emailLabel.Text },
                 { "email", emailLabel.Text },
+                { "userRole", userRoleLabel.Text },
                 { "date", date }
             };
             await userRef.SetAsync(data1);
@@ -165,6 +166,7 @@ namespace mallspacium_web.AdditionalForm
                 { "id", activityID },
                 { "activity", (string)Application.Get("usernameget") + " unbanned user " + emailLabel.Text },
                 { "email", emailLabel.Text },
+                { "userRole", userRoleLabel.Text },
                 { "date", date }
             };
             await userRef.SetAsync(data1);
@@ -217,6 +219,7 @@ namespace mallspacium_web.AdditionalForm
                 { "id", activityID },
                 { "activity", (string)Application.Get("usernameget") + " send warning message to user " + emailLabel.Text },
                 { "email", emailLabel.Text },
+                { "userRole", userRoleLabel.Text },
                 { "date", date }
             };
             await userRef.SetAsync(data1);

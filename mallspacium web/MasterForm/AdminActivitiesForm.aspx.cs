@@ -29,6 +29,7 @@ namespace mallspacium_web
             activityGridViewTable.Columns.Add("id");
             activityGridViewTable.Columns.Add("activity");
             activityGridViewTable.Columns.Add("email");
+            activityGridViewTable.Columns.Add("userRole");
             activityGridViewTable.Columns.Add("date");
 
             Query subQue = database.Collection(AdminActivity);
@@ -40,12 +41,17 @@ namespace mallspacium_web
 
                 if (docsnap.Exists)
                 {
-                    activityGridViewTable.Rows.Add(act.id, act.activity, act.email, act.date);
+                    activityGridViewTable.Rows.Add(act.id, act.activity, act.email, act.userRole, act.date);
                 }
             }
+
+            // Use DataView to sort DataTable by date field
+            DataView dataView = activityGridViewTable.DefaultView;
+            dataView.Sort = "Date DESC";
+            activityGridViewTable = dataView.ToTable();
+
             activityGridView.DataSource = activityGridViewTable;
             activityGridView.DataBind();
-
         }
 
         protected void searchTextBox_TextChanged(object sender, EventArgs e)

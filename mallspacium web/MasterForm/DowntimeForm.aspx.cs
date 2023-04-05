@@ -23,6 +23,7 @@ namespace mallspacium_web
         protected void saveButton_Click(object sender, EventArgs e)
         {
             save();
+            sysetmDowntimeActivity();
         }
 
         public async void save()
@@ -80,6 +81,29 @@ namespace mallspacium_web
                     // Display the message in a modal or overlay, or redirect the user to a dedicated downtime page.
                 }
             }*/
+        }
+
+        public async void sysetmDowntimeActivity()
+        {
+            //auto generated unique id
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string activityID = "ACT" + randomIDNumber.ToString();
+
+            //Get current date time and the expected expiration date
+            DateTime currentDate = DateTime.Now;
+            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
+            Dictionary<string, object> data1 = new Dictionary<string, object>()
+            {
+                { "id", activityID },
+                { "activity", (string)Application.Get("usernameget") + " sets application and website system downtime" },
+                { "email", "NA" },
+                { "userRole", "NA" },
+                { "date", date }
+            };
+            await userRef.SetAsync(data1);
         }
     }
 }
