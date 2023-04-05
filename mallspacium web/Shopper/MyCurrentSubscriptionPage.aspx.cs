@@ -55,7 +55,7 @@ namespace mallspacium_web.Shopper
         {
             String subscriptionType = "Free";
             String subscriptionPrice = "0.00";
-            String status = "Active";
+            String status = "Cancelled";
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
             DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
@@ -71,8 +71,6 @@ namespace mallspacium_web.Shopper
                 // Access the specific field you want
                 string userEmail = data["email"].ToString();
                 string userRole = data["userRole"].ToString();
-
-                // Do something with the field value
 
                 // Generate random ID number
                 Random random = new Random();
@@ -97,7 +95,7 @@ namespace mallspacium_web.Shopper
                     {
                         {"subscriptionType", subscriptionType},
                         {"price", subscriptionPrice},
-                        {"subscriptionID", FieldValue.Delete},
+                        {"subscriptionID", subscriptionID},
                         {"startDate", FieldValue.Delete},
                         {"endDate", FieldValue.Delete},
                         {"status", status}
@@ -125,11 +123,6 @@ namespace mallspacium_web.Shopper
                     await documentRef.SetAsync(dataInsert);
                 }
             }
-            else
-            {
-                // Document does not exist
-            }
-
             Response.Redirect("~/Shopper/SubscriptionPage.aspx", false);
         }
     }

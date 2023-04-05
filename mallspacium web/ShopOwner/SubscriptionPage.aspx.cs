@@ -133,8 +133,6 @@ namespace mallspacium_web.ShopOwner
                 string userEmail = data["email"].ToString();
                 string userRole = data["userRole"].ToString();
 
-                // Do something with the field value
-
                 // Generate random ID number
                 Random random = new Random();
                 int randomIDNumber = random.Next(100000, 999999);
@@ -185,11 +183,6 @@ namespace mallspacium_web.ShopOwner
                     await documentRef.SetAsync(dataInsert);
                 }
             }
-            else
-            {
-                // Document does not exist
-            }
-
             // Redirect to the same page to apply the changes
             Response.Redirect(Request.RawUrl, false);
         }
@@ -265,11 +258,6 @@ namespace mallspacium_web.ShopOwner
                     await documentRef.SetAsync(dataInsert);
                 }
             }
-            else
-            {
-                // Document does not exist
-            }
-
             // Redirect to the same page to apply the changes
             Response.Redirect(Request.RawUrl, false);
         }
@@ -310,10 +298,6 @@ namespace mallspacium_web.ShopOwner
                     AdvanceSubButton.Enabled = true;
                     PremiumSubButton.Enabled = true;
                 }
-            }
-            else
-            {
-                // Document does not exist
             }
         }
 

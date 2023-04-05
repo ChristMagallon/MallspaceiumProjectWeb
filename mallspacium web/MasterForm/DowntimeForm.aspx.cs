@@ -28,7 +28,7 @@ namespace mallspacium_web
 
         public async void save()
         {
-            string datetime2 = DateTime.UtcNow.ToString("MM-dd-yyyy-HH-mm-ss");
+            string datetime2 = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
             DocumentReference downtimeRef = database.Collection("AdminSystemDowntime").Document("DT: " + datetime2);
 
             Dictionary<string, object> downtimeData = new Dictionary<string, object>
