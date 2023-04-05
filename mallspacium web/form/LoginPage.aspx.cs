@@ -132,33 +132,29 @@ namespace mallspacium_web.form
             }
         }
 
+        // Check the server status
         public async void getServerStatus()
         {
             bool choice = false;
             DateTime currentDate = DateTime.UtcNow;
-            string dateToday = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
 
             CollectionReference downtimeRef = db.Collection("AdminSystemDowntime");
 
-            // Query for start time
-            Query startQuery = downtimeRef
-                .WhereLessThanOrEqualTo("startTime", dateToday)
-                .OrderBy("startTime")
-                .Limit(50);
-            QuerySnapshot startSnapshot = await startQuery.GetSnapshotAsync();
+            QuerySnapshot downtimeSnapshot = await downtimeRef.GetSnapshotAsync();
 
-            // Query for end time
-            Query endQuery = downtimeRef
-                .WhereGreaterThanOrEqualTo("endTime", dateToday)
-                .OrderBy("endTime")
-                .Limit(50);
-            QuerySnapshot endSnapshot = await endQuery.GetSnapshotAsync();
-
-            // Check if any documents exist in either query
-            if (startSnapshot.Count > 0 || endSnapshot.Count > 0)
+            foreach (DocumentSnapshot documentSnapshot in downtimeSnapshot.Documents)
             {
-                Response.Write("<script>alert('Server is under maintenance. Try logging back again later.');</script>");
-                choice = true;
+                Dictionary<string, object> documentData = documentSnapshot.ToDictionary();
+
+                DateTime startTime = DateTime.Parse(documentData["startTime"].ToString());
+                DateTime endTime = DateTime.Parse(documentData["endTime"].ToString());
+
+                if (currentDate >= startTime && currentDate <= endTime)
+                {
+                    Response.Write("<script>alert('Server is under maintenance. Try logging back again later.');</script>");
+                    choice = true;
+                    break;
+                }
             }
 
             if (!choice)
@@ -166,6 +162,7 @@ namespace mallspacium_web.form
                 getAdmin();
             }
         }
+
 
         protected void ShopperRegisterLinkButton_Click(object sender, EventArgs e)
         {

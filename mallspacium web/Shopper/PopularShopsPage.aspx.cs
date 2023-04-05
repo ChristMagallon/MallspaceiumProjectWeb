@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -18,8 +20,7 @@ namespace mallspacium_web.MasterForm3
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             database = FirestoreDb.Create("mallspaceium");
-
-            
+         
             if (!IsPostBack)
             {
                 getShops();

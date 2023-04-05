@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -20,6 +21,7 @@ namespace mallspacium_web.MasterForm2
             database = FirestoreDb.Create("mallspaceium");
 
             getShops();
+            getCurrentSubDetails();
         }
 
         public void getShops()
@@ -43,13 +45,13 @@ namespace mallspacium_web.MasterForm2
                 string base64String = documentSnapshot.GetValue<string>("shopImage");
                 byte[] shopImage = Convert.FromBase64String(base64String);
                 string shopDescription = documentSnapshot.GetValue<string>("shopDescription");
-                
+
                 DataRow dataRow = shopsGridViewTable.NewRow();
 
                 dataRow["shopName"] = shopName;
                 dataRow["shopImage"] = shopImage;
                 dataRow["shopDescription"] = shopDescription;
-                
+
                 shopsGridViewTable.Rows.Add(dataRow);
             }
             // Bind the DataTable to the GridView control
@@ -97,6 +99,76 @@ namespace mallspacium_web.MasterForm2
 
             // Redirect to another page and pass the shopName as a query string parameter
             Response.Redirect("PopularShopDetailsPage.aspx?shopName=" + shopName);
+        }
+
+        public async void getCurrentSubDetails()
+        {
+            DateTime currentDate = DateTime.UtcNow;
+            CollectionReference usersRef = database.Collection("AdminManageSubscription");
+            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+            if (snapshot.Exists)
+            {
+                Dictionary<string, object> data = snapshot.ToDictionary();
+                DateTime endDate = DateTime.Parse(data["endDate"].ToString());
+
+                if (currentDate > endDate)
+                {
+                    await expiredSubscription(data["email"].ToString(), data["userRole"].ToString());
+                }
+            }
+        }
+
+        public async Task expiredSubscription(string userEmail, string userRole)
+        {
+            String subscriptionType = "Free";
+            String subscriptionPrice = "0.00";
+            String status = "Expired";
+
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string subscriptionID = "SUB" + randomIDNumber.ToString();
+
+            DateTime currentDate = DateTime.Now;
+            DateTime expirationDate = currentDate.AddMonths(3);
+            string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+            string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            DocumentReference documentRef = database.Collection("AdminManageSubscription").Document(userEmail);
+            DocumentSnapshot documentSnapshot = await documentRef.GetSnapshotAsync();
+
+            Dictionary<string, object> dataInsert = new Dictionary<string, object>
+            {
+                {"subscriptionID", subscriptionID},
+                {"subscriptionType", subscriptionType},
+                {"price", subscriptionPrice},
+                {"userEmail", userEmail},
+                {"userRole", userRole},
+                {"startDate", startDate},
+                {"endDate", endDate},
+                {"status", status}
+            };
+
+            if (documentSnapshot.Exists)
+            {
+                Dictionary<string, object> dataUpdate = new Dictionary<string, object>
+                {
+                    {"subscriptionType", subscriptionType},
+                    {"price", subscriptionPrice},
+                    {"subscriptionID", subscriptionID},
+                    {"startDate", FieldValue.Delete},
+                    {"endDate", FieldValue.Delete},
+                    {"status", status}
+                };
+
+                await documentRef.UpdateAsync(dataUpdate);
+            }
+            else
+            {
+                await documentRef.SetAsync(dataInsert);
+            }
+            Response.Redirect("~/Shopper/PopularShopsPage.aspx", false);
         }
     }
 }

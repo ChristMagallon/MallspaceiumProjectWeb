@@ -78,7 +78,7 @@ namespace mallspacium_web.Shopper
                 string subscriptionID = "SUB" + randomIDNumber.ToString();
 
                 // Get current date time and the expected expiration date
-                DateTime currentDate = DateTime.Now;
+                DateTime currentDate = DateTime.UtcNow;
                 DateTime expirationDate = currentDate.AddMonths(3);
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");

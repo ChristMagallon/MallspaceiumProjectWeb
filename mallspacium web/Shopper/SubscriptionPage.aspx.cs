@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -63,7 +64,7 @@ namespace mallspacium_web.Shopper
                 string subscriptionID = "SUB" + randomIDNumber.ToString();
 
                 // Get current date time and the expected expiration date
-                DateTime currentDate = DateTime.Now;
+                DateTime currentDate = DateTime.UtcNow;
                 DateTime expirationDate = currentDate.AddMonths(3);
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
@@ -143,7 +144,7 @@ namespace mallspacium_web.Shopper
                 string subscriptionID = "SUB" + randomIDNumber.ToString();
 
                 // Get current date time and the expected expiration date
-                DateTime currentDate = DateTime.Now;
+                DateTime currentDate = DateTime.UtcNow;
                 DateTime expirationDate = currentDate.AddMonths(3);
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
@@ -223,7 +224,7 @@ namespace mallspacium_web.Shopper
                 string subscriptionID = "SUB" + randomIDNumber.ToString();
 
                 // Get current date time and the expected expiration date
-                DateTime currentDate = DateTime.Now;
+                DateTime currentDate = DateTime.UtcNow;
                 DateTime expirationDate = currentDate.AddMonths(3);
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
