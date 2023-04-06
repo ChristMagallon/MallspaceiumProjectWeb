@@ -24,6 +24,15 @@ namespace mallspacium_web.MasterForm2
         protected global::System.Web.UI.WebControls.TextBox shopNameTextbox;
 
         /// <summary>
+        /// shopNameRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator shopNameRequiredFieldValidator;
+
+        /// <summary>
         /// ProductNameTextbox control.
         /// </summary>
         /// <remarks>
@@ -78,12 +87,12 @@ namespace mallspacium_web.MasterForm2
         protected global::System.Web.UI.WebControls.RequiredFieldValidator DescriptionTextboxValidator;
 
         /// <summary>
-        /// AddButton control.
+        /// addButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddButton;
+        protected global::System.Web.UI.WebControls.Button addButton;
     }
 }
