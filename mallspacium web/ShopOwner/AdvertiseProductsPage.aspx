@@ -7,6 +7,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
     <!-- starts here-->
+    <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card p-3">
+                <div class="input-group">
+                    <asp:TextBox ID="searchTextBox" runat="server" CssClass="form-control" type="search" placeholder="Search Product Advertisement Name" aria-label="Search" AutoPostBack="True" AutoCompleteType="Disabled" OnTextChanged="searchTextBox_TextChanged" ></asp:TextBox>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive mt-3">
+                    <asp:GridView ID="advertisementGridView" CssClass="table table-bordered table-striped table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="adsProdId" OnRowDataBound="advertisementGridView_RowDataBound" OnRowDeleting="advertisementGridView_RowDeleting" >
+                        <Columns>
+                            <asp:BoundField HeaderText="ID" DataField="adsProdId" SortExpression="adsProdId" ></asp:BoundField>
+                            <asp:BoundField HeaderText="Advertisment Name" DataField="adsProdName" SortExpression="adsProdName" ></asp:BoundField>
+                            <asp:TemplateField HeaderText="Image">
+                                <ItemTemplate>
+                                    <asp:Image ID="Image1" runat="server" CssClass="img-fluid" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField HeaderText="Description" DataField="adsProdDesc" SortExpression="adsProdDesc"></asp:BoundField>
+                            <asp:BoundField HeaderText="Shop Name" DataField="adsProdShopName" SortExpression="adsProdShopName"></asp:BoundField>
+                            <asp:BoundField HeaderText="Date Posted" DataField="adsProdDate" SortExpression="adsProdDate"></asp:BoundField>
+                            <asp:CommandField ShowDeleteButton="True" ValidationGroup="DeleteButton" ButtonType="Button" ControlStyle-BackColor="#cc0000" ItemStyle-CssClass="text-center"> </asp:CommandField>
+                        </Columns>
+                        <FooterStyle BackColor="White" ForeColor="#000066" />
+                        <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
+                        <RowStyle ForeColor="#000066" />
+                        <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#007DBB" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#00547E" />
+                    </asp:GridView>
+
+                    <center>
+                        <asp:Label ID="errorMessageLabel" runat="server" Visible="false"></asp:Label> 
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <br /> <br />
+
+
    <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -21,7 +71,7 @@
                             ErrorMessage="*Required" CssClass="text-danger" />
                     </div>
                     <div class="form-group">
-                        <label for="productNameTextbox">Product Name:</label>
+                        <label for="productNameTextbox">Product Advertisement Name:</label>
                         <asp:Textbox ID="ProductNameTextbox" runat="server" Text="" AutoCompleteType="Disabled" CssClass="form-control" ValidationGroup="Validate"></asp:Textbox>
                         <asp:RequiredFieldValidator ID="ProductNameRequiredFieldValidator" runat="server"
                             ControlToValidate="ProductNameTextbox"

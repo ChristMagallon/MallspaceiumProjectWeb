@@ -40,8 +40,8 @@
                             </asp:TemplateField>
                             <asp:BoundField HeaderText="Description" DataField="prodDesc" SortExpression="prodDesc" />
                             <asp:BoundField HeaderText="Tag" DataField="prodTag" SortExpression="prodTag" />
-                            <asp:CommandField ShowEditButton="True" ValidationGroup="EditButton" ButtonType="Button" ControlStyle-BackColor="#cc0000" ItemStyle-CssClass="text-center"> </asp:CommandField>
-                            <asp:CommandField ShowDeleteButton="True" ValidationGroup="DeleteButton" ButtonType="Button" ControlStyle-BackColor="#0066ff" ItemStyle-CssClass="text-center"> </asp:CommandField>
+                            <asp:CommandField ShowEditButton="True" ValidationGroup="EditButton" ButtonType="Button" ControlStyle-BackColor="#0066ff" ItemStyle-CssClass="text-center"> </asp:CommandField>
+                            <asp:CommandField ShowDeleteButton="True" ValidationGroup="DeleteButton" ButtonType="Button" ControlStyle-BackColor="#cc0000" ItemStyle-CssClass="text-center"> </asp:CommandField>
                         </Columns>
                         <FooterStyle BackColor="White" ForeColor="#000066" />
                         <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
