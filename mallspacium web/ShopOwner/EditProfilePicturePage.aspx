@@ -7,19 +7,35 @@
     <link rel="stylesheet" href="style.css" />
     <!-- starts here-->
 
-<div class="form">
-    <div class="col p-5">
-        <asp:Label ID="Label1" runat="server" CssClass="form-label" Text="Changing the Image of "></asp:Label> 
-        <asp:Label ID="nameLabel" runat="server" CssClass="form-label"></asp:Label> <br /> <br /> <br />
-
-        <asp:Label ID="Label" runat="server" CssClass="form-label" Text="Image: "></asp:Label>
-        <asp:FileUpload ID="imageFileUpload" runat="server" CssClass="form-control" Height="35px" Width="219px" /> 
-        <asp:RequiredFieldValidator ID="imageRequiredFieldValidator" runat="server" ControlToValidate="imageFileUpload" ErrorMessage="Please select an image." style="color: red"></asp:RequiredFieldValidator><br /> <br />
-
-        <asp:Button ID="saveButton" runat="server" CssClass="btn btn-primary" Text="SAVE" OnClick="saveButton_Click" />
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Change Profile Picture</h4>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+              <center>
+                  <asp:Label ID="Label2" runat="server" Text="Changing the Image of " CssClass="font-weight-bold" ></asp:Label> 
+                  <asp:Label ID="nameLabel" runat="server" CssClass="font-weight-bold"> </asp:Label> 
+              </center>
+          </div>
+          <div class="form-group">
+            <label for="imageFileUpload">Image:</label>
+            <asp:FileUpload ID="imageFileUpload" runat="server" Height="35px" Width="219px" CssClass="form-control" />
+            <asp:RequiredFieldValidator ID="imageRequiredFieldValidator" runat="server" 
+                  ControlToValidate="imageFileUpload" 
+                  ErrorMessage="Please select an image." 
+                  CssClass="text-danger"></asp:RequiredFieldValidator>
+          </div>
+          <div class="form-group text-center">
+            <asp:Button ID="saveButton" runat="server" Text="SAVE" OnClick="saveButton_Click" CssClass="btn btn-primary" />
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
-
 </asp:Content>
 

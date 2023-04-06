@@ -106,7 +106,7 @@ namespace mallspacium_web.MasterForm2
         {
             search();
         }
-        // method for searching username 
+        // method for searching product name
         public async void search()
         {
             string searchProdName = searchTextBox.Text;

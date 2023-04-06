@@ -111,5 +111,81 @@ namespace mallspacium_web.ShopOwner
             // Redirect to another page and pass the shopName as a query string parameter
             Response.Redirect("AllProductDetailsPage.aspx?prodShopName=" + prodShopName + "&prodName=" + prodName, false);
         }
+
+        protected void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            search();
+        }
+
+        // method for searching product name
+        public async void search()
+        {
+            string searchProdName = searchTextBox.Text;
+
+            if (searchTextBox.Text == "")
+            {
+                getAllShopProducts();
+            }
+            else
+            {
+                CollectionReference usersRef = database.Collection("Users");
+                // Retrieve the documents from the parent collection
+                QuerySnapshot querySnapshot = usersRef.GetSnapshotAsync().Result;
+
+                // Create a DataTable to store the retrieved data
+                DataTable allShopProductGridViewTable = new DataTable();
+
+                allShopProductGridViewTable.Columns.Add("prodName", typeof(string));
+                allShopProductGridViewTable.Columns.Add("prodImage", typeof(byte[]));
+                allShopProductGridViewTable.Columns.Add("prodDesc", typeof(string));
+                allShopProductGridViewTable.Columns.Add("prodTag", typeof(string));
+                allShopProductGridViewTable.Columns.Add("prodShopName", typeof(string));
+
+                // Iterate through the documents and populate the DataTable
+                foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+                {
+                    Query query = database.Collection("Product")
+                    .WhereGreaterThanOrEqualTo("prodName", searchProdName)
+                    .WhereLessThanOrEqualTo("prodName", searchProdName + "\uf8ff");
+
+                    // Retrieve the search results
+                    QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+                    if (snapshot.Documents.Count > 0)
+                    {
+                        foreach (DocumentSnapshot productDoc in snapshot.Documents)
+                        {
+                            string productName = productDoc.GetValue<string>("prodName");
+                            string base64String = productDoc.GetValue<string>("prodImage");
+                            byte[] productImage = Convert.FromBase64String(base64String);
+                            string productDescription = productDoc.GetValue<string>("prodDesc");
+                            string productTag = productDoc.GetValue<string>("prodTag");
+                            string productShopName = productDoc.GetValue<string>("prodShopName");
+
+                            DataRow dataRow = allShopProductGridViewTable.NewRow();
+
+                            dataRow["prodName"] = productName;
+                            dataRow["prodImage"] = productImage;
+                            dataRow["prodDesc"] = productDescription;
+                            dataRow["prodTag"] = productTag;
+                            dataRow["prodShopName"] = productShopName;
+
+                            allShopProductGridViewTable.Rows.Add(dataRow);
+                        }
+
+                        // Bind the DataTable to the GridView control
+                        allShopProductGridView.DataSource = allShopProductGridViewTable;
+                        allShopProductGridView.DataBind();
+                    }
+                    else
+                    {
+                        // Display an error message if no search results are found
+                        errorMessageLabel.Text = "No results found.";
+                        errorMessageLabel.Visible = true;
+                        allShopProductGridView.Visible = false;
+                    }
+                }
+            }
+        }
     }
 }

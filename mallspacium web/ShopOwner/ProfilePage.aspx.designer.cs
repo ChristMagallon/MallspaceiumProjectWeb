@@ -24,15 +24,6 @@ namespace mallspacium_web.MasterForm2
         protected global::System.Web.UI.WebControls.Image Image1;
 
         /// <summary>
-        /// nameLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nameLabel;
-
-        /// <summary>
         /// editProfileButton control.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace mallspacium_web.MasterForm2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button editProfileButton;
+
+        /// <summary>
+        /// nameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nameLabel;
 
         /// <summary>
         /// descriptionLabel control.
@@ -112,14 +112,5 @@ namespace mallspacium_web.MasterForm2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView saleDiscountGridView;
-
-        /// <summary>
-        /// salesDiscountErrorMessageLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label salesDiscountErrorMessageLabel;
     }
 }

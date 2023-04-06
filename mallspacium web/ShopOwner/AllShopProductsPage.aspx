@@ -19,7 +19,7 @@
 
     <div class="form">
     <div class="col p-5">
-        <asp:TextBox ID="searchTextBox" runat="server" CssClass="form-control" Type="search" Placeholder="Search Username" aria-label="Search" AutoPostBack="True" AutoCompleteType="Disabled"></asp:TextBox>
+        <asp:TextBox ID="searchTextBox" runat="server" CssClass="form-control" Type="search" Placeholder="Search Username" aria-label="Search" AutoPostBack="True" AutoCompleteType="Disabled" OnTextChanged="searchTextBox_TextChanged"></asp:TextBox>
     </div>
     
     <div class="form">
@@ -45,6 +45,9 @@
             <SortedDescendingCellStyle CssClass="bg-light" />
             <SortedDescendingHeaderStyle CssClass="bg-primary text-white" />
         </asp:GridView>
+        <center>
+            <asp:Label ID="errorMessageLabel" runat="server" Visible="false"></asp:Label>
+        </center>
     </div>
 </div>
 

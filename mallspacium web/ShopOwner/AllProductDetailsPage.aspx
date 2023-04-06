@@ -15,43 +15,60 @@
     <div class="col-md-8 col-lg-6">
       <div class="card border-0 shadow">
         <div class="card-body">
-          <h5 class="card-title mb-4">Product Details</h5>
-          <asp:Label ID="label" runat="server" Text=""></asp:Label>  
+            <center> 
+                <h5 class="card-title mb-4">Product Details</h5>
+                <asp:Label ID="label" runat="server" Text=""></asp:Label> 
+            </center>
           <hr>
           <div class="row">
-            <div class="col-sm-6 col-lg-4">
+            <div class="form-group">
               <asp:Label ID="Label7" runat="server" Text="Product Name: "></asp:Label> 
-              <asp:Label ID="productNameLabel" runat="server" Text=""></asp:Label>
+              <asp:Label ID="productNameLabel" runat="server" Text=""></asp:Label> <br /> <br />
             </div>
-            <div class="col-sm-6 col-lg-4">
+
+            <div class="form-group">
+              <asp:Label ID="Label4" runat="server" Text="Description: "></asp:Label> 
+              <asp:Label ID="descriptionLabel" runat="server" Text=""></asp:Label> <br /> <br />
+            </div>
+
+            <div class="form-group">
+              <asp:Label ID="Label1" runat="server" Text="Color: "></asp:Label> 
+              <asp:Label ID="colorLabel" runat="server" Text=""></asp:Label> <br /> <br />
+            </div>
+
+            <div class="form-group">
+              <asp:Label ID="Label6" runat="server" Text="Size: "></asp:Label> 
+              <asp:Label ID="sizeLabel" runat="server" Text=""></asp:Label> <br /> <br />
+            </div>
+
+            <div class="form-group">
               <asp:Label ID="Label2" runat="server" Text="Price: "></asp:Label> 
-              <asp:Label ID="priceLabel" runat="server" Text=""></asp:Label>
+              <asp:Label ID="priceLabel" runat="server" Text=""></asp:Label> <br /> <br />
             </div>
-            <div class="col-sm-6 col-lg-4">
+
+            <div class="form-group">
               <asp:Label ID="Label3" runat="server" Text="Tag: "></asp:Label> 
-              <asp:Label ID="tagLabel" runat="server" Text=""></asp:Label>
+              <asp:Label ID="tagLabel" runat="server" Text=""></asp:Label> <br /> <br />
+            </div>
+
+            <div class="form-group">
+              <asp:Label ID="Label8" runat="server" Text="Availability: "></asp:Label> 
+              <asp:Label ID="availabilityLabel" runat="server" Text=""></asp:Label> <br />  <br />  
+            </div>
+
+            <div class="form-group">
+              <asp:Label ID="Label9" runat="server" Text="Shop Name: "></asp:Label> 
+              <asp:Label ID="shopNameLabel" runat="server" Text=""></asp:Label> 
             </div>
           </div>
+
           <hr>
           <asp:Image ID="Image1" runat="server" class="img-fluid mb-4" />
-          <asp:Label ID="Label1" runat="server" Text="Description: "></asp:Label> 
-          <asp:Label ID="descriptionLabel" runat="server" Text=""></asp:Label>
           <hr>
-          <div class="row">
-            <div class="col-sm-6">
-              <asp:Label ID="Label5" runat="server" Text="Shop Name: "></asp:Label> 
-              <asp:Label ID="shopNameLabel" runat="server" Text=""></asp:Label>
-            </div>
-            <div class="col-sm-6 text-right">
-              <asp:Button ID="Button1" runat="server" Text="Add to Cart" CssClass="btn btn-primary" />
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
 </asp:Content>

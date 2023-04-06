@@ -52,10 +52,13 @@ namespace mallspacium_web.ShopOwner
                     if (productDoc != null)
                     {
                         // Retrieve the data from the document
-                        string image = productDoc.GetValue<string>("prodImage");
                         string desc = productDoc.GetValue<string>("prodDesc");
+                        string color = productDoc.GetValue<string>("prodColor");
+                        string size = productDoc.GetValue<string>("prodSize");
                         string price = productDoc.GetValue<string>("prodPrice");
                         string tag = productDoc.GetValue<string>("prodTag");
+                        string availability = productDoc.GetValue<string>("prodAvailability");
+                        string image = productDoc.GetValue<string>("prodImage");
 
                         // Convert the image string to a byte array
                         byte[] imageBytes;
@@ -76,8 +79,11 @@ namespace mallspacium_web.ShopOwner
                         // Display the data
                         productNameLabel.Text = prodName;
                         descriptionLabel.Text = desc;
+                        colorLabel.Text = color;
+                        sizeLabel.Text = size;
                         priceLabel.Text = price;
                         tagLabel.Text = tag;
+                        availabilityLabel.Text = availability;
                         shopNameLabel.Text = prodShopName;
                     }
                     else

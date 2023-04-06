@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="ProfilePage.aspx.cs" Inherits="mallspacium_web.MasterForm2.WebForm7" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master" AutoEventWireup="true" CodeBehind="ProfilePage.aspx.cs" Inherits="mallspacium_web.MasterForm2.WebForm7" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -11,8 +11,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <asp:Image ID="Image1" runat="server" CssClass="img-fluid mb-3" />
-                    
+                    <center>
+                        <asp:Image ID="Image1" runat="server" CssClass="img-fluid mb-3" /> <br />
+                        <asp:Button ID="editProfileButton" runat="server" Text="Edit Profile" OnClick="editProfileButton_Click" CssClass="btn btn-primary btn-sm mb-3" />
+                    </center>
+
                     <div class="row">
                         <div class="col-md-4">
                             <strong>Shop Name:</strong>
@@ -22,7 +25,7 @@
                         </div>
                     </div>
 
-                    <asp:Button ID="editProfileButton" runat="server" Text="Edit Profile" OnClick="editProfileButton_Click" CssClass="btn btn-primary btn-sm mb-3" />
+                    
 
                     <div class="row">
                         <div class="col-md-4">
@@ -66,14 +69,14 @@
         <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <div class="form-group">
-                <asp:TextBox ID="productSearchTextBox" runat="server" class="form-control" type="search" placeholder="Search Product Name or Tag" aria-label="Search" AutoPostBack="True"></asp:TextBox>
+                <asp:TextBox ID="productSearchTextBox" runat="server" class="form-control" type="search" placeholder="Search Product Name" aria-label="Search" AutoPostBack="True" OnTextChanged="productSearchTextBox_TextChanged"></asp:TextBox> <br /> <br />
             </div>
         </div>
     </div>
        <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <asp:GridView ID="productGridView" CssClass="table table-striped table-bordered table-hover" runat="server" AutoGenerateColumns="False" OnRowDataBound="productGridView_RowDataBound" >
+            <asp:GridView ID="productGridView" CssClass="table table-striped table-bordered table-hover" DataKeyNames="prodName, prodShopName"  runat="server" AutoGenerateColumns="False" OnRowDataBound="productGridView_RowDataBound" OnSelectedIndexChanged="productGridView_SelectedIndexChanged" >
                 <Columns>
                     <asp:BoundField HeaderText="Name" DataField="prodName" SortExpression="prodName" ></asp:BoundField>
                     <asp:TemplateField HeaderText="Image">
@@ -82,7 +85,6 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="Description" DataField="prodDesc" SortExpression="prodDesc"></asp:BoundField>
-                    <asp:BoundField HeaderText="Price" DataField="prodPrice" SortExpression="prodPrice"></asp:BoundField>
                     <asp:BoundField HeaderText="Tag" DataField="prodTag" SortExpression="prodTag"></asp:BoundField>
                     <asp:BoundField HeaderText="Shop" DataField="prodShopName" SortExpression="prodShopName"></asp:BoundField>
                 </Columns>
@@ -105,7 +107,9 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <asp:Label ID="productErrorMessageLabel" runat="server" Visible="false" CssClass="text-danger"></asp:Label>
+            <center>
+                <asp:Label ID="productErrorMessageLabel" runat="server" Visible="false"></asp:Label> <br /> <br />
+            </center>
         </div>
     </div>
 </div>
@@ -133,9 +137,6 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
-            <center> 
-                <asp:Label ID="salesDiscountErrorMessageLabel" runat="server" Visible="false"></asp:Label>
-            </center>
         </div>
     </div>
 </div>
