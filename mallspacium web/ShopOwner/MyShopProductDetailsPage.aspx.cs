@@ -52,13 +52,17 @@ namespace mallspacium_web.ShopOwner
                 if (snapshot.Exists)
                 {
                     // Retrieve the data from the document
+                    string shop = snapshot.GetValue<string>("prodShopName");
                     string id = snapshot.GetValue<string>("prodId");
                     string name = snapshot.GetValue<string>("prodName");
                     string desc = snapshot.GetValue<string>("prodDesc");
+                    string color = snapshot.GetValue<string>("prodColor");
+                    string size = snapshot.GetValue<string>("prodSize");
                     string price = snapshot.GetValue<string>("prodPrice");
                     string tag = snapshot.GetValue<string>("prodTag");
+                    string availability = snapshot.GetValue<string>("prodAvailability");
                     string image = snapshot.GetValue<string>("prodImage");
-                    string shop = snapshot.GetValue<string>("prodShopName");
+                    
                     // Convert the image string to a byte array
                     byte[] imageBytes = Convert.FromBase64String(image);
 
@@ -68,13 +72,16 @@ namespace mallspacium_web.ShopOwner
                     Image1.ImageUrl = imageSrc;
 
                     // Display the data
+                    shopNameTextbox.Text = shop;
                     idTextbox.Text = id;
                     nameTextbox.Text = name;
                     descriptionTextbox.Text = desc;
+                    colorTextbox.Text = color;
+                    sizeTextbox.Text = size;
                     priceTextbox.Text = price;
-                    tagTextbox.Text = tag;
+                    tagDropDownList.SelectedValue = tag;
+                    availablityDropDownList.SelectedValue = availability;
                     imageHiddenField.Value = image;
-                    shopNameTextbox.Text = shop;
                 }
             }
         }
@@ -88,36 +95,50 @@ namespace mallspacium_web.ShopOwner
 
             Dictionary<string, object> data = new Dictionary<string, object>
 {
+                {"prodShopName", shopNameTextbox.Text },
                 {"prodId", idTextbox.Text},
                 {"prodName", nameTextbox.Text},
                 {"prodDesc", descriptionTextbox.Text},
+                {"prodColor", colorTextbox.Text },
+                {"prodSize", sizeTextbox.Text },
                 {"prodPrice", priceTextbox.Text},
-                {"prodTag", tagTextbox.Text},
+                {"prodTag", tagDropDownList.SelectedValue},
+                {"prodAvailability", availablityDropDownList.SelectedValue },
                 {"prodImage", imageHiddenField.Value},
-                {"prodShopName", shopNameTextbox.Text }
             };
 
-            if (nameTextBoxValidator.IsValid && descriptionTextboxValidator.IsValid && priceTextboxValidator.IsValid && tagTextboxValidator.IsValid && shopNameRequiredFieldValidator.IsValid)
+            if (shopNameRequiredFieldValidator.IsValid && IdTextBoxRequiredFieldValidator.IsValid && nameTextBoxValidator.IsValid && descriptionTextboxValidator.IsValid && colorRequiredFieldValidator.IsValid && sizeRequiredFieldValidator.IsValid && priceTextboxValidator.IsValid && tagRequiredFieldValidator.IsValid && availabilityRequiredFieldValidator.IsValid)
             {
+                await docRef.SetAsync(data, SetOptions.MergeAll);
+/*
+                string message = "Product Successfully Updated";
+                string script = "alert('" + message + "')";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
 
-                try
-                {
-                    await docRef.SetAsync(data, SetOptions.MergeAll);
+                Response.Redirect("~/ShopOwner/MyShopProductsPage.aspx", false);*/
 
-                    string message = "Product Successfully Updated";
+                // Display a message
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Updated Product!');", true);
+
+                // Redirect to another page after a delay
+                string url = "MyShopProductsPage.aspx";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+            }
+            else
+            {
+                   /* string message = "Error Updating Product";
                     string script = "alert('" + message + "')";
                     ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
 
-                    Response.Redirect("~/ShopOwner/MyShopProductsPage.aspx", false);
-                }
-                catch (Exception)
-                {
-                    string message = "Error Updating Product";
-                    string script = "alert('" + message + "')";
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
+                    Response.Redirect("~/ShopOwner/MyShopProductsPage.aspx", false);*/
 
-                    Response.Redirect("~/ShopOwner/MyShopProductsPage.aspx", false);
-                }
+                // Display a message
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Error Updating Product!');", true);
+
+                // Redirect to another page after a delay
+                string url = "MyShopProductsPage.aspx";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+
             }
         }
 

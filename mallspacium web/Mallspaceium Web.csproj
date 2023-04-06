@@ -250,6 +250,7 @@
     <Compile Include="class\ManageSubscription.cs" />
     <Compile Include="class\Product.cs" />
     <Compile Include="class\Report.cs" />
+    <Compile Include="class\Shop.cs" />
     <Compile Include="form\ConfirmationResetPage.aspx.cs">
       <DependentUpon>ConfirmationResetPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -40,37 +40,29 @@ namespace mallspacium_web.MasterForm2
             ownProductsGridViewTable.Columns.Add("prodName", typeof(string));
             ownProductsGridViewTable.Columns.Add("prodImage", typeof(byte[]));
             ownProductsGridViewTable.Columns.Add("prodDesc", typeof(string));
-            ownProductsGridViewTable.Columns.Add("prodPrice", typeof(string));
             ownProductsGridViewTable.Columns.Add("prodTag", typeof(string));
-            ownProductsGridViewTable.Columns.Add("prodShopName", typeof(string));
 
             // Iterate through the documents and populate the DataTable
             foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
             {
-                
-                    string productName = documentSnapshot.GetValue<string>("prodName");
-                    string base64String = documentSnapshot.GetValue<string>("prodImage");
-                    byte[] productImage = Convert.FromBase64String(base64String);
-                    string productDescription = documentSnapshot.GetValue<string>("prodDesc");
-                    string productPrice = documentSnapshot.GetValue<string>("prodPrice");
-                    string productTag = documentSnapshot.GetValue<string>("prodTag");
-                    string productShopName = documentSnapshot.GetValue<string>("prodShopName");
+                string productName = documentSnapshot.GetValue<string>("prodName");
+                string base64String = documentSnapshot.GetValue<string>("prodImage");
+                byte[] productImage = Convert.FromBase64String(base64String);
+                string productDescription = documentSnapshot.GetValue<string>("prodDesc");
+                string productTag = documentSnapshot.GetValue<string>("prodTag");
 
-                    DataRow dataRow = ownProductsGridViewTable.NewRow();
+                DataRow dataRow = ownProductsGridViewTable.NewRow();
 
-                    dataRow["prodName"] = productName;
-                    dataRow["prodImage"] = productImage;
-                    dataRow["prodDesc"] = productDescription;
-                    dataRow["prodPrice"] = productPrice;
-                    dataRow["prodTag"] = productTag;
-                    dataRow["prodShopName"] = productShopName;
+                dataRow["prodName"] = productName;
+                dataRow["prodImage"] = productImage;
+                dataRow["prodDesc"] = productDescription;
+                dataRow["prodTag"] = productTag;
 
-                    ownProductsGridViewTable.Rows.Add(dataRow);
-
-                    // Bind the DataTable to the GridView control
-                    ownShopProductGridView.DataSource = ownProductsGridViewTable;
-                    ownShopProductGridView.DataBind();
+                ownProductsGridViewTable.Rows.Add(dataRow);
             }
+            // Bind the DataTable to the GridView control
+            ownShopProductGridView.DataSource = ownProductsGridViewTable;
+            ownShopProductGridView.DataBind();
         }
 
         
@@ -112,77 +104,67 @@ namespace mallspacium_web.MasterForm2
 
         protected void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-            searchProduct();
+            search();
         }
         // method for searching username 
-        public async void searchProduct()
+        public async void search()
         {
-            // Get the search term entered by the user
-            string searchTerm = searchTextBox.Text;
+            string searchProdName = searchTextBox.Text;
 
-            // Query the Firebase Cloud Firestore database for documents that match the search term in either the prodName or prodTag field
-            Query query = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product")
-                .WhereEqualTo("prodName", searchTerm)
-                //.WhereArrayContains("prodTag", searchTerm)
-                ;
-
-            // Retrieve the search results
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-            List<Product> results = new List<Product>();
-
-            if (snapshot.Documents.Count > 0)
+            if (searchTextBox.Text == "")
             {
-                foreach (DocumentSnapshot document in snapshot.Documents)
-                {
-                    //string base64String = document.GetValue<string>("prodImage");
-                    //byte[] productImage = Convert.FromBase64String(base64String);
-                    Product prod = document.ConvertTo<Product>();
-                    results.Add(prod);
-                }
-                // Bind the list of products to the GridView control
-                ownShopProductGridView.DataSource = results;
-                ownShopProductGridView.DataBind();
+                getMyShopProducts();
             }
             else
             {
-                // Display an error message if no search results are found
-                errorMessageLabel.Text = "No results found.";
-                errorMessageLabel.Visible = true;
-                ownShopProductGridView.Visible = false;
-            }
+                Query query = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product")
+                    .WhereGreaterThanOrEqualTo("prodName", searchProdName)
+                    .WhereLessThanOrEqualTo("prodName", searchProdName + "\uf8ff");
 
+                // Retrieve the search results
+                QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
-
-
-            /*(string searchUsername = searchTextBox.Text;
-            Query query = database.Collection("AdminAccount").Document().Collection().WhereEqualTo("username", searchUsername);
-
-            // Retrieve the search results
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-            List<AdminAccount> results = new List<AdminAccount>();
-
-            if (snapshot.Documents.Count > 0)
-            {
-                foreach (DocumentSnapshot document in snapshot.Documents)
+                if (snapshot.Documents.Count > 0)
                 {
-                    AdminAccount model = document.ConvertTo<AdminAccount>();
-                    results.Add(model);
+                    // Create a DataTable to store the retrieved data
+                    DataTable ownProductsGridViewTable = new DataTable();
+
+                    ownProductsGridViewTable.Columns.Add("prodName", typeof(string));
+                    ownProductsGridViewTable.Columns.Add("prodImage", typeof(byte[]));
+                    ownProductsGridViewTable.Columns.Add("prodDesc", typeof(string));
+                    ownProductsGridViewTable.Columns.Add("prodTag", typeof(string));
+
+                    // Iterate through the documents and populate the DataTable
+                    foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
+                    {
+
+                        string productName = documentSnapshot.GetValue<string>("prodName");
+                        string base64String = documentSnapshot.GetValue<string>("prodImage");
+                        byte[] productImage = Convert.FromBase64String(base64String);
+                        string productDescription = documentSnapshot.GetValue<string>("prodDesc");
+                        string productTag = documentSnapshot.GetValue<string>("prodTag");
+
+                        DataRow dataRow = ownProductsGridViewTable.NewRow();
+
+                        dataRow["prodName"] = productName;
+                        dataRow["prodImage"] = productImage;
+                        dataRow["prodDesc"] = productDescription;
+                        dataRow["prodTag"] = productTag;
+
+                        ownProductsGridViewTable.Rows.Add(dataRow);
+                    }
+                    // Bind the DataTable to the GridView control
+                    ownShopProductGridView.DataSource = ownProductsGridViewTable;
+                    ownShopProductGridView.DataBind();
                 }
-                // Bind the search results to the GridView control
-                accountGridView.DataSource = results;
-                accountGridView.DataBind();
+                else
+                {
+                    // Display an error message if no search results are found
+                    errorMessageLabel.Text = "No results found.";
+                    errorMessageLabel.Visible = true;
+                    ownShopProductGridView.Visible = false;
+                }
             }
-            else
-            {
-                accountGridView.DataSource = null;
-                accountGridView.DataBind();
-
-                string message = "No records found! Please search another username.";
-                string script = "alert('" + message + "')";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", script, true);
-            }*/
-
-
         }
 
         protected void ownShopProductGridView_RowDataBound(object sender, GridViewRowEventArgs e)

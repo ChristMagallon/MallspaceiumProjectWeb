@@ -16,19 +16,18 @@
         </div>
         <div class="card-body">
           <div class="form-group">
-            <asp:Label ID="Label1" runat="server" Text="Changing the Image of the " CssClass="font-weight-bold"></asp:Label> 
-            <asp:Label ID="nameLabel" runat="server" Text="" CssClass="font-weight-bold"></asp:Label>
+              <center>
+                  <asp:Label ID="Label1" runat="server" Text="Changing the Image of the " CssClass="font-weight-bold"></asp:Label> 
+                    <asp:Label ID="nameLabel" runat="server" Text="" CssClass="font-weight-bold"></asp:Label>
+              </center>
           </div>
           <div class="form-group">
-            <asp:Label ID="Label" runat="server" Text="Image: " CssClass="font-weight-bold"></asp:Label>
-            <div class="custom-file">
-              <asp:FileUpload ID="imageFileUpload" runat="server" Height="35px" Width="219px" CssClass="custom-file" />
-              <asp:RequiredFieldValidator ID="imageRequiredFieldValidator" runat="server" 
+            <label for="imageFileUpload">Image:</label>
+            <asp:FileUpload ID="imageFileUpload" runat="server" Height="35px" Width="219px" CssClass="form-control" />
+            <asp:RequiredFieldValidator ID="imageRequiredFieldValidator" runat="server" 
                   ControlToValidate="imageFileUpload" 
                   ErrorMessage="Please select an image." 
                   CssClass="text-danger"></asp:RequiredFieldValidator>
-              <label class="custom-file-label" for="imageFileUpload">Choose file</label>
-            </div>
           </div>
           <div class="form-group text-center">
             <asp:Button ID="saveButton" runat="server" Text="SAVE" OnClick="saveButton_Click" CssClass="btn btn-primary" />

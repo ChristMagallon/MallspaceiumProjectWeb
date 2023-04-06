@@ -1,6 +1,24 @@
 ﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#"  MasterPageFile="Site2.Master"   AutoEventWireup="true" CodeBehind="AddSalesAndDiscountPage.aspx.cs" Inherits="mallspacium_web.ShopOwner.AddSalesAndDiscountPage" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> 
+    <style type="text/css">
+        .auto-style1 {
+            display: block;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            background-clip: padding-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: .25rem;
+            transition: none;
+            border: 1px solid #ced4da;
+            background-color: #fff;
+        }
+    </style>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -28,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <label for="descriptionTextbox">Description:</label>
-                        <asp:Textbox ID="descriptionTextbox" runat="server" Text="" AutoCompleteType="Disabled" TextMode="MultiLine" Height="80px" Width="205px" CssClass="form-control"></asp:Textbox>
+                        <asp:Textbox ID="descriptionTextbox" runat="server" Text="" AutoCompleteType="Disabled" TextMode="MultiLine" Height="80px" Width="268px" CssClass="form-control"></asp:Textbox>
                         <asp:RequiredFieldValidator ID="descriptionTextboxValidator" runat="server"
                             ControlToValidate="descriptionTextbox"
                             ErrorMessage="*Required"
@@ -51,7 +69,7 @@
                             CssClass="text-danger" />
                     </div>
                     <div class="form-group text-center">
-                        <asp:Button ID="addButton" runat="server" Text="Add" CssClass="btn btn-primary" />
+                        <asp:Button ID="addButton" runat="server" Text="Add" CssClass="btn btn-primary" OnClick="addButton_Click" />
                     </div>
                 </div>
             </div>

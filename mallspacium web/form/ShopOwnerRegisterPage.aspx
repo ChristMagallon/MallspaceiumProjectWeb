@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
        <div class="container-fluid pt-5 text-black text-center">
-            <img src="../design/mallspaceium_logo.png" class="mx-auto d-block" width="150" height="150">
+            <img src="../design/mallspaceium_logo.png" class="mx-auto d-block" width="150" height="150"/>
           <h1>Mallspaceium</h1>
           <p>Improving the Quality of Shopping Experience</p> 
         </div>
@@ -44,9 +44,9 @@
                 </div>
 
                 <div class="mb-3">
-                      <label for="attachedDocuments" class="form-label">Attached Documents:<br />
-                      <asp:FileUpload ID="ImageFileUpload" runat="server" />
-                      </label>
+                      <label for="attachedDocuments" class="form-label">Attached Image Permit for Shop Verification: </label> <br />
+                      <asp:FileUpload ID="ImageFileUpload" runat="server" ValidationGroup="Validate" />
+                        <asp:RequiredFieldValidator ID="ImageRequiredFieldValidator" runat="server" ControlToValidate="ImageFileUpload" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-3">
@@ -58,7 +58,7 @@
 
                 <div class="mb-3">
                       <label for="phoneNumber" class="form-label">Phone Number:</label>
-                      <asp:TextBox ID="PhoneNumberTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Phone Number" AutoCompleteType="Disabled" TextMode="Phone" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:TextBox ID="PhoneNumberTextBox" runat="server" type="text"  class="form-control" placeholder="Enter Phone Number" Text="+639" AutoCompleteType="Disabled" TextMode="Phone" ValidationGroup="Validate"></asp:TextBox>
                       <asp:RequiredFieldValidator ID="PhoneNumberRequiredFieldValidator" runat="server" ControlToValidate="PhoneNumberTextBox" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate" Display="Dynamic"></asp:RequiredFieldValidator>
                       <asp:Label ID="ErrorPhoneNumberLabel" runat="server" ForeColor="Red"></asp:Label>
                 </div>

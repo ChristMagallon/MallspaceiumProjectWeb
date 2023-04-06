@@ -11,7 +11,7 @@
         <div class="col-md-6 offset-md-3">
             <div class="card p-3">
                 <div class="input-group">
-                    <asp:TextBox ID="searchTextBox" runat="server" CssClass="form-control" type="search" placeholder="Search Shop Name" aria-label="Search" AutoPostBack="True"></asp:TextBox>
+                    <asp:TextBox ID="searchTextBox" runat="server" CssClass="form-control" type="search" placeholder="Search Shop Name" aria-label="Search" AutoPostBack="True" AutoCompleteType="Disabled" OnTextChanged="searchTextBox_TextChanged" ></asp:TextBox>
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button">
                             <i class="fa fa-search"></i>
@@ -40,11 +40,11 @@
                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
                         <SortedDescendingHeaderStyle BackColor="#00547E" />
                     </asp:GridView>
-                </div>
 
-                <center>
-                    <asp:Label ID="errorMessageLabel" runat="server" Visible="false"></asp:Label>
-                </center>
+                    <center>
+                        <asp:Label ID="errorMessageLabel" runat="server" Visible="false"></asp:Label>
+                    </center>
+                </div>
             </div>
         </div>
     </div>

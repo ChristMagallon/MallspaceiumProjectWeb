@@ -32,8 +32,9 @@ namespace mallspacium_web.ShopOwner
         public async void AddProduct()
         {
             //auto generated unique id
-            Guid id = Guid.NewGuid();
-            string uniqueId = id.ToString();
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string productID = "PROD" + randomIDNumber.ToString();
 
             //Create an instance of Bitmap from the uploaded file using the FileUpload control
             Bitmap image = new Bitmap(imageFileUpload.PostedFile.InputStream);
@@ -47,22 +48,29 @@ namespace mallspacium_web.ShopOwner
             DocumentReference doc = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product").Document(nameTextbox.Text);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
-                { "prodId", uniqueId},
+                { "prodShopName", shopNameTextbox.Text },
+                { "prodId", productID},
                 { "prodName", nameTextbox.Text},
                 { "prodDesc", descriptionTextbox.Text},
+                { "prodColor", colorTextBox.Text },
+                { "prodSize", sizeTextBox.Text },
                 { "prodPrice", "₱" + priceTextbox.Text},
-                { "prodTag", tagTextbox.Text},
-                { "prodImage", base64String},
-                {"prodShopName", shopNameTextbox.Text }
+                { "prodTag", tagDropDownList.SelectedValue},
+                { "prodAvailability", availablityDropDownList.SelectedValue },
+                { "prodImage", base64String}
             };
 
-            if (nameTextBoxValidator.IsValid && descriptionTextboxValidator.IsValid && priceTextboxValidator.IsValid && tagTextboxValidator.IsValid && imageFileUploadValidator.IsValid && shopNameRequiredFieldValidator.IsValid)
+            if (nameTextBoxValidator.IsValid && descriptionTextboxValidator.IsValid && colorRequiredFieldValidator.IsValid && sizeRequiredFieldValidator.IsValid && priceTextboxValidator.IsValid && tagRequiredFieldValidator.IsValid && imageFileUploadValidator.IsValid && shopNameRequiredFieldValidator.IsValid)
             {
                 await doc.SetAsync(data1);
-                Response.Write("<script>alert('Successfully Added a New Product.');</script>");
-            }
 
-            Response.Redirect("~/ShopOwner/MyShopProductsPage.aspx", false);
+                // Display a message
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Added a New Product!');", true);
+
+                // Redirect to another page after a delay
+                string url = "MyShopProductsPage.aspx";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+            }
         }
 
 

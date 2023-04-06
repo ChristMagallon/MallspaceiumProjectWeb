@@ -24,15 +24,17 @@ namespace mallspacium_web.ShopOwner
             getShopName();
         }
 
-        protected void addButton_Click(object sender, EventArgs e)
+        /*protected void addButton_Click(object sender, EventArgs e)
         {
             AddSaleDiscount();
-        }
+        }*/
+
         public async void AddSaleDiscount()
         {
             //auto generated unique id
-            Guid id = Guid.NewGuid();
-            string uniqueId = id.ToString();
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string saleDiscountID = "SD" + randomIDNumber.ToString();
 
             //Create an instance of Bitmap from the uploaded file using the FileUpload control
             Bitmap image = new Bitmap(imageFileUpload.PostedFile.InputStream);
@@ -43,10 +45,10 @@ namespace mallspacium_web.ShopOwner
             //Convert the Bitmap image to a Base64 string
             string base64String = Convert.ToBase64String(bytes);
 
-            DocumentReference doc = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("SaleDiscount").Document(uniqueId);
+            DocumentReference doc = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("SaleDiscount").Document(saleDiscountID);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
-                { "saleDiscId", uniqueId},
+                { "saleDiscId", saleDiscountID},
                 { "saleDiscImage", base64String},
                 { "saleDiscDesc", descriptionTextbox.Text},
                 { "saleDiscStartDate", startDateTextBox.Text},
@@ -57,14 +59,19 @@ namespace mallspacium_web.ShopOwner
             if (imageFileUploadValidator.IsValid && descriptionTextboxValidator.IsValid && startDateTextboxValidator.IsValid && endDateTextboxValidator.IsValid)
             {
                 await doc.SetAsync(data1);
-                Response.Write("<script>alert('Successfully Added a New Sale or Discount.');</script>");
+
+                // Display a message
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Added a New Sale or Discount!');", true);
+
+                // Redirect to another page after a delay
+                string url = "MySaleDiscountPage.aspx";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 1000);", true);
             }
             else
             {
                 Response.Write("<script>alert('Error!');</script>");
             }
-
-            Response.Redirect("~/ShopOwner/MySaleDiscountPage.aspx", false);
+            
         }
 
         public async void getShopName()
@@ -83,6 +90,11 @@ namespace mallspacium_web.ShopOwner
                     shopNameTextbox.Text = shopName;
                 }
             }
+        }
+
+        protected void addButton_Click(object sender, EventArgs e)
+        {
+            AddSaleDiscount();
         }
     }
 }

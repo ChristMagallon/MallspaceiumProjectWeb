@@ -37,6 +37,7 @@ namespace mallspacium_web.ShopOwner
             allShopProductGridViewTable.Columns.Add("prodName", typeof(string));
             allShopProductGridViewTable.Columns.Add("prodImage", typeof(byte[]));
             allShopProductGridViewTable.Columns.Add("prodDesc", typeof(string));
+            allShopProductGridViewTable.Columns.Add("prodTag", typeof(string));
             allShopProductGridViewTable.Columns.Add("prodShopName", typeof(string));
 
             // Iterate through the documents and populate the DataTable
@@ -56,6 +57,7 @@ namespace mallspacium_web.ShopOwner
                     string base64String = productDoc.GetValue<string>("prodImage");
                     byte[] productImage = Convert.FromBase64String(base64String);
                     string productDescription = productDoc.GetValue<string>("prodDesc");
+                    string productTag = productDoc.GetValue<string>("prodTag");
                     string productShopName = productDoc.GetValue<string>("prodShopName");
 
                     DataRow dataRow = allShopProductGridViewTable.NewRow();
@@ -63,6 +65,7 @@ namespace mallspacium_web.ShopOwner
                     dataRow["prodName"] = productName;
                     dataRow["prodImage"] = productImage;
                     dataRow["prodDesc"] = productDescription;
+                    dataRow["prodTag"] = productTag;
                     dataRow["prodShopName"] = productShopName;
 
                     allShopProductGridViewTable.Rows.Add(dataRow);

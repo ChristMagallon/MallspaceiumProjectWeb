@@ -115,42 +115,45 @@ namespace mallspacium_web.form
             // Create a new collection reference
             DocumentReference documentRef = db.Collection("Users").Document(email);
 
-            //Create an instance of Bitmap from the uploaded file using the FileUpload control
-            Bitmap image = new Bitmap(ImageFileUpload.PostedFile.InputStream);
-            MemoryStream stream = new MemoryStream();
-            image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] bytes = stream.ToArray();
-
-            //Convert the Bitmap image to a Base64 string
-            string base64String = Convert.ToBase64String(bytes);
-
-            // Set the data for the new document
-            Dictionary<string, object> data = new Dictionary<string, object>
+            if (ImageFileUpload.HasFile)
             {
-                {"userID", userID},
-                {"firstName", ti.ToTitleCase(FirstNameTextBox.Text)},
-                {"lastName", ti.ToTitleCase(LastNameTextBox.Text)},
-                {"shopImage", shopImage},
-                {"shopName", ShopNameTextBox.Text},
-                {"shopDescription", ti.ToTitleCase(ShopDescriptionTextBox.Text)},
-                {"imageFile", base64String},
-                {"email", EmailTextBox.Text},
-                {"phoneNumber", PhoneNumberTextBox.Text},
-                {"address", ti.ToTitleCase(AddressTextBox.Text)},
-                {"username", UsernameTextBox.Text},
-                {"password", PasswordTextBox.Text},
-                {"confirmPassword", ConfirmPasswordTextBox.Text},
-                {"userRole", userRole},
-                {"dateCreated", dateCreated }
-            };
+                //Create an instance of Bitmap from the uploaded file using the FileUpload control
+                Bitmap image = new Bitmap(ImageFileUpload.PostedFile.InputStream);
+                MemoryStream stream = new MemoryStream();
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] bytes = stream.ToArray();
 
-            // Set the data in the Firestore document
-            await documentRef.SetAsync(data);
-            collectionNotif();
-            defaultSubscription();
+                //Convert the Bitmap image to a Base64 string
+                string base64String = Convert.ToBase64String(bytes);
 
-            string loginPageUrl = ResolveUrl("~/form/LoginPage.aspx");
-            Response.Write("<script>alert('Successfully Registered'); window.location='" + loginPageUrl + "';</script>");
+                // Set the data for the new document
+                Dictionary<string, object> data = new Dictionary<string, object>
+                {
+                    {"userID", userID},
+                    {"firstName", ti.ToTitleCase(FirstNameTextBox.Text)},
+                    {"lastName", ti.ToTitleCase(LastNameTextBox.Text)},
+                    {"shopImage", shopImage},
+                    {"shopName", ShopNameTextBox.Text},
+                    {"shopDescription", ti.ToTitleCase(ShopDescriptionTextBox.Text)},
+                    {"imageFile", base64String},
+                    {"email", EmailTextBox.Text},
+                    {"phoneNumber", PhoneNumberTextBox.Text},
+                    {"address", ti.ToTitleCase(AddressTextBox.Text)},
+                    {"username", UsernameTextBox.Text},
+                    {"password", PasswordTextBox.Text},
+                    {"confirmPassword", ConfirmPasswordTextBox.Text},
+                    {"userRole", userRole},
+                    {"dateCreated", dateCreated }
+                };
+
+                // Set the data in the Firestore document
+                await documentRef.SetAsync(data);
+                collectionNotif();
+                defaultSubscription();
+
+                string loginPageUrl = ResolveUrl("~/form/LoginPage.aspx");
+                Response.Write("<script>alert('Successfully Registered'); window.location='" + loginPageUrl + "';</script>");
+            }
         }
 
         public async void collectionNotif()
