@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -132,37 +134,42 @@ namespace mallspacium_web.form
             }
         }
 
+        // Check the server status incase of maintenance
         public async void getServerStatus()
         {
-            bool choice = false;
-            DateTime currentDate = DateTime.UtcNow;
-            string dateToday = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
-
+            DateTime currentDate = DateTime.Now;
+            bool isMaintenanceInProgress = false;
+            DateTime latestEndTime = DateTime.MinValue;
             CollectionReference downtimeRef = db.Collection("AdminSystemDowntime");
 
-            // Query for start time
-            Query startQuery = downtimeRef
-                .WhereLessThanOrEqualTo("startTime", dateToday)
-                .OrderBy("startTime")
-                .Limit(50);
-            QuerySnapshot startSnapshot = await startQuery.GetSnapshotAsync();
+            QuerySnapshot downtimeSnapshot = await downtimeRef.GetSnapshotAsync();
 
-            // Query for end time
-            Query endQuery = downtimeRef
-                .WhereGreaterThanOrEqualTo("endTime", dateToday)
-                .OrderBy("endTime")
-                .Limit(50);
-            QuerySnapshot endSnapshot = await endQuery.GetSnapshotAsync();
-
-            // Check if any documents exist in either query
-            if (startSnapshot.Count > 0 || endSnapshot.Count > 0)
+            foreach (DocumentSnapshot documentSnapshot in downtimeSnapshot.Documents)
             {
-                Response.Write("<script>alert('Server is under maintenance. Try logging back again later.');</script>");
-                choice = true;
+                DateTime startTime;
+                DateTime endTime;
+
+                if (DateTime.TryParseExact(documentSnapshot.GetValue<string>("startTime"), "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime) &&
+                    DateTime.TryParseExact(documentSnapshot.GetValue<string>("endTime"), "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime))
+                {
+                    if (currentDate >= startTime && currentDate <= endTime.AddSeconds(30))
+                    {
+                        // Display the maintenance message to the user
+                        Response.Write("<script>alert('Server is under maintenance. Try logging back again later.');</script>");
+                        isMaintenanceInProgress = true;
+                        break;
+                    }
+
+                    if (endTime > latestEndTime)
+                    {
+                        latestEndTime = endTime;
+                    }
+                }
             }
 
-            if (!choice)
+            if (!isMaintenanceInProgress && currentDate > latestEndTime.AddSeconds(30))
             {
+                // If there is no maintenance in progress and the current time is after the latest end time plus 30 seconds, proceed with login
                 getAdmin();
             }
         }

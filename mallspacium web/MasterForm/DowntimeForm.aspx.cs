@@ -32,16 +32,14 @@ namespace mallspacium_web
             DocumentReference downtimeRef = database.Collection("AdminSystemDowntime").Document("DT: " + datetime2);
 
             Dictionary<string, object> downtimeData = new Dictionary<string, object>
-{
-            {"startTime", startDateTextbox.Text},
-            {"endTime", endDateTextbox.Text},
-            {"message", messageTextbox.Text}
-};
+            {
+                {"startTime", startDateTextbox.Text},
+                {"endTime", endDateTextbox.Text},
+                {"message", messageTextbox.Text}
+            };
             await downtimeRef.SetAsync(downtimeData);
            
             DocumentSnapshot snapshot = await downtimeRef.GetSnapshotAsync();
-
-
 
             Query usersQue = database.Collection("Users");
             QuerySnapshot snap = await usersQue.GetSnapshotAsync();
@@ -57,11 +55,11 @@ namespace mallspacium_web
                     DocumentReference downtimeRef1 = database.Collection("Users").Document(docsnap.Id).Collection("Notification").Document(documentName);
 
                     Dictionary<string, object> downtimeData1 = new Dictionary<string, object>
-                        {
-                            {"startTime", startDateTextbox.Text},
-                            {"endTime", endDateTextbox.Text},
-                            {"message", messageTextbox.Text}
-                        };
+                    {
+                        {"startTime", startDateTextbox.Text},
+                        {"endTime", endDateTextbox.Text},
+                        {"message", messageTextbox.Text}
+                    };
                     await downtimeRef1.SetAsync(downtimeData1);
 
                     DocumentSnapshot snapshot1 = await downtimeRef1.GetSnapshotAsync();
@@ -90,9 +88,11 @@ namespace mallspacium_web
             int randomIDNumber = random.Next(100000, 999999);
             string activityID = "ACT" + randomIDNumber.ToString();
 
-            //Get current date time and the expected expiration date
-            DateTime currentDate = DateTime.Now;
-            string date = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+            //Get current UTC date time and the expected expiration date
+            string currentDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date;
+            DateTime.TryParse(currentDate, out date);
+            date = DateTime.SpecifyKind(date, DateTimeKind.Utc);
 
             DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
@@ -104,6 +104,6 @@ namespace mallspacium_web
                 { "date", date }
             };
             await userRef.SetAsync(data1);
-        }
+        } 
     }
 }

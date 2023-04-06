@@ -53,9 +53,9 @@ namespace mallspacium_web.Shopper
 
         public async void cancelSubscription()
         {
-            String subscriptionType = "Free";
-            String subscriptionPrice = "0.00";
-            String status = "Cancelled";
+            string subscriptionType = "Free";
+            string subscriptionPrice = "0.00";
+            string status = "Cancelled";
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
             DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
@@ -72,55 +72,43 @@ namespace mallspacium_web.Shopper
                 string userEmail = data["email"].ToString();
                 string userRole = data["userRole"].ToString();
 
-                // Generate random ID number
-                Random random = new Random();
-                int randomIDNumber = random.Next(100000, 999999);
-                string subscriptionID = "SUB" + randomIDNumber.ToString();
-
-                // Get current date time and the expected expiration date
-                DateTime currentDate = DateTime.Now;
-                DateTime expirationDate = currentDate.AddMonths(3);
-                string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
-                string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
-
                 // Create a new collection reference
-                DocumentReference documentRef = db.Collection("AdminManageSubscription").Document(userEmail);
+                DocumentReference subscriptionRef = db.Collection("AdminManageSubscription").Document(userEmail);
 
                 // Check if the document exists
-                DocumentSnapshot documentSnapshot = await documentRef.GetSnapshotAsync();
-                if (documentSnapshot.Exists)
+                DocumentSnapshot subscriptionSnapshot = await subscriptionRef.GetSnapshotAsync();
+                if (subscriptionSnapshot.Exists)
                 {
                     // Document exists, update the fields
                     Dictionary<string, object> dataUpdate = new Dictionary<string, object>
                     {
                         {"subscriptionType", subscriptionType},
                         {"price", subscriptionPrice},
-                        {"subscriptionID", subscriptionID},
-                        {"startDate", FieldValue.Delete},
-                        {"endDate", FieldValue.Delete},
+                        {"startDate", "Not Available"},
+                        {"endDate", "Not Available"},
                         {"status", status}
                     };
 
                     // Update the data in the Firestore document
-                    await documentRef.UpdateAsync(dataUpdate);
+                    await subscriptionRef.UpdateAsync(dataUpdate);
+                    Response.Write("<script>alert('Your subscription has expired.');</script>");
                 }
                 else
                 {
                     // Set the data for the new document
                     Dictionary<string, object> dataInsert = new Dictionary<string, object>
                     {
-                        {"subscriptionID", subscriptionID},
                         {"subscriptionType", subscriptionType},
                         {"price", subscriptionPrice},
                         {"userEmail", userEmail},
                         {"userRole", userRole},
-                        {"startDate", startDate},
-                        {"endDate", endDate},
+                        {"startDate", "Not Available"},
+                        {"endDate", "Not Available"},
                         {"status", status}
                     };
 
                     // Set the data in the Firestore document
-                    await documentRef.SetAsync(dataInsert);
+                    await subscriptionRef.SetAsync(dataInsert);
                 }
             }
             Response.Redirect("~/Shopper/SubscriptionPage.aspx", false);

@@ -56,6 +56,7 @@ namespace mallspacium_web.ShopOwner
             String subscriptionType = "Free";
             String subscriptionPrice = "0.00";
             String status = "Cancelled";
+
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
             DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));

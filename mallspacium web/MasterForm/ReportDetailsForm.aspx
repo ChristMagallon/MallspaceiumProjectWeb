@@ -60,7 +60,7 @@
     <div class="form">
         <div class="form-group">
             <asp:HiddenField ID="imageHiddenField" runat="server" />
-            <asp:Button ID="viewSupportingImageButton" runat="server" Text="View Supporting Image" CssClass="btn btn-primary" OnClick="viewSupportingImageButton_Click" /> <br /> <br /> <br />
+            <asp:Button ID="viewSupportingImageButton" runat="server" Text="View Supporting Image" CssClass="btn btn-primary" OnClick="viewSupportingImageButton_Click" ValidationGroup="None" /> <br /> <br /> <br />
          </div>
      </div>
 
@@ -94,8 +94,7 @@
                 </asp:DropDownList> 
             <asp:RequiredFieldValidator ID="statusRequiredFieldValidator" runat="server" ErrorMessage="Required*" 
                 ControlToValidate="statusDropDownList" 
-                CssClass="text-danger">
-            </asp:RequiredFieldValidator> <br /> <br />
+                CssClass="text-danger" ValidationGroup="Validate"></asp:RequiredFieldValidator> <br /> <br />
         </div>
 
         <div class="form-group">
@@ -103,21 +102,19 @@
             <asp:FileUpload ID="proofFileUpload" runat="server" /> 
             <asp:RequiredFieldValidator ID="proofRequiredFieldValidator" runat="server" ErrorMessage="Required*" 
                 ControlToValidate="proofFileUpload" 
-                CssClass="text-danger">
-            </asp:RequiredFieldValidator> <br /> <br />
+                CssClass="text-danger" ValidationGroup="Validate"></asp:RequiredFieldValidator> <br /> <br />
         </div>
 
         <div class="form-group">
             <asp:Label ID="Label7" runat="server" Text="Note: "></asp:Label>
-            <asp:TextBox ID="noteTextBox" runat="server" TextMode="MultiLine" Rows="4" AutoCompleteType="Disabled" Width="234px"></asp:TextBox>
+            <asp:TextBox ID="noteTextBox" runat="server" TextMode="MultiLine" Rows="4" AutoCompleteType="Disabled" Width="234px" ValidationGroup="Validate"></asp:TextBox>
             <asp:RequiredFieldValidator ID="noteRequiredFieldValidator" runat="server" ErrorMessage="Required*" 
                 ControlToValidate="noteTextBox" 
-                CssClass="text-danger">
-            </asp:RequiredFieldValidator> <br /> <br />
+                CssClass="text-danger" ValidationGroup="Validate"></asp:RequiredFieldValidator> <br /> <br />
         </div>
 
         <div class="form-group">
-            <asp:Button ID="addProofNoteButton" runat="server" Text="Add Proof & Note"  CssClass="btn btn-primary" OnClick="addProofNoteButton_Click"/>
+            <asp:Button ID="addProofNoteButton" runat="server" Text="Add Proof & Note"  CssClass="btn btn-primary" OnClick="addProofNoteButton_Click" ValidationGroup="Validate"/>
          </div>
     </div>
 </asp:Content>
