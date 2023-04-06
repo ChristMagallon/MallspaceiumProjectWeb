@@ -15,6 +15,12 @@
                     <h5 class="card-title">Add Advertise Product</h5>
                     <hr>
                     <div class="form-group">
+                        <label for="shopNameTextbox">Shop Name:</label>
+                        <asp:TextBox ID="shopNameTextbox" runat="server" CssClass="form-control" Text="" AutoCompleteType="Disabled"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="shopNameRequiredFieldValidator" runat="server" ControlToValidate="shopNameTextbox" 
+                            ErrorMessage="*Required" CssClass="text-danger" />
+                    </div>
+                    <div class="form-group">
                         <label for="productNameTextbox">Product Name:</label>
                         <asp:Textbox ID="ProductNameTextbox" runat="server" Text="" AutoCompleteType="Disabled" CssClass="form-control" ValidationGroup="Validate"></asp:Textbox>
                         <asp:RequiredFieldValidator ID="ProductNameRequiredFieldValidator" runat="server"
