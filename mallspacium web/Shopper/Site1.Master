@@ -1,8 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.Master.cs" Inherits="mallspacium_web.MasterForm3.Site1" %>
 
 <!DOCTYPE html>
-
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,9 +15,19 @@
      <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
-      <style type="text/css">
-      
-}
+     <style type="text/css">
+       .logoutbtn
+        {
+         border: none;
+         background:none;
+         outline: none;
+         color: red;
+        }
+
+       .px-6{
+           margin-left: 6px;
+           margin-right: 6px;
+       }
     </style>
 </head>
 
@@ -37,7 +45,7 @@
                 <a href="ProductsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paperclip me-2"></i>Products</a>
                 <a href="NotificationPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-power-off me-2"></i>Notification</a>
+                        class="fas fa-bell me-2"></i>Notification</a>
             </div>
         </div>
      
@@ -79,7 +87,6 @@
                                     </asp:ContentPlaceHolder>
             </div>
         </div>
-    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
