@@ -154,7 +154,6 @@ namespace mallspacium_web.form
 
                 // Set the data in the Firestore document
                 await documentRef.SetAsync(data);
-                collectionNotif();
                 string recipientEmail = EmailTextBox.Text;
                 string recipientName = UsernameTextBox.Text;
 
