@@ -24,7 +24,44 @@ namespace mallspacium_web.MasterForm2
 
             database = FirestoreDb.Create("mallspaceium");
 
-            getNotification();
+
+            checknotif();
+          
+        }
+
+        public async void checknotif()
+        {
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = database.Collection("Users");
+            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
+
+            // Retrieve the document data asynchronously
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+            // Check if the document exists
+            if (snapshot.Exists)
+            {
+                // Get the data as a Dictionary
+                Dictionary<string, object> data = snapshot.ToDictionary();
+                // Access the specific field you want
+   
+                    object field = data["userNotif"];
+                
+                // Do something with the field value
+
+                if(field.ToString() == "On")
+                {
+                    getNotification();
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                // Document does not exist
+            }
         }
 
         protected void NotificationGridView_SelectedIndexChanged(object sender, EventArgs e)
