@@ -18,15 +18,13 @@ namespace mallspacium_web.MasterForm2
         static string notificationpicker = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-
-         
             string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
             
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             database = FirestoreDb.Create("mallspaceium");
 
-            getShops();
+            getNotification();
         }
 
         protected void NotificationGridView_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,9 +59,8 @@ namespace mallspacium_web.MasterForm2
                 // Access the specific field you want
                     field = data["message"];
 
-                // Do something with the field value     
-
-                SelectedNotificationLabel.Text = field.ToString();
+                // Do something with the field value 
+                SelectedNotificationLabel.Text = "Notification Details: " + field.ToString();
             }
             else
             {
@@ -71,9 +68,8 @@ namespace mallspacium_web.MasterForm2
             }
         }
 
-        public async void getShops()
+        public async void getNotification()
         {
-           
             Query usersQue = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Notification");
             QuerySnapshot snap = await usersQue.GetSnapshotAsync();
 
@@ -88,7 +84,7 @@ namespace mallspacium_web.MasterForm2
                 if (docsnap.Exists)
                 {
                     // Convert the document data to a dictionary
-                    Dictionary<string, object> data = docsnap.ToDictionary();
+                    /*Dictionary<string, object> data = docsnap.ToDictionary();*/
 
                     // Get the values of the fields we want to display
                     string Notification = docsnap.Id;
@@ -97,8 +93,6 @@ namespace mallspacium_web.MasterForm2
                     notificationTable.Rows.Add(Notification);
                 }
             }
-
-     
             // Set the DataTable as the DataSource for the GridView
             NotificationGridView.DataSource = notificationTable;
 
@@ -106,5 +100,24 @@ namespace mallspacium_web.MasterForm2
             NotificationGridView.DataBind();
         }
 
+        protected async void NotificationGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            // Get the document ID from the DataKeys collection
+            string docId = NotificationGridView.DataKeys[e.RowIndex]["Notification"].ToString();
+
+            // Get a reference to the document to be deleted 
+            DocumentReference docRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Notification").Document(docId);
+
+            // Delete the document
+            await docRef.DeleteAsync();
+
+            // Display a message
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Deleted Notification!');", true);
+
+
+            // Redirect to another page after a delay
+            string url = "NotificationPage.aspx";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
+        }
     }
 }
