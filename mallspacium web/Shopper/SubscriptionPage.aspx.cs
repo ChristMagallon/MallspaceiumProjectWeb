@@ -1,6 +1,7 @@
 ﻿using Google.Cloud.Firestore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -20,6 +21,7 @@ namespace mallspacium_web.Shopper
             db = FirestoreDb.Create("mallspaceium");
 
             getCurrentSubDetails();
+            getUserSubDetails();
         }
 
         protected void BasicSubButton_Click(object sender, EventArgs e)
@@ -317,6 +319,108 @@ namespace mallspacium_web.Shopper
             else
             {
                 // Document does not exist
+            }
+        }
+
+        // Check the user subscription status
+        public async void getUserSubDetails()
+        {
+            DateTime currentDate = DateTime.Now;
+            bool isSubscriptionExpired = true;
+
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference subscriptionRef = db.Collection("AdminManageSubscription");
+            DocumentReference docRef = subscriptionRef.Document((string)Application.Get("usernameget"));
+
+            // Retrieve the document data asynchronously
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+            // Check if the document exists
+            if (snapshot.Exists)
+            {
+                // Get the data as a Dictionary
+                Dictionary<string, object> data = snapshot.ToDictionary();
+
+                DateTime startDate;
+                DateTime endDate;
+
+                if (DateTime.TryParseExact(data["startDate"].ToString(), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate) &&
+                    DateTime.TryParseExact(data["endDate"].ToString(), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out endDate))
+                {
+                    if (currentDate >= startDate && currentDate <= endDate)
+                    {
+                        // User subscription is still active
+                        isSubscriptionExpired = false;
+                    }
+                }
+            }
+
+            if (isSubscriptionExpired)
+            {
+                revertSubscription();
+            }
+        }
+
+        // Revert the subscription back to free
+        public async void revertSubscription()
+        {
+            string subscriptionType = "Free";
+            string subscriptionPrice = "0.00";
+            string status = "Expired";
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = db.Collection("Users");
+            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
+
+            // Retrieve the document data asynchronously
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+            // Check if the document exists
+            if (snapshot.Exists)
+            {
+                // Get the data as a Dictionary
+                Dictionary<string, object> data = snapshot.ToDictionary();
+                // Access the specific field you want
+                string userEmail = data["email"].ToString();
+                string userRole = data["userRole"].ToString();
+
+                // Create a new collection reference
+                DocumentReference subscriptionRef = db.Collection("AdminManageSubscription").Document(userEmail);
+
+                // Check if the document exists
+                DocumentSnapshot subscriptionSnapshot = await subscriptionRef.GetSnapshotAsync();
+                if (subscriptionSnapshot.Exists)
+                {
+                    // Document exists, update the fields
+                    Dictionary<string, object> dataUpdate = new Dictionary<string, object>
+                    {
+                        {"subscriptionType", subscriptionType},
+                        {"price", subscriptionPrice},
+                        {"startDate", "Not Available"},
+                        {"endDate", "Not Available"},
+                        {"status", status}
+                    };
+
+                    // Update the data in the Firestore document
+                    await subscriptionRef.UpdateAsync(dataUpdate);
+                    Response.Write("<script>alert('Your subscription has expired.');</script>");
+                }
+                else
+                {
+                    // Set the data for the new document
+                    Dictionary<string, object> dataInsert = new Dictionary<string, object>
+                    {
+                        {"subscriptionType", subscriptionType},
+                        {"price", subscriptionPrice},
+                        {"userEmail", userEmail},
+                        {"userRole", userRole},
+                        {"startDate", "Not Available"},
+                        {"endDate", "Not Available"},
+                        {"status", status}
+                    };
+
+                    // Set the data in the Firestore document
+                    await subscriptionRef.SetAsync(dataInsert);
+                }
             }
         }
 

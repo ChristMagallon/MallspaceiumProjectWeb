@@ -43,7 +43,7 @@ namespace mallspacium_web.MasterForm3
                 string email = documentSnapshot.GetValue<string>("email");
                 string phoneNumber = documentSnapshot.GetValue<string>("phoneNumber");
                 string address = documentSnapshot.GetValue<string>("address");
-                 
+                bool verified = documentSnapshot.GetValue<bool>("verified"); // Modify to retrieve as bool
 
                 // Convert the image string to a byte array
                 byte[] imageBytes;
@@ -72,6 +72,16 @@ namespace mallspacium_web.MasterForm3
                 emailLabel.Text = email;
                 phoneNumberLabel.Text = phoneNumber;
                 addressLabel.Text = address;
+
+                // Check if user is verified and enable VerifyButton if not verified
+                if (!verified)
+                {
+                    VerifyButton.Enabled = true;
+                }
+                else
+                {
+                    VerifyButton.Enabled = false;
+                }
             }
         }
 
@@ -79,6 +89,12 @@ namespace mallspacium_web.MasterForm3
         {
             // Redirect to another page 
             Response.Redirect("EditProfilePage.aspx");
+        }
+
+        protected void VerifyButton_Click(object sender, EventArgs e)
+        {
+            // Redirect to another page 
+            Response.Redirect("~/form/ConfirmationEmailPage.aspx", false);
         }
     }
 }
