@@ -1,15 +1,55 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SalesAndDiscountDetailsPage.aspx.cs" Inherits="mallspacium_web.Shopper.SalesAndDiscountDetailsPage" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title=""  Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="SalesAndDiscountDetailsPage.aspx.cs" Inherits="mallspacium_web.Shopper.SalesAndDiscountDetailsPage" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
-</body>
-</html>
+    <!-- starts here-->
+    <div class="container">
+  <h2 class="mt-5 mb-4">Sales or Discount Details</h2>
+  <div class="row mb-4">
+    <div class="col-sm-3 col-md-2 col-lg-1">
+      <label class="font-weight-bold">Shop Name:</label>
+    </div>
+    <div class="col-sm-9 col-md-10 col-lg-11">
+      <asp:Label ID="shopNameLabel" runat="server" CssClass="form-control-plaintext" Text=""></asp:Label>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-sm-3 col-md-2 col-lg-1">
+      <label class="font-weight-bold">Image:</label>
+    </div>
+    <div class="col-sm-9 col-md-10 col-lg-11">
+      <asp:Image ID="Image1" runat="server" CssClass="img-fluid" />
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-sm-3 col-md-2 col-lg-1">
+      <label class="font-weight-bold">Description:</label>
+    </div>
+    <div class="col-sm-9 col-md-10 col-lg-11">
+      <asp:Label ID="descriptionLabel" runat="server" CssClass="form-control-plaintext" Text=""></asp:Label>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-sm-3 col-md-2 col-lg-1">
+      <label class="font-weight-bold">Start Date:</label>
+    </div>
+    <div class="col-sm-9 col-md-10 col-lg-11">
+      <asp:Label ID="startDateLabel" runat="server" CssClass="form-control-plaintext" Text=""></asp:Label>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-sm-3 col-md-2 col-lg-1">
+      <label class="font-weight-bold">End Date:</label>
+    </div>
+    <div class="col-sm-9 col-md-10 col-lg-11">
+      <asp:Label ID="endDateLabel" runat="server" CssClass="form-control-plaintext" Text=""></asp:Label>
+    </div>
+  </div>
+</div>
+
+
+</asp:Content>

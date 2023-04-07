@@ -231,6 +231,7 @@
     <Content Include="ShopOwner\Style.css" />
     <Content Include="ShopOwner\ProfileSetting.aspx" />
     <Content Include="ShopOwner\SubscriptionPage.aspx" />
+    <Content Include="Shopper\AboutUsPage.aspx" />
     <Content Include="Shopper\EditProfilePage.aspx" />
     <Content Include="Shopper\EditProfilePicturePage.aspx" />
     <Content Include="Shopper\MyCurrentSubscriptionPage.aspx" />
@@ -535,6 +536,13 @@
     </Compile>
     <Compile Include="ShopOwner\SubscriptionPage.aspx.designer.cs">
       <DependentUpon>SubscriptionPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shopper\AboutUsPage.aspx.cs">
+      <DependentUpon>AboutUsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\AboutUsPage.aspx.designer.cs">
+      <DependentUpon>AboutUsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shopper\EditProfilePage.aspx.cs">
       <DependentUpon>EditProfilePage.aspx</DependentUpon>

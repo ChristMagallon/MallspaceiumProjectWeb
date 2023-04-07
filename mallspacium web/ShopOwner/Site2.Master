@@ -17,11 +17,12 @@
 
      <style type="text/css">
        .logoutbtn
-{
- border: none;
- background:none;
- outline: none;
-}
+        {
+         border: none;
+         background:none;
+         outline: none;
+         color: red;
+        }
 
        .px-6{
            margin-left: 6px;
@@ -46,7 +47,7 @@
                 <a href="AdvertiseProductsPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-shopping-cart me-2"></i>Advertise Products</a>
                 <a href="NotificationPage.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-power-off me-2"></i>Notification</a>
+                        class="fas fa-bell me-2"></i>Notification</a>
             </div>
         </div>
              

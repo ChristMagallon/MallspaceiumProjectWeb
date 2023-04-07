@@ -65,21 +65,6 @@ namespace mallspacium_web.Shopper
                 Button1.Text = notif;
 
             }
-
-            if (!IsPostBack)
-            {
-                // Check if the cookie exists
-                if (Request.Cookies["Language"] != null)
-                {
-                    // Set the selected value of the drop-down list to the cookie value
-                    ddlLanguage.SelectedValue = Request.Cookies["Language"].Value;
-                }
-                else
-                {
-                    // Set the default language to English
-                    ddlLanguage.SelectedValue = "en-US";
-                }
-            }
         }
 
         public async void createNotif()
@@ -140,7 +125,9 @@ namespace mallspacium_web.Shopper
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>alert('Mallspaceium is an application that will help shoppers find and locate their desired stores from their current location. It also allows admins, including store owners, to have independent access to the application to have business promotions and notify users. The application would improve the shopping experience by making it quicker, faster, and more convenient for customers to locate stores and products of interest, and improve safety management by allowing consumers to evacuate a mall more swiftly in the event of an emergency or fire.');</script>");
+            // Redirect to another page after a delay
+            string url = "AboutUsPage.aspx";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 50);", true);
 
         }
 
@@ -177,17 +164,6 @@ namespace mallspacium_web.Shopper
             // Close writer and stream
             writer.Close();
             fileStream.Close();
-        }
-
-        protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Set the language cookie to the selected value
-            HttpCookie cookie = new HttpCookie("Language");
-            cookie.Value = ddlLanguage.SelectedValue;
-            Response.Cookies.Add(cookie);
-
-            // Redirect to the same page to apply the language change
-            Response.Redirect(Request.RawUrl, false);
         }
     }
 }

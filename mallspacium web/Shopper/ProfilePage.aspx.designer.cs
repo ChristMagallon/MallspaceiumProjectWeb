@@ -24,13 +24,13 @@ namespace mallspacium_web.MasterForm3
         protected global::System.Web.UI.WebControls.Image Image1;
 
         /// <summary>
-        /// Label7 control.
+        /// editProfileButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.Button editProfileButton;
 
         /// <summary>
         /// nameLabel control.
@@ -42,24 +42,6 @@ namespace mallspacium_web.MasterForm3
         protected global::System.Web.UI.WebControls.Label nameLabel;
 
         /// <summary>
-        /// editProfileButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button editProfileButton;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
         /// birthdayLabel control.
         /// </summary>
         /// <remarks>
@@ -67,15 +49,6 @@ namespace mallspacium_web.MasterForm3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label birthdayLabel;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
         /// genderLabel control.
@@ -87,15 +60,6 @@ namespace mallspacium_web.MasterForm3
         protected global::System.Web.UI.WebControls.Label genderLabel;
 
         /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-
-        /// <summary>
         /// emailLabel control.
         /// </summary>
         /// <remarks>
@@ -105,15 +69,6 @@ namespace mallspacium_web.MasterForm3
         protected global::System.Web.UI.WebControls.Label emailLabel;
 
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
         /// phoneNumberLabel control.
         /// </summary>
         /// <remarks>
@@ -121,15 +76,6 @@ namespace mallspacium_web.MasterForm3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label phoneNumberLabel;
-
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
         /// addressLabel control.

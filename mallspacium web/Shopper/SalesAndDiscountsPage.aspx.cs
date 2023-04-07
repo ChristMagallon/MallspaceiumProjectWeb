@@ -98,7 +98,7 @@ namespace mallspacium_web.MasterForm3
             string saleDiscDesc = saleDiscountGridView.DataKeys[selectedIndex].Values["saleDiscDesc"].ToString();
 
             // Redirect to another page and pass the shopName as a query string parameter
-            Response.Redirect("SalesAndDiscountsPageDetails.aspx?saleDiscShopName=" + saleDiscShopName + "&saleDiscDesc=" + saleDiscDesc);
+            Response.Redirect("SalesAndDiscountDetailsPage.aspx?saleDiscShopName=" + saleDiscShopName + "&saleDiscDesc=" + saleDiscDesc);
         }
     }
 }
