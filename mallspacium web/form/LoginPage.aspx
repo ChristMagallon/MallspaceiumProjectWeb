@@ -35,11 +35,9 @@
                 <div style="text-align: right;">
                     <asp:LinkButton ID="ForgotPasswordLinkButton" runat="server" ForeColor="#0066FF" OnClick="ForgotPasswordLinkButton_Click">forgot password?</asp:LinkButton>
                     <br />
-                    <br />
                 </div>           
                 <div style="text-align: center;">
                     <asp:Button ID="SigninButton" runat="server" type="submit" class="btn btn-primary" Text="Sign In" OnClick="SignupButton_Click" ValidationGroup="Validate" Width="100px"/>
-                    <br />
                     <br />
                     <br />
                     <asp:Label ID="Label1" runat="server" Text="don't have an account?"></asp:Label>                
