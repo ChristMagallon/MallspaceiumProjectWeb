@@ -44,6 +44,9 @@
                     &nbsp;<asp:LinkButton ID="ShopperRegisterLinkButton" runat="server" ForeColor="#0066FF" OnClick="ShopperRegisterLinkButton_Click" ValidationGroup="None">Shopper</asp:LinkButton>
                     &nbsp;<asp:Label ID="Label2" runat="server" Text="or"></asp:Label>
                     &nbsp;<asp:LinkButton ID="ShopOwnerLinkButton" runat="server" ForeColor="#0066FF" OnClick="ShopOwnerRegisterLinkButton_Click" ValidationGroup="None">Shop Owner</asp:LinkButton>
+                    <br />
+                    <br />
+                    <asp:LinkButton ID="VerifyAccountLinkButton" runat="server" ForeColor="#0066FF" OnClick="VerifyAccountLinkButton_Click">verify your account here!</asp:LinkButton>
                 </div>           
             </div>
         </div>  

@@ -20,8 +20,8 @@ namespace mallspacium_web.form
             db = FirestoreDb.Create("mallspaceium");
             Debug.Write((string)Application.Get("emailGet"));
         }
-
-        protected void confirmButton_Click(object sender, EventArgs e)
+       
+        protected void ConfirmButton_Click1(object sender, EventArgs e)
         {
             getUserDetails();
         }
@@ -30,13 +30,13 @@ namespace mallspacium_web.form
         {
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
-            Query query = usersRef.WhereEqualTo("email", (string)Application.Get("emailGet"));
+            Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text);
             QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
             // Check if the snapshot is empty
             if (snapshot.Count == 0)
             {
-                // Handle the case where the snapshot is empty
+                ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
             }
             else
             {
@@ -56,7 +56,7 @@ namespace mallspacium_web.form
             // Store the field value in a local variable
             string localConfirmCode = fieldValue;
 
-            if (ConfirmationCodeTextBox.Text != localConfirmCode)
+            if (EmailTextBox.Text != localConfirmCode)
             {
                 ErrorConfirmationCodeLabel.Text = "Provided confirmation code is invalid!";
             }

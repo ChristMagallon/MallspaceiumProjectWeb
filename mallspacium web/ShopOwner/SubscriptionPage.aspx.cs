@@ -385,7 +385,6 @@ namespace mallspacium_web.ShopOwner
 
                     // Update the data in the Firestore document
                     await subscriptionRef.UpdateAsync(dataUpdate);
-                    Response.Write("<script>alert('Your subscription has expired.');</script>");
                 }
                 else
                 {

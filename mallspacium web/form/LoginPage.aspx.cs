@@ -29,19 +29,19 @@ namespace mallspacium_web.form
 
         public async void getLoginDetails()
         {
-            // Query the Firestore collection for a user with a specific email address
-            CollectionReference usersRef = db.Collection("Users");
-            Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text).WhereEqualTo("password", PasswordTextBox.Text);
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+            try
+            {
+                // Query the Firestore collection for a user with a specific email address and password
+                CollectionReference usersRef = db.Collection("Users");
+                Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text).WhereEqualTo("password", PasswordTextBox.Text);
+                QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
-            // Check if the snapshot is empty
-            if (snapshot.Count == 0)
-            {
-                // Handle the case where the snapshot is empty
-                Response.Write("<script>alert('It seems like the email you entered doesn't match our records.');</script>");
-            }
-            else
-            {
+                // Check if the snapshot is empty
+                if (snapshot.Count == 0)
+                {
+                    ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
+                }
+
                 // Iterate over the results to find the user
                 foreach (DocumentSnapshot document in snapshot.Documents)
                 {
@@ -53,35 +53,50 @@ namespace mallspacium_web.form
                         // Get the field value from Firestore
                         DocumentSnapshot docSnapshot = await docRef.GetSnapshotAsync();
                         string userFieldValue = docSnapshot.GetValue<string>(userRole);
-                        bool verifiedFieldValue = docSnapshot.GetValue<bool>("verified");
-                        // Store the field value in a local variable
-                        string localUserRole = userFieldValue;
+                        bool verifiedFieldValue = docSnapshot.GetValue<bool>("verified");                     
 
                         // Check if the user has been verified
                         if (!verifiedFieldValue)
                         {
                             Response.Write("<script>alert('We noticed your account has not been verified! Please verify your account to be able to login.');</script>");
-                            return; // Stop execution of the function
                         }
 
                         // Identify the user role and redirect to their respective page
-                        if (localUserRole == "Shopper")
+                        if (userFieldValue == "Shopper")
                         {
                             Application.Set("usernameget", EmailTextBox.Text);
                             Response.Redirect("~/Shopper/PopularShopsPage.aspx", false);
-                            return; // Stop execution of the function
                         }
-                        else if (localUserRole == "ShopOwner")
+                        else if (userFieldValue == "ShopOwner")
                         {
-                            Application.Set("usernameget", EmailTextBox.Text);
-                            Response.Redirect("~/ShopOwner/PopularShopsPage.aspx", false);
-                            return; // Stop execution of the function
+                            bool certifiedShopOwnerFieldValue = docSnapshot.GetValue<bool>("certifiedShopOwner");
+
+                            // Check if the user has been certified as a shop owner
+                            if (!certifiedShopOwnerFieldValue)
+                            {
+                                Response.Write("<script>alert('We noticed your account has not been fully verified! Please wait while the admin review your account.');</script>");
+                            }
+                            else
+                            {
+                                Application.Set("usernameget", EmailTextBox.Text);
+                                Response.Redirect("~/ShopOwner/PopularShopsPage.aspx", false);
+                            }                      
+                        }
+                        else
+                        {
+                            throw new Exception("Invalid user role.");
                         }
                     }
+                    else
+                    {
+                        throw new Exception("Invalid email or password.");
+                    }
                 }
-
-                // Handle the case where no user was found with the specified email and password
-                Response.Write("<script>alert('It seems like the email you entered doesn't match our records.');</script>");
+            }
+            catch (Exception ex)
+            {
+                string message = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", $"alert('{message}');", true);
             }
         }
 
@@ -198,6 +213,11 @@ namespace mallspacium_web.form
         protected void ForgotPasswordLinkButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/form/ForgotPasswordPage.aspx");
+        }
+
+        protected void VerifyAccountLinkButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/form/ConfirmationEmailPage.aspx");
         }
     }
 }

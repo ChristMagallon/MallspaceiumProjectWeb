@@ -36,13 +36,20 @@ namespace mallspacium_web.ShopOwner
                 // Get the data as a Dictionary
                 Dictionary<string, object> data = snapshot.ToDictionary();
                 // Access the specific field you want
-                SubscriptionTypeLabel.Text = data["subscriptionType"].ToString();
+                string subscriptionType = data["subscriptionType"].ToString();
+                SubscriptionTypeLabel.Text = subscriptionType;
                 PriceLabel.Text = data["price"].ToString();
                 StatusLabel.Text = data["status"].ToString();
-            }
-            else
-            {
-                // Document does not exist
+
+                // Check the subscription type
+                if (subscriptionType == "Free")
+                {
+                    CancelSubscriptionButton.Enabled = false;
+                }
+                else
+                {
+                    CancelSubscriptionButton.Enabled = true;
+                }
             }
         }
 
@@ -104,6 +111,7 @@ namespace mallspacium_web.ShopOwner
 
                     // Update the data in the Firestore document
                     await documentRef.UpdateAsync(dataUpdate);
+                    Response.Write("<script>alert('Your subscription has been cancelled and your account has been downgraded to the Free subscription.');</script>");
                 }
                 else
                 {

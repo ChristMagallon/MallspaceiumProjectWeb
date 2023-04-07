@@ -149,6 +149,7 @@ namespace mallspacium_web.form
                     {"confirmPassword", ConfirmPasswordTextBox.Text},
                     {"userRole", userRole},
                     {"dateCreated", dateCreated },
+                    {"certifiedShopOwner", false },
                     {"verified", false}
                 };
 

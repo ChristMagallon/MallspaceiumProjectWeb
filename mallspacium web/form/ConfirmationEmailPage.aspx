@@ -20,6 +20,18 @@
             <div class="row">
                  <h1>Confirmation Page</h1>
                 <div class="mb-3">
+                      <label for="confirmationCode" class="form-label">Please enter your email:</label>
+                      <asp:TextBox ID="EmailTextBox" runat="server" type="text" class="form-control" placeholder="Enter Confirmation Code" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
+                </div>
+
+                <div class="mb-3">
+                      <asp:RequiredFieldValidator ID="EmailRequiredFieldValidator" runat="server" ControlToValidate="ConfirmationCodeTextBox" Display="Dynamic" ErrorMessage="field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
+                      <asp:RegularExpressionValidator ID="EmailRegularExpressionValidator" runat="server" Display="Dynamic" ErrorMessage="Invalid email address!" ForeColor="Red" ValidationGroup="Validate" ControlToValidate="EmailTextBox" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                      <asp:Label ID="ErrorEmailAddressLabel" runat="server" ForeColor="Red"></asp:Label>
+                      <br />
+                </div>
+
+                <div class="mb-3">
                       <label for="confirmationCode" class="form-label">Please enter your confirmation code:</label>
                       <asp:TextBox ID="ConfirmationCodeTextBox" runat="server" type="text" class="form-control" placeholder="Enter Confirmation Code" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
                 </div>
@@ -28,9 +40,10 @@
                       <asp:RequiredFieldValidator ID="ConfirmCodeRequiredFieldValidator" runat="server" ControlToValidate="ConfirmationCodeTextBox" Display="Dynamic" ErrorMessage="field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
                       <asp:Label ID="ErrorConfirmationCodeLabel" runat="server" ForeColor="Red"></asp:Label>
                       <br />
-                      <br />
                 </div>
-                <asp:Button ID="confirmButton" runat="server" Text="Confirm" OnClick="confirmButton_Click" ValidationGroup="Validate" />
+                 <div style="text-align: center;">
+                     <asp:Button ID="ConfirmButton" runat="server" Text="Confirm" class="btn btn-primary" ValidationGroup="Validate" Width="100px" OnClick="ConfirmButton_Click1" />
+                 </div>            
             </div>
           </div>
     </form>
