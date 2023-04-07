@@ -47,30 +47,41 @@ namespace mallspacium_web.form
                 {
                     if (document.Exists)
                     {
-                        // Handle each document in the snapshot
-
                         // Define the document reference and field name
                         DocumentReference docRef = db.Collection("Users").Document(EmailTextBox.Text);
                         string userRole = "userRole";
                         // Get the field value from Firestore
                         DocumentSnapshot docSnapshot = await docRef.GetSnapshotAsync();
-                        string fieldValue = docSnapshot.GetValue<string>(userRole);
+                        string userFieldValue = docSnapshot.GetValue<string>(userRole);
+                        bool verifiedFieldValue = docSnapshot.GetValue<bool>("verified");
                         // Store the field value in a local variable
-                        string localUserRole = fieldValue;
+                        string localUserRole = userFieldValue;
 
-                        // Identify the user role and from the user and redirect it to their respective page
+                        // Check if the user has been verified
+                        if (!verifiedFieldValue)
+                        {
+                            Response.Write("<script>alert('We noticed your account has not been verified! Please verify your account to be able to login.');</script>");
+                            return; // Stop execution of the function
+                        }
+
+                        // Identify the user role and redirect to their respective page
                         if (localUserRole == "Shopper")
                         {
                             Application.Set("usernameget", EmailTextBox.Text);
                             Response.Redirect("~/Shopper/PopularShopsPage.aspx", false);
+                            return; // Stop execution of the function
                         }
                         else if (localUserRole == "ShopOwner")
                         {
                             Application.Set("usernameget", EmailTextBox.Text);
                             Response.Redirect("~/ShopOwner/PopularShopsPage.aspx", false);
-                        }                
+                            return; // Stop execution of the function
+                        }
                     }
                 }
+
+                // Handle the case where no user was found with the specified email and password
+                Response.Write("<script>alert('It seems like the email you entered doesn't match our records.');</script>");
             }
         }
 

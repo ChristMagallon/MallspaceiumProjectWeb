@@ -47,7 +47,7 @@ namespace mallspacium_web.ShopOwner
                 {
                     choice = true;
                     createNotif();
-                    notif = "true";
+                    notif = "On";
                 }
              
                 // Do something with the field value
@@ -71,14 +71,14 @@ namespace mallspacium_web.ShopOwner
             DocumentReference usersRef2 = db.Collection("Users").Document((string)Application.Get("usernameget"));
             Dictionary<string, object> data = new Dictionary<string, object>()
                 {
-                    {"userNotif","true" }
+                    {"userNotif","On" }
                 };
             DocumentSnapshot snap = await usersRef2.GetSnapshotAsync();
             if (snap.Exists)
             {
                 await usersRef2.UpdateAsync(data);
             }
-            Button1.Text = "true";
+            Button1.Text = "On";
 
         }
 
@@ -89,34 +89,34 @@ namespace mallspacium_web.ShopOwner
 
         public async void notificationsetting()
         {
-            if (notif == "true")
+            if (notif == "On")
             {
                 DocumentReference usersRef2 = db.Collection("Users").Document((string)Application.Get("usernameget"));
                 Dictionary<string, object> data = new Dictionary<string, object>()
                     {
-                        {"userNotif","false" }
+                        {"userNotif","Off" }
                     };
                 DocumentSnapshot snap = await usersRef2.GetSnapshotAsync();
                 if (snap.Exists)
                 {
                     await usersRef2.UpdateAsync(data);
                 }
-                Button1.Text = "false";
+                Button1.Text = "Off";
             }
 
-            if (notif == "false")
+            if (notif == "Off")
             {
                 DocumentReference usersRef2 = db.Collection("Users").Document((string)Application.Get("usernameget"));
                 Dictionary<string, object> data = new Dictionary<string, object>()
                 {
-                    {"userNotif","true" }
+                    {"userNotif","On" }
                 };
                 DocumentSnapshot snap = await usersRef2.GetSnapshotAsync();
                 if (snap.Exists)
                 {
                     await usersRef2.UpdateAsync(data);
                 }
-                Button1.Text = "true";
+                Button1.Text = "On";
             }
         }
 
