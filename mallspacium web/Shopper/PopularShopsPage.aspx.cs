@@ -102,7 +102,68 @@ namespace mallspacium_web.MasterForm3
             string shopName = shopsGridView.DataKeys[selectedIndex].Values["shopName"].ToString();
 
             // Redirect to another page and pass the shopName as a query string parameter
-            Response.Redirect("PopularShopDetailsPage.aspx?shopName=" + shopName);
+            Response.Redirect("~/Shopper/PopularShopDetailsPage.aspx?shopName=" + shopName);
+        }
+
+        protected void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            search();
+        }
+
+        public async void search()
+        {
+            string searchShopName = searchTextBox.Text;
+
+            if (searchTextBox.Text == "")
+            {
+                getShops();
+            }
+            else
+            {
+                Query query = database.Collection("Users")
+                    .WhereGreaterThanOrEqualTo("shopName", searchShopName)
+                    .WhereLessThanOrEqualTo("shopName", searchShopName + "\uf8ff");
+
+                // Retrieve the search results
+                QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+                if (snapshot.Documents.Count > 0)
+                {
+                    // Create a DataTable to store the retrieved data
+                    DataTable shopsGridViewTable = new DataTable();
+
+                    shopsGridViewTable.Columns.Add("shopName", typeof(string));
+                    shopsGridViewTable.Columns.Add("shopImage", typeof(byte[]));
+                    shopsGridViewTable.Columns.Add("shopDescription", typeof(string));
+
+                    // Iterate through the documents and populate the DataTable
+                    foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
+                    {
+                        string shopName = documentSnapshot.GetValue<string>("shopName");
+                        string base64String = documentSnapshot.GetValue<string>("shopImage");
+                        byte[] shopImage = Convert.FromBase64String(base64String);
+                        string shopDescription = documentSnapshot.GetValue<string>("shopDescription");
+
+                        DataRow dataRow = shopsGridViewTable.NewRow();
+
+                        dataRow["shopName"] = shopName;
+                        dataRow["shopImage"] = shopImage;
+                        dataRow["shopDescription"] = shopDescription;
+
+                        shopsGridViewTable.Rows.Add(dataRow);
+                    }
+                    // Bind the DataTable to the GridView control
+                    shopsGridView.DataSource = shopsGridViewTable;
+                    shopsGridView.DataBind();
+                }
+                else
+                {
+                    // Display an error message if no search results are found
+                    errorMessageLabel.Text = "No results found.";
+                    errorMessageLabel.Visible = true;
+                    shopsGridView.Visible = false;
+                }
+            }
         }
     }
 }

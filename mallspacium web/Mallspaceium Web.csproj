@@ -239,6 +239,8 @@
     <Content Include="Shopper\PopularShopDetailsPage.aspx" />
     <Content Include="Shopper\PopularShopsPage.aspx" />
     <Content Include="Shopper\ProductDetailsPage.aspx" />
+    <Content Include="Shopper\ReportShopPage.aspx" />
+    <Content Include="Shopper\SalesAndDiscountDetailsPage.aspx" />
     <Content Include="Shopper\SalesAndDiscountsPage.aspx" />
     <Content Include="Shopper\ProductsPage.aspx" />
     <Content Include="Shopper\NotificationPage.aspx" />
@@ -589,6 +591,20 @@
     </Compile>
     <Compile Include="Shopper\ProductDetailsPage.aspx.designer.cs">
       <DependentUpon>ProductDetailsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shopper\ReportShopPage.aspx.cs">
+      <DependentUpon>ReportShopPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\ReportShopPage.aspx.designer.cs">
+      <DependentUpon>ReportShopPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shopper\SalesAndDiscountDetailsPage.aspx.cs">
+      <DependentUpon>SalesAndDiscountDetailsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shopper\SalesAndDiscountDetailsPage.aspx.designer.cs">
+      <DependentUpon>SalesAndDiscountDetailsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shopper\SalesAndDiscountsPage.aspx.cs">
       <DependentUpon>SalesAndDiscountsPage.aspx</DependentUpon>

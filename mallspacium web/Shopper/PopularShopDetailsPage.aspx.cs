@@ -72,6 +72,23 @@ namespace mallspacium_web.Shopper
                     string imageSrc = $"data:image/png;base64,{imageBase64String}";
                     Image1.ImageUrl = imageSrc;
 
+
+                    // Retrieve the user's email from the Application object
+                    string userEmail = (string)Application.Get("usernameget");
+                    string reportEmail = email;
+
+
+                    if (userEmail == reportEmail)
+                    {
+                        // Disable the report button if the emails match
+                        reportButton.Enabled = false;
+                    }
+                    else
+                    {
+                        // Enable the report button if the emails do not match
+                        reportButton.Enabled = true;
+                    }
+
                     // Display the data
                     nameLabel.Text = name;
                     descriptionLabel.Text = desc;
@@ -100,39 +117,35 @@ namespace mallspacium_web.Shopper
                 CollectionReference productRef = userDoc.Reference.Collection("Product");
                 QuerySnapshot productSnapshot = await productRef.GetSnapshotAsync();
 
-                // Create a DataTable to store the retrieved data
-                DataTable ownProductsGridViewTable = new DataTable();
-
-                ownProductsGridViewTable.Columns.Add("prodName", typeof(string));
-                ownProductsGridViewTable.Columns.Add("prodImage", typeof(byte[]));
-                ownProductsGridViewTable.Columns.Add("prodDesc", typeof(string));
-                ownProductsGridViewTable.Columns.Add("prodPrice", typeof(string));
-                ownProductsGridViewTable.Columns.Add("prodTag", typeof(string));
-                ownProductsGridViewTable.Columns.Add("prodShopName", typeof(string));
-
-                // Iterate through the documents and populate the DataTable
-                foreach (DocumentSnapshot documentSnapshot in productSnapshot.Documents)
+                if (productRef != null)
                 {
+                    // Create a DataTable to store the retrieved data
+                    DataTable ownProductsGridViewTable = new DataTable();
 
-                    string productName = documentSnapshot.GetValue<string>("prodName");
-                    string base64String = documentSnapshot.GetValue<string>("prodImage");
-                    byte[] productImage = Convert.FromBase64String(base64String);
-                    string productDescription = documentSnapshot.GetValue<string>("prodDesc");
-                    string productPrice = documentSnapshot.GetValue<string>("prodPrice");
-                    string productTag = documentSnapshot.GetValue<string>("prodTag");
-                    string productShopName = documentSnapshot.GetValue<string>("prodShopName");
+                    ownProductsGridViewTable.Columns.Add("prodName", typeof(string));
+                    ownProductsGridViewTable.Columns.Add("prodImage", typeof(byte[]));
+                    ownProductsGridViewTable.Columns.Add("prodDesc", typeof(string));
+                    ownProductsGridViewTable.Columns.Add("prodShopName", typeof(string));
 
-                    DataRow dataRow = ownProductsGridViewTable.NewRow();
+                    // Iterate through the documents and populate the DataTable
+                    foreach (DocumentSnapshot documentSnapshot in productSnapshot.Documents)
+                    {
 
-                    dataRow["prodName"] = productName;
-                    dataRow["prodImage"] = productImage;
-                    dataRow["prodDesc"] = productDescription;
-                    dataRow["prodPrice"] = productPrice;
-                    dataRow["prodTag"] = productTag;
-                    dataRow["prodShopName"] = productShopName;
+                        string productName = documentSnapshot.GetValue<string>("prodName");
+                        string base64String = documentSnapshot.GetValue<string>("prodImage");
+                        byte[] productImage = Convert.FromBase64String(base64String);
+                        string productDescription = documentSnapshot.GetValue<string>("prodDesc");
+                        string productShopName = documentSnapshot.GetValue<string>("prodShopName");
 
-                    ownProductsGridViewTable.Rows.Add(dataRow);
+                        DataRow dataRow = ownProductsGridViewTable.NewRow();
 
+                        dataRow["prodName"] = productName;
+                        dataRow["prodImage"] = productImage;
+                        dataRow["prodDesc"] = productDescription;
+                        dataRow["prodShopName"] = productShopName;
+
+                        ownProductsGridViewTable.Rows.Add(dataRow);
+                    }
                     // Bind the DataTable to the GridView control
                     productGridView.DataSource = ownProductsGridViewTable;
                     productGridView.DataBind();
@@ -142,6 +155,41 @@ namespace mallspacium_web.Shopper
             {
                 Response.Write("<script>alert('Error: User Not Found.');</script>");
             }
+        }
+        protected void productGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                byte[] imageBytes = (byte[])DataBinder.Eval(e.Row.DataItem, "prodImage");
+                System.Web.UI.WebControls.Image imageControl = (System.Web.UI.WebControls.Image)e.Row.FindControl("Image1");
+
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    // Convert the byte array to a base64-encoded string and bind it to the Image control
+                    imageControl.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
+                    imageControl.Width = 100; // set the width of the image
+                    imageControl.Height = 100; // set the height of the image
+                }
+            }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(productGridView, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to view more details.";
+            }
+        }
+
+        protected void productGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the index of the selected row
+            int selectedIndex = productGridView.SelectedIndex;
+
+            // Get the value of the shopName column from the DataKeys collection
+            string prodShopName = productGridView.DataKeys[selectedIndex].Values["prodShopName"].ToString();
+            string prodName = productGridView.DataKeys[selectedIndex].Values["prodName"].ToString();
+
+            // Redirect to another page and pass the shopName as a query string parameter
+            Response.Redirect("~/Shopper/ProductDetailsPage.aspx?prodShopName=" + prodShopName + "&prodName=" + prodName, false);
         }
 
         public async void getShopSaleDiscount()
@@ -181,6 +229,7 @@ namespace mallspacium_web.Shopper
 
                     DataRow dataRow = saleDiscountGridViewTable.NewRow();
 
+                    //dataRow["shopName"] = shopName;
                     dataRow["saleDiscShopName"] = saleDiscShopName;
                     dataRow["saleDiscImage"] = saleDiscImage;
                     dataRow["saleDiscDesc"] = saleDiscDesc;
@@ -199,22 +248,7 @@ namespace mallspacium_web.Shopper
             }
         }
 
-        protected void productGridView_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                byte[] imageBytes = (byte[])DataBinder.Eval(e.Row.DataItem, "prodImage");
-                System.Web.UI.WebControls.Image imageControl = (System.Web.UI.WebControls.Image)e.Row.FindControl("Image1");
 
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    // Convert the byte array to a base64-encoded string and bind it to the Image control
-                    imageControl.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
-                    imageControl.Width = 100; // set the width of the image
-                    imageControl.Height = 100; // set the height of the image
-                }
-            }
-        }
 
         protected void saleDiscountGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -249,7 +283,21 @@ namespace mallspacium_web.Shopper
             string saleDiscDesc = saleDiscountGridView.DataKeys[selectedIndex].Values["saleDiscDesc"].ToString();
 
             // Redirect to another page and pass the shopName as a query string parameter
-            Response.Redirect("AllSaleDiscountDetailsPage.aspx?saleDiscShopName=" + saleDiscShopName + "&saleDiscDesc=" + saleDiscDesc);
+            Response.Redirect("~/Shopper/SalesAndDiscountDetailsPage.aspx?saleDiscShopName=" + saleDiscShopName + "&saleDiscDesc=" + saleDiscDesc);
+        }
+
+        protected void reportButton_Click(object sender, EventArgs e)
+        {
+            report();
+        }
+        public void report()
+        {
+            string shopName = nameLabel.Text;
+            string email = emailLabel.Text;
+
+            // Redirect to another page after a delay
+            string url = "ReportShopPage.aspx?shopName=" + shopName + "&email=" + email;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 50);", true);
         }
 
         protected void addFavoriteButton_Click(object sender, EventArgs e)
@@ -265,13 +313,23 @@ namespace mallspacium_web.Shopper
                 { "shopName", nameLabel.Text},
                 { "image", imageHiddenField.Value},
                 { "shopDescription", descriptionLabel.Text},
-                { "email", emailLabel.Text },
+                { "email", emailLabel.Text},
                 { "phoneNumber", phoneNumberLabel.Text },
-                { "address", addressLabel.Text}
+                { "address", addressLabel.Text }
             };
 
             await doc.SetAsync(data1);
             Response.Write("<script>alert('Successfully Added Shop to the Favorites.');</script>");
+
+            // Specify the name of the document using a variable or a string literal
+            string documentName = (string)Application.Get("usernameget") + " added your shop to Favorites";
+            DocumentReference notifRef = database.Collection("Users").Document(emailLabel.Text).Collection("Notification").Document(documentName);
+
+            Dictionary<string, object> data = new Dictionary<string, object>
+                    {
+                        {"message", "Shopper " + (string)Application.Get("usernameget") + " added your shop to favorites list." }
+                    };
+            await notifRef.SetAsync(data);
         }
     }
 }

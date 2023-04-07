@@ -11,115 +11,115 @@ namespace mallspacium_web.Shopper
 {
 
 
-    public partial class PopularShopDetailsPage
+    public partial class ReportShopPage
     {
 
         /// <summary>
-        /// label control.
+        /// emailHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label;
+        protected global::System.Web.UI.WebControls.HiddenField emailHiddenField;
 
         /// <summary>
-        /// Image1 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// imageHiddenField control.
+        /// shopNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField imageHiddenField;
+        protected global::System.Web.UI.WebControls.Label shopNameLabel;
 
         /// <summary>
-        /// nameLabel control.
+        /// reasonDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nameLabel;
+        protected global::System.Web.UI.WebControls.DropDownList reasonDropDownList;
 
         /// <summary>
-        /// reportButton control.
+        /// GenderRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button reportButton;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator GenderRequiredFieldValidator;
 
         /// <summary>
-        /// addFavoriteButton control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addFavoriteButton;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// descriptionLabel control.
+        /// reasonTextbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label descriptionLabel;
+        protected global::System.Web.UI.WebControls.TextBox reasonTextbox;
 
         /// <summary>
-        /// emailLabel control.
+        /// reasonRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailLabel;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reasonRequiredFieldValidator;
 
         /// <summary>
-        /// phoneNumberLabel control.
+        /// Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label phoneNumberLabel;
+        protected global::System.Web.UI.WebControls.Label Label;
 
         /// <summary>
-        /// addressLabel control.
+        /// imageFileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label addressLabel;
+        protected global::System.Web.UI.WebControls.FileUpload imageFileUpload;
 
         /// <summary>
-        /// productGridView control.
+        /// imageRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView productGridView;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator imageRequiredFieldValidator;
 
         /// <summary>
-        /// saleDiscountGridView control.
+        /// reportutton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView saleDiscountGridView;
+        protected global::System.Web.UI.WebControls.Button reportutton;
     }
 }
