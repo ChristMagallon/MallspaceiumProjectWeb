@@ -205,6 +205,7 @@
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
     <Content Include="MasterForm\PopUpReportProofImage.aspx" />
     <Content Include="MasterForm\PopUpSupportingImage.aspx" />
+    <Content Include="ShopOwner\AboutUsPage.aspx" />
     <Content Include="ShopOwner\MyCurrentSubscriptionPage.aspx" />
     <Content Include="ShopOwner\ReportShopPage.aspx" />
     <Content Include="MasterForm\ReportDetailsForm.aspx" />
@@ -355,6 +356,13 @@
     </Compile>
     <Compile Include="MasterForm\PopUpSupportingImage.aspx.designer.cs">
       <DependentUpon>PopUpSupportingImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopOwner\AboutUsPage.aspx.cs">
+      <DependentUpon>AboutUsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\AboutUsPage.aspx.designer.cs">
+      <DependentUpon>AboutUsPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\MyCurrentSubscriptionPage.aspx.cs">
       <DependentUpon>MyCurrentSubscriptionPage.aspx</DependentUpon>

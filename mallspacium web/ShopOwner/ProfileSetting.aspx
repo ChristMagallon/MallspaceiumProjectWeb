@@ -20,12 +20,6 @@
             </td>
         </tr>
         <tr>
-            <td class="col-sm-8">Set Language</td>
-            <td class="col-sm-4">
-                <asp:Button ID="Button3" runat="server" Text="Change" CssClass="btn btn-primary" Width="145px" />
-            </td>
-        </tr>
-        <tr>
             <td class="col-sm-8">About Us</td>
             <td class="col-sm-4">
                 <asp:Button ID="Button4" runat="server" Text="More Info" OnClick="Button4_Click" CssClass="btn btn-primary" Width="145px" />

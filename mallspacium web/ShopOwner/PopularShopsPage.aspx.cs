@@ -22,7 +22,7 @@ namespace mallspacium_web.MasterForm2
             database = FirestoreDb.Create("mallspaceium");
 
             getShops();
-            checkAccountStatus();
+            /*checkAccountStatus();*/
         }
 
         public void getShops()
@@ -161,9 +161,9 @@ namespace mallspacium_web.MasterForm2
                 }
             }
         }
-        
+
         // Check the Users account if its verified or not
-        public async void checkAccountStatus()
+        /*public async void checkAccountStatus()
         {
             // Use the shop name to retrieve the data from Firestore
             Query query = database.Collection("Users").WhereEqualTo("email", (string)Application.Get("usernameget"));
@@ -182,6 +182,6 @@ namespace mallspacium_web.MasterForm2
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('We noticed that your account has not been verified! By doing so, you will receive important email from your registered email address.');", true);
                 }
             }
-        }
+        }*/
     }
 }

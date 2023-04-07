@@ -150,7 +150,6 @@ namespace mallspacium_web.form
 
             // Set the data in the Firestore document
             await documentRef.SetAsync(data);
-            collectionNotif();
 
             string recipientEmail = EmailTextBox.Text;
             string recipientName = UsernameTextBox.Text;
@@ -189,23 +188,6 @@ namespace mallspacium_web.form
                           .Select(s => s[random.Next(s.Length)])
                           .ToArray());
             return code;
-        }
-
-        public async void collectionNotif()
-        {
-            String email = EmailTextBox.Text;
-
-            // Create a new collection reference
-            DocumentReference documentRef = db.Collection("Users").Document(email).Collection("Notification").Document("notif");
-
-            // Set the data for the new document
-            Dictionary<string, object> data = new Dictionary<string, object>
-            {
-                {"notifyUser", "null"}
-            };
-
-            // Set the data in the Firestore document
-            await documentRef.SetAsync(data);
         }
 
         // Default subscription

@@ -148,29 +148,11 @@ namespace mallspacium_web.form
 
                 // Set the data in the Firestore document
                 await documentRef.SetAsync(data);
-                collectionNotif();
                 defaultSubscription();
 
                 string loginPageUrl = ResolveUrl("~/form/LoginPage.aspx");
                 Response.Write("<script>alert('Successfully Registered'); window.location='" + loginPageUrl + "';</script>");
             }
-        }
-
-        public async void collectionNotif()
-        {
-            String email = EmailTextBox.Text;
-
-            // Create a new collection reference
-            DocumentReference documentRef = db.Collection("Users").Document(email).Collection("Notification").Document("notif");
-
-            // Set the data for the new document
-            Dictionary<string, object> data = new Dictionary<string, object>
-            {
-                {"notifyUser", "null"}
-            };
-
-            // Set the data in the Firestore document
-            await documentRef.SetAsync(data);
         }
 
         // Default subscription

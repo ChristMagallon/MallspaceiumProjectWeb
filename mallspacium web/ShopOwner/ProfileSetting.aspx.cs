@@ -122,7 +122,10 @@ namespace mallspacium_web.ShopOwner
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>alert('Mallspaceium is an application that will help shoppers find and locate their desired stores from their current location. It also allows admins, including store owners, to have independent access to the application to have business promotions and notify users. The application would improve the shopping experience by making it quicker, faster, and more convenient for customers to locate stores and products of interest, and improve safety management by allowing consumers to evacuate a mall more swiftly in the event of an emergency or fire.');</script>");
+            // Redirect to another page after a delay
+            string url = "AboutUsPage.aspx";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 50);", true);
+
         }
 
         protected void Button2_Click1(object sender, EventArgs e)
