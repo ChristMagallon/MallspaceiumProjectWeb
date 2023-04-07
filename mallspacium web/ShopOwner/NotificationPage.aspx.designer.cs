@@ -15,13 +15,13 @@ namespace mallspacium_web.MasterForm2
     {
 
         /// <summary>
-        /// NotificationGridView control.
+        /// notifDetailsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView NotificationGridView;
+        protected global::System.Web.UI.WebControls.Label notifDetailsLabel;
 
         /// <summary>
         /// SelectedNotificationLabel control.
@@ -31,5 +31,14 @@ namespace mallspacium_web.MasterForm2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label SelectedNotificationLabel;
+
+        /// <summary>
+        /// NotificationGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView NotificationGridView;
     }
 }

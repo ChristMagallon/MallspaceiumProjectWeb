@@ -12,7 +12,7 @@
 <body>
     <form id="form1" runat="server">
        <div class="container-fluid pt-5 text-black text-center">
-            <img src="../design/mallspaceium_logo.png" class="mx-auto d-block" width="150" height="150">
+            <img src="../design/mallspaceium_logo.png" class="mx-auto d-block" width="150" height="150"/>
           <h1>Mallspaceium</h1>
           <p>Improving the Quality of Shopping Experience</p> 
         </div>
