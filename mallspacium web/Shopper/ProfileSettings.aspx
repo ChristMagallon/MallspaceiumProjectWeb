@@ -31,9 +31,34 @@
          <tr>
             <td class="col-sm-8">Help Center</td>
             <td class="col-sm-4">
-                <asp:Button ID="Button5" runat="server" Text="Contact Us" CssClass="btn btn-primary" Width="145px" />
+                  <button type="button" class="btn btn-primary" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#myModal">Contact Us</button>
             </td>
         </tr>
       </table>
     </div>
+
+     <!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">CONTACT US</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p>Please email us at <a href="mailto:sysadm1n.mallspaceium@gmail.com">sysadm1n.mallspaceium@gmail.com</a></p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 </asp:Content>
