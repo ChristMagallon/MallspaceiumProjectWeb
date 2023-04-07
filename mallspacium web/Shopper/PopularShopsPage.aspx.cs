@@ -25,7 +25,7 @@ namespace mallspacium_web.MasterForm3
             if (!IsPostBack)
             {
                 getShops();
-                getUserSubDetails();
+                checkAccountStatus();
             }
         }
 
@@ -106,104 +106,24 @@ namespace mallspacium_web.MasterForm3
             Response.Redirect("PopularShopDetailsPage.aspx?shopName=" + shopName);
         }
 
-        // Check the user subscription status
-        public async void getUserSubDetails()
+        // Check the Users account if its verified or not
+        public async void checkAccountStatus()
         {
-            DateTime currentDate = DateTime.Now;
-            bool isSubscriptionExpired = true;
+            // Use the shop name to retrieve the data from Firestore
+            Query query = database.Collection("Users").WhereEqualTo("email", (string)Application.Get("usernameget"));
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
-            // Query the Firestore collection for a user with a specific email address
-            CollectionReference subscriptionRef = database.Collection("AdminManageSubscription");
-            DocumentReference docRef = subscriptionRef.Document((string)Application.Get("usernameget"));
-
-            // Retrieve the document data asynchronously
-            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-
-            // Check if the document exists
-            if (snapshot.Exists)
+            // Loop through the documents in the query snapshot
+            foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
             {
-                // Get the data as a Dictionary
-                Dictionary<string, object> data = snapshot.ToDictionary();
+                // Retrieve the data from the document
+                bool verified = documentSnapshot.GetValue<bool>("verified");
 
-                DateTime startDate;
-                DateTime endDate;
-
-                if (DateTime.TryParseExact(data["startDate"].ToString(), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate) &&
-                    DateTime.TryParseExact(data["endDate"].ToString(), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out endDate))
+                // Check if user is verified and enable VerifyButton if not verified
+                if (!verified)
                 {
-                    if (currentDate >= startDate && currentDate <= endDate)
-                    {
-                        // User subscription is still active
-                        isSubscriptionExpired = false;
-                    }
-                }
-            }
-
-            if (isSubscriptionExpired)
-            {             
-                revertSubscription();
-            }
-        }
-
-        // Revert the subscription back to free
-        public async void revertSubscription()
-        {
-            string subscriptionType = "Free";
-            string subscriptionPrice = "0.00";
-            string status = "Expired";
-            // Query the Firestore collection for a user with a specific email address
-            CollectionReference usersRef = database.Collection("Users");
-            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
-
-            // Retrieve the document data asynchronously
-            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-
-            // Check if the document exists
-            if (snapshot.Exists)
-            {
-                // Get the data as a Dictionary
-                Dictionary<string, object> data = snapshot.ToDictionary();
-                // Access the specific field you want
-                string userEmail = data["email"].ToString();
-                string userRole = data["userRole"].ToString();
-
-                // Create a new collection reference
-                DocumentReference subscriptionRef = database.Collection("AdminManageSubscription").Document(userEmail);
-
-                // Check if the document exists
-                DocumentSnapshot subscriptionSnapshot = await subscriptionRef.GetSnapshotAsync();
-                if (subscriptionSnapshot.Exists)
-                {
-                    // Document exists, update the fields
-                    Dictionary<string, object> dataUpdate = new Dictionary<string, object>
-                    {
-                        {"subscriptionType", subscriptionType},
-                        {"price", subscriptionPrice},
-                        {"startDate", "Not Available"},
-                        {"endDate", "Not Available"},
-                        {"status", status}
-                    };
-     
-                    // Update the data in the Firestore document
-                    await subscriptionRef.UpdateAsync(dataUpdate);
-                    Response.Write("<script>alert('Your subscription has expired.');</script>");
-                }
-                else
-                {
-                    // Set the data for the new document
-                    Dictionary<string, object> dataInsert = new Dictionary<string, object>
-                    {
-                        {"subscriptionType", subscriptionType},
-                        {"price", subscriptionPrice},
-                        {"userEmail", userEmail},
-                        {"userRole", userRole},
-                        {"startDate", "Not Available"},
-                        {"endDate", "Not Available"},
-                        {"status", status}
-                    };
-
-                    // Set the data in the Firestore document
-                    await subscriptionRef.SetAsync(dataInsert);
+                    // Display a message
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('We noticed that your account has not been verified! By doing so, you will receive important email from your registered email address.');", true);
                 }
             }
         }

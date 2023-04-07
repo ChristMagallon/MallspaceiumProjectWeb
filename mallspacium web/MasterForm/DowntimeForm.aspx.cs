@@ -88,11 +88,11 @@ namespace mallspacium_web
             int randomIDNumber = random.Next(100000, 999999);
             string activityID = "ACT" + randomIDNumber.ToString();
 
-            //Get current UTC date time and the expected expiration date
-            string currentDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
-            DateTime date;
-            DateTime.TryParse(currentDate, out date);
-            date = DateTime.SpecifyKind(date, DateTimeKind.Utc);
+            //Get current UTC date time
+            DateTime currentDate = DateTime.UtcNow;
+
+            // Format the current date time string in the desired format
+            string formattedDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
 
             DocumentReference userRef = database.Collection("AdminActivity").Document(activityID);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
@@ -101,9 +101,9 @@ namespace mallspacium_web
                 { "activity", (string)Application.Get("usernameget") + " sets application and website system downtime" },
                 { "email", "NA" },
                 { "userRole", "NA" },
-                { "date", date }
+                { "date", formattedDate }
             };
             await userRef.SetAsync(data1);
-        } 
+        }
     }
 }

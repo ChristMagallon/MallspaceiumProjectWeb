@@ -61,6 +61,9 @@
                         <div class="col-md-8">
                             <asp:Label ID="addressLabel" runat="server" CssClass="mb-2"></asp:Label>
                         </div>
+                        <br />
+                        <asp:Button ID="VerifyButton" runat="server" OnClick="VerifyButton_Click" Text="Verify" Width="100px" />
+                        <br/>
                     </div>
                 </div>
             </div>

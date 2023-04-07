@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Google.Cloud.Firestore;
+using MailKit.Security;
+using MimeKit;
 
 namespace mallspacium_web.form
 {
@@ -14,6 +19,8 @@ namespace mallspacium_web.form
     {
         FirestoreDb db;
         private static String userRole = "Shopper";
+        private string recipientEmail = "";
+        private string recipientName = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -114,6 +121,9 @@ namespace mallspacium_web.form
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
             TextInfo ti = cultureInfo.TextInfo;
 
+            // Generate confirmation code
+            string confirmationCode = GenerateCode();
+
             // Create a new collection reference
             DocumentReference documentRef = db.Collection("Users").Document(email);
 
@@ -133,16 +143,52 @@ namespace mallspacium_web.form
                 {"confirmPassword", ConfirmPasswordTextBox.Text},
                 {"userRole", userRole},
                 {"shopperImage", shopperImage},
-                {"dateCreated", dateCreated }
+                {"dateCreated", dateCreated },
+                {"confirmationCode", confirmationCode },
+                {"verified", false}
             };
 
             // Set the data in the Firestore document
             await documentRef.SetAsync(data);
             collectionNotif();
+
+            string recipientEmail = EmailTextBox.Text;
+            string recipientName = UsernameTextBox.Text;
+
+            // Send confirmation email
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+            smtpClient.Port = 587;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential("sysadm1n.mallspaceium@gmail.com", "pbssojpapersldtj");
+            smtpClient.EnableSsl = true;
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress("sysadm1n.mallspaceium@gmail.com");
+            mailMessage.To.Add(recipientEmail);
+            mailMessage.Subject = "Confirm Your Registration";
+            mailMessage.Body = "Dear " + recipientName + ",<br><br>" +
+                           "Thank you for registering with our website! Please enter the following code to verify your account:<br><br>" +
+                           "<b>" + confirmationCode + "</b><br><br>" +
+                           "If you did not create an account on our website, please ignore this email.<br><br>" +
+                           "Best regards,<br>" +
+                           "Mallspaceium";
+            mailMessage.IsBodyHtml = true;
+            smtpClient.Send(mailMessage);
+
             defaultSubscription();
 
             string loginPageUrl = ResolveUrl("~/form/LoginPage.aspx");
             Response.Write("<script>alert('Successfully Registered'); window.location='" + loginPageUrl + "';</script>");
+        }
+
+        private string GenerateCode()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var code = new string(
+                Enumerable.Repeat(chars, 6)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
+            return code;
         }
 
         public async void collectionNotif()
