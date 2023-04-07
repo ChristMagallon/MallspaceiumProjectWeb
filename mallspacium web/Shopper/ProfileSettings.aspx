@@ -1,16 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" Async="true" MasterPageFile="~/Shopper/Site1.Master" AutoEventWireup="true" CodeBehind="ProfileSettings.aspx.cs" Inherits="mallspacium_web.Shopper.WebForm1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-      <style type="text/css">
-          .auto-style3 {
-              flex: 0 0 auto;
-              width: 497px;
-          }
-    </style>
-</asp:Content>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- starts here-->
+
       <div class="form">
         <table class="table table-bordered table-condensed table-responsive bg-white">
             <tr>
@@ -24,18 +21,6 @@
             <td class="col-sm-4">
                   <asp:Button ID="Button2" runat="server" Text="Download Data" OnClick="Button2_Click"  CssClass="btn btn-primary" Width="145px" />
             </td>
-          </tr>
-          <tr>
-            <td class="col-sm-8">Set Language</td>
-            <td class="col-sm-4">
-                <asp:DropDownList ID="ddlLanguage" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" Width="145px" >
-                    <asp:ListItem Text="English" Value="en-US"></asp:ListItem>
-                    <asp:ListItem Text="Chinese" Value="zh-CN"></asp:ListItem>
-                    <asp:ListItem Text="Korean" Value="ko-KR"></asp:ListItem>
-                    <asp:ListItem Text="Japanese" Value="ja-JP"></asp:ListItem>
-                    <asp:ListItem Text="Spanish" Value="es-ES"></asp:ListItem>
-                    <asp:ListItem Text="French" Value="fr-FR"></asp:ListItem>
-                </asp:DropDownList>
           </tr>
           <tr>
             <td class="col-sm-8">About Us</td>

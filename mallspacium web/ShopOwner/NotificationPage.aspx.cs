@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,20 +11,16 @@ namespace mallspacium_web.MasterForm2
 {
     public partial class WebForm6 : System.Web.UI.Page
     {
-      
         FirestoreDb database;
         static string notificationpicker = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + @"mallspaceium.json";
-            
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             database = FirestoreDb.Create("mallspaceium");
 
-
             checknotif();
-          
         }
 
         public async void checknotif()

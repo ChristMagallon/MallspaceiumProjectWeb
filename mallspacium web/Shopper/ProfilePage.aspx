@@ -5,29 +5,71 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
      <!-- starts here-->
-    <div class="form">
-        <asp:Image ID="Image1" runat="server" /> <br />
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <center>
+                        <asp:Image ID="Image1" runat="server" CssClass="img-fluid mb-3" /> <br />
+                        <asp:Button ID="editProfileButton" runat="server" Text="Edit Profile" OnClick="editProfileButton_Click" CssClass="btn btn-primary btn-sm mb-3" />
+                    </center>
 
-        <asp:Label ID="Label7" runat="server" Text="Full Name: "></asp:Label> 
-        <asp:Label ID="nameLabel" runat="server" Text=""></asp:Label> <br/> 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>Full Name:</strong>
+                        </div>
+                        <div class="col-md-8">
+                            <asp:Label ID="nameLabel" runat="server" CssClass="mb-2"></asp:Label>
+                        </div>
+                    </div>
 
-        <asp:Button ID="editProfileButton" runat="server" Text="Edit Profile" OnClick="editProfileButton_Click" /> <br /> <br />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>Birthday: :</strong>
+                        </div>
+                        <div class="col-md-8">
+                            <asp:Label ID="birthdayLabel" runat="server" CssClass="mb-2"></asp:Label>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>Gender:</strong>
+                        </div>
+                        <div class="col-md-8">
+                            <asp:Label ID="genderLabel" runat="server" CssClass="mb-2"></asp:Label>
+                        </div>
+                    </div>
 
-        <asp:Label ID="Label1" runat="server" Text="Birthday: "></asp:Label> 
-        <asp:Label ID="birthdayLabel" runat="server" Text=""></asp:Label> <br/> 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>Email: </strong>
+                        </div>
+                        <div class="col-md-8">
+                            <asp:Label ID="emailLabel" runat="server" CssClass="mb-2"></asp:Label>
+                        </div>
+                    </div>
 
-        <asp:Label ID="Label2" runat="server" Text="Gender: "></asp:Label> 
-        <asp:Label ID="genderLabel" runat="server" Text=""></asp:Label> <br/> 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>Phone Number: </strong>
+                        </div>
+                        <div class="col-md-8">
+                            <asp:Label ID="phoneNumberLabel" runat="server" CssClass="mb-2"></asp:Label>
+                        </div>
+                    </div>
 
-        <asp:Label ID="Label4" runat="server" Text="Email: "></asp:Label> 
-        <asp:Label ID="emailLabel" runat="server" Text=""></asp:Label> <br/>
-
-        <asp:Label ID="Label3" runat="server" Text="Phone Number: "></asp:Label> 
-        <asp:Label ID="phoneNumberLabel" runat="server" Text=""></asp:Label> <br/> 
-
-        <asp:Label ID="Label5" runat="server" Text="Address: "></asp:Label> 
-        <asp:Label ID="addressLabel" runat="server" Text=""></asp:Label> 
-        <br /> 
-   </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>Address:</strong>
+                        </div>
+                        <div class="col-md-8">
+                            <asp:Label ID="addressLabel" runat="server" CssClass="mb-2"></asp:Label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

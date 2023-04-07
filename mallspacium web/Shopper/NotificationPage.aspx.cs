@@ -21,7 +21,6 @@ namespace mallspacium_web.MasterForm3
             database = FirestoreDb.Create("mallspaceium");
 
             checknotif();
-
         }
 
         public async void checknotif()
@@ -40,7 +39,7 @@ namespace mallspacium_web.MasterForm3
                 Dictionary<string, object> data = snapshot.ToDictionary();
                 // Access the specific field you want
 
-                object field = data["userNotif"];
+                    object field = data["userNotif"];
 
                 // Do something with the field value
 

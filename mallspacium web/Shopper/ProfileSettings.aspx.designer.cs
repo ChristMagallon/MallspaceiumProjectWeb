@@ -33,15 +33,6 @@ namespace mallspacium_web.Shopper
         protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// ddlLanguage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
-
-        /// <summary>
         /// Button4 control.
         /// </summary>
         /// <remarks>
