@@ -21,7 +21,7 @@
                  <h1>Confirmation Page</h1>
                 <div class="mb-3">
                       <label for="confirmationCode" class="form-label">Please enter your confirmation code:</label>
-                      <asp:TextBox ID="ConfirmationCodeTextBox" runat="server" type="text" class="form-control" placeholder="Enter Confirmation Code" AutoCompleteType="Disabled"></asp:TextBox>
+                      <asp:TextBox ID="ConfirmationCodeTextBox" runat="server" type="text" class="form-control" placeholder="Enter Confirmation Code" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
                 </div>
 
                 <div class="mb-3">
@@ -30,7 +30,7 @@
                       <br />
                       <br />
                 </div>
-                <asp:Button ID="confirmButton" runat="server" Text="Confirm" OnClick="confirmButton_Click" />
+                <asp:Button ID="confirmButton" runat="server" Text="Confirm" OnClick="confirmButton_Click" ValidationGroup="Validate" />
             </div>
           </div>
     </form>

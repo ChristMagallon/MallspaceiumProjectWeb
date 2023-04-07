@@ -25,7 +25,6 @@ namespace mallspacium_web.MasterForm3
             if (!IsPostBack)
             {
                 getShops();
-                checkAccountStatus();
             }
         }
 
@@ -104,28 +103,6 @@ namespace mallspacium_web.MasterForm3
 
             // Redirect to another page and pass the shopName as a query string parameter
             Response.Redirect("PopularShopDetailsPage.aspx?shopName=" + shopName);
-        }
-
-        // Check the Users account if its verified or not
-        public async void checkAccountStatus()
-        {
-            // Use the shop name to retrieve the data from Firestore
-            Query query = database.Collection("Users").WhereEqualTo("email", (string)Application.Get("usernameget"));
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-
-            // Loop through the documents in the query snapshot
-            foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
-            {
-                // Retrieve the data from the document
-                bool verified = documentSnapshot.GetValue<bool>("verified");
-
-                // Check if user is verified and enable VerifyButton if not verified
-                if (!verified)
-                {
-                    // Display a message
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('We noticed that your account has not been verified! By doing so, you will receive important email from your registered email address.');", true);
-                }
-            }
         }
     }
 }

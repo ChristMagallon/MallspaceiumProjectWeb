@@ -19,8 +19,6 @@ namespace mallspacium_web.form
     {
         FirestoreDb db;
         private static String userRole = "Shopper";
-        private string recipientEmail = "";
-        private string recipientName = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -176,8 +174,9 @@ namespace mallspacium_web.form
 
             defaultSubscription();
 
-            string loginPageUrl = ResolveUrl("~/form/LoginPage.aspx");
-            Response.Write("<script>alert('Successfully Registered'); window.location='" + loginPageUrl + "';</script>");
+            Application.Set("emailGet", EmailTextBox.Text);
+            string confirmationEmailUrl = ResolveUrl("~/form/ConfirmationEmailPage.aspx");
+            Response.Write("<script>alert('Account successfully registered! By doing so, you will receive important email from your registered email address.'); window.location='" + confirmationEmailUrl + "';</script>");
         }
 
         private string GenerateCode()

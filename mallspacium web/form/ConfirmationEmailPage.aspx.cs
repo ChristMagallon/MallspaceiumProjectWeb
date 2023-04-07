@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,6 +18,7 @@ namespace mallspacium_web.form
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             db = FirestoreDb.Create("mallspaceium");
+            Debug.Write((string)Application.Get("emailGet"));
         }
 
         protected void confirmButton_Click(object sender, EventArgs e)
@@ -28,7 +30,7 @@ namespace mallspacium_web.form
         {
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
-            Query query = usersRef.WhereEqualTo("email", (string)Application.Get("usernameget"));
+            Query query = usersRef.WhereEqualTo("email", (string)Application.Get("emailGet"));
             QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
             // Check if the snapshot is empty
@@ -46,7 +48,7 @@ namespace mallspacium_web.form
         public async void verifyEmail()
         {
             // Define the document reference and field name
-            DocumentReference docRef = db.Collection("Users").Document((string)Application.Get("usernameget"));
+            DocumentReference docRef = db.Collection("Users").Document((string)Application.Get("emailGet"));
             string confirmationCode = "confirmationCode";
             // Get the field value from Firestore
             DocumentSnapshot docSnapshot = await docRef.GetSnapshotAsync();
