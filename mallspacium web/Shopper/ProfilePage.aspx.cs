@@ -72,16 +72,6 @@ namespace mallspacium_web.MasterForm3
                 emailLabel.Text = email;
                 phoneNumberLabel.Text = phoneNumber;
                 addressLabel.Text = address;
-
-                // Check if user is verified and enable VerifyButton if not verified
-                if (!verified)
-                {
-                    VerifyButton.Enabled = true;
-                }
-                else
-                {
-                    VerifyButton.Enabled = false;
-                }
             }
         }
 
@@ -89,12 +79,6 @@ namespace mallspacium_web.MasterForm3
         {
             // Redirect to another page 
             Response.Redirect("EditProfilePage.aspx");
-        }
-
-        protected void VerifyButton_Click(object sender, EventArgs e)
-        {
-            // Redirect to another page 
-            Response.Redirect("~/form/ConfirmationEmailPage.aspx", false);
         }
     }
 }
