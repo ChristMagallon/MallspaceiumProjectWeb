@@ -50,6 +50,7 @@ namespace mallspacium_web.form
             Dictionary<string, object> updates = new Dictionary<string, object>
             {
                 { "password", PasswordTextBox.Text },
+                { "confirmPassword", ConfirmPasswordTextBox.Text },
                 { "resetCode", FieldValue.Delete }
             };
             await docRef.UpdateAsync(updates);
