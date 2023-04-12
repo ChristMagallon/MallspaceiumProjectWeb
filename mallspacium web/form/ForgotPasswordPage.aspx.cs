@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -50,14 +51,17 @@ namespace mallspacium_web.form
                 };
                 await userRef.UpdateAsync(data);
 
+                string smtpUserName = ConfigurationManager.AppSettings["SmtpUserName"];
+                string smtpPassword = ConfigurationManager.AppSettings["SmtpPassword"];
+
                 // Send confirmation email
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
                 smtpClient.Port = 587;
                 smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential("sysadm1n.mallspaceium@gmail.com", "pbssojpapersldtj");
+                smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
                 smtpClient.EnableSsl = true;
                 MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("sysadm1n.mallspaceium@gmail.com");
+                mailMessage.From = new MailAddress(smtpUserName);
                 mailMessage.To.Add(userEmail);
                 mailMessage.Subject = "Password reset confirmation code";
                 mailMessage.Body = "Your confirmation code is " + confirmationCode;
@@ -68,8 +72,6 @@ namespace mallspacium_web.form
 
                 // Alert message
                 Response.Redirect("~/form/ConfirmationResetPage.aspx", false);
-                /*string confirmResetPageUrl = ResolveUrl("~/form/ConfirmResetPage.aspx");
-                Response.Write("<script>alert('Check your email and view the confirmation code we've sent for you.'); window.location='" + confirmResetPageUrl + "';</script>");*/
             }
         }
 

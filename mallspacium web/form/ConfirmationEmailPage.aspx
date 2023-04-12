@@ -21,7 +21,7 @@
                  <h1>Confirmation Page</h1>
                 <div class="mb-3">
                       <label for="confirmationCode" class="form-label">Please enter your email:</label>
-                      <asp:TextBox ID="EmailTextBox" runat="server" type="text" class="form-control" placeholder="Enter Confirmation Code" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
+                      <asp:TextBox ID="EmailTextBox" runat="server" type="text" class="form-control" placeholder="Enter Email" AutoCompleteType="Disabled" ValidationGroup="Validate"></asp:TextBox>
                 </div>
 
                 <div class="mb-3">

@@ -378,8 +378,8 @@ namespace mallspacium_web.ShopOwner
                     {
                         {"subscriptionType", subscriptionType},
                         {"price", subscriptionPrice},
-                        {"startDate", "Not Available"},
-                        {"endDate", "Not Available"},
+                        {"startDate", "n/a"},
+                        {"endDate", "n/a"},
                         {"status", status}
                     };
 
@@ -395,8 +395,8 @@ namespace mallspacium_web.ShopOwner
                         {"price", subscriptionPrice},
                         {"userEmail", userEmail},
                         {"userRole", userRole},
-                        {"startDate", "Not Available"},
-                        {"endDate", "Not Available"},
+                        {"startDate", "n/a"},
+                        {"endDate", "n/a"},
                         {"status", status}
                     };
 

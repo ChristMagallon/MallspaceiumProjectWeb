@@ -48,7 +48,7 @@ namespace mallspacium_web.form
         public async void verifyEmail()
         {
             // Define the document reference and field name
-            DocumentReference docRef = db.Collection("Users").Document((string)Application.Get("emailGet"));
+            DocumentReference docRef = db.Collection("Users").Document(EmailTextBox.Text);
             string confirmationCode = "confirmationCode";
             // Get the field value from Firestore
             DocumentSnapshot docSnapshot = await docRef.GetSnapshotAsync();
@@ -56,7 +56,7 @@ namespace mallspacium_web.form
             // Store the field value in a local variable
             string localConfirmCode = fieldValue;
 
-            if (EmailTextBox.Text != localConfirmCode)
+            if (ConfirmationCodeTextBox.Text != localConfirmCode)
             {
                 ErrorConfirmationCodeLabel.Text = "Provided confirmation code is invalid!";
             }
