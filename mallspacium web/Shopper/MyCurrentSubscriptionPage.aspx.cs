@@ -91,8 +91,8 @@ namespace mallspacium_web.Shopper
                     {
                         {"subscriptionType", subscriptionType},
                         {"price", subscriptionPrice},
-                        {"startDate", "Not Available"},
-                        {"endDate", "Not Available"},
+                        {"startDate", "n/a"},
+                        {"endDate", "n/a"},
                         {"status", status}
                     };
 
@@ -109,8 +109,8 @@ namespace mallspacium_web.Shopper
                         {"price", subscriptionPrice},
                         {"userEmail", userEmail},
                         {"userRole", userRole},
-                        {"startDate", "Not Available"},
-                        {"endDate", "Not Available"},
+                        {"startDate", "n/a"},
+                        {"endDate", "n/a"},
                         {"status", status}
                     };
 

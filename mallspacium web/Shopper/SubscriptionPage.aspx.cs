@@ -67,7 +67,7 @@ namespace mallspacium_web.Shopper
 
                 // Get current date time and the expected expiration date
                 DateTime currentDate = DateTime.UtcNow;
-                DateTime expirationDate = currentDate.AddMonths(3);
+                DateTime expirationDate = currentDate.AddMonths(1);
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -227,7 +227,7 @@ namespace mallspacium_web.Shopper
 
                 // Get current date time and the expected expiration date
                 DateTime currentDate = DateTime.UtcNow;
-                DateTime expirationDate = currentDate.AddMonths(3);
+                DateTime expirationDate = currentDate.AddMonths(5);
                 string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
                 string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
 

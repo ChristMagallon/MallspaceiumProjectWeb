@@ -104,8 +104,8 @@ namespace mallspacium_web.ShopOwner
                         {"subscriptionType", subscriptionType},
                         {"price", subscriptionPrice},
                         {"subscriptionID", subscriptionID},
-                        {"startDate", FieldValue.Delete},
-                        {"endDate", FieldValue.Delete},
+                        {"startDate", "n/a"},
+                        {"endDate", "n/a"},
                         {"status", status}
                     };
 

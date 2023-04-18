@@ -214,10 +214,5 @@ namespace mallspacium_web.form
         {
             Response.Redirect("~/form/ForgotPasswordPage.aspx");
         }
-
-        protected void VerifyAccountLinkButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/form/ConfirmationEmailPage.aspx");
-        }
     }
 }
