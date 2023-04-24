@@ -321,8 +321,13 @@ namespace mallspacium_web.Shopper
             await doc.SetAsync(data1);
             Response.Write("<script>alert('Successfully Added Shop to the Favorites.');</script>");
 
+            //auto generated unique id
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 999999);
+            string favID = "FAV" + randomIDNumber.ToString();
+
             // Specify the name of the document using a variable or a string literal
-            string documentName = (string)Application.Get("usernameget") + " added your shop to Favorites";
+            string documentName = "Added your shop to Favorites. " + favID ;
             DocumentReference notifRef = database.Collection("Users").Document(emailLabel.Text).Collection("Notification").Document(documentName);
 
             Dictionary<string, object> data = new Dictionary<string, object>

@@ -48,7 +48,7 @@ namespace mallspacium_web
                 if (docsnap.Exists)
                 {
                     // Specify the name of the document using a variable or a string literal
-                    string documentName = "server down: " + startDateTextbox.Text + " - " + endDateTextbox.Text;
+                    string documentName = "Server down: " + startDateTextbox.Text + " to " + endDateTextbox.Text;
                     DocumentReference downtimeRef1 = database.Collection("Users").Document(docsnap.Id).Collection("Notification").Document(documentName);
 
                     Dictionary<string, object> downtimeData1 = new Dictionary<string, object>

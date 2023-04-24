@@ -134,8 +134,13 @@ namespace mallspacium_web.Shopper
                 // Retrieve the data from the document
                 string email = userDoc.GetValue<string>("email");
 
+                //auto generated unique id
+                Random random = new Random();
+                int randomIDNumber = random.Next(100000, 999999);
+                string wishID = "WISH" + randomIDNumber.ToString();
+
                 // Specify the name of the document using a variable or a string literal
-                string documentName = (string)Application.Get("usernameget") + " added your product " + productNameLabel.Text + " to Wishlist.";
+                string documentName = "Added your product " + productNameLabel.Text + " to Wishlist. " + wishID;
 
                 DocumentReference notifRef = database.Collection("Users").Document(email).Collection("Notification").Document(documentName);
 
