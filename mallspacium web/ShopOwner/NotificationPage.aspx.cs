@@ -68,10 +68,10 @@ namespace mallspacium_web.MasterForm2
 
             // Display the selected value in the Label control
             notificationpicker = selectedValue;
-            getmessage();
+            getDetail();
         }
 
-        public async void getmessage()
+        public async void getDetail()
         {
             object field = "";
 
@@ -88,7 +88,7 @@ namespace mallspacium_web.MasterForm2
                 // Get the data as a Dictionary
                 Dictionary<string, object> data = snapshot.ToDictionary();
                 // Access the specific field you want
-                    field = data["message"];
+                    field = data["notifDetail"];
 
                 // Do something with the field value 
                 SelectedNotificationLabel.Text = "Notification Details: " + field.ToString();

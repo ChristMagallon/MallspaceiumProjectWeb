@@ -200,7 +200,11 @@
     <Content Include="form\ShopOwnerRegisterPage.aspx" />
     <Content Include="form\ShopperRegisterPage.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\favorite.png" />
     <Content Include="Images\no-image.jpg" />
+    <Content Include="Images\server_downtime.png" />
+    <Content Include="Images\warning_message.jpg" />
+    <Content Include="Images\wishlist.jpg" />
     <Content Include="Logos\gcash_logo.png" />
     <Content Include="Logos\merchat_qr_code.jpg" />
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
