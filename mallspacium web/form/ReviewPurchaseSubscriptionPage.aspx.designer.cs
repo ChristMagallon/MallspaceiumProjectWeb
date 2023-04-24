@@ -11,7 +11,7 @@ namespace mallspacium_web.form
 {
 
 
-    public partial class ConfirmationEmailPage
+    public partial class ReviewPurchaseSubscriptionPage
     {
 
         /// <summary>
@@ -24,75 +24,102 @@ namespace mallspacium_web.form
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// EmailTextBox control.
+        /// SubscriptionTypeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
+        protected global::System.Web.UI.WebControls.Label SubscriptionTypeLabel;
 
         /// <summary>
-        /// EmailRequiredFieldValidator control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// EmailRegularExpressionValidator control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailRegularExpressionValidator;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// ErrorEmailAddressLabel control.
+        /// SubscriptionPriceLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorEmailAddressLabel;
+        protected global::System.Web.UI.WebControls.Label SubscriptionPriceLabel;
 
         /// <summary>
-        /// ConfirmationCodeTextBox control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmationCodeTextBox;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// ConfirmCodeRequiredFieldValidator control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ConfirmCodeRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// ErrorConfirmationCodeLabel control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorConfirmationCodeLabel;
+        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// ConfirmButton control.
+        /// UserEmailLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ConfirmButton;
+        protected global::System.Web.UI.WebControls.Label UserEmailLabel;
+
+        /// <summary>
+        /// AgreementTermsCheckBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox AgreementTermsCheckBox;
+
+        /// <summary>
+        /// AgreementTermsLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AgreementTermsLabel;
+
+        /// <summary>
+        /// PurchaseButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PurchaseButton;
     }
 }

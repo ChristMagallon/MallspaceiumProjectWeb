@@ -20,8 +20,8 @@ namespace mallspacium_web.form
             db = FirestoreDb.Create("mallspaceium");
             Debug.Write((string)Application.Get("emailGet"));
         }
-
-        protected void confirmButton_Click(object sender, EventArgs e)
+       
+        protected void ConfirmButton_Click1(object sender, EventArgs e)
         {
             getUserDetails();
         }
@@ -30,13 +30,13 @@ namespace mallspacium_web.form
         {
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
-            Query query = usersRef.WhereEqualTo("email", (string)Application.Get("emailGet"));
+            Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text);
             QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
             // Check if the snapshot is empty
             if (snapshot.Count == 0)
             {
-                // Handle the case where the snapshot is empty
+                ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
             }
             else
             {
@@ -48,7 +48,7 @@ namespace mallspacium_web.form
         public async void verifyEmail()
         {
             // Define the document reference and field name
-            DocumentReference docRef = db.Collection("Users").Document((string)Application.Get("emailGet"));
+            DocumentReference docRef = db.Collection("Users").Document(EmailTextBox.Text);
             string confirmationCode = "confirmationCode";
             // Get the field value from Firestore
             DocumentSnapshot docSnapshot = await docRef.GetSnapshotAsync();

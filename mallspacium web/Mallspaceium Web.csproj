@@ -190,15 +190,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="form\CheckoutSummaryPage.aspx" />
     <Content Include="form\ConfirmationEmailPage.aspx" />
     <Content Include="form\ConfirmationResetPage.aspx" />
     <Content Include="form\ForgotPasswordPage.aspx" />
     <Content Include="form\LoginPage.aspx" />
     <Content Include="form\ResetPasswordPage.aspx" />
+    <Content Include="form\ReviewPurchaseSubscriptionPage.aspx" />
     <Content Include="form\ShopOwnerRegisterPage.aspx" />
     <Content Include="form\ShopperRegisterPage.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\no-image.jpg" />
+    <Content Include="Logos\gcash_logo.png" />
+    <Content Include="Logos\merchat_qr_code.jpg" />
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
     <Content Include="MasterForm\ChangeAdminAccountPassword.aspx" />
@@ -266,6 +270,14 @@
     <Compile Include="class\Product.cs" />
     <Compile Include="class\Report.cs" />
     <Compile Include="class\Shop.cs" />
+    <Compile Include="class\SubscriptionData.cs" />
+    <Compile Include="form\CheckoutSummaryPage.aspx.cs">
+      <DependentUpon>CheckoutSummaryPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="form\CheckoutSummaryPage.aspx.designer.cs">
+      <DependentUpon>CheckoutSummaryPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="form\ConfirmationEmailPage.aspx.cs">
       <DependentUpon>ConfirmationEmailPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +312,13 @@
     </Compile>
     <Compile Include="form\ResetPasswordPage.aspx.designer.cs">
       <DependentUpon>ResetPasswordPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="form\ReviewPurchaseSubscriptionPage.aspx.cs">
+      <DependentUpon>ReviewPurchaseSubscriptionPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="form\ReviewPurchaseSubscriptionPage.aspx.designer.cs">
+      <DependentUpon>ReviewPurchaseSubscriptionPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="form\ShopOwnerRegisterPage.aspx.cs">
       <DependentUpon>ShopOwnerRegisterPage.aspx</DependentUpon>

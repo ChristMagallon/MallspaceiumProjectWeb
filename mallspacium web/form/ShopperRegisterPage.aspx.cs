@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -152,14 +153,17 @@ namespace mallspacium_web.form
             string recipientEmail = EmailTextBox.Text;
             string recipientName = UsernameTextBox.Text;
 
+            string smtpUserName = ConfigurationManager.AppSettings["SmtpUserName"];
+            string smtpPassword = ConfigurationManager.AppSettings["SmtpPassword"];
+
             // Send confirmation email
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
             smtpClient.Port = 587;
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new NetworkCredential("sysadm1n.mallspaceium@gmail.com", "pbssojpapersldtj");
+            smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
             smtpClient.EnableSsl = true;
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("sysadm1n.mallspaceium@gmail.com");
+            mailMessage.From = new MailAddress(smtpUserName);
             mailMessage.To.Add(recipientEmail);
             mailMessage.Subject = "Confirm Your Registration";
             mailMessage.Body = "Dear " + recipientName + ",<br><br>" +
