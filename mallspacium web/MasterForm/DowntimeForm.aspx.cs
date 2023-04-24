@@ -38,15 +38,12 @@ namespace mallspacium_web
                 {"message", messageTextbox.Text}
             };
             await downtimeRef.SetAsync(downtimeData);
-           
-            DocumentSnapshot snapshot = await downtimeRef.GetSnapshotAsync();
 
             Query usersQue = database.Collection("Users");
             QuerySnapshot snap = await usersQue.GetSnapshotAsync();
 
             foreach (DocumentSnapshot docsnap in snap.Documents)
             {
-                ManageUsers user = docsnap.ConvertTo<ManageUsers>();
 
                 if (docsnap.Exists)
                 {
@@ -61,24 +58,10 @@ namespace mallspacium_web
                         {"message", messageTextbox.Text}
                     };
                     await downtimeRef1.SetAsync(downtimeData1);
-
-                    DocumentSnapshot snapshot1 = await downtimeRef1.GetSnapshotAsync();
                 }
             }
 
             Response.Write("<script>alert('Successfully saved setting downtime');</script>");
-            /*if (snapshot.Exists)
-            {
-                DateTime startTime = snapshot.GetValue<DateTime>("startTime");
-                DateTime endTime = snapshot.GetValue<DateTime>("endTime");
-                string message = snapshot.GetValue<string>("message");
-
-                if (DateTime.UtcNow >= startTime && DateTime.UtcNow <= endTime)
-                {
-                    // Show downtime message to users.
-                    // Display the message in a modal or overlay, or redirect the user to a dedicated downtime page.
-                }
-            }*/
         }
 
         public async void sysetmDowntimeActivity()

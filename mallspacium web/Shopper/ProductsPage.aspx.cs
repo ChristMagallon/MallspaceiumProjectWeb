@@ -33,6 +33,7 @@ namespace mallspacium_web.MasterForm3
             productGridViewTable.Columns.Add("prodName", typeof(string));
             productGridViewTable.Columns.Add("prodImage", typeof(byte[]));
             productGridViewTable.Columns.Add("prodDesc", typeof(string));
+            productGridViewTable.Columns.Add("prodTag", typeof(string));
             productGridViewTable.Columns.Add("prodShopName", typeof(string));
 
             // Iterate through the documents and populate the DataTable
@@ -50,6 +51,7 @@ namespace mallspacium_web.MasterForm3
                     string base64String = productDoc.GetValue<string>("prodImage");
                     byte[] productImage = Convert.FromBase64String(base64String);
                     string productDescription = productDoc.GetValue<string>("prodDesc");
+                    string productTag = productDoc.GetValue<string>("prodTag");
                     string productShopName = productDoc.GetValue<string>("prodShopName");
 
                     DataRow dataRow = productGridViewTable.NewRow();
@@ -57,6 +59,7 @@ namespace mallspacium_web.MasterForm3
                     dataRow["prodName"] = productName;
                     dataRow["prodImage"] = productImage;
                     dataRow["prodDesc"] = productDescription;
+                    dataRow["prodTag"] = productTag;
                     dataRow["prodShopName"] = productShopName;
 
                     productGridViewTable.Rows.Add(dataRow);
@@ -101,6 +104,84 @@ namespace mallspacium_web.MasterForm3
 
             // Redirect to another page and pass the shopName as a query string parameter
             Response.Redirect("ProductDetailsPage.aspx?prodShopName=" + prodShopName + "&prodName=" + prodName, false);
+        }
+
+        protected void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            search();
+        }
+
+        // method for searching product name
+        public async void search()
+        {
+            string searchProdName = searchTextBox.Text;
+
+            if (searchTextBox.Text == "")
+            {
+                getProducts();
+            }
+            else
+            {
+
+                CollectionReference usersRef = database.Collection("Users");
+                // Retrieve the documents from the parent collection
+                QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
+
+                // Create a DataTable to store the retrieved data
+                DataTable productGridViewTable = new DataTable();
+
+                productGridViewTable.Columns.Add("prodName", typeof(string));
+                productGridViewTable.Columns.Add("prodImage", typeof(byte[]));
+                productGridViewTable.Columns.Add("prodDesc", typeof(string));
+                productGridViewTable.Columns.Add("prodTag", typeof(string));
+                productGridViewTable.Columns.Add("prodShopName", typeof(string));
+
+                // Iterate through the documents and populate the DataTable
+                foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+                {
+                    // Create a reference to the child collection inside the parent document
+                    Query query = documentSnapshot.Reference.Collection("Product")
+                        .WhereGreaterThanOrEqualTo("prodName", searchProdName)
+                        .WhereLessThanOrEqualTo("prodName", searchProdName + "\uf8ff");
+
+                    // Retrieve the documents from the child collection
+                    QuerySnapshot productsSnapshot = await query.GetSnapshotAsync();
+
+                    if (productsSnapshot.Documents.Count > 0)
+                    {
+                        foreach (DocumentSnapshot productDoc in productsSnapshot.Documents)
+                        {
+                            string productName = productDoc.GetValue<string>("prodName");
+                            string base64String = productDoc.GetValue<string>("prodImage");
+                            byte[] productImage = Convert.FromBase64String(base64String);
+                            string productDescription = productDoc.GetValue<string>("prodDesc");
+                            string productTag = productDoc.GetValue<string>("prodTag");
+                            string productShopName = productDoc.GetValue<string>("prodShopName");
+
+                            DataRow dataRow = productGridViewTable.NewRow();
+
+                            dataRow["prodName"] = productName;
+                            dataRow["prodImage"] = productImage;
+                            dataRow["prodDesc"] = productDescription;
+                            dataRow["prodTag"] = productTag;
+                            dataRow["prodShopName"] = productShopName;
+
+                            productGridViewTable.Rows.Add(dataRow);
+                        }
+                    
+                    // Bind the DataTable to the GridView control
+                    productGridView.DataSource = productGridViewTable;
+                    productGridView.DataBind();
+                    }
+                    else
+                    {
+                        // Display an error message if no search results are found
+                        errorMessageLabel.Text = "No results found.";
+                        errorMessageLabel.Visible = true;
+                        productGridView.Visible = false;
+                    }
+                }
+            }
         }
     }
 }

@@ -49,8 +49,6 @@ namespace mallspacium_web.ShopOwner
                 // Retrieve the documents from the child collection
                 QuerySnapshot productsSnapshot = productsRef.GetSnapshotAsync().Result;
 
-                
-
                 foreach (DocumentSnapshot productDoc in productsSnapshot.Documents)
                 {
                     string productName = productDoc.GetValue<string>("prodName");

@@ -33,8 +33,11 @@ namespace mallspacium_web.Shopper
             wishlistGridViewTable.Columns.Add("prodName", typeof(string));
             wishlistGridViewTable.Columns.Add("prodImage", typeof(byte[]));
             wishlistGridViewTable.Columns.Add("prodDesc", typeof(string));
+            wishlistGridViewTable.Columns.Add("prodColor", typeof(string));
+            wishlistGridViewTable.Columns.Add("prodSize", typeof(string));
             wishlistGridViewTable.Columns.Add("prodPrice", typeof(string));
             wishlistGridViewTable.Columns.Add("prodTag", typeof(string));
+            wishlistGridViewTable.Columns.Add("prodAvailability", typeof(string));
             wishlistGridViewTable.Columns.Add("prodShopName", typeof(string));
 
             // Loop through each document in the Wishlist collection and add its data to the products list
@@ -44,8 +47,11 @@ namespace mallspacium_web.Shopper
                 string base64String = doc.GetValue<string>("prodImage");
                 byte[] productImage = Convert.FromBase64String(base64String);
                 string productDescription = doc.GetValue<string>("prodDesc");
-                string productPrice = doc.GetValue<string>("prodPrice");
+                string productPrice = doc.GetValue<string>("prodColor");
+                string productSize = doc.GetValue<string>("prodSize");
+                string productColor = doc.GetValue<string>("prodPrice");
                 string productTag = doc.GetValue<string>("prodTag");
+                string productAvailability = doc.GetValue<string>("prodAvailability");
                 string productShopName = doc.GetValue<string>("prodShopName");
 
                 DataRow dataRow = wishlistGridViewTable.NewRow();
@@ -53,8 +59,11 @@ namespace mallspacium_web.Shopper
                 dataRow["prodName"] = productName;
                 dataRow["prodImage"] = productImage;
                 dataRow["prodDesc"] = productDescription;
+                dataRow["prodColor"] = productPrice;
+                dataRow["prodSize"] = productPrice;
                 dataRow["prodPrice"] = productPrice;
                 dataRow["prodTag"] = productTag;
+                dataRow["prodAvailability"] = productPrice;
                 dataRow["prodShopName"] = productShopName;
 
                 wishlistGridViewTable.Rows.Add(dataRow);

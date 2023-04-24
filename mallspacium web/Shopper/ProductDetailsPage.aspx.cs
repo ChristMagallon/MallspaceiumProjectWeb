@@ -53,10 +53,13 @@ namespace mallspacium_web.Shopper
                     if (productDoc != null)
                     {
                         // Retrieve the data from the document
-                        string image = productDoc.GetValue<string>("prodImage");
                         string desc = productDoc.GetValue<string>("prodDesc");
+                        string color = productDoc.GetValue<string>("prodColor");
+                        string size = productDoc.GetValue<string>("prodSize");
                         string price = productDoc.GetValue<string>("prodPrice");
                         string tag = productDoc.GetValue<string>("prodTag");
+                        string availability = productDoc.GetValue<string>("prodAvailability");
+                        string image = productDoc.GetValue<string>("prodImage");
 
                         // Convert the image string to a byte array
                         byte[] imageBytes;
@@ -76,11 +79,14 @@ namespace mallspacium_web.Shopper
 
                         // Display the data
                         productNameLabel.Text = prodName;
-                        imageHiddenField.Value = image;
                         descriptionLabel.Text = desc;
+                        colorLabel.Text = color;
+                        sizeLabel.Text = size;
                         priceLabel.Text = price;
                         tagLabel.Text = tag;
+                        availabilityLabel.Text = availability;
                         shopNameLabel.Text = prodShopName;
+                        imageHiddenField.Value = image;
                     }
                     else
                     {
@@ -107,12 +113,38 @@ namespace mallspacium_web.Shopper
                 { "prodName", productNameLabel.Text},
                 { "prodImage", imageHiddenField.Value},
                 { "prodDesc", descriptionLabel.Text},
+                { "prodColor", colorLabel.Text},
+                { "prodSize", sizeLabel.Text },
                 { "prodPrice", priceLabel.Text},
                 { "prodTag", tagLabel.Text },
+                { "prodAvailability", availabilityLabel.Text },
                 { "prodShopName", shopNameLabel.Text}
             };
             await doc.SetAsync(data1);
             Response.Write("<script>alert('Successfully Added Shop to the Wishlist.');</script>");
+
+
+            Query query = database.Collection("Users").WhereEqualTo("shopName", shopNameLabel.Text);
+            QuerySnapshot snap = await query.GetSnapshotAsync();
+
+            // Get the first document from the query result (assuming there's only one matching document)
+            DocumentSnapshot userDoc = snap.Documents.FirstOrDefault();
+            if (userDoc != null)
+            {
+                // Retrieve the data from the document
+                string email = userDoc.GetValue<string>("email");
+
+                // Specify the name of the document using a variable or a string literal
+                string documentName = (string)Application.Get("usernameget") + " added your product " + productNameLabel.Text + " to Wishlist.";
+
+                DocumentReference notifRef = database.Collection("Users").Document(email).Collection("Notification").Document(documentName);
+
+                Dictionary<string, object> data = new Dictionary<string, object>
+                    {
+                        {"message", "Shopper " + (string)Application.Get("usernameget") + " added your product " + productNameLabel.Text + " to wishlist." }
+                    };
+                await notifRef.SetAsync(data);
+            }   
         }
     }
 }

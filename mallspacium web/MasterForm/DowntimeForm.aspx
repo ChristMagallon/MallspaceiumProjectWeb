@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="DowntimeForm.aspx.cs" Inherits="mallspacium_web.WebForm5" %>
+﻿<%@ Page Async="true" UnobtrusiveValidationMode="none" Title ="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="DowntimeForm.aspx.cs" Inherits="mallspacium_web.WebForm5" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -32,6 +32,8 @@
                             <label for="startDate" class="form-label">Start Time:</label>
                             <div class="input-group">
                                 <asp:TextBox ID="startDateTextbox" runat="server" Text="" CssClass="form-control" TextMode="DateTimeLocal" />
+                                <asp:RequiredFieldValidator ID="startDateRequiredFieldValidator" runat="server" ControlToValidate="startDateTextbox" 
+                                    ErrorMessage="*Required" CssClass="text-danger" />
                             </div>
                         </div>
 
@@ -39,6 +41,8 @@
                             <label for="endDate" class="form-label">End Date:</label>
                             <div class="input-group">
                                 <asp:TextBox ID="endDateTextbox" runat="server" Text="" CssClass="form-control" TextMode="DateTimeLocal" />
+                                <asp:RequiredFieldValidator ID="endDateRequiredFieldValidator" runat="server" ControlToValidate="endDateTextbox" 
+                                    ErrorMessage="*Required" CssClass="text-danger" />
                             </div>
                         </div>
 
@@ -46,6 +50,8 @@
                             <label for="message" class="form-label">Message:</label>
                             <div class="input-group">
                                 <asp:TextBox ID="messageTextbox" runat="server" Text="" CssClass="form-control" Height="58px" Width="364px" />
+                                <asp:RequiredFieldValidator ID="messageRequiredFieldValidator" runat="server" ControlToValidate="messageTextbox" 
+                                    ErrorMessage="*Required" CssClass="text-danger" />
                             </div>
                         </div>
 
