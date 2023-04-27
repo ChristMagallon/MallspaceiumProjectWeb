@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Google.Cloud.Firestore;
@@ -93,7 +94,7 @@ namespace mallspacium_web.MasterForm3
             }
         }
 
-        protected void shopsGridView_SelectedIndexChanged(object sender, EventArgs e)
+        protected async void shopsGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Get the index of the selected row
             int selectedIndex = shopsGridView.SelectedIndex;
@@ -101,8 +102,44 @@ namespace mallspacium_web.MasterForm3
             // Get the value of the shopName column from the DataKeys collection
             string shopName = shopsGridView.DataKeys[selectedIndex].Values["shopName"].ToString();
 
-            // Redirect to another page and pass the shopName as a query string parameter
-            Response.Redirect("~/Shopper/PopularShopDetailsPage.aspx?shopName=" + shopName);
+            // Get current date time of the account created
+            DateTime currentDate = DateTime.Now;
+            string dateVisited = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            // Use the shop name to retrieve the data from Firestore
+            Query query = database.Collection("Users").WhereEqualTo("shopName", shopName);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Get the first document from the query result (assuming there's only one matching document)
+            DocumentSnapshot userDoc = snapshot.Documents.FirstOrDefault();
+            if (userDoc != null)
+            {
+                // Iterate through the documents and populate the DataTable
+                foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
+                {
+                    string shopDescription = documentSnapshot.GetValue<string>("shopDescription");
+                    string shopImage = documentSnapshot.GetValue<string>("shopImage");
+                    string email = documentSnapshot.GetValue<string>("email");
+                    string phoneNumber = documentSnapshot.GetValue<string>("phoneNumber");
+                    string address = documentSnapshot.GetValue<string>("address");
+
+                    DocumentReference docRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("VisitedShop").Document(shopName);
+                    Dictionary<string, object> data1 = new Dictionary<string, object>()
+                    {
+                        { "shopName", shopName},
+                        { "shopDescription", shopDescription},
+                        { "shopImage", shopImage},
+                        { "email", email},
+                        { "phoneNumber", phoneNumber },
+                        { "address", address},
+                        { "dateVisited", dateVisited}
+                    };
+                    await docRef.SetAsync(data1);
+                }
+            }
+
+            Response.Redirect("PopularShopDetailsPage.aspx?shopName=" + shopName, false);
+
         }
 
         protected void searchTextBox_TextChanged(object sender, EventArgs e)
