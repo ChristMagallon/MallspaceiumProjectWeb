@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" UnobtrusiveValidationMode = "none" Async="true" CodeBehind="CheckoutSummaryPage.aspx.cs" Inherits="mallspacium_web.form.CheckoutSummaryPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Async="true" CodeBehind="CheckoutSummaryPage.aspx.cs" Inherits="mallspacium_web.form.CheckoutSummaryPage" %>
 
 <!DOCTYPE html>
 
@@ -22,18 +22,7 @@
             <asp:Image ID="Image1" runat="server" Height="50px" ImageUrl="~/Logos/gcash_logo.png" Width="100px" />
             <br />
             <br />
-            <asp:Image ID="Image2" runat="server" Height="230px" ImageUrl="~/Logos/merchant_qr_code.jpg" Width="230px" />
-            <br />
-            <br />
-            <asp:FileUpload ID="PaymentFileUpload" runat="server" />
-            <asp:RequiredFieldValidator ID="PaymentRequiredFieldValidator" runat="server" ControlToValidate="PaymentFileUpload" Display="Dynamic" ErrorMessage="Field is required *" ForeColor="Red" ValidationGroup="Validate"></asp:RequiredFieldValidator>
-            <br />
-            <br />
-            <asp:Label ID="Label9" runat="server" Text="or"></asp:Label>
-            <br />
-            <asp:Label ID="Label10" runat="server" Text="Send it through the merchant's  phone number"></asp:Label>
-            <br />
-            <asp:Label ID="MerchantPhoneNumber" runat="server" Text="+639XXXXXXXXX"></asp:Label>
+            <asp:Image ID="Image2" runat="server" Height="230px" ImageUrl="~/Logos/merchat_qr_code.jpg" Width="230px" />
             <br />
             <br />
             <asp:Label ID="Label3" runat="server" Text="Order Summary"></asp:Label>
@@ -58,7 +47,7 @@
             <br />
             <br />
             <br />
-            <asp:Button ID="ProceedButton" runat="server" class="btn btn-primary" Text="Proceed" Width="100px" OnClick="ProceedButton_Click" ValidationGroup="Validate" />
+            <asp:Button ID="ProceedButton" runat="server" class="btn btn-primary" Text="Proceed" Width="100px" OnClick="ProceedButton_Click" />
 
         </div>
     </form>

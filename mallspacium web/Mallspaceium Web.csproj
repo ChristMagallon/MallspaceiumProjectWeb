@@ -206,7 +206,7 @@
     <Content Include="Images\warning_message.jpg" />
     <Content Include="Images\wishlist.jpg" />
     <Content Include="Logos\gcash_logo.png" />
-    <Content Include="Logos\merchant_qr_code.jpg" />
+    <Content Include="Logos\merchat_qr_code.jpg" />
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
     <Content Include="MasterForm\AdvertisementPaymentApproval.aspx" />

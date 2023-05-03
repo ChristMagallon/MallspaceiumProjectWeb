@@ -27,9 +27,14 @@ namespace mallspacium_web.form
             SubscriptionData subscriptionData = (SubscriptionData)Session["SubscriptionData"];
 
             // Use the subscription data as needed
+            string subscriptionID = subscriptionData.SubscriptionID;
             string subscriptionType = subscriptionData.SubscriptionType;
             string price = subscriptionData.Price;
             string userEmail = subscriptionData.UserEmail;
+            string userRole = subscriptionData.UserRole;
+            string startDate = subscriptionData.StartDate;
+            string endDate = subscriptionData.EndDate;
+            string status = subscriptionData.Status;
 
             SubscriptionTypeLabel.Text = subscriptionType;
             SubscriptionPriceLabel.Text = price;

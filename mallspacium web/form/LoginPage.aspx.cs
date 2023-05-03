@@ -102,6 +102,7 @@ namespace mallspacium_web.form
 
         public async void getAdmin()
         {
+            Boolean choice = false;
             bool userExists = false;
 
             // Query the Firestore collection for a user with a specific email address
@@ -118,37 +119,17 @@ namespace mallspacium_web.form
                     // Do something with the user document
                     Application.Set("usernameget", EmailTextBox.Text);
                     Response.Redirect("~/MasterForm/ManageUserForm.aspx", false);
+                    choice = true;
                     userExists = true;
-                }
-            }
-            if (!userExists)
-            {
-                checkUserEmail();
-            }
-        }
-
-        public async void checkUserEmail()
-        {
-            bool userExists = false;
-
-            // Query the Firestore collection for a user with a specific email address
-            CollectionReference usersRef = db.Collection("ShopOwnerRegistrationApproval");
-            Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text).WhereEqualTo("password", PasswordTextBox.Text);
-
-            QuerySnapshot snapshot = await query.GetSnapshotAsync();
-
-            // Iterate over the results to find the user
-            foreach (DocumentSnapshot document in snapshot.Documents)
-            {
-                if (document.Exists)
-                {              
-                    userExists = true;
-                    ErrorEmailAddressLabel.Text = "Your shop owner account is still pending approval.";
-                    break;
                 }
             }
 
             if (!userExists)
+            {
+                ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
+            }
+
+            if (choice == false)
             {
                 getUserStatus();
             }
