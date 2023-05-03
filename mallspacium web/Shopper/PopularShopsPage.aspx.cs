@@ -149,17 +149,17 @@ namespace mallspacium_web.MasterForm3
 
         public async void search()
         {
-            string searchShopName = searchTextBox.Text;
+            string searchShopName = searchTextBox.Text.ToLower(); // convert search term to lowercase
 
-            if (searchTextBox.Text == "")
+            if (searchShopName == "")
             {
                 getShops();
             }
             else
             {
                 Query query = database.Collection("Users")
-                    .WhereGreaterThanOrEqualTo("shopName", searchShopName)
-                    .WhereLessThanOrEqualTo("shopName", searchShopName + "\uf8ff");
+                    .WhereGreaterThanOrEqualTo("shopName", searchTextBox.Text)
+                    .WhereLessThanOrEqualTo("shopName", searchTextBox.Text + "\uf8ff");
 
                 // Retrieve the search results
                 QuerySnapshot snapshot = await query.GetSnapshotAsync();
@@ -177,6 +177,7 @@ namespace mallspacium_web.MasterForm3
                     foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
                     {
                         string shopName = documentSnapshot.GetValue<string>("shopName");
+                        string shopNameLowercase = shopName.ToLower(); // convert field value to lowercase
                         string base64String = documentSnapshot.GetValue<string>("shopImage");
                         byte[] shopImage = Convert.FromBase64String(base64String);
                         string shopDescription = documentSnapshot.GetValue<string>("shopDescription");
