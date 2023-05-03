@@ -11,34 +11,25 @@ namespace mallspacium_web.MasterForm
 {
 
 
-    public partial class SubscriptionApproval
+    public partial class PopUpSubscriptionPaymentImage
     {
 
         /// <summary>
-        /// searchTextBox control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox searchTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// subscriptionGridView control.
+        /// MyImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView subscriptionGridView;
-
-        /// <summary>
-        /// errorMessageLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorMessageLabel;
+        protected global::System.Web.UI.WebControls.Image MyImage;
     }
 }

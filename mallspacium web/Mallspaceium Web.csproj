@@ -213,9 +213,11 @@
     <Content Include="MasterForm\ChangeAdminAccountPassword.aspx" />
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
     <Content Include="MasterForm\PopUpReportProofImage.aspx" />
+    <Content Include="MasterForm\PopUpSubscriptionPaymentImage.aspx" />
     <Content Include="MasterForm\PopUpSupportingImage.aspx" />
     <Content Include="MasterForm\ShopOwnerRegistrationApproval.aspx" />
     <Content Include="MasterForm\SubscriptionPaymentApproval.aspx" />
+    <Content Include="MasterForm\SubscriptionPaymentApprovalDetails.aspx" />
     <Content Include="ShopOwner\AboutUsPage.aspx" />
     <Content Include="ShopOwner\MyCurrentSubscriptionPage.aspx" />
     <Content Include="ShopOwner\ReportShopPage.aspx" />
@@ -386,6 +388,13 @@
     <Compile Include="MasterForm\PopUpReportProofImage.aspx.designer.cs">
       <DependentUpon>PopUpReportProofImage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterForm\PopUpSubscriptionPaymentImage.aspx.cs">
+      <DependentUpon>PopUpSubscriptionPaymentImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\PopUpSubscriptionPaymentImage.aspx.designer.cs">
+      <DependentUpon>PopUpSubscriptionPaymentImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterForm\PopUpSupportingImage.aspx.cs">
       <DependentUpon>PopUpSupportingImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -406,6 +415,13 @@
     </Compile>
     <Compile Include="MasterForm\SubscriptionPaymentApproval.aspx.designer.cs">
       <DependentUpon>SubscriptionPaymentApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm\SubscriptionPaymentApprovalDetails.aspx.cs">
+      <DependentUpon>SubscriptionPaymentApprovalDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\SubscriptionPaymentApprovalDetails.aspx.designer.cs">
+      <DependentUpon>SubscriptionPaymentApprovalDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\AboutUsPage.aspx.cs">
       <DependentUpon>AboutUsPage.aspx</DependentUpon>

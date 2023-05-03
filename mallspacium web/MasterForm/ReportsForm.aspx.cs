@@ -19,10 +19,10 @@ namespace mallspacium_web
 
             database = FirestoreDb.Create("mallspaceium");
 
-            getAdminReport("AdminReport");
+            getAdminReport();
         }
 
-        public void getAdminReport(string AdminReport)
+        public void getAdminReport()
         {
             CollectionReference usersRef = database.Collection("AdminReport");
             // Retrieve the documents from the parent collection
@@ -71,7 +71,7 @@ namespace mallspacium_web
 
             if (searchTextBox.Text == "")
             {
-                getAdminReport("AdminReport");
+                getAdminReport();
             }
             else
             {
