@@ -105,7 +105,7 @@ namespace mallspacium_web.MasterForm3
             // Redirect to another page and pass the shopName as a query string parameter
             Response.Redirect("ProductDetailsPage.aspx?prodShopName=" + prodShopName + "&prodName=" + prodName, false);
         }
-
+        
         protected void searchTextBox_TextChanged(object sender, EventArgs e)
         {
             search();
@@ -135,6 +135,8 @@ namespace mallspacium_web.MasterForm3
                 productGridViewTable.Columns.Add("prodDesc", typeof(string));
                 productGridViewTable.Columns.Add("prodTag", typeof(string));
                 productGridViewTable.Columns.Add("prodShopName", typeof(string));
+
+                bool searchResultFound = false; // flag to keep track of search results
 
                 // Iterate through the documents and populate the DataTable
                 foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
@@ -168,20 +170,26 @@ namespace mallspacium_web.MasterForm3
 
                             productGridViewTable.Rows.Add(dataRow);
                         }
-                    
+
+                        searchResultFound = true; // search result found for this document
+                    }
+                }
+
+                if (searchResultFound)
+                {
                     // Bind the DataTable to the GridView control
                     productGridView.DataSource = productGridViewTable;
                     productGridView.DataBind();
-                    }
-                    else
-                    {
-                        // Display an error message if no search results are found
-                        errorMessageLabel.Text = "No results found.";
-                        errorMessageLabel.Visible = true;
-                        productGridView.Visible = false;
-                    }
+                }
+                else
+                {
+                    // Display an error message if no search results are found
+                    errorMessageLabel.Text = "No results found.";
+                    errorMessageLabel.Visible = true;
+                    productGridView.Visible = false;
                 }
             }
         }
+
     }
 }

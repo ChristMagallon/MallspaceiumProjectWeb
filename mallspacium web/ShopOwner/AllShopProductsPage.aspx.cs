@@ -126,9 +126,10 @@ namespace mallspacium_web.ShopOwner
             }
             else
             {
+
                 CollectionReference usersRef = database.Collection("Users");
                 // Retrieve the documents from the parent collection
-                QuerySnapshot querySnapshot = usersRef.GetSnapshotAsync().Result;
+                QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
 
                 // Create a DataTable to store the retrieved data
                 DataTable allShopProductGridViewTable = new DataTable();
@@ -139,19 +140,22 @@ namespace mallspacium_web.ShopOwner
                 allShopProductGridViewTable.Columns.Add("prodTag", typeof(string));
                 allShopProductGridViewTable.Columns.Add("prodShopName", typeof(string));
 
+                bool searchResultFound = false; // flag to keep track of search results
+
                 // Iterate through the documents and populate the DataTable
                 foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
                 {
-                    Query query = database.Collection("Product")
-                    .WhereGreaterThanOrEqualTo("prodName", searchProdName)
-                    .WhereLessThanOrEqualTo("prodName", searchProdName + "\uf8ff");
+                    // Create a reference to the child collection inside the parent document
+                    Query query = documentSnapshot.Reference.Collection("Product")
+                        .WhereGreaterThanOrEqualTo("prodName", searchProdName)
+                        .WhereLessThanOrEqualTo("prodName", searchProdName + "\uf8ff");
 
-                    // Retrieve the search results
-                    QuerySnapshot snapshot = await query.GetSnapshotAsync();
+                    // Retrieve the documents from the child collection
+                    QuerySnapshot productsSnapshot = await query.GetSnapshotAsync();
 
-                    if (snapshot.Documents.Count > 0)
+                    if (productsSnapshot.Documents.Count > 0)
                     {
-                        foreach (DocumentSnapshot productDoc in snapshot.Documents)
+                        foreach (DocumentSnapshot productDoc in productsSnapshot.Documents)
                         {
                             string productName = productDoc.GetValue<string>("prodName");
                             string base64String = productDoc.GetValue<string>("prodImage");
@@ -171,17 +175,22 @@ namespace mallspacium_web.ShopOwner
                             allShopProductGridViewTable.Rows.Add(dataRow);
                         }
 
-                        // Bind the DataTable to the GridView control
-                        allShopProductGridView.DataSource = allShopProductGridViewTable;
-                        allShopProductGridView.DataBind();
+                        searchResultFound = true; // search result found for this document
                     }
-                    else
-                    {
-                        // Display an error message if no search results are found
-                        errorMessageLabel.Text = "No results found.";
-                        errorMessageLabel.Visible = true;
-                        allShopProductGridView.Visible = false;
-                    }
+                }
+
+                if (searchResultFound)
+                {
+                    // Bind the DataTable to the GridView control
+                    allShopProductGridView.DataSource = allShopProductGridViewTable;
+                    allShopProductGridView.DataBind();
+                }
+                else
+                {
+                    // Display an error message if no search results are found
+                    errorMessageLabel.Text = "No results found.";
+                    errorMessageLabel.Visible = true;
+                    allShopProductGridView.Visible = false;
                 }
             }
         }

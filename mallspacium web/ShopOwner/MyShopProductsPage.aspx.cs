@@ -117,44 +117,63 @@ namespace mallspacium_web.MasterForm2
             }
             else
             {
-                Query query = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Product")
-                    .WhereGreaterThanOrEqualTo("prodName", searchProdName)
-                    .WhereLessThanOrEqualTo("prodName", searchProdName + "\uf8ff");
 
-                // Retrieve the search results
-                QuerySnapshot snapshot = await query.GetSnapshotAsync();
+                CollectionReference usersRef = database.Collection("Users");
+                // Retrieve the documents from the parent collection
+                QuerySnapshot querySnapshot = await usersRef.GetSnapshotAsync();
 
-                if (snapshot.Documents.Count > 0)
+                // Create a DataTable to store the retrieved data
+                DataTable ownShopProductGridViewTable = new DataTable();
+
+                ownShopProductGridViewTable.Columns.Add("prodName", typeof(string));
+                ownShopProductGridViewTable.Columns.Add("prodImage", typeof(byte[]));
+                ownShopProductGridViewTable.Columns.Add("prodDesc", typeof(string));
+                ownShopProductGridViewTable.Columns.Add("prodTag", typeof(string));
+                ownShopProductGridViewTable.Columns.Add("prodShopName", typeof(string));
+
+                bool searchResultFound = false; // flag to keep track of search results
+
+                // Iterate through the documents and populate the DataTable
+                foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
                 {
-                    // Create a DataTable to store the retrieved data
-                    DataTable ownProductsGridViewTable = new DataTable();
+                    // Create a reference to the child collection inside the parent document
+                    Query query = documentSnapshot.Reference.Collection("Product")
+                        .WhereGreaterThanOrEqualTo("prodName", searchProdName)
+                        .WhereLessThanOrEqualTo("prodName", searchProdName + "\uf8ff");
 
-                    ownProductsGridViewTable.Columns.Add("prodName", typeof(string));
-                    ownProductsGridViewTable.Columns.Add("prodImage", typeof(byte[]));
-                    ownProductsGridViewTable.Columns.Add("prodDesc", typeof(string));
-                    ownProductsGridViewTable.Columns.Add("prodTag", typeof(string));
+                    // Retrieve the documents from the child collection
+                    QuerySnapshot productsSnapshot = await query.GetSnapshotAsync();
 
-                    // Iterate through the documents and populate the DataTable
-                    foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
+                    if (productsSnapshot.Documents.Count > 0)
                     {
+                        foreach (DocumentSnapshot productDoc in productsSnapshot.Documents)
+                        {
+                            string productName = productDoc.GetValue<string>("prodName");
+                            string base64String = productDoc.GetValue<string>("prodImage");
+                            byte[] productImage = Convert.FromBase64String(base64String);
+                            string productDescription = productDoc.GetValue<string>("prodDesc");
+                            string productTag = productDoc.GetValue<string>("prodTag");
+                            string productShopName = productDoc.GetValue<string>("prodShopName");
 
-                        string productName = documentSnapshot.GetValue<string>("prodName");
-                        string base64String = documentSnapshot.GetValue<string>("prodImage");
-                        byte[] productImage = Convert.FromBase64String(base64String);
-                        string productDescription = documentSnapshot.GetValue<string>("prodDesc");
-                        string productTag = documentSnapshot.GetValue<string>("prodTag");
+                            DataRow dataRow = ownShopProductGridViewTable.NewRow();
 
-                        DataRow dataRow = ownProductsGridViewTable.NewRow();
+                            dataRow["prodName"] = productName;
+                            dataRow["prodImage"] = productImage;
+                            dataRow["prodDesc"] = productDescription;
+                            dataRow["prodTag"] = productTag;
+                            dataRow["prodShopName"] = productShopName;
 
-                        dataRow["prodName"] = productName;
-                        dataRow["prodImage"] = productImage;
-                        dataRow["prodDesc"] = productDescription;
-                        dataRow["prodTag"] = productTag;
+                            ownShopProductGridViewTable.Rows.Add(dataRow);
+                        }
 
-                        ownProductsGridViewTable.Rows.Add(dataRow);
+                        searchResultFound = true; // search result found for this document
                     }
+                }
+
+                if (searchResultFound)
+                {
                     // Bind the DataTable to the GridView control
-                    ownShopProductGridView.DataSource = ownProductsGridViewTable;
+                    ownShopProductGridView.DataSource = ownShopProductGridViewTable;
                     ownShopProductGridView.DataBind();
                 }
                 else

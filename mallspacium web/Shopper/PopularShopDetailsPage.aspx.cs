@@ -311,7 +311,7 @@ namespace mallspacium_web.Shopper
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
                 { "shopName", nameLabel.Text},
-                { "image", imageHiddenField.Value},
+                { "shopImage", imageHiddenField.Value},
                 { "shopDescription", descriptionLabel.Text},
                 { "email", emailLabel.Text},
                 { "phoneNumber", phoneNumberLabel.Text },
