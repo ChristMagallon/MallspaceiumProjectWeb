@@ -206,7 +206,7 @@
     <Content Include="Images\warning_message.jpg" />
     <Content Include="Images\wishlist.jpg" />
     <Content Include="Logos\gcash_logo.png" />
-    <Content Include="Logos\merchat_qr_code.jpg" />
+    <Content Include="Logos\merchant_qr_code.jpg" />
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
     <Content Include="MasterForm\AdvertisementPaymentApproval.aspx" />
@@ -219,6 +219,7 @@
     <Content Include="MasterForm\SubscriptionPaymentApproval.aspx" />
     <Content Include="MasterForm\SubscriptionPaymentApprovalDetails.aspx" />
     <Content Include="ShopOwner\AboutUsPage.aspx" />
+    <Content Include="ShopOwner\AdvertiseProductPaymentSummary.aspx" />
     <Content Include="ShopOwner\MyCurrentSubscriptionPage.aspx" />
     <Content Include="ShopOwner\ReportShopPage.aspx" />
     <Content Include="MasterForm\ReportDetailsForm.aspx" />
@@ -274,6 +275,7 @@
   <ItemGroup>
     <Compile Include="class\Activity.cs" />
     <Compile Include="class\AdminAccount.cs" />
+    <Compile Include="class\AdvertiseProductData.cs" />
     <Compile Include="class\BannedUsers.cs" />
     <Compile Include="class\ManageSubscription.cs" />
     <Compile Include="class\Product.cs" />
@@ -429,6 +431,13 @@
     </Compile>
     <Compile Include="ShopOwner\AboutUsPage.aspx.designer.cs">
       <DependentUpon>AboutUsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShopOwner\AdvertiseProductPaymentSummary.aspx.cs">
+      <DependentUpon>AdvertiseProductPaymentSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShopOwner\AdvertiseProductPaymentSummary.aspx.designer.cs">
+      <DependentUpon>AdvertiseProductPaymentSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopOwner\MyCurrentSubscriptionPage.aspx.cs">
       <DependentUpon>MyCurrentSubscriptionPage.aspx</DependentUpon>

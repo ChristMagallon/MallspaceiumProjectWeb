@@ -20,6 +20,8 @@ namespace mallspacium_web.form
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             db = FirestoreDb.Create("mallspaceium");
+
+            ErrorEmailAddressLabel.Text = "";
         }
 
         protected void SignupButton_Click(object sender, EventArgs e)
@@ -102,7 +104,6 @@ namespace mallspacium_web.form
 
         public async void getAdmin()
         {
-            Boolean choice = false;
             bool userExists = false;
 
             // Query the Firestore collection for a user with a specific email address
@@ -119,17 +120,37 @@ namespace mallspacium_web.form
                     // Do something with the user document
                     Application.Set("usernameget", EmailTextBox.Text);
                     Response.Redirect("~/MasterForm/ManageUserForm.aspx", false);
-                    choice = true;
                     userExists = true;
+                    break;
                 }
             }
-
             if (!userExists)
             {
-                ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
+                checkUserEmail();
             }
+        }
 
-            if (choice == false)
+        public async void checkUserEmail()
+        {
+            bool userExists = false;
+
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = db.Collection("ShopOwnerRegistrationApproval");
+            Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text);
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Iterate over the results to find the user
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (document.Exists)
+                {
+                    // Do something with the user document
+                    Response.Write("<script>alert('Your show owner account is pending approval! Please wait for a while.');</script>");
+                    userExists = true;
+                    break;
+                }
+            }
+            if (!userExists)
             {
                 getUserStatus();
             }
@@ -138,7 +159,8 @@ namespace mallspacium_web.form
         // Get the user status wether the account is banned or not
         public async void getUserStatus()
         {
-            Boolean choice = false;
+            bool userExists = false;
+
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("AdminBannedUsers");
             Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text);
@@ -151,10 +173,11 @@ namespace mallspacium_web.form
                 {
                     // Do something with the user document
                     Response.Write("<script>alert('Your account is banned! Please contact administrator');</script>");
-                    choice = true;
+                    userExists = true;
+                    break;
                 }
             }
-            if (choice == false)
+            if (!userExists)
             {
                 getLoginDetails();
             }

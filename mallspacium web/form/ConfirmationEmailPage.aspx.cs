@@ -29,7 +29,7 @@ namespace mallspacium_web.form
         private async void getUserDetails()
         {
             // Query the Firestore collection for a user with a specific email address
-            CollectionReference usersRef = db.Collection("Users");
+            CollectionReference usersRef = db.Collection("ShopOwnerRegistrationApproval");
             Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text);
             QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
@@ -37,10 +37,25 @@ namespace mallspacium_web.form
             if (snapshot.Count == 0)
             {
                 ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
+
+                // Query the Firestore collection for a user with a specific email address
+                CollectionReference usersRef2 = db.Collection("Users");
+                Query query2 = usersRef.WhereEqualTo("email", EmailTextBox.Text);
+                QuerySnapshot snapshot2 = await query2.GetSnapshotAsync();
+
+                // Check if the snapshot is empty
+                if (snapshot2.Count == 0)
+                {
+                    ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
+                }
+                else
+                {
+                    verifyEmail();
+                }
             }
             else
             {
-                verifyEmail();
+                verifyShopOwnerEmail();
             }
         }
 
@@ -49,6 +64,36 @@ namespace mallspacium_web.form
         {
             // Define the document reference and field name
             DocumentReference docRef = db.Collection("Users").Document(EmailTextBox.Text);
+            string confirmationCode = "confirmationCode";
+            // Get the field value from Firestore
+            DocumentSnapshot docSnapshot = await docRef.GetSnapshotAsync();
+            string fieldValue = docSnapshot.GetValue<string>(confirmationCode);
+            // Store the field value in a local variable
+            string localConfirmCode = fieldValue;
+
+            if (ConfirmationCodeTextBox.Text != localConfirmCode)
+            {
+                ErrorConfirmationCodeLabel.Text = "Provided confirmation code is invalid!";
+            }
+            else
+            {
+                // Update the Users verification status in Firestore
+                Dictionary<string, object> updates = new Dictionary<string, object>
+                {
+                    { "confirmationCode", FieldValue.Delete },
+                    { "verified", true }
+                };
+                await docRef.UpdateAsync(updates);
+
+                string loginPageUrl = ResolveUrl("~/form/LoginPage.aspx");
+                Response.Write("<script>alert('Your account is successfully verified! Please login to access your account!'); window.location='" + loginPageUrl + "';</script>");
+            }
+        }
+
+        public async void verifyShopOwnerEmail()
+        {
+            // Define the document reference and field name
+            DocumentReference docRef = db.Collection("ShopOwnerRegistrationApproval").Document(EmailTextBox.Text);
             string confirmationCode = "confirmationCode";
             // Get the field value from Firestore
             DocumentSnapshot docSnapshot = await docRef.GetSnapshotAsync();

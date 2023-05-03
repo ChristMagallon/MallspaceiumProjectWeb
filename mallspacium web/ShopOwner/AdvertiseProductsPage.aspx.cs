@@ -202,7 +202,7 @@ namespace mallspacium_web.MasterForm2
             //auto generated unique id
             Random random = new Random();
             int randomIDNumber = random.Next(100000, 999999);
-            string advertisemenyID = "ADS" + randomIDNumber.ToString();
+            string advertisemetID = "ADS" + randomIDNumber.ToString();
 
             //Get current date time and the expected expiration date
             DateTime currentDate = DateTime.Now;
@@ -217,33 +217,51 @@ namespace mallspacium_web.MasterForm2
             //Convert the Bitmap image to a Base64 string
             string base64String = Convert.ToBase64String(bytes);
 
-            DocumentReference doc = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Advertisement").Document(advertisemenyID);
-            Dictionary<string, object> data1 = new Dictionary<string, object>()
-            {
-                { "adsProdId", advertisemenyID},
-                { "adsProdName", ProductNameTextbox.Text},
-                { "adsProdImage", base64String},
-                { "adsProdDesc", DescriptionTextbox.Text},
-                { "adsProdShopName", shopNameTextbox.Text},
-                { "adsProdDate", date }
-            };
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = database.Collection("Users");
+            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
 
-            if (ProductNameRequiredFieldValidator.IsValid && imageFileUploadValidator.IsValid && DescriptionTextboxValidator.IsValid)
-            {
-                await doc.SetAsync(data1);
-                /*Response.Write("<script>alert('Successfully Added a Advertisement Product.');</script>");*/
+            // Retrieve the document data asynchronously
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
 
-                // Display a message
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Added a Advertisement Product!');", true);
-
-                // Redirect to another page after a delay
-                string url = "AdvertiseProductsPage.aspx";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
-            }
-            else
+            // Check if the document exists
+            if (snapshot.Exists)
             {
-                Response.Write("<script>alert('Error Adding a Advertisment Product!');</script>");
-            }
+                // Get the data as a Dictionary
+                Dictionary<string, object> data = snapshot.ToDictionary();
+                // Access the specific field you want
+                string userEmail = data["email"].ToString();
+                string firstName = data["firstName"].ToString();
+                string lastName = data["lastName"].ToString();
+                string userRole = data["userRole"].ToString();
+
+                // Do something with the field value
+
+                AdvertiseProductData advertiseProductData = new AdvertiseProductData
+                {
+                    AdsProductID = advertisemetID,
+                    AdsProductName = ProductNameTextbox.Text,
+                    AdsProductImage = base64String,
+                    AdsProductDesc = DescriptionTextbox.Text,
+                    AdsProductShopName = shopNameTextbox.Text,
+                    AdsProductDate = date,
+                    UserEmail = userEmail,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    UserRole = userRole
+                };
+
+                if (ProductNameRequiredFieldValidator.IsValid && imageFileUploadValidator.IsValid && DescriptionTextboxValidator.IsValid)
+                {
+                    // Store the subscription data in a session variable
+                    Session["AdvertiseProductData"] = advertiseProductData;
+                    Response.Redirect("~/ShopOwner/AdvertiseProductPaymentSummary.aspx", false);
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error Adding a Advertisment Product!');</script>");
+                }
+            } 
         }
 
         public async void getShopName()

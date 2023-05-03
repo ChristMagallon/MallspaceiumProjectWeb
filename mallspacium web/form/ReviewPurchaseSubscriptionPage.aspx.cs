@@ -27,14 +27,9 @@ namespace mallspacium_web.form
             SubscriptionData subscriptionData = (SubscriptionData)Session["SubscriptionData"];
 
             // Use the subscription data as needed
-            string subscriptionID = subscriptionData.SubscriptionID;
             string subscriptionType = subscriptionData.SubscriptionType;
             string price = subscriptionData.Price;
             string userEmail = subscriptionData.UserEmail;
-            string userRole = subscriptionData.UserRole;
-            string startDate = subscriptionData.StartDate;
-            string endDate = subscriptionData.EndDate;
-            string status = subscriptionData.Status;
 
             SubscriptionTypeLabel.Text = subscriptionType;
             SubscriptionPriceLabel.Text = price;
@@ -43,6 +38,14 @@ namespace mallspacium_web.form
 
         protected void PurchaseButton_Click(object sender, EventArgs e)
         {
+            if (!AgreementTermsCheckBox.Checked)
+            {
+                // Display an error message
+                Response.Write("<script>alert('Please agree to the terms and conditions.');</script>");
+                return;
+            }
+
+            // Checkbox is checked, proceed the next webform
             Response.Redirect("~/form/CheckoutSummaryPage.aspx", false);
         }
     }
