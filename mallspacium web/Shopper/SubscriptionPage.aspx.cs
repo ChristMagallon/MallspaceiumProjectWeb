@@ -41,8 +41,6 @@ namespace mallspacium_web.Shopper
 
         public async void basicSubscription()
         {
-            String status = "Active";
-
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
             DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
@@ -56,32 +54,20 @@ namespace mallspacium_web.Shopper
                 // Get the data as a Dictionary
                 Dictionary<string, object> data = snapshot.ToDictionary();
                 // Access the specific field you want
-                string userEmail = data["email"].ToString();
+                string userEmail = data["email"].ToString();        
+                string firstName = data["firstName"].ToString();
+                string lastName = data["lastName"].ToString();
                 string userRole = data["userRole"].ToString();
 
                 // Do something with the field value
-
-                // Generate random ID number
-                Random random = new Random();
-                int randomIDNumber = random.Next(100000, 999999);
-                string subscriptionID = "SUB" + randomIDNumber.ToString();
-
-                // Get current date time and the expected expiration date
-                DateTime currentDate = DateTime.UtcNow;
-                DateTime expirationDate = currentDate.AddMonths(1);
-                string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
-                string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
-
                 SubscriptionData subscriptionData = new SubscriptionData
                 {
-                    SubscriptionID = subscriptionID,
                     SubscriptionType = BasicSubscriptionLabel.Text.ToString(),
                     Price = BasicSubPriceLabel.Text.ToString(),
                     UserEmail = userEmail,
-                    UserRole = userRole,
-                    StartDate = startDate,
-                    EndDate = endDate,
-                    Status = status
+                    FirstName = firstName,
+                    LastName = lastName,
+                    UserRole = userRole
                 };
 
                 // Store the subscription data in a session variable
@@ -92,8 +78,6 @@ namespace mallspacium_web.Shopper
 
         public async void advancedSubscription()
         {
-            String status = "Active";
-
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
             DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
@@ -108,31 +92,19 @@ namespace mallspacium_web.Shopper
                 Dictionary<string, object> data = snapshot.ToDictionary();
                 // Access the specific field you want
                 string userEmail = data["email"].ToString();
+                string firstName = data["firstName"].ToString();
+                string lastName = data["lastName"].ToString();
                 string userRole = data["userRole"].ToString();
 
                 // Do something with the field value
-
-                // Generate random ID number
-                Random random = new Random();
-                int randomIDNumber = random.Next(100000, 999999);
-                string subscriptionID = "SUB" + randomIDNumber.ToString();
-
-                // Get current date time and the expected expiration date
-                DateTime currentDate = DateTime.UtcNow;
-                DateTime expirationDate = currentDate.AddMonths(3);
-                string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
-                string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
-
                 SubscriptionData subscriptionData = new SubscriptionData
                 {
-                    SubscriptionID = subscriptionID,
                     SubscriptionType = AdvancedSubscriptionLabel.Text.ToString(),
                     Price = AdvancedSubPriceLabel.Text.ToString(),
                     UserEmail = userEmail,
-                    UserRole = userRole,
-                    StartDate = startDate,
-                    EndDate = endDate,
-                    Status = status
+                    FirstName = firstName,
+                    LastName = lastName,
+                    UserRole = userRole
                 };
 
                 // Store the subscription data in a session variable
@@ -143,8 +115,6 @@ namespace mallspacium_web.Shopper
 
         public async void premiumSubscription()
         {
-            String status = "Active";
-
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
             DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
@@ -159,31 +129,19 @@ namespace mallspacium_web.Shopper
                 Dictionary<string, object> data = snapshot.ToDictionary();
                 // Access the specific field you want
                 string userEmail = data["email"].ToString();
+                string firstName = data["firstName"].ToString();
+                string lastName = data["lastName"].ToString();
                 string userRole = data["userRole"].ToString();
 
                 // Do something with the field value
-
-                // Generate random ID number
-                Random random = new Random();
-                int randomIDNumber = random.Next(100000, 999999);
-                string subscriptionID = "SUB" + randomIDNumber.ToString();
-
-                // Get current date time and the expected expiration date
-                DateTime currentDate = DateTime.UtcNow;
-                DateTime expirationDate = currentDate.AddMonths(5);
-                string startDate = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
-                string endDate = expirationDate.ToString("yyyy-MM-dd HH:mm:ss");
-
                 SubscriptionData subscriptionData = new SubscriptionData
                 {
-                    SubscriptionID = subscriptionID,
                     SubscriptionType = PremiumSubscriptionLabel.Text.ToString(),
                     Price = PremiumSubPriceLabel.Text.ToString(),
                     UserEmail = userEmail,
-                    UserRole = userRole,
-                    StartDate = startDate,
-                    EndDate = endDate,
-                    Status = status
+                    FirstName = firstName,
+                    LastName = lastName,
+                    UserRole = userRole
                 };
 
                 // Store the subscription data in a session variable

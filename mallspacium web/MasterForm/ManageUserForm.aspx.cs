@@ -44,6 +44,22 @@ namespace mallspacium_web
             }
         }
 
+        /*protected void ConsumerGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow viewRow = ConsumerGridView.SelectedRow;
+            Response.Redirect("ConsumerInformationForm.aspx?user_Lastname=" + viewRow.Cells[0].Text + "&user_Firstname=" + viewRow.Cells[1].Text +
+                "&user_Email=" + viewRow.Cells[2].Text + "&user_name=" + viewRow.Cells[3].Text, false);
+        }
+
+        protected void ConsumerGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onClick"] = Page.ClientScript.GetPostBackClientHyperlink(ConsumerGridView, "SELECT$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to see user information";
+            }
+        }*/
+
         public async void getManageUsers(string Users)
         {
             DataTable usersGridViewTable = new DataTable();

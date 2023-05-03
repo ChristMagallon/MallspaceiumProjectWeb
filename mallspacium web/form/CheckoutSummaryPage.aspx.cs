@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,6 +21,9 @@ namespace mallspacium_web.form
 
             db = FirestoreDb.Create("mallspaceium");
 
+            string merchantPhoneNumber = ConfigurationManager.AppSettings["MerchantPhone"];
+            MerchantPhoneNumber.Text = merchantPhoneNumber;
+
             retrieveSubscriptionData();
         }
 
@@ -32,29 +38,10 @@ namespace mallspacium_web.form
             SubscriptionData subscriptionData = (SubscriptionData)Session["SubscriptionData"];
 
             // Use the subscription data as needed
-            string subscriptionID = subscriptionData.SubscriptionID;
-            string subscriptionType = subscriptionData.SubscriptionType;
             string price = subscriptionData.Price;
-            string userEmail = subscriptionData.UserEmail;
-            string userRole = subscriptionData.UserRole;
-            string startDate = subscriptionData.StartDate;
-            string endDate = subscriptionData.EndDate;
-            string status = subscriptionData.Status;
 
             SubscriptionPriceLabel.Text = price;
             TotalPayLabel.Text = price;
-
-
-            // Get the current date and time
-            DateTime now = DateTime.UtcNow;
-
-            // Generate a random number between 1000 and 9999
-            Random random = new Random();
-            int randomNumber = random.Next(1000, 10000);
-
-            // Combine the date and random number to create the transaction number
-            string transactionNumber = string.Format("{0:yyyyMMddHHmmss}{1}", now, randomNumber);
-            TransactionNoLabel.Text = transactionNumber;
         }
 
         private async void purchaseSubscription()
@@ -63,14 +50,12 @@ namespace mallspacium_web.form
             SubscriptionData subscriptionData = (SubscriptionData)Session["SubscriptionData"];
 
             // Use the subscription data as needed
-            string subscriptionID = subscriptionData.SubscriptionID;
             string subscriptionType = subscriptionData.SubscriptionType;
             string price = subscriptionData.Price;
-            string userEmail = subscriptionData.UserEmail;
+            string userEmail = subscriptionData.UserEmail;        
+            string firstName = subscriptionData.FirstName;
+            string lastName = subscriptionData.LastName;
             string userRole = subscriptionData.UserRole;
-            string startDate = subscriptionData.StartDate;
-            string endDate = subscriptionData.EndDate;
-            string status = subscriptionData.Status;
 
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
@@ -79,50 +64,48 @@ namespace mallspacium_web.form
             // Retrieve the document data asynchronously
             DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
 
-            // Check if the document exists
-            if (snapshot.Exists)
-            {
-                // Create a new collection reference
-                DocumentReference documentRef = db.Collection("AdminManageSubscription").Document(userEmail);
+            // Generate random ID number
+            Random random = new Random();
+            int randomIDNumber = random.Next(100000, 1000000);
+            string subscriptionID = "SUB" + randomIDNumber.ToString();
 
-                // Check if the document exists
-                DocumentSnapshot documentSnapshot = await documentRef.GetSnapshotAsync();
-                if (documentSnapshot.Exists)
-                {
-                    // Document exists, update the fields
-                    Dictionary<string, object> dataUpdate = new Dictionary<string, object>
+            // Generate transaction number by get the current date and time
+            DateTime now = DateTime.UtcNow;
+            // Generate a random number between 1000 and 9999
+            int randomNumber = random.Next(1000, 10000);
+            // Combine the date and random number to create the transaction number
+            string transactionID = string.Format("{0:yyyyMMddHHmmss}{1}", now, randomNumber);
+
+            // Create a new collection reference
+            DocumentReference documentRef = db.Collection("SubscriptionPaymentApproval").Document(userEmail);
+
+            if (PaymentFileUpload.HasFile)
+            {
+                //Create an instance of Bitmap from the uploaded file using the FileUpload control
+                Bitmap image = new Bitmap(PaymentFileUpload.PostedFile.InputStream);
+                MemoryStream stream = new MemoryStream();
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] bytes = stream.ToArray();
+
+                //Convert the Bitmap image to a Base64 string
+                string base64String = Convert.ToBase64String(bytes);
+
+                // Set the data for the new document
+                Dictionary<string, object> data = new Dictionary<string, object>
                     {
-                        {"subscriptionType", subscriptionType},
-                        {"price", price},
-                        {"startDate", startDate},
-                        {"endDate", endDate},
-                        {"status", status}
+                        { "transactionID", transactionID},
+                        { "subscriptionID", subscriptionID},
+                        { "subscriptionType", subscriptionType},
+                        { "price", price},
+                        { "paymentFile", base64String},
+                        { "userEmail", userEmail},
+                        { "firstName", firstName},
+                        { "lastName", lastName},
+                        { "userRole", userRole}
                     };
 
-                    // Update the data in the Firestore document
-                    await documentRef.UpdateAsync(dataUpdate);
-                }
-                else
-                {
-                    // Document does not exist, create a new document and set the data
-                    Dictionary<string, object> dataInsert = new Dictionary<string, object>
-                    {
-                        {"subscriptionID", subscriptionID},
-                        {"subscriptionType", subscriptionType},
-                        {"price", price},
-                        {"userEmail", userEmail},
-                        {"userRole", userRole},
-                        {"startDate", startDate},
-                        {"endDate", endDate},
-                        {"status", status}
-                    };
-                    // Set the data in the Firestore document
-                    await documentRef.SetAsync(dataInsert);
-                }
-            }
-            else
-            {
-                // Document does not exist
+                // Set the data in the Firestore document
+                await documentRef.SetAsync(data);
             }
 
             // Redirect back to subscription page

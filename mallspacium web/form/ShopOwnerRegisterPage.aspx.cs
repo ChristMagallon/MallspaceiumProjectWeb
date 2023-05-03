@@ -119,7 +119,7 @@ namespace mallspacium_web.form
             string confirmationCode = GenerateCode();
 
             // Create a new collection reference
-            DocumentReference documentRef = db.Collection("Users").Document(email);
+            DocumentReference documentRef = db.Collection("ShopOwnerRegistrationApproval").Document(email);
 
             if (ImageFileUpload.HasFile)
             {
@@ -151,6 +151,7 @@ namespace mallspacium_web.form
                     {"userRole", userRole},
                     {"dateCreated", dateCreated },
                     {"certifiedShopOwner", false },
+                    {"confirmationCode", confirmationCode },
                     {"verified", false}
                 };
 
