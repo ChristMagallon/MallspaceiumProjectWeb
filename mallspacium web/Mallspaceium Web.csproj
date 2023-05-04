@@ -215,9 +215,11 @@
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
     <Content Include="MasterForm\PopUpAdvetisementPaymentImage.aspx" />
     <Content Include="MasterForm\PopUpReportProofImage.aspx" />
+    <Content Include="MasterForm\PopUpShopOwnerPermitImage.aspx" />
     <Content Include="MasterForm\PopUpSubscriptionPaymentImage.aspx" />
     <Content Include="MasterForm\PopUpSupportingImage.aspx" />
     <Content Include="MasterForm\ShopOwnerRegistrationApproval.aspx" />
+    <Content Include="MasterForm\ShopOwnerRegistrationApprovalDetails.aspx" />
     <Content Include="MasterForm\SubscriptionPaymentApproval.aspx" />
     <Content Include="MasterForm\SubscriptionPaymentApprovalDetails.aspx" />
     <Content Include="ShopOwner\AboutUsPage.aspx" />
@@ -406,6 +408,13 @@
     <Compile Include="MasterForm\PopUpReportProofImage.aspx.designer.cs">
       <DependentUpon>PopUpReportProofImage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterForm\PopUpShopOwnerPermitImage.aspx.cs">
+      <DependentUpon>PopUpShopOwnerPermitImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\PopUpShopOwnerPermitImage.aspx.designer.cs">
+      <DependentUpon>PopUpShopOwnerPermitImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterForm\PopUpSubscriptionPaymentImage.aspx.cs">
       <DependentUpon>PopUpSubscriptionPaymentImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -426,6 +435,13 @@
     </Compile>
     <Compile Include="MasterForm\ShopOwnerRegistrationApproval.aspx.designer.cs">
       <DependentUpon>ShopOwnerRegistrationApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm\ShopOwnerRegistrationApprovalDetails.aspx.cs">
+      <DependentUpon>ShopOwnerRegistrationApprovalDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\ShopOwnerRegistrationApprovalDetails.aspx.designer.cs">
+      <DependentUpon>ShopOwnerRegistrationApprovalDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterForm\SubscriptionPaymentApproval.aspx.cs">
       <DependentUpon>SubscriptionPaymentApproval.aspx</DependentUpon>

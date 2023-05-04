@@ -81,12 +81,12 @@ namespace mallspacium_web.MasterForm
                 if (snapshot.Documents.Count > 0)
                 {
                     // Create a DataTable to store the retrieved data
-                    DataTable subscriptionGridViewTable = new DataTable();
+                    DataTable advertisementGridViewTable = new DataTable();
 
-                    subscriptionGridViewTable.Columns.Add("transactionID", typeof(string));
-                    subscriptionGridViewTable.Columns.Add("userEmail", typeof(string));
-                    subscriptionGridViewTable.Columns.Add("advertisementID", typeof(string));
-                    subscriptionGridViewTable.Columns.Add("price", typeof(string));
+                    advertisementGridViewTable.Columns.Add("transactionID", typeof(string));
+                    advertisementGridViewTable.Columns.Add("userEmail", typeof(string));
+                    advertisementGridViewTable.Columns.Add("advertisementID", typeof(string));
+                    advertisementGridViewTable.Columns.Add("price", typeof(string));
 
                     // Iterate through the documents and populate the DataTable
                     foreach (DocumentSnapshot docsnap in snapshot.Documents)
@@ -96,16 +96,16 @@ namespace mallspacium_web.MasterForm
                         string type = docsnap.GetValue<string>("advertisementID");
                         string price = docsnap.GetValue<string>("price");
 
-                        DataRow dataRow = subscriptionGridViewTable.NewRow();
+                        DataRow dataRow = advertisementGridViewTable.NewRow();
 
                         dataRow["transactionID"] = id;
                         dataRow["userEmail"] = email;
                         dataRow["advertisementID"] = type;
                         dataRow["price"] = price;
 
-                        subscriptionGridViewTable.Rows.Add(dataRow);
+                        advertisementGridViewTable.Rows.Add(dataRow);
                     }
-                    advertisementGridView.DataSource = subscriptionGridViewTable;
+                    advertisementGridView.DataSource = advertisementGridViewTable;
                     advertisementGridView.DataBind();
                 }
                 else

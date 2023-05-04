@@ -141,7 +141,7 @@ namespace mallspacium_web.form
                     {"shopImage", shopImage},
                     {"shopName", ShopNameTextBox.Text},
                     {"shopDescription", ti.ToTitleCase(ShopDescriptionTextBox.Text)},
-                    {"imageFile", base64String},
+                    {"permitImage", base64String},
                     {"email", EmailTextBox.Text},
                     {"phoneNumber", PhoneNumberTextBox.Text},
                     {"address", ti.ToTitleCase(AddressTextBox.Text)},
