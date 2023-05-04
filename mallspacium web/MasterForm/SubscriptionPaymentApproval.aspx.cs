@@ -133,7 +133,7 @@ namespace mallspacium_web.MasterForm
             string userEmail = subscriptionGridView.DataKeys[selectedIndex].Values["userEmail"].ToString();
 
             // Redirect to another page and pass the shopName as a query string parameter
-            Response.Redirect("SubscriptionPaymentApprovalDetails.aspx?userEmail=" + userEmail);
+            Response.Redirect("SubscriptionPaymentApprovalDetails.aspx?userEmail=" + userEmail, false);
         }
 
         protected void subscriptionGridView_RowDataBound(object sender, GridViewRowEventArgs e)

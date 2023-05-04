@@ -124,7 +124,7 @@ namespace mallspacium_web.ShopOwner
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Please wait for a moment, we are validating your request.');", true);
 
                 // Redirect to another page after a delay
-                string url = "AdvertiseProductsPage.aspx";
+                string url = "~/ShopOwner/AdvertiseProductsPage.aspx";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "redirectScript", "setTimeout(function(){ window.location.href = '" + url + "'; }, 500);", true);
             }
         }
