@@ -127,7 +127,7 @@ namespace mallspacium_web.MasterForm
             string userEmail = advertisementGridView.DataKeys[selectedIndex].Values["userEmail"].ToString();
 
             // Redirect to another page and pass the shopName as a query string parameter
-            Response.Redirect("AdvertisementPaymentApprovalDetails.aspx?userEmail=" + userEmail);
+            Response.Redirect("AdvertisementPaymentApprovalDetails.aspx?userEmail=" + userEmail, false);
         }
 
         protected void advertisementGridView_RowDataBound(object sender, GridViewRowEventArgs e)

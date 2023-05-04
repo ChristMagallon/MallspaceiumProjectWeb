@@ -126,7 +126,7 @@ namespace mallspacium_web.MasterForm
             string email = shopOwnerRegistrationGridView.DataKeys[selectedIndex].Values["email"].ToString();
 
             // Redirect to another page and pass the shopName as a query string parameter
-            Response.Redirect("ShopOwnerRegistrationApprovalDetails.aspx?email=" + email);
+            Response.Redirect("ShopOwnerRegistrationApprovalDetails.aspx?email=" + email, false);
         }
 
         protected void shopOwnerRegistrationGridView_RowDataBound(object sender, GridViewRowEventArgs e)
