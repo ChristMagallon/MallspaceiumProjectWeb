@@ -210,8 +210,10 @@
     <Content Include="MasterForm\AccountDetailsForm.aspx" />
     <Content Include="MasterForm\AdminAccountForm.aspx" />
     <Content Include="MasterForm\AdvertisementPaymentApproval.aspx" />
+    <Content Include="MasterForm\AdvertisementPaymentApprovalDetails.aspx" />
     <Content Include="MasterForm\ChangeAdminAccountPassword.aspx" />
     <Content Include="MasterForm\CreateAdminAccountForm.aspx" />
+    <Content Include="MasterForm\PopUpAdvetisementPaymentImage.aspx" />
     <Content Include="MasterForm\PopUpReportProofImage.aspx" />
     <Content Include="MasterForm\PopUpSubscriptionPaymentImage.aspx" />
     <Content Include="MasterForm\PopUpSupportingImage.aspx" />
@@ -369,6 +371,13 @@
     <Compile Include="MasterForm\AdvertisementPaymentApproval.aspx.designer.cs">
       <DependentUpon>AdvertisementPaymentApproval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterForm\AdvertisementPaymentApprovalDetails.aspx.cs">
+      <DependentUpon>AdvertisementPaymentApprovalDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\AdvertisementPaymentApprovalDetails.aspx.designer.cs">
+      <DependentUpon>AdvertisementPaymentApprovalDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterForm\ChangeAdminAccountPassword.aspx.cs">
       <DependentUpon>ChangeAdminAccountPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -382,6 +391,13 @@
     </Compile>
     <Compile Include="MasterForm\CreateAdminAccountForm.aspx.designer.cs">
       <DependentUpon>CreateAdminAccountForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterForm\PopUpAdvetisementPaymentImage.aspx.cs">
+      <DependentUpon>PopUpAdvetisementPaymentImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterForm\PopUpAdvetisementPaymentImage.aspx.designer.cs">
+      <DependentUpon>PopUpAdvetisementPaymentImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterForm\PopUpReportProofImage.aspx.cs">
       <DependentUpon>PopUpReportProofImage.aspx</DependentUpon>

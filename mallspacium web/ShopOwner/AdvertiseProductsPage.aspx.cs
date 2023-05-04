@@ -202,7 +202,7 @@ namespace mallspacium_web.MasterForm2
             //auto generated unique id
             Random random = new Random();
             int randomIDNumber = random.Next(100000, 999999);
-            string advertisemetID = "ADS" + randomIDNumber.ToString();
+            string advertisemetID = "ADSPROD" + randomIDNumber.ToString();
 
             //Get current date time and the expected expiration date
             DateTime currentDate = DateTime.Now;

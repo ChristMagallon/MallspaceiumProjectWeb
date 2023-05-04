@@ -1,14 +1,14 @@
-﻿using Google.Cloud.Firestore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Google.Cloud.Firestore;
 
 namespace mallspacium_web.MasterForm
 {
-    public partial class PopUpSubscriptionPaymentImage : System.Web.UI.Page
+    public partial class PopUpAdvetisementPaymentImage : System.Web.UI.Page
     {
         FirestoreDb database;
         protected void Page_Load(object sender, EventArgs e)
@@ -27,7 +27,7 @@ namespace mallspacium_web.MasterForm
             string userEmail = Request.QueryString["userEmail"];
 
             // Retrieve the image data from Firestore database
-            DocumentReference docRef = database.Collection("SubscriptionPaymentApproval").Document(userEmail);
+            DocumentReference docRef = database.Collection("AdvertisementPaymentApproval").Document(userEmail);
             DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
 
             string image = snapshot.GetValue<string>("paymentFile");
