@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -105,7 +106,7 @@ namespace mallspacium_web.form
         public async void signupUser()
         {
             String email = EmailTextBox.Text;
-            string shopperImage = "";
+            string image = "";
 
             // Generate random ID number
             Random random = new Random();
@@ -119,6 +120,18 @@ namespace mallspacium_web.form
             // Capitalize first letter of each word in a string
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
             TextInfo ti = cultureInfo.TextInfo;
+
+            // Convert the image string to a byte array
+            byte[] shopImage;
+            if (string.IsNullOrEmpty(image))
+            {
+                // If the image string is null or empty, use the default image instead
+                shopImage = File.ReadAllBytes(Server.MapPath("/Images/no-image.jpg"));
+            }
+            else
+            {
+                shopImage = Convert.FromBase64String(image);
+            }
 
             // Generate confirmation code
             string confirmationCode = GenerateCode();
@@ -141,7 +154,7 @@ namespace mallspacium_web.form
                 {"password", PasswordTextBox.Text},
                 {"confirmPassword", ConfirmPasswordTextBox.Text},
                 {"userRole", userRole},
-                {"shopperImage", shopperImage},
+                {"shopperImage", image},
                 {"dateCreated", dateCreated },
                 {"confirmationCode", confirmationCode },
                 {"verified", false}

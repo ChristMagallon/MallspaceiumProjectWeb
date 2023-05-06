@@ -153,7 +153,7 @@ namespace mallspacium_web.MasterForm
                     {"userID", userIdLabel.Text},
                     {"firstName", firstNameLabel.Text},
                     {"lastName", lastNameLabel.Text},
-                    {"shopImage", shopImage},
+                    {"shopImage", image},
                     {"shopName", shopNameLabel.Text},
                     {"shopDescription", descriptionLabel.Text},
                     {"email", emailLabel.Text},
