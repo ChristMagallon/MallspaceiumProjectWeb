@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -24,6 +25,54 @@ namespace mallspacium_web.MasterForm2
             if (!IsPostBack)
             {
                 getShops();
+                showAdvertisementPopup();
+            }
+        }
+
+        public async void showAdvertisementPopup()
+        {
+            // Retrieve subscription type from AdminManageSubscriptions collection
+            DocumentReference docRef = database.Collection("AdminManageSubscription").Document((string)Application.Get("usernameget"));
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+            string subscriptionType = snapshot.GetValue<string>("subscriptionType");
+
+            // Check if subscription type is Free Subscription or Basic Subscription
+            if (subscriptionType == "Free Subscription" || subscriptionType == "Basic Subscription" || subscriptionType == "Advanced Subscription")
+            {
+                // Query AllAdvertisement collection for documents
+                QuerySnapshot adSnapshot = await database.Collection("AllAdvertisement").GetSnapshotAsync();
+
+                // If documents exist
+                if (adSnapshot.Documents.Count > 0)
+                {
+                    // Get a random document
+                    DocumentSnapshot randomDoc = adSnapshot.Documents[new Random().Next(adSnapshot.Documents.Count)];
+
+                    // Retrieve adProdImage string from selected document
+                    string adsProdImage = randomDoc.GetValue<string>("adsProdImage");
+
+                    // Convert the image string to a byte array
+                    byte[] imageBytes = Convert.FromBase64String(adsProdImage);
+
+                    // Get the image height and width
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        using (System.Drawing.Image img = System.Drawing.Image.FromStream(ms))
+                        {
+                            // Set the height and width of the popup window
+                            int height = img.Height;
+                            int width = img.Width;
+
+                            // Create a Base64-encoded data URL for the image
+                            string imageBase64String = Convert.ToBase64String(imageBytes);
+                            string imageSrc = $"data:image/jpeg;base64,{imageBase64String}";
+
+                            // Register the script to open the popup window using ScriptManager
+                            string script = $"var w = window.open('', '', 'height={height},width={width},status=yes,toolbar=no,menubar=no,location=no,resizable=no'); w.document.write('<html><body><img src=\"{imageSrc}\"/></body></html>');";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "PopupWindow", script, true);
+                        }
+                    }
+                }
             }
         }
 

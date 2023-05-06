@@ -41,7 +41,7 @@ namespace mallspacium_web.Shopper
             foreach (DocumentSnapshot doc in querySnapshot.Documents)
             {
                 string name = doc.GetValue<string>("shopName");
-                string base64String = doc.GetValue<string>("image");
+                string base64String = doc.GetValue<string>("shopImage");
                 byte[] image = Convert.FromBase64String(base64String);
                 string description = doc.GetValue<string>("shopDescription");
                 string email = doc.GetValue<string>("email");

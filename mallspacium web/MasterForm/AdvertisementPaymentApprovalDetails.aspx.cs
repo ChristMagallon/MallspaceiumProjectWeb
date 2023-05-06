@@ -153,22 +153,47 @@ namespace mallspacium_web.MasterForm
                     adsProdImage = Convert.FromBase64String(image);
                 }
 
-                // Create a new collection reference
-                DocumentReference doc = database.Collection("Users").Document(userEmail).Collection("Advertisement").Document(advertisementIdLabel.Text);
+                // Create a new collection reference for "AllAdvertisement"
+                CollectionReference allAdsCollection = database.Collection("AllAdvertisement");
 
-                // Set the data for the new document
-                Dictionary<string, object> dataInsert = new Dictionary<string, object>
+                // Create a new document reference with the ID of advertisementIdLabel.Text
+                DocumentReference allAdsDoc = allAdsCollection.Document(advertisementIdLabel.Text);
+
+                // Set the data for the new document in "AllAdvertisement" collection
+                Dictionary<string, object> allAdsDataInsert = new Dictionary<string, object>
                 {
+                    {"userEmail", userEmail},
                     {"adsProdShopName", shopNameLabel.Text},
                     {"adsProdId", advertisementProductIdLabel.Text},
-                    {"adsProdNmae", productNameLabel.Text},
+                    {"adsProdName", productNameLabel.Text},
                     {"adsProdDesc", descriptionLabel.Text},
                     {"adsProdImage", adsProdImage},
                     {"adsProdDate", date}
                 };
 
                 // Set the data in the Firestore document
-                await doc.SetAsync(dataInsert);
+                await allAdsDoc.SetAsync(allAdsDataInsert);
+
+                // Create a new collection reference for "Users"
+                CollectionReference usersCollection = database.Collection("Users");
+
+                // Create a new document reference with the ID of advertisementIdLabel.Text
+                DocumentReference userAdsDoc = usersCollection.Document(userEmail).Collection("Advertisement").Document(advertisementIdLabel.Text);
+
+                // Set the data for the new document in "Users" collection
+                Dictionary<string, object> userAdsDataInsert = new Dictionary<string, object>
+                {
+                    {"adsProdShopName", shopNameLabel.Text},
+                    {"adsProdId", advertisementProductIdLabel.Text},
+                    {"adsProdName", productNameLabel.Text},
+                    {"adsProdDesc", descriptionLabel.Text},
+                    {"adsProdImage", adsProdImage},
+                    {"adsProdDate", date}
+                };
+
+                // Set the data in the Firestore document
+                await userAdsDoc.SetAsync(userAdsDataInsert);
+
                 removeDocumentID(userEmail);
                 sendApprovedNotif();
 
