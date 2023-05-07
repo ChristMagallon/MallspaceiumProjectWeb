@@ -105,7 +105,7 @@ namespace mallspacium_web.ShopOwner
                     { "firstName", firstName},
                     { "lastName", lastName},
                     { "userRole", userRole},
-                    { "adsProdId", adsProductID},
+                    { "adsProductID", adsProductID},
                     { "adsProductName", adsProductName},
                     { "adsProductImage", adsProductImage},
                     { "adsProductDesc", adsProductDesc},
