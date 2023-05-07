@@ -14,7 +14,6 @@ namespace mallspacium_web.ShopOwner
     public partial class WebForm1 : System.Web.UI.Page
     {
         FirestoreDb db;
-        static string notif = "";
 
         protected async void Page_Load(object sender, EventArgs e)
         {
@@ -23,8 +22,12 @@ namespace mallspacium_web.ShopOwner
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
 
             db = FirestoreDb.Create("mallspaceium");
-            object field = "";
 
+            checkNotificationSetting();
+        }
+
+        public async void checkNotificationSetting()
+        {
             // Query the Firestore collection for a user with a specific email address
             CollectionReference usersRef = db.Collection("Users");
             DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
@@ -37,86 +40,81 @@ namespace mallspacium_web.ShopOwner
             {
                 // Get the data as a Dictionary
                 Dictionary<string, object> data = snapshot.ToDictionary();
+
                 // Access the specific field you want
-                     
-                try
+                if (data.TryGetValue("userNotif", out object fieldValue) && fieldValue is bool userNotif)
                 {
-                    field = data["userNotif"];
+                    if (userNotif)
+                    {
+                        NotifButton.Text = "On";
+                    }
+                    else
+                    {
+                        NotifButton.Text = "Off";
+                    }
                 }
-                catch(Exception)
+                else
                 {
-                    choice = true;
-                    createNotif();
-                    notif = "On";
+                    // Field does not exist or is not a boolean
                 }
-             
-                // Do something with the field value
             }
             else
             {
                 // Document does not exist
             }
-
-            if(choice == false)
-            {
-                notif = field.ToString();
-                Button1.Text = notif;
-
-            }
-         
-        }
-
-        public async void createNotif(){
-
-            DocumentReference usersRef2 = db.Collection("Users").Document((string)Application.Get("usernameget"));
-            Dictionary<string, object> data = new Dictionary<string, object>()
-                {
-                    {"userNotif","On" }
-                };
-            DocumentSnapshot snap = await usersRef2.GetSnapshotAsync();
-            if (snap.Exists)
-            {
-                await usersRef2.UpdateAsync(data);
-            }
-            Button1.Text = "On";
-
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            notificationsetting();
         }
 
         public async void notificationsetting()
         {
-            if (notif == "On")
-            {
-                DocumentReference usersRef2 = db.Collection("Users").Document((string)Application.Get("usernameget"));
-                Dictionary<string, object> data = new Dictionary<string, object>()
-                    {
-                        {"userNotif","Off" }
-                    };
-                DocumentSnapshot snap = await usersRef2.GetSnapshotAsync();
-                if (snap.Exists)
-                {
-                    await usersRef2.UpdateAsync(data);
-                }
-                Button1.Text = "Off";
-            }
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = db.Collection("Users");
+            DocumentReference docRef = usersRef.Document((string)Application.Get("usernameget"));
 
-            if (notif == "Off")
+            // Retrieve the document data asynchronously
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+            // Check if the document exists
+            if (snapshot.Exists)
             {
-                DocumentReference usersRef2 = db.Collection("Users").Document((string)Application.Get("usernameget"));
-                Dictionary<string, object> data = new Dictionary<string, object>()
+                // Get the data as a Dictionary
+                Dictionary<string, object> data = snapshot.ToDictionary();
+
+                // Access the specific field you want
+                if (data.TryGetValue("userNotif", out object fieldValue) && fieldValue is bool userNotif)
                 {
-                    {"userNotif","On" }
-                };
-                DocumentSnapshot snap = await usersRef2.GetSnapshotAsync();
-                if (snap.Exists)
-                {
-                    await usersRef2.UpdateAsync(data);
+                    if (userNotif)
+                    {
+                        // Update the userNotif field to false
+                        Dictionary<string, object> updates = new Dictionary<string, object>
+                        {
+                            { "userNotif", false }
+                        };
+                        await docRef.UpdateAsync(updates);
+
+                        // Update the button text
+                        NotifButton.Text = "Off";
+                    }
+                    else
+                    {
+                        // Update the userNotif field to true
+                        Dictionary<string, object> updates = new Dictionary<string, object>
+                        {
+                            { "userNotif", true }
+                        };
+                        await docRef.UpdateAsync(updates);
+
+                        // Update the button text
+                        NotifButton.Text = "On";
+                    }
                 }
-                Button1.Text = "On";
+                else
+                {
+                    // Field does not exist or is not a boolean
+                }
+            }
+            else
+            {
+                // Document does not exist
             }
         }
 
@@ -161,6 +159,11 @@ namespace mallspacium_web.ShopOwner
             // Close writer and stream
             writer.Close();
             fileStream.Close();
+        }
+
+        protected void NotifButton_Click(object sender, EventArgs e)
+        {
+            notificationsetting();
         }
     }
 }

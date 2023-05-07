@@ -37,19 +37,22 @@ namespace mallspacium_web.MasterForm3
             {
                 // Get the data as a Dictionary
                 Dictionary<string, object> data = snapshot.ToDictionary();
+
                 // Access the specific field you want
-
-                    object field = data["userNotif"];
-
-                // Do something with the field value
-
-                if (field.ToString() == "On")
+                if (data.TryGetValue("userNotif", out object fieldValue) && fieldValue is bool userNotif)
                 {
-                    getNotification();
+                    if (userNotif)
+                    {
+                        getNotification();
+                    }
+                    else
+                    {
+                        // Do something else when notifications are turned off
+                    }
                 }
                 else
                 {
-
+                    // Field does not exist or is not a boolean
                 }
             }
             else
@@ -57,6 +60,7 @@ namespace mallspacium_web.MasterForm3
                 // Document does not exist
             }
         }
+
 
         protected void NotificationGridView_SelectedIndexChanged(object sender, EventArgs e)
         {

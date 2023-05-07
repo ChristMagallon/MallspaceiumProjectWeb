@@ -164,7 +164,9 @@ namespace mallspacium_web.MasterForm
                     {"confirmPassword", confirmPassword},
                     {"userRole", userRoleLabel.Text},
                     {"dateCreated", dateLabel.Text },
+                    {"counterPopularity", 0 },
                     {"certifiedShopOwner", true },
+                    {"userNotif", true },
                     {"verified", verified}
                 };
 

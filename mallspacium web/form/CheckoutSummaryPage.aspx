@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Async="true" CodeBehind="CheckoutSummaryPage.aspx.cs" Inherits="mallspacium_web.form.CheckoutSummaryPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" UnobtrusiveValidationMode = "none" Async="true" CodeBehind="CheckoutSummaryPage.aspx.cs" Inherits="mallspacium_web.form.CheckoutSummaryPage" %>
 
 <!DOCTYPE html>
 

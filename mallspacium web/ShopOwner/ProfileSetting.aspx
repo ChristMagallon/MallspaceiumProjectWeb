@@ -12,7 +12,7 @@
         <tr>
             <td class="col-sm-8">Turn on/off Notifications</td>
             <td class="col-sm-4">
-                <asp:Button ID="Button1" runat="server" Text="Switch" OnClick="Button1_Click" CssClass="btn btn-primary" Width="150px" />
+                <asp:Button ID="NotifButton" runat="server" Text="Switch" CssClass="btn btn-primary" Width="150px" OnClick="NotifButton_Click" />
             </td>
         </tr>
         <tr>

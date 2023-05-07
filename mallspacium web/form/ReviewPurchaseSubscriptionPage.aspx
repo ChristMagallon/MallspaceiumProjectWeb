@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReviewPurchaseSubscriptionPage.aspx.cs" Inherits="mallspacium_web.form.ReviewPurchaseSubscriptionPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" UnobtrusiveValidationMode = "none" CodeBehind="ReviewPurchaseSubscriptionPage.aspx.cs" Inherits="mallspacium_web.form.ReviewPurchaseSubscriptionPage" %>
 
 <!DOCTYPE html>
 

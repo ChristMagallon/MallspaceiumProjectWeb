@@ -36,11 +36,9 @@ namespace mallspacium_web.form
             // Check if the snapshot is empty
             if (snapshot.Count == 0)
             {
-                ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
-
                 // Query the Firestore collection for a user with a specific email address
                 CollectionReference usersRef2 = db.Collection("Users");
-                Query query2 = usersRef.WhereEqualTo("email", EmailTextBox.Text);
+                Query query2 = usersRef2.WhereEqualTo("email", EmailTextBox.Text);
                 QuerySnapshot snapshot2 = await query2.GetSnapshotAsync();
 
                 // Check if the snapshot is empty

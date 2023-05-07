@@ -167,7 +167,7 @@ namespace mallspacium_web.MasterForm
                     {"adsProdId", advertisementProductIdLabel.Text},
                     {"adsProdName", productNameLabel.Text},
                     {"adsProdDesc", descriptionLabel.Text},
-                    {"adsProdImage", adsProdImage},
+                    {"adsProdImage", image},
                     {"adsProdDate", date}
                 };
 
@@ -187,7 +187,7 @@ namespace mallspacium_web.MasterForm
                     {"adsProdId", advertisementProductIdLabel.Text},
                     {"adsProdName", productNameLabel.Text},
                     {"adsProdDesc", descriptionLabel.Text},
-                    {"adsProdImage", adsProdImage},
+                    {"adsProdImage", image},
                     {"adsProdDate", date}
                 };
 

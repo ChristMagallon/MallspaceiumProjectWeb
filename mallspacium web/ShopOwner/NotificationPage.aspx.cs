@@ -37,19 +37,22 @@ namespace mallspacium_web.MasterForm2
             {
                 // Get the data as a Dictionary
                 Dictionary<string, object> data = snapshot.ToDictionary();
-                // Access the specific field you want
-   
-                    object field = data["userNotif"];
-                
-                // Do something with the field value
 
-                if(field.ToString() == "On")
+                // Access the specific field you want
+                if (data.TryGetValue("userNotif", out object fieldValue) && fieldValue is bool userNotif)
                 {
-                    getNotification();
+                    if (userNotif)
+                    {
+                        getNotification();
+                    }
+                    else
+                    {
+                        // Do something else when notifications are turned off
+                    }
                 }
                 else
                 {
-
+                    // Field does not exist or is not a boolean
                 }
             }
             else
@@ -107,7 +110,7 @@ namespace mallspacium_web.MasterForm2
             // Create a new DataTable to hold the data
             DataTable notificationTable = new DataTable();
             notificationTable.Columns.Add("Notification", typeof(string));
-     
+
 
             // Loop through each document in the snapshot and add its data to the DataTable
             foreach (DocumentSnapshot docsnap in snap.Documents)
@@ -115,15 +118,16 @@ namespace mallspacium_web.MasterForm2
                 if (docsnap.Exists)
                 {
                     // Convert the document data to a dictionary
-                    /*Dictionary<string, object> data = docsnap.ToDictionary();*/
+                    Dictionary<string, object> data = docsnap.ToDictionary();
 
                     // Get the values of the fields we want to display
                     string Notification = docsnap.Id;
-               
+
                     // Add the data to the DataTable
                     notificationTable.Rows.Add(Notification);
                 }
             }
+
             // Set the DataTable as the DataSource for the GridView
             NotificationGridView.DataSource = notificationTable;
 

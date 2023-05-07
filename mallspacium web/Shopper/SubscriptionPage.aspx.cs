@@ -235,7 +235,7 @@ namespace mallspacium_web.Shopper
         // Revert the subscription back to free
         public async void revertSubscription()
         {
-            string subscriptionType = "Free";
+            string subscriptionType = "Free Subscription";
             string subscriptionPrice = "0.00";
             string status = "Expired";
             // Query the Firestore collection for a user with a specific email address

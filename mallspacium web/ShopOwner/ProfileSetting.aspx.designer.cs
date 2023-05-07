@@ -15,13 +15,13 @@ namespace mallspacium_web.ShopOwner
     {
 
         /// <summary>
-        /// Button1 control.
+        /// NotifButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button NotifButton;
 
         /// <summary>
         /// Button2 control.
