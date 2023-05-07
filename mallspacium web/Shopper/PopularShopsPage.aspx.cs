@@ -84,9 +84,14 @@ namespace mallspacium_web.MasterForm3
         public void getShops()
         {
             string role = "ShopOwner";
+            // Query shops with the specified userRole
             Query query = database.Collection("Users").WhereEqualTo("userRole", role);
-            // Retrieve the documents from the parent collection
-            QuerySnapshot querySnapshot = query.GetSnapshotAsync().Result;
+
+            // Retrieve all documents from the query
+            List<DocumentSnapshot> documentSnapshots = query.GetSnapshotAsync().Result.Documents.ToList();
+
+            // Sort the documents by counterPopularity in descending order
+            documentSnapshots = documentSnapshots.OrderByDescending(snapshot => snapshot.GetValue<int>("counterPopularity")).ToList();
 
             // Create a DataTable to store the retrieved data
             DataTable shopsGridViewTable = new DataTable();
@@ -95,8 +100,8 @@ namespace mallspacium_web.MasterForm3
             shopsGridViewTable.Columns.Add("shopImage", typeof(byte[]));
             shopsGridViewTable.Columns.Add("shopDescription", typeof(string));
 
-            // Iterate through the documents and populate the DataTable
-            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            // Iterate through the sorted documents and populate the DataTable
+            foreach (DocumentSnapshot documentSnapshot in documentSnapshots)
             {
                 string shopName = documentSnapshot.GetValue<string>("shopName");
                 string base64String = documentSnapshot.GetValue<string>("shopImage");
@@ -111,6 +116,7 @@ namespace mallspacium_web.MasterForm3
 
                 shopsGridViewTable.Rows.Add(dataRow);
             }
+
             // Bind the DataTable to the GridView control
             shopsGridView.DataSource = shopsGridViewTable;
             shopsGridView.DataBind();
@@ -166,6 +172,18 @@ namespace mallspacium_web.MasterForm3
             DocumentSnapshot userDoc = snapshot.Documents.FirstOrDefault();
             if (userDoc != null)
             {
+                // Increment the counterPopularity field by 1
+                int counterPopularity = userDoc.GetValue<int>("counterPopularity");
+                counterPopularity++;
+
+                // Update the counterPopularity field in the database
+                DocumentReference docRef = database.Collection("Users").Document(userDoc.Id);
+                Dictionary<string, object> data = new Dictionary<string, object>()
+                {
+                    { "counterPopularity", counterPopularity }
+                };
+                await docRef.UpdateAsync(data);
+
                 // Iterate through the documents and populate the DataTable
                 foreach (DocumentSnapshot documentSnapshot in snapshot.Documents)
                 {
@@ -175,8 +193,8 @@ namespace mallspacium_web.MasterForm3
                     string phoneNumber = documentSnapshot.GetValue<string>("phoneNumber");
                     string address = documentSnapshot.GetValue<string>("address");
 
-                    DocumentReference docRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("VisitedShop").Document(shopName);
-                    Dictionary<string, object> data1 = new Dictionary<string, object>()
+                    DocumentReference visitedShopRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("VisitedShop").Document(shopName);
+                    Dictionary<string, object> visitedShopData = new Dictionary<string, object>()
                     {
                         { "shopName", shopName},
                         { "shopDescription", shopDescription},
@@ -186,12 +204,10 @@ namespace mallspacium_web.MasterForm3
                         { "address", address},
                         { "dateVisited", dateVisited}
                     };
-                    await docRef.SetAsync(data1);
+                    await visitedShopRef.SetAsync(visitedShopData);
                 }
             }
-
             Response.Redirect("PopularShopDetailsPage.aspx?shopName=" + shopName, false);
-
         }
 
         protected void searchTextBox_TextChanged(object sender, EventArgs e)
