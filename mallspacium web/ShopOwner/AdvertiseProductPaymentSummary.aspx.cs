@@ -74,9 +74,6 @@ namespace mallspacium_web.ShopOwner
 
             // Generate random ID number
             Random random = new Random();
-            int randomIDNumber = random.Next(100000, 1000000);
-            string advertisementID = "ADS" + randomIDNumber.ToString();
-
             // Generate transaction number by get the current date and time
             DateTime now = DateTime.UtcNow;
             // Generate a random number between 1000 and 9999
@@ -102,7 +99,6 @@ namespace mallspacium_web.ShopOwner
                 Dictionary<string, object> data = new Dictionary<string, object>
                 {
                     { "transactionID", transactionID},
-                    { "advertisementID", advertisementID},
                     { "price", AdvertisementPriceLabel.Text},
                     { "paymentFile", base64String},
                     { "userEmail", userEmail},
