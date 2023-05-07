@@ -79,9 +79,14 @@ namespace mallspacium_web.MasterForm2
         public void getShops()
         {
             string role = "ShopOwner";
+            // Query shops with the specified userRole
             Query query = database.Collection("Users").WhereEqualTo("userRole", role);
-            // Retrieve the documents from the parent collection
-            QuerySnapshot querySnapshot = query.GetSnapshotAsync().Result;
+
+            // Retrieve all documents from the query
+            List<DocumentSnapshot> documentSnapshots = query.GetSnapshotAsync().Result.Documents.ToList();
+
+            // Sort the documents by counterPopularity in descending order
+            documentSnapshots = documentSnapshots.OrderByDescending(snapshot => snapshot.GetValue<int>("counterPopularity")).ToList();
 
             // Create a DataTable to store the retrieved data
             DataTable shopsGridViewTable = new DataTable();
@@ -90,8 +95,8 @@ namespace mallspacium_web.MasterForm2
             shopsGridViewTable.Columns.Add("shopImage", typeof(byte[]));
             shopsGridViewTable.Columns.Add("shopDescription", typeof(string));
 
-            // Iterate through the documents and populate the DataTable
-            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            // Iterate through the sorted documents and populate the DataTable
+            foreach (DocumentSnapshot documentSnapshot in documentSnapshots)
             {
                 string shopName = documentSnapshot.GetValue<string>("shopName");
                 string base64String = documentSnapshot.GetValue<string>("shopImage");
@@ -106,6 +111,7 @@ namespace mallspacium_web.MasterForm2
 
                 shopsGridViewTable.Rows.Add(dataRow);
             }
+
             // Bind the DataTable to the GridView control
             shopsGridView.DataSource = shopsGridViewTable;
             shopsGridView.DataBind();
