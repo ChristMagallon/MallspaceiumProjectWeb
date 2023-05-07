@@ -201,7 +201,7 @@ namespace mallspacium_web.MasterForm
                 //auto generated unique id
                 Random random = new Random();
                 int randomIDNumber = random.Next(100000, 999999);
-                string notifID = "NOTIF" + randomIDNumber.ToString();
+                string notifID = "REG" + randomIDNumber.ToString();
 
                 // Specify the name of the document using a variable or a string literal
                 string documentName = "Registration is completed " + notifID;
