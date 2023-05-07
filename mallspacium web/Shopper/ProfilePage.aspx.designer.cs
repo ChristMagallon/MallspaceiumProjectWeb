@@ -87,13 +87,13 @@ namespace mallspacium_web.MasterForm3
         protected global::System.Web.UI.WebControls.Label addressLabel;
 
         /// <summary>
-        /// recentlyVisitedGridView control.
+        /// visitedShopsGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView recentlyVisitedGridView;
+        protected global::System.Web.UI.WebControls.GridView visitedShopsGridView;
 
         /// <summary>
         /// errorMessageLabel control.

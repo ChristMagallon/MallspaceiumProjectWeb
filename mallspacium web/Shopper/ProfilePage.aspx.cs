@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,7 @@ namespace mallspacium_web.MasterForm3
             if (!IsPostBack)
             {
                 retrieveShopperDetails();
+                getVistedShops();
             }
         }
 
@@ -74,6 +76,91 @@ namespace mallspacium_web.MasterForm3
                 addressLabel.Text = address;
             }
         }
+        public void getVistedShops()
+        {
+            Query query = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("VisitedShop");
+            // Retrieve the documents from the parent collection
+            QuerySnapshot querySnapshot = query.GetSnapshotAsync().Result;
+
+            // Create a DataTable to store the retrieved data
+            DataTable visitedShopsGridViewTable = new DataTable();
+
+            visitedShopsGridViewTable.Columns.Add("shopName", typeof(string));
+            visitedShopsGridViewTable.Columns.Add("shopImage", typeof(byte[]));
+            visitedShopsGridViewTable.Columns.Add("shopDescription", typeof(string));
+            visitedShopsGridViewTable.Columns.Add("dateVisited", typeof(string));
+
+            // Iterate through the documents and populate the DataTable
+            foreach (DocumentSnapshot documentSnapshot in querySnapshot.Documents)
+            {
+                string shopName = documentSnapshot.GetValue<string>("shopName");
+                string base64String = documentSnapshot.GetValue<string>("shopImage");
+                byte[] shopImage = Convert.FromBase64String(base64String);
+                string shopDescription = documentSnapshot.GetValue<string>("shopDescription");
+                string date = documentSnapshot.GetValue<string>("dateVisited");
+
+                DataRow dataRow = visitedShopsGridViewTable.NewRow();
+
+                dataRow["shopName"] = shopName;
+                dataRow["shopImage"] = shopImage;
+                dataRow["shopDescription"] = shopDescription;
+                dataRow["dateVisited"] = date;
+
+                visitedShopsGridViewTable.Rows.Add(dataRow);
+            }
+
+            // Use DataView to sort DataTable by date field
+            DataView dataView = visitedShopsGridViewTable.DefaultView;
+            dataView.Sort = "dateVisited DESC";
+            visitedShopsGridViewTable = dataView.ToTable();
+
+            // Bind the DataTable to the GridView control
+            visitedShopsGridView.DataSource = visitedShopsGridViewTable;
+            visitedShopsGridView.DataBind();
+        }
+
+        protected void visitedShopsGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                byte[] imageBytes = (byte[])DataBinder.Eval(e.Row.DataItem, "shopImage");
+                System.Web.UI.WebControls.Image imageControl = (System.Web.UI.WebControls.Image)e.Row.FindControl("Image1");
+
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    // Convert the byte array to a base64-encoded string and bind it to the Image control
+                    imageControl.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(imageBytes);
+                    imageControl.Width = 100; // set the width of the image
+                    imageControl.Height = 100; // set the height of the image
+                }
+                else
+                {
+                    // If no image is available, show a default image instead
+                    imageControl.ImageUrl = "/Images/no-image.jpg";
+                    imageControl.Width = 100; // set the width of the image
+                    imageControl.Height = 100; // set the height of the image
+                }
+            }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(visitedShopsGridView, "Select$" + e.Row.RowIndex);
+                e.Row.ToolTip = "Click to view more details.";
+            }
+        }
+
+        protected void visitedShopsGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the index of the selected row
+            int selectedIndex = visitedShopsGridView.SelectedIndex;
+
+            // Get the value of the shopName column from the DataKeys collection
+            string shopName = visitedShopsGridView.DataKeys[selectedIndex].Values["shopName"].ToString();
+
+            // Redirect to another page and pass the shopName as a query string parameter
+            Response.Redirect("~/Shopper/PopularShopDetailsPage.aspx?shopName=" + shopName, false);
+        }
+
 
         protected void editProfileButton_Click(object sender, EventArgs e)
         {
