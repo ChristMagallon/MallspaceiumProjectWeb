@@ -46,7 +46,6 @@ namespace mallspacium_web.MasterForm
                 string fname = subDoc.GetValue<string>("firstName");
                 string lname = subDoc.GetValue<string>("lastName");
                 string role = subDoc.GetValue<string>("userRole");
-                string adsID = subDoc.GetValue<string>("advertisementID");
                 string price = subDoc.GetValue<string>("price");
                 string payment = subDoc.GetValue<string>("paymentFile");
                 string adsProdID = subDoc.GetValue<string>("adsProductID");
@@ -62,7 +61,6 @@ namespace mallspacium_web.MasterForm
                 firstNameLabel.Text = fname;
                 lastNameLabel.Text = lname;
                 userRoleLabel.Text = role;
-                advertisementIdLabel.Text = adsID;
                 priceLabel.Text = price;
                 imageHiddenField.Value = payment;
                 advertisementProductIdLabel.Text = adsProdID;
@@ -126,7 +124,7 @@ namespace mallspacium_web.MasterForm
                 CollectionReference allAdsCollection = database.Collection("AllAdvertisement");
 
                 // Create a new document reference with the ID of advertisementIdLabel.Text
-                DocumentReference allAdsDoc = allAdsCollection.Document(advertisementIdLabel.Text);
+                DocumentReference allAdsDoc = allAdsCollection.Document(advertisementProductIdLabel.Text);
 
                 // Set the data for the new document in "AllAdvertisement" collection
                 Dictionary<string, object> allAdsDataInsert = new Dictionary<string, object>
@@ -147,7 +145,7 @@ namespace mallspacium_web.MasterForm
                 CollectionReference usersCollection = database.Collection("Users");
 
                 // Create a new document reference with the ID of advertisementIdLabel.Text
-                DocumentReference userAdsDoc = usersCollection.Document(userEmail).Collection("Advertisement").Document(advertisementIdLabel.Text);
+                DocumentReference userAdsDoc = usersCollection.Document(userEmail).Collection("Advertisement").Document(advertisementProductIdLabel.Text);
 
                 // Set the data for the new document in "Users" collection
                 Dictionary<string, object> userAdsDataInsert = new Dictionary<string, object>

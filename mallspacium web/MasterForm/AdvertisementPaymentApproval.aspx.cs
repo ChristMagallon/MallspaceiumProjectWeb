@@ -33,21 +33,21 @@ namespace mallspacium_web.MasterForm
 
             advertisementGridViewTable.Columns.Add("transactionID", typeof(string));
             advertisementGridViewTable.Columns.Add("userEmail", typeof(string));
-            advertisementGridViewTable.Columns.Add("advertisementID", typeof(string));
+            advertisementGridViewTable.Columns.Add("adsProdId", typeof(string));
             advertisementGridViewTable.Columns.Add("price", typeof(string));
 
             foreach (DocumentSnapshot docsnap in querySnapshot.Documents)
             {
                 string transId = docsnap.GetValue<string>("transactionID");
                 string email = docsnap.GetValue<string>("userEmail");
-                string adsID = docsnap.GetValue<string>("advertisementID");
+                string adsID = docsnap.GetValue<string>("adsProdId");
                 string price = docsnap.GetValue<string>("price");
 
                 DataRow dataRow = advertisementGridViewTable.NewRow();
 
                 dataRow["transactionID"] = transId;
                 dataRow["userEmail"] = email;
-                dataRow["advertisementID"] = adsID;
+                dataRow["adsProdId"] = adsID;
                 dataRow["price"] = price;
 
                 advertisementGridViewTable.Rows.Add(dataRow);
@@ -85,7 +85,7 @@ namespace mallspacium_web.MasterForm
 
                     advertisementGridViewTable.Columns.Add("transactionID", typeof(string));
                     advertisementGridViewTable.Columns.Add("userEmail", typeof(string));
-                    advertisementGridViewTable.Columns.Add("advertisementID", typeof(string));
+                    advertisementGridViewTable.Columns.Add("adsProdId", typeof(string));
                     advertisementGridViewTable.Columns.Add("price", typeof(string));
 
                     // Iterate through the documents and populate the DataTable
@@ -93,14 +93,14 @@ namespace mallspacium_web.MasterForm
                     {
                         string id = docsnap.GetValue<string>("transactionID");
                         string email = docsnap.GetValue<string>("userEmail");
-                        string type = docsnap.GetValue<string>("advertisementID");
+                        string adsID = docsnap.GetValue<string>("adsProdId");
                         string price = docsnap.GetValue<string>("price");
 
                         DataRow dataRow = advertisementGridViewTable.NewRow();
 
                         dataRow["transactionID"] = id;
                         dataRow["userEmail"] = email;
-                        dataRow["advertisementID"] = type;
+                        dataRow["adsProdId"] = adsID;
                         dataRow["price"] = price;
 
                         advertisementGridViewTable.Rows.Add(dataRow);

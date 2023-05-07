@@ -31,7 +31,7 @@
             <Columns>
                 <asp:BoundField HeaderText="Transaction ID" DataField="transactionID"></asp:BoundField>
             <asp:BoundField HeaderText="Email" DataField="userEmail"></asp:BoundField>
-            <asp:BoundField HeaderText="Advertisement ID" DataField="advertisementID"></asp:BoundField>
+            <asp:BoundField HeaderText="Advertisement Product ID" DataField="adsProdId"></asp:BoundField>
             <asp:BoundField HeaderText="Price" DataField="price"></asp:BoundField>
         </Columns>
              <FooterStyle BackColor="White" ForeColor="#000066" />

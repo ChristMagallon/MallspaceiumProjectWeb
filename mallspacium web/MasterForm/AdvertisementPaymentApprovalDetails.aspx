@@ -40,11 +40,6 @@
             </div>
 
             <div class="form-group">
-                <asp:Label ID="Label6" runat="server" Text="Advertisement ID: "></asp:Label> 
-                <asp:Label ID="advertisementIdLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
-            </div>
-
-            <div class="form-group">
                 <asp:Label ID="Label8" runat="server" Text="Price: "></asp:Label> 
                 <asp:Label ID="priceLabel" runat="server" Text="" CssClass="form-control"></asp:Label>
             </div> 
