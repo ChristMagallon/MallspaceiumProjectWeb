@@ -55,6 +55,23 @@ namespace mallspacium_web.MasterForm
                 string adsProdShopName = subDoc.GetValue<string>("adsProductShopName");
                 string adsProdDate = subDoc.GetValue<string>("adsProductDate");
 
+                // Convert the image string to a byte array
+                byte[] imageBytes;
+                if (string.IsNullOrEmpty(adsProdImage))
+                {
+                    // If the image string is null or empty, use the default image instead
+                    imageBytes = File.ReadAllBytes(Server.MapPath("/Images/no-image.jpg"));
+                }
+                else
+                {
+                    imageBytes = Convert.FromBase64String(adsProdImage);
+                }
+
+                // Set the image in the FileUpload control
+                string imageBase64String = Convert.ToBase64String(imageBytes);
+                string imageSrc = $"data:image/png;base64,{imageBase64String}";
+                productImage.ImageUrl = imageSrc;
+
                 // Display the data
                 transactionIdLabel.Text = transID;
                 emailLabel.Text = uemail;
