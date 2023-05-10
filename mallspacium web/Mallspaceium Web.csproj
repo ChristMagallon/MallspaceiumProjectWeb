@@ -225,7 +225,6 @@
     <Content Include="ShopOwner\AboutUsPage.aspx" />
     <Content Include="ShopOwner\AdvertiseProductPaymentSummary.aspx" />
     <Content Include="ShopOwner\MyCurrentSubscriptionPage.aspx" />
-    <Content Include="ShopOwner\ReportShopPage.aspx" />
     <Content Include="MasterForm\ReportDetailsForm.aspx" />
     <Content Include="MasterForm\UserDetailsPage.aspx" />
     <Content Include="design\mallspaceium_logo.png" />
@@ -477,13 +476,6 @@
     </Compile>
     <Compile Include="ShopOwner\MyCurrentSubscriptionPage.aspx.designer.cs">
       <DependentUpon>MyCurrentSubscriptionPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ShopOwner\ReportShopPage.aspx.cs">
-      <DependentUpon>ReportShopPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ShopOwner\ReportShopPage.aspx.designer.cs">
-      <DependentUpon>ReportShopPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterForm\ReportDetailsForm.aspx.cs">
       <DependentUpon>ReportDetailsForm.aspx</DependentUpon>

@@ -76,7 +76,12 @@
        <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <asp:GridView ID="productGridView" CssClass="table table-striped table-bordered table-hover" DataKeyNames="prodName, prodShopName"  runat="server" AutoGenerateColumns="False" OnRowDataBound="productGridView_RowDataBound" OnSelectedIndexChanged="productGridView_SelectedIndexChanged" >
+            <asp:GridView ID="productGridView" CssClass="table table-striped table-bordered table-hover" DataKeyNames="prodName, prodShopName" runat="server" AutoGenerateColumns="False" OnRowDataBound="productGridView_RowDataBound" OnSelectedIndexChanged="productGridView_SelectedIndexChanged" ShowHeaderWhenEmpty="True" EmptyDataText="No product posted.">
+                <EmptyDataTemplate>
+                    <div style="text-align:center;">
+                        No product posted.
+                    </div>
+                </EmptyDataTemplate>
                 <Columns>
                     <asp:BoundField HeaderText="Name" DataField="prodName" SortExpression="prodName" ></asp:BoundField>
                     <asp:TemplateField HeaderText="Image">
@@ -117,7 +122,12 @@
        <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <asp:GridView ID="saleDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="saleDiscShopName, saleDiscDesc" OnRowDataBound="saleDiscountGridView_RowDataBound" OnSelectedIndexChanged="saleDiscountGridView_SelectedIndexChanged">
+            <asp:GridView ID="saleDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="saleDiscShopName, saleDiscDesc" OnRowDataBound="saleDiscountGridView_RowDataBound" OnSelectedIndexChanged="saleDiscountGridView_SelectedIndexChanged" ShowHeaderWhenEmpty="True" EmptyDataText="No sale & discount posted.">
+                <EmptyDataTemplate>
+                    <div style="text-align:center;">
+                        No sale & discount posted.
+                    </div>
+                </EmptyDataTemplate>
                 <Columns>
                     <asp:BoundField HeaderText="Shop" DataField="saleDiscShopName" SortExpression="saleDiscShopName"></asp:BoundField>
                     <asp:TemplateField HeaderText="Image">

@@ -9,7 +9,12 @@
         <div class="col-md-10 offset-1">
             <div class="card p-3">
                 <div class="table-responsive-xxl">
-                    <asp:GridView ID="myFavoriteGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" DataKeyNames="shopName" AutoGenerateColumns="False" OnRowDataBound="myFavoriteGridView_RowDataBound" OnRowDeleting="myFavoriteGridView_RowDeleting" >
+                    <asp:GridView ID="myFavoriteGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" DataKeyNames="shopName" AutoGenerateColumns="False" OnRowDataBound="myFavoriteGridView_RowDataBound" OnRowDeleting="myFavoriteGridView_RowDeleting" ShowHeaderWhenEmpty="True" EmptyDataText="No favorite shops record.">
+                        <EmptyDataTemplate>
+                                <div style="text-align:center;">
+                                  No favorite shops record.
+                                </div>
+                          </EmptyDataTemplate>
                         <Columns>
                             <asp:BoundField HeaderText="Shop Name" DataField="shopName" SortExpression="shopName" ></asp:BoundField>
                             <asp:TemplateField HeaderText="Image">

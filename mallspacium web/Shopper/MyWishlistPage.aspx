@@ -10,9 +10,13 @@
         <div class="col-md-10 offset-1">
             <div class="card p-3">
                 <div class="table-responsive-xxl">
-                    <asp:GridView ID="myWishlistGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnRowDataBound="myWishlistGridView_RowDataBound" OnRowDeleting="myWishlistGridView_RowDeleting" >
+                    <asp:GridView ID="myWishlistGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" OnRowDataBound="myWishlistGridView_RowDataBound" OnRowDeleting="myWishlistGridView_RowDeleting" ShowHeaderWhenEmpty="True" EmptyDataText="No wishlist products record.">
+                        <EmptyDataTemplate>
+                            <div style="text-align:center;">
+                                No wishlist products record.
+                            </div>
+                        </EmptyDataTemplate>
                         <Columns>
-
                             <asp:BoundField HeaderText="Name" DataField="prodName" SortExpression="prodName" ></asp:BoundField>
                             <asp:TemplateField HeaderText="Image">
                                 <ItemTemplate>

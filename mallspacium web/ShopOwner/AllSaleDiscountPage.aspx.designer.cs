@@ -15,24 +15,6 @@ namespace mallspacium_web.MasterForm2
     {
 
         /// <summary>
-        /// allSalesDiscounts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink allSalesDiscounts;
-
-        /// <summary>
-        /// mySalesDiscounts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink mySalesDiscounts;
-
-        /// <summary>
         /// allSaleDiscountGridView control.
         /// </summary>
         /// <remarks>

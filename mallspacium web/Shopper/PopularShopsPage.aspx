@@ -16,8 +16,6 @@
         </div>
     </div>
 
-    
-
     <div class="container mt-5">
     <div class="row">
         <div class="col-md-10 offset-1">
@@ -33,7 +31,12 @@
 
 
                 <div class="table-responsive-xxl">
-                    <asp:GridView ID="shopsGridView" CssClass="table table-bordered table-striped table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="shopName" OnRowDataBound="shopsGridView_RowDataBound" OnSelectedIndexChanged="shopsGridView_SelectedIndexChanged">
+                    <asp:GridView ID="shopsGridView" CssClass="table table-bordered table-striped table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="shopName" OnRowDataBound="shopsGridView_RowDataBound" OnSelectedIndexChanged="shopsGridView_SelectedIndexChanged" ShowHeaderWhenEmpty="True" EmptyDataText="No shops record.">
+                        <EmptyDataTemplate>
+                            <div style="text-align:center;">
+                                No shops record.
+                            </div>
+                        </EmptyDataTemplate>
                         <Columns>
                             <asp:BoundField HeaderText="Shop Name" DataField="shopName" SortExpression="shopName" ></asp:BoundField>
                             <asp:TemplateField HeaderText="Image">

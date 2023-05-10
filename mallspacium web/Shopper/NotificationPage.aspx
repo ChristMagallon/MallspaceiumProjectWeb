@@ -19,8 +19,13 @@
 
             <div class="card p-3">
                 <div class="table-responsive mt-3">
-                    <asp:GridView ID="NotificationGridView" CssClass="table table-bordered table-striped table-hover bg-white" runat="server" DataKeyNames="Notification" AutoGenerateColumns="False" OnSelectedIndexChanged="NotificationGridView_SelectedIndexChanged" OnRowDeleting="NotificationGridView_RowDeleting">
-                    <Columns>
+                    <asp:GridView ID="NotificationGridView" CssClass="table table-bordered table-striped table-hover bg-white" runat="server" DataKeyNames="Notification" AutoGenerateColumns="False" OnSelectedIndexChanged="NotificationGridView_SelectedIndexChanged" OnRowDeleting="NotificationGridView_RowDeleting" ShowHeaderWhenEmpty="True" EmptyDataText="No notifications.">
+                        <EmptyDataTemplate>
+                            <div style="text-align:center;">
+                                No notifications.
+                            </div>
+                        </EmptyDataTemplate>
+                        <Columns>
                         <asp:BoundField HeaderText="NOTIFICATION" DataField="Notification" />
                         
                         <asp:CommandField SelectText="Details" ShowSelectButton="True" ValidationGroup="SelectButton" ButtonType="Button" ControlStyle-BackColor="#0066ff" ItemStyle-CssClass="text-center" />

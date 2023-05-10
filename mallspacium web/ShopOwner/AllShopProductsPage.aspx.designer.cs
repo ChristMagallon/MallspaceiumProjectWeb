@@ -15,24 +15,6 @@ namespace mallspacium_web.ShopOwner
     {
 
         /// <summary>
-        /// allProducts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink allProducts;
-
-        /// <summary>
-        /// ownProducts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ownProducts;
-
-        /// <summary>
         /// searchTextBox control.
         /// </summary>
         /// <remarks>

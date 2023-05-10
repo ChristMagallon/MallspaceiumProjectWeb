@@ -78,17 +78,7 @@ namespace mallspacium_web.ShopOwner
                     string reportEmail = email;
 
 
-                    if (userEmail == reportEmail)
-                    {
-                        // Disable the report button if the emails match
-                        reportButton.Enabled = false;
-                    }
-                    else
-                    {
-                        // Enable the report button if the emails do not match
-                        reportButton.Enabled = true;
-                    }
-
+                    
                     // Display the data
                     nameLabel.Text = name;
                     descriptionLabel.Text = desc;

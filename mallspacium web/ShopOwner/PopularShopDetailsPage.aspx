@@ -12,15 +12,15 @@
         <div class="row">
             <div class="col-md-6">
                 <asp:Label ID="label" runat="server" Text="" Visible="false"></asp:Label> <br />
-                <asp:Image ID="Image1" runat="server" />
+                <asp:Image ID="Image1" runat="server" Height="300" Width="300" />
             </div>
 
             <div class="col-md-6">
-                <h4><asp:Label ID="nameLabel" runat="server" Text=""></asp:Label> <asp:Button ID="reportButton" runat="server" Text="Report" CssClass="btn btn-primary" OnClick="reportButton_Click"/> </h4>
+                <h4><asp:Label ID="nameLabel" runat="server" Text=""></asp:Label> </h4>
                 <p><asp:Label ID="descriptionLabel" runat="server" Text=""></asp:Label></p>
                 <p><i class="fas fa-envelope"></i> <asp:Label ID="emailLabel" runat="server" Text=""></asp:Label></p>
                 <p><i class="fas fa-phone"></i> <asp:Label ID="phoneNumberLabel" runat="server" Text=""></asp:Label></p>
-                <p><i class="fas fa-map-marker-alt"></i> <asp:Label ID="addressLabel" runat="server" Text=""></asp:Label></p> <br /> <br />
+                <p><i class="fas fa-map-marker-alt"></i> <asp:Label ID="addressLabel" runat="server" Text=""></asp:Label></p> <br /> <br /> <br /> <br /> <br /> <br />
             </div>
         </div>
     </div>
@@ -39,8 +39,13 @@
                     </div>
 
                    <div class="card-body">
-                        <asp:GridView ID="productGridView" CssClass="table table-bordered table-condensed table-hover bg-white" runat="server" DataKeyNames="prodShopName, prodName" AutoGenerateColumns="False" OnRowDataBound="productGridView_RowDataBound" OnSelectedIndexChanged="productGridView_SelectedIndexChanged">
-                        <Columns>
+                       <asp:GridView ID="productGridView" CssClass="table table-bordered table-condensed table-hover bg-white" runat="server" DataKeyNames="prodShopName, prodName" AutoGenerateColumns="False" OnRowDataBound="productGridView_RowDataBound" OnSelectedIndexChanged="productGridView_SelectedIndexChanged" ShowHeaderWhenEmpty="True" EmptyDataText="No product posted.">
+                          <EmptyDataTemplate>
+                            <div style="text-align:center;">
+                                No product posted.
+                            </div>
+                          </EmptyDataTemplate>
+                           <Columns>
                             <asp:BoundField HeaderText="Name" DataField="prodName" SortExpression="prodName" />
                             <asp:TemplateField HeaderText="Image">
                                 <ItemTemplate>
@@ -81,7 +86,12 @@
                     </div>
 
                     <div class="card-body">
-                        <asp:GridView ID="saleDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="saleDiscShopName, saleDiscDesc" OnRowDataBound="saleDiscountGridView_RowDataBound" OnSelectedIndexChanged="saleDiscountGridView_SelectedIndexChanged">
+                        <asp:GridView ID="saleDiscountGridView" class="table table-bordered table-condensed table-responsive table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="saleDiscShopName, saleDiscDesc" OnRowDataBound="saleDiscountGridView_RowDataBound" OnSelectedIndexChanged="saleDiscountGridView_SelectedIndexChanged" ShowHeaderWhenEmpty="True" EmptyDataText="No sale & discount posted.">
+                            <EmptyDataTemplate>
+                                <div style="text-align:center;">
+                                  No sale & discount posted.
+                                </div>
+                          </EmptyDataTemplate>
                             <Columns>
                                 <asp:BoundField HeaderText="Shop" DataField="saleDiscShopName" SortExpression="saleDiscShopName"></asp:BoundField>
                                 <asp:TemplateField HeaderText="Image">

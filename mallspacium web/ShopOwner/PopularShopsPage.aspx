@@ -2,13 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
+
      <!-- starts here-->
+
     <div class="container mt-5">
     <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-10 offset-1">
             <div class="card p-3">
                 <div class="input-group">
                     <asp:TextBox ID="searchTextBox" runat="server" CssClass="form-control" type="search" placeholder="Search Shop Name" aria-label="Search" AutoPostBack="True" AutoCompleteType="Disabled" OnTextChanged="searchTextBox_TextChanged" ></asp:TextBox>
@@ -19,8 +21,13 @@
                     </div>
                 </div>
 
-                <div class="table-responsive mt-3">
-                    <asp:GridView ID="shopsGridView" CssClass="table table-bordered table-striped table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="shopName" OnRowDataBound="shopsGridView_RowDataBound" OnSelectedIndexChanged="shopsGridView_SelectedIndexChanged">
+                <div class="table-responsive-xxl">
+                    <asp:GridView ID="shopsGridView" CssClass="table table-bordered table-striped table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="shopName" OnRowDataBound="shopsGridView_RowDataBound" OnSelectedIndexChanged="shopsGridView_SelectedIndexChanged" ShowHeaderWhenEmpty="True" EmptyDataText="No shops record.">
+                        <EmptyDataTemplate>
+                                <div style="text-align:center;">
+                                  No shops record.
+                                </div>
+                          </EmptyDataTemplate>
                         <Columns>
                             <asp:BoundField HeaderText="Shop Name" DataField="shopName" SortExpression="shopName" ></asp:BoundField>
                             <asp:TemplateField HeaderText="Image">

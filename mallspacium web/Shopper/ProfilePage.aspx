@@ -83,7 +83,12 @@
                     </div>
 
                     <div class="table-responsive-xxl">
-                        <asp:GridView ID="visitedShopsGridView" CssClass="table table-bordered table-striped table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="shopName" OnRowDataBound="visitedShopsGridView_RowDataBound" OnSelectedIndexChanged="visitedShopsGridView_SelectedIndexChanged">
+                        <asp:GridView ID="visitedShopsGridView" CssClass="table table-bordered table-striped table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="shopName" OnRowDataBound="visitedShopsGridView_RowDataBound" OnSelectedIndexChanged="visitedShopsGridView_SelectedIndexChanged" ShowHeaderWhenEmpty="True" EmptyDataText="No recently visited shop record.">
+                            <EmptyDataTemplate>
+                                <div style="text-align:center;">
+                                  No recently visited shop record.
+                                </div>
+                          </EmptyDataTemplate>
                             <Columns>
                                 <asp:BoundField HeaderText="Shop Name" DataField="shopName" SortExpression="shopName" ></asp:BoundField>
                                 <asp:TemplateField HeaderText="Image">
