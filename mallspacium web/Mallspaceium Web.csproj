@@ -268,6 +268,8 @@
     <Content Include="Shopper\Style.css" />
     <Content Include="Shopper\ProfileSettings.aspx" />
     <Content Include="Shopper\SubscriptionPage.aspx" />
+    <Content Include="SuperAdmin\ManageUsers.aspx" />
+    <Content Include="SuperAdmin\Style.css" />
     <Content Include="Web.config" />
     <Content Include="MasterForm\ManageUserForm.aspx" />
     <Content Include="MasterForm\ManageSubscriptionForm.aspx" />
@@ -802,6 +804,20 @@
     <Compile Include="Shopper\SubscriptionPage.aspx.designer.cs">
       <DependentUpon>SubscriptionPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SuperAdmin\ManageUsers.aspx.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\Site4.Master.cs">
+      <DependentUpon>Site4.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\Site4.Master.designer.cs">
+      <DependentUpon>Site4.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="mallspaceium.json">
@@ -810,6 +826,7 @@
     <Content Include="ShopOwner\Site2.Master" />
     <None Include="packages.config" />
     <Content Include="MasterForm\Site1.Master" />
+    <Content Include="SuperAdmin\Site4.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

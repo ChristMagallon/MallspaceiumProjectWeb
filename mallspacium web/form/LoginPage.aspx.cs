@@ -29,76 +29,71 @@ namespace mallspacium_web.form
             getServerStatus();
         }
 
-        public async void getLoginDetails()
+        // Check the server status incase of maintenance
+        public async void getServerStatus()
         {
-            try
+            DateTime currentDate = DateTime.Now;
+            bool isMaintenanceInProgress = false;
+            DateTime latestEndTime = DateTime.MinValue;
+            CollectionReference downtimeRef = db.Collection(" ");
+
+            QuerySnapshot downtimeSnapshot = await downtimeRef.GetSnapshotAsync();
+
+            foreach (DocumentSnapshot documentSnapshot in downtimeSnapshot.Documents)
             {
-                // Query the Firestore collection for a user with a specific email address and password
-                CollectionReference usersRef = db.Collection("Users");
-                Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text).WhereEqualTo("password", PasswordTextBox.Text);
-                QuerySnapshot snapshot = await query.GetSnapshotAsync();
+                DateTime startTime;
+                DateTime endTime;
 
-                // Check if the snapshot is empty
-                if (snapshot.Count == 0)
+                if (DateTime.TryParseExact(documentSnapshot.GetValue<string>("startTime"), "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime) &&
+                    DateTime.TryParseExact(documentSnapshot.GetValue<string>("endTime"), "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime))
                 {
-                    ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
-                }
-
-                // Iterate over the results to find the user
-                foreach (DocumentSnapshot document in snapshot.Documents)
-                {
-                    if (document.Exists)
+                    if (currentDate >= startTime && currentDate <= endTime.AddSeconds(30))
                     {
-                        // Define the document reference and field name
-                        DocumentReference docRef = db.Collection("Users").Document(EmailTextBox.Text);
-                        string userRole = "userRole";
-                        // Get the field value from Firestore
-                        DocumentSnapshot docSnapshot = await docRef.GetSnapshotAsync();
-                        string userFieldValue = docSnapshot.GetValue<string>(userRole);
-                        bool verifiedFieldValue = docSnapshot.GetValue<bool>("verified");                     
-
-                        // Check if the user has been verified
-                        if (!verifiedFieldValue)
-                        {
-                            Response.Write("<script>alert('We noticed your account has not been verified! Please verify your account to be able to login.');</script>");
-                        }
-
-                        // Identify the user role and redirect to their respective page
-                        if (userFieldValue == "Shopper")
-                        {
-                            Application.Set("usernameget", EmailTextBox.Text);
-                            Response.Redirect("~/Shopper/PopularShopsPage.aspx", false);
-                        }
-                        else if (userFieldValue == "ShopOwner")
-                        {
-                            bool certifiedShopOwnerFieldValue = docSnapshot.GetValue<bool>("certifiedShopOwner");
-
-                            // Check if the user has been certified as a shop owner
-                            if (!certifiedShopOwnerFieldValue)
-                            {
-                                Response.Write("<script>alert('We noticed your account has not been fully verified! Please wait while the admin review your account.');</script>");
-                            }
-                            else
-                            {
-                                Application.Set("usernameget", EmailTextBox.Text);
-                                Response.Redirect("~/ShopOwner/PopularShopsPage.aspx", false);
-                            }                      
-                        }
-                        else
-                        {
-                            throw new Exception("Invalid user role.");
-                        }
+                        // Display the maintenance message to the user
+                        Response.Write("<script>alert('Server is under maintenance. Try logging back again later.');</script>");
+                        isMaintenanceInProgress = true;
+                        break;
                     }
-                    else
+
+                    if (endTime > latestEndTime)
                     {
-                        throw new Exception("Invalid email or password.");
+                        latestEndTime = endTime;
                     }
                 }
             }
-            catch (Exception ex)
+
+            if (!isMaintenanceInProgress && currentDate > latestEndTime.AddSeconds(30))
             {
-                string message = "Error: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", $"alert('{message}');", true);
+                // If there is no maintenance in progress and the current time is after the latest end time plus 30 seconds, proceed with login
+                getSuperAdmin();
+            }
+        }
+
+        public async void getSuperAdmin()
+        {
+            bool userExists = false;
+
+            // Query the Firestore collection for a user with a specific email address
+            CollectionReference usersRef = db.Collection("SuperAdminAccount");
+            Query query = usersRef.WhereEqualTo("superAdminEmail", EmailTextBox.Text).WhereEqualTo("superAdminPassword", PasswordTextBox.Text);
+
+            QuerySnapshot snapshot = await query.GetSnapshotAsync();
+
+            // Iterate over the results to find the user
+            foreach (DocumentSnapshot document in snapshot.Documents)
+            {
+                if (document.Exists)
+                {
+                    // Do something with the user document
+                    Application.Set("usernameget", EmailTextBox.Text);
+                    Response.Redirect("~/SuperAdmin/ManageUsers.aspx", false);
+                    userExists = true;
+                    break;
+                }
+            }
+            if (!userExists)
+            {
+                getAdmin();
             }
         }
 
@@ -183,45 +178,79 @@ namespace mallspacium_web.form
             }
         }
 
-        // Check the server status incase of maintenance
-        public async void getServerStatus()
+        public async void getLoginDetails()
         {
-            DateTime currentDate = DateTime.Now;
-            bool isMaintenanceInProgress = false;
-            DateTime latestEndTime = DateTime.MinValue;
-            CollectionReference downtimeRef = db.Collection("AdminSystemDowntime");
-
-            QuerySnapshot downtimeSnapshot = await downtimeRef.GetSnapshotAsync();
-
-            foreach (DocumentSnapshot documentSnapshot in downtimeSnapshot.Documents)
+            try
             {
-                DateTime startTime;
-                DateTime endTime;
+                // Query the Firestore collection for a user with a specific email address and password
+                CollectionReference usersRef = db.Collection("Users");
+                Query query = usersRef.WhereEqualTo("email", EmailTextBox.Text).WhereEqualTo("password", PasswordTextBox.Text);
+                QuerySnapshot snapshot = await query.GetSnapshotAsync();
 
-                if (DateTime.TryParseExact(documentSnapshot.GetValue<string>("startTime"), "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out startTime) &&
-                    DateTime.TryParseExact(documentSnapshot.GetValue<string>("endTime"), "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out endTime))
+                // Check if the snapshot is empty
+                if (snapshot.Count == 0)
                 {
-                    if (currentDate >= startTime && currentDate <= endTime.AddSeconds(30))
-                    {
-                        // Display the maintenance message to the user
-                        Response.Write("<script>alert('Server is under maintenance. Try logging back again later.');</script>");
-                        isMaintenanceInProgress = true;
-                        break;
-                    }
+                    ErrorEmailAddressLabel.Text = "It seems like the password you entered is incorrect or email you entered doesn't match our records.";
+                }
 
-                    if (endTime > latestEndTime)
+                // Iterate over the results to find the user
+                foreach (DocumentSnapshot document in snapshot.Documents)
+                {
+                    if (document.Exists)
                     {
-                        latestEndTime = endTime;
+                        // Define the document reference and field name
+                        DocumentReference docRef = db.Collection("Users").Document(EmailTextBox.Text);
+                        string userRole = "userRole";
+                        // Get the field value from Firestore
+                        DocumentSnapshot docSnapshot = await docRef.GetSnapshotAsync();
+                        string userFieldValue = docSnapshot.GetValue<string>(userRole);
+                        bool verifiedFieldValue = docSnapshot.GetValue<bool>("verified");                     
+
+                        // Check if the user has been verified
+                        if (!verifiedFieldValue)
+                        {
+                            Response.Write("<script>alert('We noticed your account has not been verified! Please verify your account to be able to login.');</script>");
+                        }
+
+                        // Identify the user role and redirect to their respective page
+                        if (userFieldValue == "Shopper")
+                        {
+                            Application.Set("usernameget", EmailTextBox.Text);
+                            Response.Redirect("~/Shopper/PopularShopsPage.aspx", false);
+                        }
+                        else if (userFieldValue == "ShopOwner")
+                        {
+                            bool certifiedShopOwnerFieldValue = docSnapshot.GetValue<bool>("certifiedShopOwner");
+
+                            // Check if the user has been certified as a shop owner
+                            if (!certifiedShopOwnerFieldValue)
+                            {
+                                Response.Write("<script>alert('We noticed your account has not been fully verified! Please wait while the admin review your account.');</script>");
+                            }
+                            else
+                            {
+                                Application.Set("usernameget", EmailTextBox.Text);
+                                Response.Redirect("~/ShopOwner/PopularShopsPage.aspx", false);
+                            }                      
+                        }
+                        else
+                        {
+                            throw new Exception("Invalid user role.");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Invalid email or password.");
                     }
                 }
             }
-
-            if (!isMaintenanceInProgress && currentDate > latestEndTime.AddSeconds(30))
+            catch (Exception ex)
             {
-                // If there is no maintenance in progress and the current time is after the latest end time plus 30 seconds, proceed with login
-                getAdmin();
+                string message = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", $"alert('{message}');", true);
             }
         }
+     
 
         protected void ShopperRegisterLinkButton_Click(object sender, EventArgs e)
         {
