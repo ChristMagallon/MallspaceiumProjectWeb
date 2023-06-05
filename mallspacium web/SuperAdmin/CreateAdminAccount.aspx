@@ -1,4 +1,4 @@
-﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="CreateAdminAccountForm.aspx.cs" Inherits="mallspacium_web.MasterForm.CreateAdminAccountForm" %>
+﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#" MasterPageFile="Site4.Master" AutoEventWireup="true" CodeBehind="CreateAdminAccount.aspx.cs" Inherits="mallspacium_web.SuperAdmin.CreateAdminAccount" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -38,13 +38,13 @@
                     <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ControlToValidate="emailTextbox" 
                         Display="Dynamic" 
                         ErrorMessage="Required*" 
-                        ForeColor="Red" >
+                        ForeColor="Red">
                     </asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="emailRegularExpressionValidator" runat="server" ControlToValidate="emailTextbox" 
                         Display="Dynamic" 
                         ErrorMessage="Invalid email address!" 
                         ForeColor="Red" 
-                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" >
+                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
                     </asp:RegularExpressionValidator>
                     <asp:Label ID="errorEmailLabel" runat="server" ForeColor="Red"></asp:Label>
                 </div>

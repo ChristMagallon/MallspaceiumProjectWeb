@@ -46,8 +46,8 @@
                         class="fas fa-pen me-2"></i>Admin Activities</a>
                 <a href="ReportsForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-chart-line me-2"></i>Reports</a>
-                <a href="DowntimeForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-shopping-cart me-2"></i>System</a>
+                <a href="AdminAccountForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-user me-2"></i>Admin Accounts</a>
             </div>
         </div>
  

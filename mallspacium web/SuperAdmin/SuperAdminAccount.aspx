@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title=""  Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="AdminAccountForm.aspx.cs" Inherits="mallspacium_web.MasterForm.AdminAccountForm" %>
+﻿<%@ Page Async="true" Title=""  Language="C#" MasterPageFile="Site4.Master" AutoEventWireup="true" CodeBehind="SuperAdminAccount.aspx.cs" Inherits="mallspacium_web.SuperAdmin.SuperAdminAccount" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -17,6 +17,15 @@
     <!-- starts here-->
 
     <div class="container">
+        <div class="row mb-3">
+            <div class="col-md-6 text-center">
+                <a href="Downtime.aspx" class="btn btn-primary btn-lg">Downtime</a>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <a href="SuperAdminAccount.aspx" class="btn btn-primary btn-lg">Super Admin Account</a>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col">
@@ -32,11 +41,11 @@
 
         <div class="form">
             <br />
-            <asp:GridView ID="accountGridView" CssClass="table table-striped table-bordered table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="adminEmail" OnRowEditing="accountGridView_RowEditing" >
+            <asp:GridView ID="accountGridView" CssClass="table table-striped table-bordered table-hover bg-white" runat="server" AutoGenerateColumns="False" DataKeyNames="superAdminEmail" OnRowEditing="accountGridView_RowEditing" >
                 <Columns>
-                    <asp:BoundField HeaderText="ID" DataField="adminId" SortExpression="adminId"  ItemStyle-CssClass="text-center"></asp:BoundField>
-                    <asp:BoundField HeaderText="Email Address" DataField="adminEmail" SortExpression="adminEmail"  ItemStyle-CssClass="text-center"></asp:BoundField>
-                    <asp:BoundField HeaderText="Date Created" DataField="adminDateCreated" SortExpression="adminDateCreated"  ItemStyle-CssClass="text-center"></asp:BoundField>
+                    <asp:BoundField HeaderText="ID" DataField="superAdminId" SortExpression="superAdminId"  ItemStyle-CssClass="text-center"></asp:BoundField>
+                    <asp:BoundField HeaderText="Email Address" DataField="superAdminEmail" SortExpression="superAdminEmail"  ItemStyle-CssClass="text-center"></asp:BoundField>
+                    <asp:BoundField HeaderText="Date Created" DataField="superAdminDateCreated" SortExpression="superAdminDateCreated"  ItemStyle-CssClass="text-center"></asp:BoundField>
                     <asp:CommandField ShowEditButton="True" ValidationGroup="EditButton" ButtonType="Button" ControlStyle-BackColor="Blue" ItemStyle-CssClass="text-center">
                         <ControlStyle BackColor="Blue" BorderColor="Blue" BorderStyle="Outset"></ControlStyle>
                     </asp:CommandField>

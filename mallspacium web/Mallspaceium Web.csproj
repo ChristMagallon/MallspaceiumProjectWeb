@@ -268,8 +268,17 @@
     <Content Include="Shopper\Style.css" />
     <Content Include="Shopper\ProfileSettings.aspx" />
     <Content Include="Shopper\SubscriptionPage.aspx" />
-    <Content Include="SuperAdmin\ManageUsers.aspx" />
+    <Content Include="SuperAdmin\AdminActivities.aspx" />
+    <Content Include="SuperAdmin\CreateAdminAccount.aspx" />
+    <Content Include="SuperAdmin\CreateSuperAdminAccount.aspx" />
+    <Content Include="SuperAdmin\Downtime.aspx" />
+    <Content Include="SuperAdmin\EditAdminAccount.aspx" />
+    <Content Include="SuperAdmin\EditSuperAdminAccount.aspx" />
+    <Content Include="SuperAdmin\ManageAdmin.aspx" />
+    <Content Include="SuperAdmin\ManageUser.aspx" />
+    <Content Include="SuperAdmin\ManageUserDetails.aspx" />
     <Content Include="SuperAdmin\Style.css" />
+    <Content Include="SuperAdmin\SuperAdminAccount.aspx" />
     <Content Include="Web.config" />
     <Content Include="MasterForm\ManageUserForm.aspx" />
     <Content Include="MasterForm\ManageSubscriptionForm.aspx" />
@@ -287,6 +296,7 @@
     <Compile Include="class\Report.cs" />
     <Compile Include="class\Shop.cs" />
     <Compile Include="class\SubscriptionData.cs" />
+    <Compile Include="class\SuperAdminAccountClass.cs" />
     <Compile Include="form\CheckoutSummaryPage.aspx.cs">
       <DependentUpon>CheckoutSummaryPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -804,12 +814,68 @@
     <Compile Include="Shopper\SubscriptionPage.aspx.designer.cs">
       <DependentUpon>SubscriptionPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SuperAdmin\ManageUsers.aspx.cs">
-      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    <Compile Include="SuperAdmin\AdminActivities.aspx.cs">
+      <DependentUpon>AdminActivities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SuperAdmin\ManageUsers.aspx.designer.cs">
-      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    <Compile Include="SuperAdmin\AdminActivities.aspx.designer.cs">
+      <DependentUpon>AdminActivities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\CreateAdminAccount.aspx.cs">
+      <DependentUpon>CreateAdminAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\CreateAdminAccount.aspx.designer.cs">
+      <DependentUpon>CreateAdminAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\CreateSuperAdminAccount.aspx.cs">
+      <DependentUpon>CreateSuperAdminAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\CreateSuperAdminAccount.aspx.designer.cs">
+      <DependentUpon>CreateSuperAdminAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\Downtime.aspx.cs">
+      <DependentUpon>Downtime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\Downtime.aspx.designer.cs">
+      <DependentUpon>Downtime.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\EditAdminAccount.aspx.cs">
+      <DependentUpon>EditAdminAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\EditAdminAccount.aspx.designer.cs">
+      <DependentUpon>EditAdminAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\EditSuperAdminAccount.aspx.cs">
+      <DependentUpon>EditSuperAdminAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\EditSuperAdminAccount.aspx.designer.cs">
+      <DependentUpon>EditSuperAdminAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\ManageAdmin.aspx.cs">
+      <DependentUpon>ManageAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\ManageAdmin.aspx.designer.cs">
+      <DependentUpon>ManageAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\ManageUser.aspx.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\ManageUser.aspx.designer.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\ManageUserDetails.aspx.cs">
+      <DependentUpon>ManageUserDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\ManageUserDetails.aspx.designer.cs">
+      <DependentUpon>ManageUserDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="SuperAdmin\Site4.Master.cs">
       <DependentUpon>Site4.Master</DependentUpon>
@@ -817,6 +883,13 @@
     </Compile>
     <Compile Include="SuperAdmin\Site4.Master.designer.cs">
       <DependentUpon>Site4.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin\SuperAdminAccount.aspx.cs">
+      <DependentUpon>SuperAdminAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SuperAdmin\SuperAdminAccount.aspx.designer.cs">
+      <DependentUpon>SuperAdminAccount.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

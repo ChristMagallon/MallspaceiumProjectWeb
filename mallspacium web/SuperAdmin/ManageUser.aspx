@@ -1,4 +1,4 @@
-﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title="" Language="C#" MasterPageFile="Site4.Master" AutoEventWireup="true" CodeBehind="ManageUsers.aspx.cs" Inherits="mallspacium_web.SuperAdmin.ManageUsers" %>
+﻿<%@ Page EnableViewStateMac ="false" EnableSessionState="True" EnableEventValidation ="false" ValidateRequest ="false" ViewStateEncryptionMode ="Never" Async="true" Title="" Language="C#" MasterPageFile="Site4.Master" AutoEventWireup="true" CodeBehind="ManageUser.aspx.cs" Inherits="mallspacium_web.SuperAdmin.ManageUser" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -8,17 +8,6 @@
     <link rel="stylesheet" href="Style.css" />
     
     <!-- starts here-->
-    <div class="container">
-        <div class="row mb-3">
-            <div class="col-md-6 text-center">
-                <a href="ShopOwnerRegistrationApproval.aspx" class="btn btn-primary btn-lg">Registration Approval</a>
-            </div>
-
-            <div class="col-md-6 text-center">
-                <a href="AdvertisementPaymentApproval.aspx" class="btn btn-primary btn-lg">Advertisement Payment Approval</a>
-            </div>
-        </div>
-    </div>
 
     <div class="container"> 
     <div class="form">

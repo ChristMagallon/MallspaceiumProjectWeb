@@ -11,7 +11,7 @@ namespace mallspacium_web.SuperAdmin
 {
 
 
-    public partial class ManageUsers
+    public partial class ManageAdmin
     {
 
         /// <summary>
@@ -24,12 +24,21 @@ namespace mallspacium_web.SuperAdmin
         protected global::System.Web.UI.WebControls.TextBox searchTextBox;
 
         /// <summary>
-        /// manageUsersGridView control.
+        /// addButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView manageUsersGridView;
+        protected global::System.Web.UI.WebControls.Button addButton;
+
+        /// <summary>
+        /// accountGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView accountGridView;
     }
 }

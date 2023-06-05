@@ -1,4 +1,4 @@
-﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="AccountDetailsForm.aspx.cs" Inherits="mallspacium_web.MasterForm.AdminAccountDetailsForm" %>
+﻿<%@ Page UnobtrusiveValidationMode="none" Async="true" Title=""  Language="C#" MasterPageFile="Site4.Master" AutoEventWireup="true" CodeBehind="EditSuperAdminAccount.aspx.cs" Inherits="mallspacium_web.SuperAdmin.EditSuperAdminAccount" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -50,7 +50,7 @@
                 <asp:Textbox ID="currentPasswordTextbox" runat="server" Text="" CssClass="form-control" TextMode="Password"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="currentPasswordRequiredFieldValidator" runat="server" ControlToValidate="currentPasswordTextbox" 
                     ErrorMessage="Required*" 
-                    ForeColor="Red" >
+                    ForeColor="Red">
                 </asp:RequiredFieldValidator>
                 <asp:Label ID="errorCurrentPasswordLabel" runat="server" ForeColor="Red"></asp:Label>
             </div>

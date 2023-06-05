@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="AdminActivitiesForm.aspx.cs" Inherits="mallspacium_web.WebForm3" %>
+﻿<%@ Page  Async="true" Title="" Language="C#" MasterPageFile="Site4.Master" AutoEventWireup="true" CodeBehind="AdminActivities.aspx.cs" Inherits="mallspacium_web.SuperAdmin.AdminActivities" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

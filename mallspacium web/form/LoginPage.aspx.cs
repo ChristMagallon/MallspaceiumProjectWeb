@@ -86,7 +86,7 @@ namespace mallspacium_web.form
                 {
                     // Do something with the user document
                     Application.Set("usernameget", EmailTextBox.Text);
-                    Response.Redirect("~/SuperAdmin/ManageUsers.aspx", false);
+                    Response.Redirect("~/SuperAdmin/ManageUser.aspx", false);
                     userExists = true;
                     break;
                 }

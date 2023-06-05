@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title=""  Language="C#" MasterPageFile="Site1.Master" AutoEventWireup="true" CodeBehind="AdminAccountForm.aspx.cs" Inherits="mallspacium_web.MasterForm.AdminAccountForm" %>
+﻿<%@ Page Async="true" Title=""  Language="C#" MasterPageFile="Site4.Master" AutoEventWireup="true" CodeBehind="ManageAdmin.aspx.cs" Inherits="mallspacium_web.SuperAdmin.ManageAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="Style.css" />
     
     <!-- starts here-->
-
-    <div class="container">
 
         <div class="row">
             <div class="col">

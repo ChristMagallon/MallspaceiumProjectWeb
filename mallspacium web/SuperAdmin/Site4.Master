@@ -38,16 +38,14 @@
         <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"></>Mallspaceium</div>
             <div class="list-group list-group-flush my-3">
-                <a href="ManageUserForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="ManageUser.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-tachometer-alt me-2"></i>Manage Users</a>
-                <a href="ManageSubscriptionForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-project-diagram me-2"></i>Manage Subscription</a>
-                <a href="AdminActivitiesForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="ManageAdmin.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-project-diagram me-2"></i>Manage Admins</a>
+                <a href="AdminActivities.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-pen me-2"></i>Admin Activities</a>
-                <a href="ReportsForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-chart-line me-2"></i>Reports</a>
-                <a href="DowntimeForm.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-shopping-cart me-2"></i>System</a>
+                <a href="Downtime.aspx" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-cog me-2"></i>System</a>
             </div>
         </div>
  
