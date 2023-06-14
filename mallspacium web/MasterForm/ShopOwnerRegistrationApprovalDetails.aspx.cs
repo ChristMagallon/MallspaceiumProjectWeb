@@ -132,7 +132,7 @@ namespace mallspacium_web.MasterForm
                 string password = shopDoc.GetValue<string>("password");
                 string confirmPassword = shopDoc.GetValue<string>("confirmPassword");
                 bool verified = shopDoc.GetValue<bool>("verified");
-                string confirmationCode = shopDoc.GetValue<string>("confirmationCode");
+                /*string confirmationCode = shopDoc.GetValue<string>("confirmationCode");*/
 
                 // Convert the image string to a byte array
                 byte[] shopImage;
@@ -169,8 +169,8 @@ namespace mallspacium_web.MasterForm
                     {"counterPopularity", 0 },
                     {"certifiedShopOwner", true },
                     {"userNotif", true },
-                    {"verified", verified},
-                    {"confirmationCode", confirmationCode }
+                    {"verified", verified}
+                   /* {"confirmationCode", confirmationCode }*/
                 };
 
                 // Set the data in the Firestore document

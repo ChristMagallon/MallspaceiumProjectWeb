@@ -195,6 +195,20 @@ namespace mallspacium_web.AdditionalForm
 
             await userRef.SetAsync(data1);
 
+            Query usersQue = database.Collection("Users").WhereEqualTo("email", emailLabel.Text);
+            QuerySnapshot snap = await usersQue.GetSnapshotAsync();
+            foreach (DocumentSnapshot documentSnapshot in snap.Documents)
+            {
+                string token = documentSnapshot.GetValue<string>("token");
+                var deviceToken = token;
+                var title = "Warning Message";
+                var body = "The administration has sent you a warning message.";
+
+                FcmNotification fcm = new FcmNotification();
+                fcm.SendNotification(deviceToken, title, body);
+
+            }
+
             // Display a message
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", "alert('Successfully Send Warning Message!');", true);
 

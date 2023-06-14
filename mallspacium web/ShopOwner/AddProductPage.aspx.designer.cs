@@ -123,6 +123,24 @@ namespace mallspacium_web.ShopOwner
         protected global::System.Web.UI.WebControls.RequiredFieldValidator priceTextboxValidator;
 
         /// <summary>
+        /// typeTextbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox typeTextbox;
+
+        /// <summary>
+        /// typeRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator typeRequiredFieldValidator;
+
+        /// <summary>
         /// tagDropDownList control.
         /// </summary>
         /// <remarks>

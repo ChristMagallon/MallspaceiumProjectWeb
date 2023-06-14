@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FirebaseAdmin;
+using FirebaseAdmin.Messaging;
 using Google.Cloud.Firestore;
 
 namespace mallspacium_web.Shopper
@@ -307,7 +310,7 @@ namespace mallspacium_web.Shopper
 
         public async void AddFavorite()
         {
-            DocumentReference doc = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Favorite").Document(nameLabel.Text);
+            DocumentReference doc = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("Favorite").Document(emailLabel.Text);
             Dictionary<string, object> data1 = new Dictionary<string, object>()
             {
                 { "shopName", nameLabel.Text},
@@ -341,6 +344,95 @@ namespace mallspacium_web.Shopper
                 {"notifDate", date }
             };
             await notifRef.SetAsync(data);
+
+            CollectionReference usersCollection = database.Collection("Users");
+            Query query2 = usersCollection.WhereEqualTo("shopName", nameLabel.Text);
+            query2.GetSnapshotAsync().ContinueWith(async task =>
+            {
+                if (task.IsCompleted && !task.IsFaulted)
+                {
+                    QuerySnapshot snap = task.Result;
+
+                    // Get the first document from the query result (assuming there's only one matching document)
+                    DocumentSnapshot userDoc = snap.Documents[0];
+                    if (userDoc != null)
+                    {
+                        // Retrieve the data from the document
+                        string email = userDoc.GetValue<string>("email");
+
+                        // auto-generated unique id
+                        Random random1 = new Random();
+                        int randomIDNumber1 = random.Next(100000, 999999);
+                        string sfID = "SF" + randomIDNumber1.ToString();
+
+                        DateTime currentDate1 = DateTime.Now;
+                        string dateFormat = "yyyy-MM-dd HH:mm:ss";
+                        string dateAddedToFavorite = currentDate1.ToString(dateFormat);
+
+                        // Specify the name of the document using a variable or a string literal
+                        string documentName1 = sfID;
+
+                        Dictionary<string, object> data2 = new Dictionary<string, object>
+            {
+                { "email", (string)Application.Get("usernameget") },
+                { "notifDate", dateAddedToFavorite }
+            };
+
+                        await usersCollection.Document(email).Collection("ShopperFavorites").Document(documentName1)
+                            .SetAsync(data2);
+
+                        Console.WriteLine("Successfully added the shoppers that have favorited " + nameLabel.Text);
+                    }
+                }
+                else if (task.IsFaulted)
+                {
+                    Console.WriteLine("Error adding the shoppers that have favorited " + nameLabel.Text);
+                }
+            });
+
+
+            CollectionReference userCollection = database.Collection("Users");
+            Query query3 = userCollection.WhereEqualTo("shopName", nameLabel.Text);
+            query3.GetSnapshotAsync().ContinueWith(task =>
+            {
+                if (task.IsCompleted && !task.IsFaulted)
+                {
+                    QuerySnapshot snap = task.Result;
+
+                    foreach (DocumentSnapshot document in snap.Documents)
+                    {
+                        // Retrieve the user token from the document
+                        string userToken = document.GetValue<string>("token");
+
+                        Query query = usersCollection.WhereEqualTo("email", (string)Application.Get("usernameget"));
+
+                        query.GetSnapshotAsync().ContinueWith(task1 =>
+                        {
+                            if (task1.IsCompleted && !task1.IsFaulted)
+                            {
+                                QuerySnapshot snap1 = task1.Result;
+
+                                // Get the first document from the query result (assuming there's only one matching document)
+                                DocumentSnapshot userDoc = snap1.Documents[0];
+                                if (userDoc != null)
+                                {
+                                    // Retrieve the data from the document
+                                    string username = userDoc.GetValue<string>("username");
+
+                                    string deviceToken = userToken;
+                                    // Build the notification payload
+                                    string title = "Added Shop to Favorite";
+                                    string body = username + " added your shop " + nameLabel.Text + " to favorite!";
+
+                                    // Send the notification using FCM
+                                    FcmNotification fcm = new FcmNotification();
+                                    fcm.SendNotification(deviceToken, title, body);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
         }
     }
 }

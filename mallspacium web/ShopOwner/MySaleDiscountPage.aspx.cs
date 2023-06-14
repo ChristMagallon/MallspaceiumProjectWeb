@@ -94,9 +94,9 @@ namespace mallspacium_web.ShopOwner
         protected async void mySaleDiscountGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Get the document ID from the DataKeys collection
-            string docId = mySaleDiscountGridView.DataKeys[e.RowIndex]["saleDiscId"].ToString();
+            string docId = mySaleDiscountGridView.DataKeys[e.RowIndex].Value.ToString();
 
-            // Get a reference to the document to be deleted (to be edited)
+            // Get a reference to the document to be deleted
             DocumentReference docRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("SaleDiscount").Document(docId);
 
             // Delete the document
@@ -108,8 +108,17 @@ namespace mallspacium_web.ShopOwner
             CollectionReference colRef = database.Collection("Users").Document((string)Application.Get("usernameget")).Collection("SaleDiscount");
             QuerySnapshot querySnapshot = await colRef.GetSnapshotAsync();
 
-            mySaleDiscountGridView.DataSource = querySnapshot.Documents.Select(d => d.ToDictionary()).ToList();
+            var data = querySnapshot.Documents.Select(d =>
+            {
+                Dictionary<string, object> dictionary = d.ToDictionary();
+                dictionary["saleDiscId"] = d.Id; // Add saleDiscId property with document ID
+                return dictionary;
+            }).ToList();
+
+            mySaleDiscountGridView.DataSource = data;
             mySaleDiscountGridView.DataBind();
         }
+
+
     }
 }

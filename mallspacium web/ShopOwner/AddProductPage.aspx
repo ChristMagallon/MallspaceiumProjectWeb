@@ -59,6 +59,13 @@
     </div>
 
     <div class="form-group">
+        <label for="typeTextbox">Size:</label>
+        <asp:TextBox ID="typeTextbox" runat="server" CssClass="form-control" Text="" AutoCompleteType="Disabled"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="typeRequiredFieldValidator" runat="server" ControlToValidate="typeTextbox" 
+            ErrorMessage="*Required" CssClass="text-danger" />
+    </div>
+
+    <div class="form-group">
         <label for="tagDropDownList">Tag:</label>
         <asp:DropDownList ID="tagDropDownList" runat="server"  CssClass="form-control" ValidationGroup="Validate">
             <asp:ListItem Value="">--Select a Tag--</asp:ListItem>

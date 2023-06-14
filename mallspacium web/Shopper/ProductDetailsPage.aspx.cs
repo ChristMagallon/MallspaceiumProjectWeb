@@ -155,7 +155,40 @@ namespace mallspacium_web.Shopper
                     {"notifDate", date }       
                 };
                 await notifRef.SetAsync(data);
-            }   
+            }
+
+            var usersCollection = database.Collection("Users");
+            var query1 = usersCollection.WhereEqualTo("shopName", shopNameLabel.Text);
+
+            var querySnapshot = await query1.GetSnapshotAsync();
+            var documents = querySnapshot.Documents;
+            foreach (var document in documents)
+            {
+                // Retrieve the user token from the document
+                string userToken = document.GetValue<string>("token");
+
+                var userQuery = usersCollection.WhereEqualTo("email", (string)Application.Get("usernameget"));
+                var userQuerySnapshot = await userQuery.GetSnapshotAsync();
+
+                if (userQuerySnapshot.Count > 0)
+                {
+                    var userDoc1 = userQuerySnapshot.Documents[0];
+
+                    // Retrieve the data from the document
+                    string username = userDoc1.GetValue<string>("username");
+
+                    string deviceToken = userToken;
+                    // Build the notification payload
+                    string title = "Added Product to Wishlist";
+                    string body = username + " added your product " + productNameLabel.Text + " to wishlist!";
+
+                    // Send the notification using FCM
+                    FcmNotification fcm = new FcmNotification();
+                    fcm.SendNotification(deviceToken, title, body);
+                }
+            }
+
+
         }
     }
 }
